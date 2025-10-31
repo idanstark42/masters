@@ -1,0 +1,65 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+
+\title{Quantum Mechanics II Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Natrual Units}
+\label{sec:ex1}
+\subsection{Unit Equivilence}
+In CGS, the speed of light is measured in $cm/sec$. Therefore, for a unit system where $c = 1$, we get:
+\begin{equation}
+    c = 3\cdot10^{10}\:cm / sec = 1
+\end{equation}
+\begin{equation}
+    1 sec = 3\cdot10^{10}\:cm
+\end{equation}
+Therefore, distance and time are measured using the same units. Using the same logic, in CGS, mass is measured in grams and energy is measured in ergs. Assigning equation (2) into the definition of 1 erg, we get:
+\begin{equation}
+    1\:erg = 1\:g\cdot\frac{cm^2}{sec^2} = 1\:g\cdot\frac{cm^2}{9\cdot10^{20}\:cm^2} = \frac{1}{9}\cdot10^{-20}\:g
+\end{equation}
+And so we got that, assuming $c = 1$, the units for mass and energy are unified. This can also be shown using the relation from special relativity $E = mc^2$. As instructed, the units of mass and energy will be $eV$.
+\newline
+Now let's use the fact that $\hbar = 1$. $\hbar$ Has units of angualr momentum. Angular momentum has units of $energy \times time$. Since $\hbar$ is unitless, this means that angular momentum is unitless, and requires the units of energy to be opposite to the unit of time:
+\begin{equation}
+    \hbar = 10^{-27}\:erg\cdot sec = 1
+\end{equation}
+\begin{equation}
+    1\:sec = 10^{27}\:erg^{-1}
+\end{equation}
+Therefore the units of distance and time are opposite to the unit of energy and mass, and $eV^{-1}$ can be used to measure them. Writing all of the units in ${eV}$ is now just an issue of conversion from erg. 
+\begin{equation}
+    1\:erg = 6.242\cdot10^{11}\:eV
+\end{equation}
+\begin{equation}
+    1\:g = 9\cdot10^{20}\:erg = 5.617\cdot10^{32}\:eV
+\end{equation}
+\begin{equation}
+    1\:sec = 10^{27}\:erg^{-1} = 1.6\cdot10^{15}\:eV^{-1}
+\end{equation}
+\begin{equation}
+    1\:cm = sec/(3\cdot10^{10}) = 5.34\cdot10^{4}\:eV^{-1}
+\end{equation}
+\subsection{Newton's Constant and Plank Mass}
+Using the values from equations (6) to (9):
+\begin{equation}
+    G_N = 6.7\cdot10^{-8} cm^3sec^{-2}g^{-1}
+\end{equation}
+\begin{equation}
+    G_N = 6.7\cdot10^{-8}\cdot(5.34\cdot10^{4}\:eV^{-1})^{3}\cdot(1.6\cdot10^{15}\:eV^{-1})^{-2}\cdot(5.617\cdot10^{32}\:eV)^{-1}
+\end{equation}
+\begin{equation}
+    G_N = 7.095\cdot10^{-57}\:eV^{-2}
+\end{equation}
+This is the very close to the value we would get using Plank Mass $M_{pl} = 1.2\cdot10^{19}\:GeV$:
+\begin{equation}
+    G_N = M_{pl}^{-2} = (1.2\cdot10^{19}\:GeV)^{-2} = 6.94\cdot10^{-57}\:eV^{-2}
+\end{equation}
+With a difference of around $2.1\%$, resulting probably from our rounding of the numbers.
+\end{document}
