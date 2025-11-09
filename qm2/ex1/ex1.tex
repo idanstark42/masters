@@ -3,6 +3,8 @@
 \usepackage{fullpage}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
 
 \title{Quantum Mechanics II Excercise 1}
 \author{Idan Stark}
@@ -62,4 +64,34 @@ This is the very close to the value we would get using Plank Mass $M_{pl} = 1.2\
     G_N = M_{pl}^{-2} = (1.2\cdot10^{19}\:GeV)^{-2} = 6.94\cdot10^{-57}\:eV^{-2}
 \end{equation}
 With a difference of around $2.1\%$, resulting probably from our rounding of the numbers.
+\subsection{The Actions of different systems}
+\subsubsection{Tennis ball in a court}
+The average serve velocity is around $174 \ km/h = 48.33 \ m/s $\footnote{https://toomanyrackets.com/average-serve-speeds-in-tennis/}. The length of a tennis court is $23.78$ meters. Assuming the ball is being served horizontally, the time it would take to complete that distance is $0.492$ seconds. In that time, the ball drops
+\begin{equation}
+    \Delta y = \frac{1}{2}gt^2 = 1.18 \ m
+\end{equation}
+Assuming the pitch is done from an average height of 1.5 meters, we can ignore the floor. We will also ignore air resistance, even though it affects the motion, it will not make a visible change in the action relative to that of the water molecule. The speed of the ball is then, as a function of time:
+\begin{equation}
+    \dot{x}^2 = v_0^2 + (gt)^2 = 2335.79 + 96.04t^2
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \frac{1}{\hbar}S[x_c(t)] = \\
+    = \frac{1}{\hbar} \int_{0}^{0.492 \ sec} \frac{1}{2} 0.056 \ kg \cdot \left( 2335.79 + 96.04t^2\right)dt \sim 3.2 \cdot 10^{35}
+\end{gathered}
+\end{equation}
+\subsubsection{Water molecule in a teacup}
+The mean free path of a water molecule is roughly $2.5$ \AA \footnote{https://galileo.phys.virginia.edu/classes/304/h2o.pdf}. During this time, the molecule moves in an average velocity depending on the temperature, following the formula
+\begin{equation}
+    v = \sqrt{\frac{2 k_B T}{m}}
+\end{equation}
+Assuming the temperature of the tea is roughly $60^\circ C$ and the mass of a water molecule is $3 \cdot 10^{-26} \ kg$, we get and average speed of $553.75 \ m/s$. This makes the mean free time $T = 4.5 \cdot 10^{-13}$ seconds. Assigning all of these into the action formule, we get:
+\begin{equation}
+\begin{gathered}
+    \frac{1}{\hbar}S[x_c(t)] = \\
+    = \frac{1}{\hbar} \int_{0}^{4.5\cdot10^{-13}} \frac{1}{2} 10^{-26} \ kg \cdot \left(553.75 \ m/s\right)^2 \ dt \sim 21
+\end{gathered}
+\end{equation}
+\section{Smeared Amplitude}
+
 \end{document}

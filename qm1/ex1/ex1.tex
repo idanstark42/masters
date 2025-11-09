@@ -3,6 +3,8 @@
 \usepackage{fullpage}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
 
 \title{Quantum Mechanics I Excercise 1}
 \author{Idan Stark}
@@ -10,9 +12,204 @@
 
 \begin{document}
 \maketitle
-\section{Excercise 1}
+\section{Entangled States and the Density Matrix}
 \label{sec:ex1}
-\begin{abstract}
-This is the first exercise.
-\end{abstract}
+\subsection{Bohm two spin 1/2’s form of the EPR wave function}
+The wave function is
+\begin{equation}
+    \Psi(\sigma_1, \sigma_2) = \frac{1}{\sqrt{2}}[\chi_{\uparrow}(\sigma_1)\chi_{\downarrow}(\sigma_2) - \chi_{\downarrow}(\sigma_1)\chi_{\uparrow}(\sigma_2)]
+\end{equation}
+Where $\sigma = \pm 1/2$ and
+\begin{equation}
+    \chi_{\uparrow} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \qquad
+    \chi_{\downarrow} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\end{equation}
+Using the definition of the density matrix (omitting for convinence the time dependency):
+\begin{equation}
+    \rho(x, x') = \int dq \Psi(x, q) \Psi^* (x', q)
+\end{equation}
+In our case, $x = \sigma_1$ and $q = \sigma_2$, and our integral is a sum:
+\begin{equation}
+\begin{gathered}
+\label{rho}
+    \rho(\sigma_1, \sigma_1') = \sum_{\sigma_2=\pm1/2}^{} \Psi(\sigma_1, \sigma_2) \Psi^* (\sigma_1', \sigma_2) = \\
+    = \Psi(\sigma_1, -1/2) \Psi^* (\sigma_1', -1/2) + \Psi(\sigma_1, 1/2) \Psi^* (\sigma_1', 1/2)
+\end{gathered}
+\end{equation}
+Assigning the values of $\sigma_2$ into the wave function gives:
+\begin{equation}
+\begin{gathered}
+    \Psi(\sigma_1, -1/2) = \frac{1}{\sqrt{2}}[\chi_{\uparrow}(\sigma_1)\chi_{\downarrow}(-1/2) - \chi_{\downarrow}(\sigma_1)\chi_{\uparrow}(-1/2)] = \frac{1}{\sqrt{2}}[\chi_{\uparrow}(\sigma_1)\cdot1 - \chi_{\downarrow}(\sigma_1)\cdot0] = \frac{1}{\sqrt{2}}\chi_{\uparrow}(\sigma_1) \\
+    \Psi(\sigma_1, 1/2) = \frac{1}{\sqrt{2}}[\chi_{\uparrow}(\sigma_1)\chi_{\downarrow}(1/2) - \chi_{\downarrow}(\sigma_1)\chi_{\uparrow}(1/2)] = \frac{1}{\sqrt{2}}[\chi_{\uparrow}(\sigma_1)\cdot0 - \chi_{\downarrow}(\sigma_1)\cdot1] = -\frac{1}{\sqrt{2}}\chi_{\downarrow}(\sigma_1)
+\end{gathered}
+\end{equation}
+Assigning those values into \ref{rho}:
+\begin{equation}
+\begin{gathered}
+    \rho(\sigma_1, \sigma_1') = \frac{1}{2}\chi_{\uparrow}(\sigma_1)\chi_{\uparrow}(\sigma_1') + \frac{1}{2}\chi_{\downarrow}(\sigma_1)\chi_{\downarrow}(\sigma_1') \\
+    \rho(\sigma_1, \sigma_1') = \frac{1}{2}\begin{pmatrix}
+        1 & 0 \\
+        0 & 1
+    \end{pmatrix} = \frac{1}{2}I
+\end{gathered}
+\end{equation}
+This density matrix represents a maximally mixed state, with all the pure states having equal probability of $1/2$.
+\newline
+Looking at the second spin as the system and the first spin as the environment $x = \sigma_2$ and $q = \sigma_1$, we can do the same process, and would recieve the same result. While the wave function is antisymmetric to the exchange, this antisymmetry disappears when moving to the density matrix because of the squaring of the wave function.
+\subsection{General Entangled State}
+This time, our wave function is:
+\begin{equation}
+    \Psi(x, q) = \sum_{mn} c_{mn} X_n (x) Q_m (q)
+\end{equation}
+And the coordinate $x$ and $q$ are continuous. This means we use the integral definition of the density matrix:
+\begin{equation}
+    \rho(x,x') = \int dq \Psi(x, q) \Psi^* (x', q)
+\end{equation}
+Assigning the wave function, we get:
+\begin{equation}
+\begin{gathered}
+    \rho(x,x') = \int dq \left(\sum_{mn} c_{mn} X_n (x) Q_m (q)\right) \left(\sum_{m'n'} c_{m'n'}^* X_{n'}^* (x') Q_{m'}^* (q)\right) = \\
+    = \int dq \sum_{mnm'n'} c_{mn} c_{m'n'}^* X_n (x) Q_m (q) X_{n'}^* (x') Q_{m'}^* (q) = \\
+    = \sum_{nmn'} c_{mn} c_{mn'}^* X_n (x) X_{n'}^* (x')
+\end{gathered}
+\end{equation}
+Or, in the base $\ket{n} = X_n(x)$, we get:
+\begin{equation}
+    \rho_{nn'} = \bra{n}\rho\ket{n'} = \sum_{m} c_{mn}c^*_{mn'}
+\end{equation}
+This is a dot product of the $n$ and $n'$ columns of the entanglement coefficients matrix $C$ whose elements are $c_{mn}$. Marking each the n-th column in $C_n$, we get:
+\begin{equation}
+    \rho_{nn'} = \bra{C_{n'}}\ket{C_{n}}
+\end{equation}
+For the diagonal elements of the density matrix, this reduces to:
+\begin{equation}
+    \rho_{nn} = \bra{C_{n}}\ket{C_{n}} = |C_n|^2 = \sum_{m} |c_{mn}|^2
+\end{equation}
+Since the trace of the density matrix is always $Tr(\rho) = 1$, the entanglement coefficients fullfil the condition:
+\begin{equation}
+    \sum_{mn} |c_{mn}|^2 = \sum_{n} \left(\sum_{m}|c_{mn}|^2\right) = \sum_{n} |C_n|^2 = \sum_{n} \rho_{nn} = Tr(\rho) = 1
+\end{equation}
+\begin{equation}
+    \sum_{mn} |c_{mn}|^2 = 1
+\end{equation}
+For the density matrix to represent a pure state, it must be idempotent, which can be checked easily using the trace $Tr(\rho^2)$:
+\begin{equation}
+    Tr(\rho^2) = \sum_n \left(\rho^2\right)_{nn} = \sum_{mn} \rho_{nm} \rho_{mn} = \sum_{mnlk} c_{ln} c_{lm}^* c_{km} c_{kn}^*
+\end{equation}
+And since the trace must be equal one, the condition for pure state is
+\begin{equation}
+    \sum_{mnlk} c_{ln} c_{lm}^* c_{km} c_{kn}^* = 1
+\end{equation}
+And for totaly mixed states it must be $1/N$:
+\begin{equation}
+    \sum_{mnlk} c_{ln} c_{lm}^* c_{km} c_{kn}^* = \frac{1}{N}
+\end{equation}
+\section{Wigner Transform}
+\subsection{The probabilities for x and p in three dimensions}
+The Wigner transform is defined by
+\begin{equation}
+    W(\boldsymbol{r},\boldsymbol{p}) = \frac{1}{(2\pi\hbar)^3} \int \rho\left(\boldsymbol{r} - \frac{\boldsymbol{a}}{2}, \boldsymbol{r} + \frac{\boldsymbol{a}}{2}\right)e^{i\boldsymbol{p}\cdot\boldsymbol{a}/\hbar}d^3\boldsymbol{a}
+\end{equation}
+Deriving the probabilities for $\boldsymbol{r}$ and $\boldsymbol{p}$ is easy:
+\begin{equation}
+\begin{gathered}
+    \int W(\boldsymbol{r},\boldsymbol{p}) d^3\boldsymbol{p} = \\
+    = \frac{1}{(2\pi\hbar)^3} \int \rho\left(\boldsymbol{r} - \frac{\boldsymbol{a}}{2}, \boldsymbol{r} + \frac{\boldsymbol{a}}{2}\right)e^{i\boldsymbol{p}\cdot\boldsymbol{a}/\hbar}d^3\boldsymbol{a}d^3\boldsymbol{p} = \\
+\end{gathered}
+\end{equation}
+And using $\boldsymbol{y} = \boldsymbol{r} - \frac{\boldsymbol{a}}{2}$ and $\boldsymbol{y'} = \boldsymbol{r} + \frac{\boldsymbol{a}}{2}$
+\begin{equation}
+\begin{gathered}
+    \int W(\boldsymbol{r},\boldsymbol{p}) d^3\boldsymbol{r} = \\
+    = \frac{1}{(2\pi\hbar)^3} \int \rho\left(\boldsymbol{r} - \frac{\boldsymbol{a}}{2}, \boldsymbol{r} + \frac{\boldsymbol{a}}{2}\right)e^{i\boldsymbol{p}\cdot\boldsymbol{a}/\hbar}d^3\boldsymbol{a}d^3\boldsymbol{r} = \\
+    = \frac{1}{(2\pi\hbar)^3} \int \rho\left(\boldsymbol{y}, \boldsymbol{y'}\right)e^{i\boldsymbol{p}\cdot(\boldsymbol{y - y'})/\hbar}d^3\boldsymbol{y}d^3\boldsymbol{y'} = \\
+    = w_{\boldsymbol{p}}
+\end{gathered}
+\end{equation}
+\subsection{The Ground State of an Infinite One dimensional Well}
+The ground state of an infinite one dimensional well spanning from $-L/2$ to $L/2$ is
+\begin{equation}
+    \psi_1(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{\pi x}{L}\right) \quad \text{for } 0 < x < L
+\end{equation}
+Since it's a pure state, the Wigner distribution follows the formula
+\begin{equation}
+    W(x, p) = \frac{1}{2\pi\hbar} \int_{-\infty}^{\infty} \Psi\left(x - \frac{a}{2}\right) \Psi^* \left(x + \frac{a}{2}\right) e^{ipa/\hbar}da
+\end{equation}
+The bounds, however, can be reduced, and taken only on the area where the function is not zero. This means the boundries for $a$ are functions of x, since $\Psi(x > L/2) = \Psi(x < -L/2) = 0$. For a certain $x$, the bounds for $a$ are
+\begin{equation}
+\begin{gathered}
+    \left|x \pm \frac{a}{2}\right| < \frac{L}{2} \quad and \quad \left|x \pm \frac{a}{2}\right| < 0 \\
+    |a| < A \equiv \begin{cases}
+        2x & x < L/2 \\
+        L - 2x & x > L/2
+    \end{cases}
+\end{gathered}
+\end{equation}
+And so the integral becomes
+\begin{equation}
+\begin{gathered}
+    W(x, p) = \frac{1}{2\pi\hbar} \int_{-A}^{A} \Psi\left(x - \frac{a}{2}\right) \Psi^* \left(x + \frac{a}{2}\right) e^{ipa/\hbar}da = \\
+    = \frac{1}{\pi\hbar L} \int_{-A}^{A}
+    \cos(\frac{\pi}{L}\left(x - \frac{a}{2}\right))
+    \cos(\frac{\pi}{L}\left(x + \frac{a}{2}\right))
+    e^{ipa/\hbar}da = \\
+    = \frac{1}{4\pi\hbar L} \int_{-A}^{A}
+    \left(e^{\frac{i\pi}{L}(x-\frac{a}{2})} + e^{-\frac{i\pi}{L}(x-\frac{a}{2})}\right)
+    \left(e^{\frac{i\pi}{L}(x+\frac{a}{2})} + e^{-\frac{i\pi}{L}(x+\frac{a}{2})}\right)
+    e^{ipa/\hbar}da = \\
+    = \frac{1}{2\pi\hbar L} \int_{-A}^{A}
+    \cos(2\pi\frac{x}{L})e^{ipa/\hbar}
+    + e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}
+    + e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}
+    da= \\
+    = \frac{1}{\pi\hbar L} \left[
+    \frac{\hbar}{ip}\cos(2\pi\frac{x}{L})e^{ipa/\hbar}
+    + \frac{e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}}{i\pi(\frac{p}{\pi\hbar} + L^{-1})}
+    + \frac{e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}}{i\pi(\frac{p}{\pi\hbar} - L^{-1})}
+    \right]_{-A}^{A} = \\
+    = \frac{1}{\pi\hbar L} \left[
+    \frac{\hbar}{p}\cos(2\pi\frac{x}{L})\sin(\frac{pA}{\hbar})
+    + 2\frac{\sin(\pi(\frac{p}{\pi\hbar} + L^{-1})A)}{\pi(\frac{p}{\pi\hbar} + L^{-1})}
+    + 2\frac{\sin(\pi(\frac{p}{\pi\hbar} - L^{-1})A)}{\pi(\frac{p}{\pi\hbar} - L^{-1})}
+    \right] = \\
+    = \frac{1}{\pi\hbar L} \left[
+    \frac{\hbar}{p}\cos(2\pi\frac{x}{L})\sin(\frac{pA}{\hbar})
+    + 2\frac{\frac{p}{\hbar}\sin(\frac{pA}{\hbar})\cos(\frac{\pi A}{L}) + \frac{\pi}{L}\cos(\frac{pA}{\hbar})\sin(\frac{\pi A}{L})}
+    {\pi^2\left(\left(\frac{p}{\pi\hbar}\right)^2 - \left(\frac{1}{L}\right)^2\right)}
+    \right]
+\end{gathered}
+\end{equation}
+Assigning $k = 2\pi\lambda^{-1} = \frac{p}{\hbar}$, $\alpha = \pi\frac{2x}{L}$, $\beta = \pi\frac{A}{L}$, and $\varphi = \frac{kL}{\pi}$, we get
+\begin{equation}
+    W(x, p) = \frac{2}{\pi \hbar} \left[
+    \varphi^{-1}\cos(\alpha)\sin(\varphi \beta)
+    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
+    {\pi\left(\varphi^2 - 1\right)} \right]
+\end{equation}
+We can notice that depending on $x$ and according to equation 23,
+\begin{equation}
+    \beta = \begin{cases}
+        \alpha & x < L/2 \\
+        \pi - \alpha & x > L/2
+    \end{cases}
+\end{equation}
+And so we get
+\begin{equation}
+    W(x,p) = \frac{2}{\pi \hbar} \begin{cases}
+    \varphi^{-1}\cos(\beta)\sin(\varphi \beta)
+    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
+    {\pi\left(\varphi^2 - 1\right)} & x < L/2 \\
+    \varphi^{-1}\sin(\beta)\sin(\varphi \beta)
+    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
+    {\pi\left(\varphi^2 - 1\right)} & x > L/2
+    \end{cases}
+\end{equation}
+In the two edge cases when $kL = \pm\pi$, one of the last two terms inside the intergrals vanishes, and we are left with
+\begin{equation}
+    W(x, p)_{\pm \pi} = \frac{1}{\pi\hbar}\left[
+    2\varphi^{-1}\cos(\alpha)\sin(\varphi \beta)
+    + \frac{\sin(\varphi \beta)\cos(\beta) \mp \cos(\varphi\beta)\sin(\beta)}{\pi \left(k \mp 1\right)}
+    \right]
+\end{equation}
+Finally, we notice that $\beta$ encodes the x-dependency and $\varphi$ encodes the p-dependency.
 \end{document}
