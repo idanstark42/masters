@@ -93,5 +93,255 @@ Assuming the temperature of the tea is roughly $60^\circ C$ and the mass of a wa
 \end{gathered}
 \end{equation}
 \section{Smeared Amplitude}
-
+\newpage
+\section{Discrete version of the free scalar field}
+\subsection{Commutation relations based on the Fourier modes}
+\begin{equation}
+\begin{gathered}
+    \left[\phi_n, \phi_m\right]
+    = \left[\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k), \int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{imp}\phi(p)\right]
+    = \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(nk + mp)} \left[\phi(k), \phi(p)\right] = 0 \\
+    \left[\pi_n, \pi_m\right]
+    = \left[\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\pi(k), \int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{imp}\pi(p)\right]
+    = \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(nk + mp)} \left[\pi(k), \pi(p)\right] = 0 \\
+    \left[\phi_n, \pi_m\right]
+    = \left[\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k), \int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{imp}\pi(p)\right]
+    = \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(nk + mp)} \left[\phi(k), \pi(p)\right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(nk + mp)} i\sum_{l=-\infty}^{\infty}e^{-il(k + p)} = \\
+    = i\sum_{l=-\infty}^{\infty} \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(nk + mp) - il(k + p)} = \\
+    = i\sum_{l=-\infty}^{\infty} \int_{-\pi}^{+\pi} \frac{dk}{2\pi} \int_{-\pi}^{+\pi}  \frac{dp}{2\pi} e^{i(n - l)k}e^{i(m - l)p} = \\
+    = i\sum_{l=-\infty}^{\infty} \delta_{nl} \delta_{ml} = i\delta_{nm}  
+\end{gathered}
+\end{equation}
+\subsection{The Hamiltonian based on the Fourier modes}
+\begin{equation}
+\begin{gathered}
+    H = \frac{1}{2} \sum_{n=-\infty}^{\infty}\left[\pi_n^2 + \left(\phi_{n+1} - \phi_n\right)^2 + m^2\phi_n^2\right] = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}\left[
+        \left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\pi(k)\right)^2 + \left(
+            \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{i(n + 1)k}\phi(k) -
+            \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k)
+        \right)^2 + m^2\left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k)\right)^2
+    \right]
+\end{gathered}
+\end{equation}
+The momentum dependent term of the Hamiltonian can be simplified using the substitution $p \rightarrow -p$ in the second integral, inverting the integration order and using the relations $\pi(-p) = \pi^\dagger(p)$ and $\sum_n e^{i(k-p)} = 2\pi\delta(k-p)$:
+\begin{equation}
+\begin{gathered}
+    H_p = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+        \left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\pi(k)\right)^2
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty} 
+        \left(\int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{ink}\pi(k)\right)
+        \left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{inp}\pi(p)\right) = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+        \left(\int_{+\pi}^{-\pi} \frac{-dk}{2\pi}e^{-ink}\pi(-k)\right) 
+        \left(\int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{inp}\pi(p)\right) = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+        \left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{-ink}\pi^\dagger(k)\right) 
+        \left(\int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{inp}\pi(p)\right) = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \int_{-\pi}^{+\pi} \frac{dp}{2\pi}
+    e^{-in(k - p)}\pi^\dagger(k)\pi(p) = \\
+    = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \int_{-\pi}^{+\pi} \frac{dp}{2\pi}
+    \pi^\dagger(k)\pi(p)
+    \sum_{n=-\infty}^{\infty}e^{-in(k - p)} = \\
+    = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \int_{-\pi}^{+\pi} \frac{dp}{2\pi}
+    \pi^\dagger(k)\pi(p) 2\pi \delta(k-p)
+    = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \pi^\dagger(k)\pi(k)
+\end{gathered}
+\end{equation}
+The term of the restoring force follows the exact same logic:
+\begin{equation}
+\begin{gathered}
+    \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+    m^2\left(\int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k)\right)^2
+    = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    m^2\phi^\dagger(k)\phi(k)
+\end{gathered}
+\end{equation}
+And the interaction term is
+\begin{equation}
+\begin{gathered}
+    \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+    \left(
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{i(n + 1)k}\phi(k) -
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k)
+    \right)^2 = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+    \left(
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k) (e^{ik} - 1)
+    \right)^2 = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+    \left(
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}e^{ink}\phi(k) (e^{ik} - 1)
+    \right)
+    \left(
+        \int_{-\pi}^{+\pi} \frac{dp}{2\pi}e^{inp}\phi(p) (e^{ip} - 1)
+    \right) = \\
+    = \frac{1}{2}
+    \sum_{n=-\infty}^{\infty}
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}\int_{-\pi}^{+\pi} \frac{dp}{2\pi}
+        e^{-in(k - p)}\phi^\dagger(k)\phi(p)
+        (e^{-ik} - 1)(e^{ip} - 1)
+    = \\
+    = \frac{1}{2}
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+        \phi^\dagger(k)\phi(k)
+        (e^{-ik} - 1)(e^{ik} - 1)
+    = \\
+    = \frac{1}{2}
+        \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+        \phi^\dagger(k)\phi(k)
+        (2 - 2\cos(k))
+    = \\
+\end{gathered}
+\end{equation}
+Putting it all together we get
+\begin{equation}
+\begin{gathered}
+    H = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \left[
+        \pi^\dagger(k)\pi(k) + 
+        \left(
+            m^2 + 2(1-\cos(k))
+        \right)
+        \phi^\dagger(k)\phi(k)
+    \right] = \\
+    = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \left[
+        \pi^\dagger(k)\pi(k) + 
+        \omega_k^2
+        \phi^\dagger(k)\phi(k)
+    \right]
+\end{gathered}
+\end{equation}
+With the dispersion relation
+\begin{equation}
+    \omega_k = \sqrt{m^2 + 2(1-\cos(k))}
+\end{equation}
+With the lattice spacing $\Delta$, it becomes
+\begin{equation}
+    \omega_k = \sqrt{m^2 + \frac{2}{\Delta^2}(1-\cos(k\Delta))}
+\end{equation}
+And at the limit $k\Delta << 1$ we get
+\begin{equation}
+    \frac{2}{\Delta^2}(1-\cos(k\Delta)) =
+    \frac{2}{\Delta^2}\left[1 - (1 - \frac{(k\Delta)^2}{2})\right] =
+    \frac{(k\Delta)^2}{\Delta^2} = k^2
+\end{equation}
+Which is the Klein-Gordon dispersion relation from Special Relatvity:
+\begin{equation}
+    \omega_k = \sqrt{m^2 + k^2}
+\end{equation}
+\subsection{Ladder Operators}
+\begin{equation}
+    a_k = \frac{1}{\sqrt{4\pi \omega_k}}\left(\omega_k\phi(k) + i\pi(k)\right), \qquad
+    a_k^\dagger = \frac{1}{\sqrt{4\pi \omega_k}}\left(\omega_k\phi^\dagger(k) - i\pi^\dagger(k)\right)
+\end{equation}
+The commutation relations are
+\begin{equation}
+\begin{gathered}
+    \left[a_k, a_p\right] = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+        \omega_k\phi(k) + i\pi(k),
+        \omega_p\phi(p) + i\pi(p)
+    \right] = \\
+    = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+    \omega_k\omega_p [\phi(k), \phi(p)]
+    + i \left(
+        \omega_k[\phi(k),\pi(p)] + \omega_p[\pi(k), \phi(p)]
+    \right)
+    - [\pi(k), \pi(p)]
+    \right] = \\
+    = - \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left(
+        \omega_k \sum_{n=-\infty}^\infty e^{-in(k+p)} -
+        \omega_p \sum_{n=-\infty}^\infty e^{-in(k+p)}
+    \right) = \\
+    = - \frac{\omega_k - \omega_p}{4\pi \sqrt{\omega_k\omega_p}} 2\pi \delta(k+p) = 0
+\end{gathered}
+\end{equation}
+Where in the last part the delta function forced $k = -p$, in which case $\omega_k = \omega_p$ since $\omega$ is invaraint to the sign of $k$. From this commutation relations the commutation relations $\left[a^\dagger_k, a^\dagger_p\right]$ are obvious to develop using the relations $\phi^\dagger(k) = \phi(-k)$ and $\pi^\dagger(k) = \pi(-k)$, and a variable substitution back $k \rightarrow -k'$ and $p \rightarrow -p'$:
+\begin{equation}
+\begin{gathered}
+    \left[a_k^\dagger, a_p^\dagger\right] = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+        \omega_k\phi^\dagger(k) - i\pi^\dagger(k),
+        \omega_p\phi^\dagger(p) - i\pi^\dagger(p)
+    \right] = \\
+     = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+        \omega_k\phi(-k) - i\pi(-k),
+        \omega_p\phi(-p) - i\pi(-p)
+    \right] = \\
+     = \frac{1}{4\pi \sqrt{\omega_{-k'}\omega_{-p'}}}
+    \left[
+        \omega_{-k'}\phi(k') - i\pi(k'),
+        \omega_{-p'}\phi(p') - i\pi(p')
+    \right] = \\
+    = \frac{\omega_{-k'} - \omega_{-p'}}{4\pi \sqrt{\omega_{-k'}\omega_{-p'}}} 2\pi \delta(k'+p') = 0
+\end{gathered}
+\end{equation}
+Where we again used the fact that $\omega_k = \omega_{-k}$, this time to show that if $p' = k'$ then $\omega_{-p'} = \omega_{p'} = \omega_{k}$. The last commutation relation we want to check is $\left[a_k, a^\dagger_p\right]$:
+\begin{equation}
+\begin{gathered}
+    \left[a_k, a_p^\dagger\right] = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+        \omega_k\phi(k) + i\pi(k),
+        \omega_p\phi^\dagger(p) - i\pi^\dagger(p)
+    \right] = \\
+     = \frac{1}{4\pi \sqrt{\omega_k\omega_p}}
+    \left[
+        \omega_k\phi(k) + i\pi(k),
+        \omega_p\phi(-p) - i\pi(-p)
+    \right] = \\
+     = \frac{1}{4\pi \sqrt{\omega_k\omega_{-p'}}}
+    \left[
+        \omega_k\phi(k) + i\pi(k),
+        \omega_{-p'}\phi(p') - i\pi(p')
+    \right] = \\
+     = \frac{1}{4\pi \sqrt{\omega_k\omega_{-p'}}}
+    \left(
+        - i\omega_k\left[\phi(k),\pi(p')\right]
+        + i\omega_{-p'}\left[\pi(k),\phi(p')\right]
+    \right) = \\
+     = \frac{\omega_k + \omega_{-p'}}{4\pi \sqrt{\omega_k\omega_{-p'}}}
+    2\pi \delta(k+p') = \delta(k + p') = \delta(k - p)
+\end{gathered}
+\end{equation}
+Where in the last line, the only case when the delta function is not zero is the case where the fraction evaluates to one.
+\newline
+The Hamiltonian is then:
+\begin{equation}
+\begin{gathered}
+    H = \frac{1}{2}
+    \int_{-\pi}^{+\pi} \frac{dk}{2\pi}
+    \left[
+        \pi^\dagger(k)\pi(k) + 
+        \omega_k^2
+        \phi^\dagger(k)\phi(k)
+    \right]
+\end{gathered}
+\end{equation}
 \end{document}
