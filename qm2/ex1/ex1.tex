@@ -332,7 +332,8 @@ Where we again used the fact that $\omega_k = \omega_{-k}$, this time to show th
 \end{equation}
 Where in the last line, the only case when the delta function is not zero is the case where the fraction evaluates to one.
 \newline
-The Hamiltonian is then:
+Now we will develop the Hamiltonian in terms of $a(k)$ and $a^\dagger(k)$.
+To do that we will add and subtract from the integrand in equation 24 the term $i\omega_k\pi(k)\phi^\dagger(k)$. Then, we will take the subtracted term and factorize only it by changing the integration variable $k \rightarrow -k$. This only moves the dagger to the $\pi(k)$ field, since $\pi^\dagger(k) = \pi(-k)$ and $\phi^\dagger(k) = \phi(-k)$, and the change of sign in the differential cancels out with the change in order of the integration limits:
 \begin{equation}
 \begin{gathered}
     H = \frac{1}{2}
@@ -341,7 +342,71 @@ The Hamiltonian is then:
         \pi^\dagger(k)\pi(k) + 
         \omega_k^2
         \phi^\dagger(k)\phi(k)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        \pi^\dagger(k)\pi(k) + 
+        i\omega_k\left(\pi(k)\phi^\dagger(k) - \pi(k)\phi^\dagger(k)\right)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        \pi^\dagger(k)\pi(k) + 
+        i\omega_k\left(\pi(k)\phi^\dagger(k) - \pi^\dagger(k)\phi(k)\right)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        \pi^\dagger(k)\pi(k) + 
+        i\omega_k\left(\phi^\dagger(k)\pi(k) - \pi^\dagger(k)\phi(k) - \left[\phi^\dagger(k), \pi(k)\right]\right)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        \pi^\dagger(k)\pi(k) + 
+        i\omega_k\left(\phi^\dagger(k)\pi(k) - \pi^\dagger(k)\phi(k) - \left[\phi(-k), \pi(k)\right]\right)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        \pi^\dagger(k)\pi(k) + 
+        i\omega_k\left(\phi^\dagger(k)\pi(k) - \pi^\dagger(k)\phi(k) - i2\pi\delta(-k+k)\right)
+    \right] = \\
+    = \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \omega_k^2
+        \phi^\dagger(k)\phi(k) +
+        i\omega_k\phi^\dagger(k)\pi(k) - i\omega_k\pi^\dagger(k)\phi(k) + 
+        \pi^\dagger(k)\pi(k) + 2\pi\omega_k\delta(0)
     \right]
 \end{gathered}
 \end{equation}
+The first four terms can be factorized:
+\begin{equation}
+\begin{gathered}
+    \int_{-\pi}^{+\pi} \frac{dk}{4\pi}
+    \left[
+        \left(\omega_k\phi^\dagger(k) - i\pi^\dagger(k)\right)
+        \left(\omega_k\phi(k) + i\pi(k)\right)
+        +2\pi\omega_k\delta(0)   
+    \right] = \\
+    = \int_{-\pi}^{+\pi}  dk \omega_k
+    \left[
+        \frac{1}{4\pi\omega_k}\left(\omega_k\phi^\dagger(k) - i\pi^\dagger(k)\right)
+        \left(\omega_k\phi(k) + i\pi(k)\right)
+        + \frac{1}{2}\delta(0)   
+    \right] = \\
+    = \int_{-\pi}^{+\pi}  dk \omega_k
+    \left[a^\dagger(k)a(k)+ \frac{1}{2}\delta(0)   
+    \right]
+\end{gathered}
+\end{equation}
+\subsection{The Vaccum Energy relation to N}
+
 \end{document}

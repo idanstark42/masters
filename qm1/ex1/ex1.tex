@@ -129,7 +129,7 @@ And using $\boldsymbol{y} = \boldsymbol{r} - \frac{\boldsymbol{a}}{2}$ and $\bol
 \subsection{The Ground State of an Infinite One dimensional Well}
 The ground state of an infinite one dimensional well spanning from $-L/2$ to $L/2$ is
 \begin{equation}
-    \psi_1(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{\pi x}{L}\right) \quad \text{for } 0 < x < L
+    \psi_1(x) = \sqrt{\frac{2}{L}} \cos\left(\frac{\pi x}{L}\right) \quad \text{for } 0 < x < L
 \end{equation}
 Since it's a pure state, the Wigner distribution follows the formula
 \begin{equation}
@@ -138,11 +138,7 @@ Since it's a pure state, the Wigner distribution follows the formula
 The bounds, however, can be reduced, and taken only on the area where the function is not zero. This means the boundries for $a$ are functions of x, since $\Psi(x > L/2) = \Psi(x < -L/2) = 0$. For a certain $x$, the bounds for $a$ are
 \begin{equation}
 \begin{gathered}
-    \left|x \pm \frac{a}{2}\right| < \frac{L}{2} \quad and \quad \left|x \pm \frac{a}{2}\right| < 0 \\
-    |a| < A \equiv \begin{cases}
-        2x & x < L/2 \\
-        L - 2x & x > L/2
-    \end{cases}
+    |a| < A \equiv L - 2 |x|
 \end{gathered}
 \end{equation}
 And so the integral becomes
@@ -159,57 +155,115 @@ And so the integral becomes
     e^{ipa/\hbar}da = \\
     = \frac{1}{2\pi\hbar L} \int_{-A}^{A}
     \cos(2\pi\frac{x}{L})e^{ipa/\hbar}
-    + e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}
-    + e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}
+    + \frac{1}{2}e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}
+    + \frac{1}{2}e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}
     da= \\
-    = \frac{1}{\pi\hbar L} \left[
+    = \frac{1}{2\pi\hbar L} \left[
     \frac{\hbar}{ip}\cos(2\pi\frac{x}{L})e^{ipa/\hbar}
-    + \frac{e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}}{i\pi(\frac{p}{\pi\hbar} + L^{-1})}
-    + \frac{e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}}{i\pi(\frac{p}{\pi\hbar} - L^{-1})}
+    + \frac{e^{i\pi(\frac{p}{\pi\hbar} + L^{-1})a}}{2i\pi(\frac{p}{\pi\hbar} + L^{-1})}
+    + \frac{e^{i\pi(\frac{p}{\pi\hbar} - L^{-1})a}}{2i\pi(\frac{p}{\pi\hbar} - L^{-1})}
     \right]_{-A}^{A} = \\
     = \frac{1}{\pi\hbar L} \left[
     \frac{\hbar}{p}\cos(2\pi\frac{x}{L})\sin(\frac{pA}{\hbar})
-    + 2\frac{\sin(\pi(\frac{p}{\pi\hbar} + L^{-1})A)}{\pi(\frac{p}{\pi\hbar} + L^{-1})}
-    + 2\frac{\sin(\pi(\frac{p}{\pi\hbar} - L^{-1})A)}{\pi(\frac{p}{\pi\hbar} - L^{-1})}
+    + \frac{\sin(\pi(\frac{p}{\pi\hbar} + L^{-1})A)}{2\pi(\frac{p}{\pi\hbar} + L^{-1})}
+    + \frac{\sin(\pi(\frac{p}{\pi\hbar} - L^{-1})A)}{2\pi(\frac{p}{\pi\hbar} - L^{-1})}
     \right] = \\
     = \frac{1}{\pi\hbar L} \left[
     \frac{\hbar}{p}\cos(2\pi\frac{x}{L})\sin(\frac{pA}{\hbar})
-    + 2\frac{\frac{p}{\hbar}\sin(\frac{pA}{\hbar})\cos(\frac{\pi A}{L}) + \frac{\pi}{L}\cos(\frac{pA}{\hbar})\sin(\frac{\pi A}{L})}
+    + \frac{\frac{p}{\hbar}\sin(\frac{pA}{\hbar})\cos(\frac{\pi A}{L}) - \frac{\pi}{L}\cos(\frac{pA}{\hbar})\sin(\frac{\pi A}{L})}
     {\pi^2\left(\left(\frac{p}{\pi\hbar}\right)^2 - \left(\frac{1}{L}\right)^2\right)}
     \right]
 \end{gathered}
 \end{equation}
-Assigning $k = 2\pi\lambda^{-1} = \frac{p}{\hbar}$, $\alpha = \pi\frac{2x}{L}$, $\beta = \pi\frac{A}{L}$, and $\varphi = \frac{kL}{\pi}$, we get
+For simplicity, let us define $k = 2\pi\lambda^{-1} = \frac{p}{\hbar}$, $\alpha = \pi\frac{A}{L}$, and $\varphi = \frac{kL}{\pi}$. This makes the last expression in equation 24 into
 \begin{equation}
-    W(x, p) = \frac{2}{\pi \hbar} \left[
-    \varphi^{-1}\cos(\alpha)\sin(\varphi \beta)
-    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
-    {\pi\left(\varphi^2 - 1\right)} \right]
+\begin{gathered}
+    W(x, p) = \frac{1}{\pi^2 \hbar} \left[
+    -\frac{1}{\varphi}\cos(\alpha)\sin(\varphi \alpha)
+    + \frac{1}{\varphi^2 - 1}\left[\varphi\sin(\varphi \alpha)\cos(\alpha) - \cos(\varphi \alpha)\sin(\alpha)\right] \right] = \\
+    = \frac{1}{\pi^2 \hbar}
+    \frac{(1-\varphi^2)\sin(\varphi \alpha)\cos(\alpha) + \varphi^2\sin(\varphi\alpha)\cos(\alpha) + \varphi\cos(\varphi\alpha)\sin(\alpha)}{\varphi(\varphi^2 - 1)} = \\
+    = \frac{1}{\pi^2 \hbar}
+    \frac{\varphi\cos(\varphi\alpha)\sin(\alpha) + \sin(\varphi \alpha)\cos(\alpha)}{\varphi(\varphi^2 - 1)}
+\end{gathered}
 \end{equation}
-We can notice that depending on $x$ and according to equation 23,
+Using the trigonometric identities for sin and cos mutlplication and marking $\sin(\pm) = sin(\alpha\left(\varphi\pm1\right))$ we get
 \begin{equation}
-    \beta = \begin{cases}
-        \alpha & x < L/2 \\
-        \pi - \alpha & x > L/2
-    \end{cases}
+\begin{gathered}
+    W(x, p) = \\
+    % = \frac{1}{\pi^2 \hbar}
+    % \frac{
+    %     \varphi^2(\sin(+) + \sin(-)) +
+    %     2\varphi(\sin(+) - \sin(-)) + 
+    %     (\sin(+) + \sin(-))
+    % }
+    % {\varphi(\varphi^2 - 1)} = \\
+    % = \frac{1}{\pi^2 \hbar}
+    % \frac{(\varphi + 1)^2\sin(+) + (\varphi - 1)^2\sin(-)}
+    % {\varphi(\varphi^2 - 1)} = \\
+    % = \frac{1}{\pi^2 \hbar\varphi}\left[
+    %     \frac{\varphi + 1}{\varphi - 1}\sin(\alpha(\varphi + 1)) + \frac{\varphi - 1}{\varphi + 1}\sin(\alpha(\varphi - 1))
+    % \right]
+    = \frac{1}{2\pi^2 \hbar}
+    \frac{\varphi (\sin(+) - \sin(-)) + (\sin(+) + \sin(-))}{\varphi(\varphi^2 - 1)} = \\
+    = \frac{1}{2\pi^2 \hbar \varphi}
+    \left[
+    \frac{1}{\varphi - 1}\sin(\alpha(\varphi + 1)) +
+    \frac{1}{\varphi + 1}\sin(\alpha(\varphi - 1))
+    \right]
+\end{gathered}
 \end{equation}
-And so we get
+The above calculation is true for any case where $kL \neq \pm\pi$. In the two edge cases when $kL = \pm\pi$, one of the last two terms inside the intergrals vanishes, and we are left with
 \begin{equation}
-    W(x,p) = \frac{2}{\pi \hbar} \begin{cases}
-    \varphi^{-1}\cos(\beta)\sin(\varphi \beta)
-    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
-    {\pi\left(\varphi^2 - 1\right)} & x < L/2 \\
-    \varphi^{-1}\sin(\beta)\sin(\varphi \beta)
-    + \frac{\varphi\sin(\varphi \beta)\cos(\beta) + \cos(\varphi \beta)\sin(\beta)}
-    {\pi\left(\varphi^2 - 1\right)} & x > L/2
-    \end{cases}
-\end{equation}
-In the two edge cases when $kL = \pm\pi$, one of the last two terms inside the intergrals vanishes, and we are left with
-\begin{equation}
-    W(x, p)_{\pm \pi} = \frac{1}{\pi\hbar}\left[
-    2\varphi^{-1}\cos(\alpha)\sin(\varphi \beta)
-    + \frac{\sin(\varphi \beta)\cos(\beta) \mp \cos(\varphi\beta)\sin(\beta)}{\pi \left(k \mp 1\right)}
+    W(x, p)_{\pm \pi} = \frac{1}{\pi^2\hbar}\left[
+    \frac{- \varphi \mp 3}{4\varphi(\varphi\mp1)}\sin(\alpha(\varphi + 1)) +
+    \frac{- \varphi \mp 1}{4\varphi(\varphi\mp1)}\sin(\alpha(\varphi - 1)) + \frac{\alpha}{\pi}
     \right]
 \end{equation}
-Finally, we notice that $\beta$ encodes the x-dependency and $\varphi$ encodes the p-dependency.
+In the entire calculation, $\alpha$ encodes the x-dependency and $\varphi$ encodes the p-dependency. It is possible to interpret equations 26 and 27 by saying that the momentum is in charge of the weights of two different "waves" of the position with two different "wave lengths", each reponsing to a different edge case. While $W(x, p)$ is clearly sometimes negative (all one needs to do to see that is set $\alpha = 0, \varphi = 1$ in equation 27), it still gives the marginal probabilities. This makes it a sort of pseudo-probability.
+\section{Path Integrals}
+The 3d Hamiltonian is
+\begin{eqnarray}
+    H_{op} = \frac{\boldsymbol{p}_{op}^2}{2m} + V(\boldsymbol{r}_{op})
+\end{eqnarray}
+The development of the propagator is similar to the one for a single particle. We start by defining the path as divided into $N$ discrete time periods of duration $\epsilon$:
+\begin{equation}
+    \epsilon = \frac{t_f - t_i}{N}
+\end{equation}
+This creates a series of times $t_n$ each corresponding to a coordinate in the path integral space $x_n$, over which we will integrate to create the variation in the path. In our three dimensional case, each coordinate is actually three coordinates, $\boldsymbol{r}_n$. We then develop $\hat{U}(t_f, t_i)$ for an infiniticimal time difference $\epsilon$ from the Hamiltonian, to get the matrix element of the propagator in the path integral space for every two adjecant coordinates:
+\begin{equation}
+    \hat{U}(t, t - \epsilon) = \exp[-i\frac{H_{op}\epsilon}{\hbar}] = \exp[-\frac{i\epsilon}{\hbar}\frac{ \boldsymbol{p}_{op}^2}{2m}]\exp[-\frac{i\epsilon}{\hbar}V(\boldsymbol{r}_{op})]
+\end{equation}
+The last part was calculated up to second order in $\epsilon$. We can then use $t_n$ and $\boldsymbol{r}_n$ and assign the $p_{op}$ value from the free particle to get
+\begin{equation}
+\begin{gathered}
+    K(\boldsymbol{r}_f, t_f; \boldsymbol{r}_i, t_i) = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\left(\frac{m}{2\pi i\hbar(t_f-t_i)}\right)^{3/2} \exp[\frac{i}{\hbar}\frac{m(\boldsymbol{r}_f - \boldsymbol{r}_i)^2}{t_f-t_i}] \\
+    \hat{U}(t_n, t{n-1}) = \left(\frac{m}{2\pi i\hbar\epsilon}\right)^{3/2} \exp[\frac{im(\boldsymbol{r}_n - \boldsymbol{r}_{n-1})^2}{\hbar\epsilon}]\exp[-\frac{i\epsilon}{\hbar}V(\boldsymbol{r}_{n-1})]
+\end{gathered}
+\end{equation}
+The propagator is then
+\begin{equation}
+\begin{gathered}
+    K(\boldsymbol{r}_f, t_f; \boldsymbol{r}_i, t_i) = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\bra{\boldsymbol{r}_f}\prod^{N} e^{-i H_{op}\epsilon/\hbar} \ket{\boldsymbol{r}_i} = \\
+    = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\int \prod_{n=1}^{N-1}\left(d^3r_n
+    \bra{\boldsymbol{r}_n} e^{-i H_{op}\epsilon/\hbar} \ket{\boldsymbol{r}_{n-1}}\right) = \\
+    = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\int \prod_{n=1}^{N-1}\left(d^3r_n
+    \bra{\boldsymbol{r}_n} e^{-i H_{op}\epsilon/\hbar} \ket{\boldsymbol{r}_{n-1}}\right) = \\
+    = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\int \prod_{n=1}^{N-1}d^3r_n
+    U(\boldsymbol{r}_n, \boldsymbol{r}_{n-1}) = \\
+    = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\int \prod_{n=1}^{N-1}d^3r_n
+    \left(\frac{m}{2\pi i\hbar\epsilon}\right)^{3/2} \exp[\frac{im(\boldsymbol{r}_n - \boldsymbol{r}_{n-1})^2}{\hbar\epsilon}]\exp[-\frac{i\epsilon}{\hbar}V(\boldsymbol{r}_{n-1})] = \\
+    = \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\left(\frac{m}{2\pi i\hbar\epsilon}\right)^{3N/2} \int \prod_{n=1}^{N-1}d^3r_n
+    \exp[\frac{i\epsilon}{\hbar}\left(m\left(\frac{\boldsymbol{r}_n - \boldsymbol{r}_{n-1}}{\epsilon}\right)^2-V(\boldsymbol{r}_{n-1})\right)]
+\end{gathered}
+\end{equation}
+And the Hamiltonian form would be
+\begin{equation}
+    K(\boldsymbol{r}_f, t_f; \boldsymbol{r}_i, t_i) = 
+    \lim_{\epsilon\rightarrow0;N\rightarrow\infty}\int \prod_{n=1}^{N-1}d^3r_n \frac{d^3p_n}{2\pi\hbar} \exp[\frac{i\epsilon}{\hbar}\boldsymbol{p}_{n-1}\cdot\frac{\boldsymbol{r}_n - \boldsymbol{r}_{n-1}}{\epsilon} - H(\boldsymbol{p}_{n-1}, \boldsymbol{r}_n)]
+\end{equation}
+Where
+\begin{equation}
+    H(\boldsymbol{p}_{n-1}, \boldsymbol{r}_n) = \frac{\boldsymbol{p}_{n-1}^2}{2m} V(\boldsymbol{r}_n)
+\end{equation}
 \end{document}
