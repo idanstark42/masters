@@ -1,0 +1,62 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\DeclareMathOperator{\erfi}{erfi}
+
+\title{General Realtivity Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Warmup}
+\subsection{The Metric is symmetric}
+First of all, the metric tensor must be a symmetric one. This can be seen from the symmetry of the definition. Assuming $g_{ij} \ne g_{ji}$, we get
+\begin{equation}
+    ds^2 = g_{ij} dx^i dx^j \ne g_{ji} dx^i dx^j = ds^2
+\end{equation}
+Which of course can't be the case, hense the metric is always symmetric.
+\subsection{A non-uniform metric}
+The most simple example of a non-uniform metric is the metric of the 2d Eucledean space in polar coordinates:
+\begin{equation}
+    g^{ij} = \begin{pmatrix}1 & \\ & r^2\end{pmatrix}
+\end{equation}
+\subsection{Inveriance of $ds^2$ under change of coordinates}
+Let there be two sets of coordinates $x^\mu$ and ${x'}^\mu$, and the metric is defined for the first set of coordinates such that
+\begin{equation}
+    ds^2 = g_{\mu\nu}dx^{\mu}dx^{\nu}
+\end{equation}
+The transformation between the two sets of coordinates is given by the Jacobian:
+\begin{equation}
+\begin{gathered}
+    J^\mu_\nu = \frac{\partial x'^\mu}{\partial x^\nu} \qquad
+    \left(J^{-1}\right)^\mu_\nu = \frac{\partial x^\mu}{\partial x'^\nu}
+    \\
+    dx'^\mu = J^\mu_\nu dx^\nu \\
+    g'_{\mu\nu} = \left(J^{-1}\right)^\sigma_\mu \left(J^{-1}\right)^\tau_\nu g_{\sigma\tau}
+\end{gathered}
+\end{equation}
+So, using the property of the Jaccobian
+\begin{equation}
+    J^\mu_\alpha \left(J^{-1}\right)^\beta_\mu = \frac{\partial x'^\mu}{\partial x^\alpha} \frac{\partial x^\beta}{\partial x'^\mu} = 
+    \frac{\partial x^\beta}{\partial x^\alpha} = \delta^\beta_\alpha
+\end{equation}
+The norm in the $x'^\mu$ coordinate system, is
+\begin{equation}
+    ds'^2 = g'_{\mu\nu}dx'^\mu dx'^\nu = \left(J^{-1}\right)^\sigma_\mu \left(J^{-1}\right)^\tau_\nu g_{\sigma\tau} J_\alpha^\mu dx^\alpha J_\beta^\nu dx^\beta = \delta^\sigma_{\alpha} \delta^\tau_\beta g_{\sigma\tau} dx^\alpha dx^\beta = g_{\sigma\tau} dx^\sigma dx^\tau = ds^2
+\end{equation}
+\subsection{Another example for the usage of a non-measurable variable}
+A good example for that would come from the ladder operators in QM. In addition to the x and p operators, we create another form of looking at the data, which is unobservable but useful in certain situations.
+\section{Properties of the Lorentz Transformation}
+\subsection{The Lorentz Group}
+\subsubsection{Definition}
+A Lorentz transformation $\Lambda$ is a linear transformation that preserves the norm $ds^2 = c^2dt^2 - d\vec{x}^2$.
+\subsubsection{Multiplication}
+Let $\Lambda_\mu^\nu$ and ${\Lambda'}_\mu^\nu$ be two Lorentz transofrmations. Their product is also linear, since the product of the two linear transformation is linear.
+\newline
+Now, let $v^\mu$ be a vector and $ds^2$ its squared norm. By the definition, the vector ${v'}^\mu = \Lambda_nu^\mu v^\nu$ has the same norm $ds^2$, and again, by the definition, the vector ${v''}^\mu = {\Lambda'}^\mu_\nu \Lambda^\nu_\sigma v^\sigma$ has the same norm as ${v'}^\mu$ and $v^\mu$. This means that the product of the two transformations $\Lambda' \circ \Lambda$ also preserves the norm and therefore a Lorentz transformation.
+\end{document}
