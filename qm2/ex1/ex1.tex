@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{physics}
+\DeclareMathOperator{\erfi}{erfi}
 
 \title{Quantum Mechanics II Excercise 1}
 \author{Idan Stark}
@@ -93,7 +94,139 @@ Assuming the temperature of the tea is roughly $60^\circ C$ and the mass of a wa
 \end{gathered}
 \end{equation}
 \section{Smeared Amplitude}
-\newpage
+\subsection{$K\left(\vec{x}, t\right)$ is a distribution: Intuitive explanation}
+In the integration over $d^3x$, the $r$ in the denominator would cancel out with the $r$ in the Jacobian. As for the integrand, the sapid oscilations near its singularities could be canceled by a bounded test function, resulting in a finite numerical value.
+\subsection{Smeared Amplitude of a 3D Gaussian}
+\begin{equation}
+    \overline{K}\left(\vec{X}, t\right) = \int d^3x \left(\frac{1}{\pi l^2}\right)^{3/2}e^{-\left(\frac{\vec{x} - \vec{X}}{l}\right)^2} \frac{-i}{\left(2\pi\right)^2 r}
+    \int_{-\infty}^{\infty} dp p e^{i\left(pr - t\sqrt{m^2 + p^2}\right)}
+\end{equation}
+Without limitation of generality, we can set our coordinate system such that X is on the z axis for the sake of integration. This means that
+\begin{equation}
+    \left(\vec{x} - \vec{X}\right)^2 = r^2 + R^2 - 2\vec{x}\cdot\vec{X} = r^2 + R^2 - 2rR \cos(\theta)
+\end{equation}
+Where $R = |\vec{X}|$ and $\vec{x} = (r, \theta, \varphi)$ in spherical coordinates. This makes our integral into
+\begin{equation}
+\begin{gathered}
+    \overline{K}\left(\vec{X}, t\right) = \int d^3x \left(\frac{1}{\pi l^2}\right)^{3/2}e^{-\frac{r^2 + R^2 - 2rR\cos(\theta)}{l^2}} \frac{-i}{\left(2\pi\right)^2 r}
+    \int_{0}^{\infty} dp p e^{i\left(pr - t\sqrt{m^2 + p^2}\right)} = \\
+    = \left(\frac{1}{\pi l^2}\right)^{3/2} \frac{-i}{\left(2\pi\right)^2}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \int_0^{\infty} dr \int_0^{\pi} d\theta \int_0^{2\pi} d\varphi
+    \ r^2 \sin(\theta)
+    \frac{1}{r}
+    \exp[-\frac{r^2 + R^2 - 2rR\cos(\theta)}{l^2} + ipr]
+\end{gathered}
+\end{equation}
+The integral over $\varphi$ gives $2\pi$, while the integrals over $r$ and $\theta$ are gaussians. Starting from the integral over $r$ we perform a variable change
+\begin{equation}
+\begin{gathered}
+    u = \frac{r - v}{l} \qquad ; \qquad v = R\cos(\theta) + \frac{ipl^2}{2} \\
+    u^2 = \frac{1}{l^2}\left[
+        r^2 + \left(R\cos(\theta) + \frac{ipl^2}{2}\right)^2 - 2Rr\cos(\theta)
+    \right] - ipr \\
+    r = lu + v \qquad ; \qquad dr = ldu
+\end{gathered}
+\end{equation}
+Which gives the $r$ integral
+\begin{equation}
+\begin{gathered}
+    \int_0^\infty dr r \exp[-\frac{r^2 + R^2 - 2rR\cos(\theta)}{l^2} + ipr] = \\
+    = l \exp[-\frac{R^2}{l^2} + \frac{R\cos(\theta) + \frac{ipl^2}{2}}{l^2}] \int_0^\infty du (lu + v) e^{-u^2}
+\end{gathered}
+\end{equation}
+The integral in the last part evaluates to
+\begin{equation}
+\begin{gathered}
+    \int_0^\infty du (lu + v) e^{-u^2} = \\
+    = l\int_0^\infty u e^{-u^2} du + v \int_0^\infty e^{-u^2} du = \\
+    = -\frac{l}{2} \left[e^{-u^2}\right]_0^\infty + \frac{\sqrt{\pi}v}{2} = 
+    \frac{1}{2}\left[\sqrt{\pi}v + l\right]
+\end{gathered}
+\end{equation}
+Assigning it back into equation 21 using the expression from the last part of equation 23, and assigning the integral over $\varphi$ to be $2\pi$, we get:
+\begin{equation}
+\begin{gathered}
+    \overline{K}\left(\vec{X}, t\right) =  \\
+    = \left(\frac{1}{\pi l^2}\right)^{3/2} \frac{-i}{2\pi}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \int_0^{\pi} d\theta
+    \ \sin(\theta)
+    l \exp[-\frac{R^2}{l^2} + \frac{R\cos(\theta) + \frac{ipl^2}{2}}{l^2}]
+    \frac{1}{2}\left[\sqrt{\pi}\left(R\cos(\theta) + \frac{ipl^2}{2}\right) + l\right]
+\end{gathered}
+\end{equation}
+Moveing to integral over $v$ as it is defined in equation 22, and noticing that $\sin(\theta)d\theta = dv/R$:
+\begin{equation}
+\begin{gathered}
+    \overline{K}\left(\vec{X}, t\right) =  \\
+    = \left(\frac{1}{\pi l^2}\right)^{3/2} \frac{-il}{2\pi R}
+    e^{-\frac{R^2}{l^2}}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \int_{v_{+}}^{v_{-}} dv
+    \frac{1}{2}\left[\sqrt{\pi}v + l\right]e^{\frac{v^2}{l^2}}
+\end{gathered}
+\end{equation}
+Where $v_{\pm} = v(\cos(\theta) = \pm 1) = \pm R + \frac{ipl^2}{2}$ Which again gives the complex gaussian integral, over the variable $iv$ this time, and with finite limts. The integral of the complex gaussian function over a subsection of the plane is known as the imaginary error function $\boldsymbol{\erfi}$.
+\begin{equation}
+    \int_{v_{+}}^{v_{-}} dv
+    \frac{1}{2}\left[\sqrt{\pi}v + l\right]e^{\frac{v^2}{l^2}} = \frac{1}{2}\left[
+        \sqrt{\pi}l^2\left(e^\frac{v_{-}^2}{l^2} - e^\frac{v_{+}^2}{l^2}\right) +
+        l^2 \left(\erfi\left(\frac{v_{-}}{l}\right) - \erfi\left(\frac{v_{+}}{l}\right)\right)
+    \right]
+\end{equation}
+And therefore
+\begin{equation}
+\begin{gathered}
+    \overline{K}\left(\vec{X}, t\right)
+    = \left(\frac{1}{\pi l^2}\right)^{3/2} \frac{-il}{2\pi R}
+    e^{-\frac{R^2}{l^2}}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \frac{1}{2}\left[
+        \sqrt{\pi}l^2\left(e^\frac{v_{-}^2}{l^2} - e^\frac{v_{+}^2}{l^2}\right) +
+        l^2 \left(\erfi\left(\frac{v_{-}}{l}\right) - \erfi\left(\frac{v_{+}}{l}\right)\right)
+    \right] = \\
+    = \frac{1}{2\pi^2 R}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \left[
+        e^{-\frac{(pl)^2}{4}}\sin(pR) +
+        \frac{i}{2 \sqrt{\pi}} e^{-\frac{R^2}{l^2}} \left(\erfi\left(\frac{v_{-}}{l}\right) - \erfi\left(\frac{v_{+}}{l}\right)\right)
+    \right]
+\end{gathered}
+\end{equation}
+Using the definition of $erfi = -ierf(ix)$, we get the final value
+\begin{equation}
+    \overline{K}\left(\vec{X}, t\right)
+    = \frac{1}{2\pi^2 R}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}}
+    \left[
+        e^{-\frac{(pl)^2}{4}}\sin(pR) +
+        \frac{1}{2 \sqrt{\pi}} e^{-\frac{R^2}{l^2}}
+        \left(\erf\left(\frac{R}{l} - \frac{ipl}{2}\right) - \erf\left(-\frac{R}{l} - \frac{ipl}{2}\right)\right)
+    \right]
+\end{equation}
+If we take the limit $R \gg l$, the error functions go to $\pm 1$ at infinity, but the exponential factor in their terms goes to zero, and so that whole term disappears and we are left with
+\begin{equation}
+    \overline{K}\left(\vec{X}, t\right)_{R \gg l}
+    = \frac{1}{2\pi^2 R}
+    \int_{0}^{\infty} dp p e^{-it\sqrt{m^2 + p^2}} e^{-\frac{(pl)^2}{4}}\sin(pR)
+\end{equation}
+Opening up the sine will give the same expression as seen in the excercise, but twice, with opposite signs. Switching the sign of the second term will give us the same expression as in the excercise.
+\begin{equation}
+    \overline{K}\left(\vec{X}, t\right)_{R \gg l}
+    = \frac{1}{2\pi^2 R}
+    \int_{0}^{\infty} dp p e^{-\frac{(pl)^2}{4}} e^{i\left(pR - t\sqrt{m^2 + p^2}\right)}
+\end{equation}
+
+\subsection{Closed-Form Extimate of $\overline{K}\left(\vec{X}, t\right)$}
+To integrate over $p$, we must use a contour Couchy integration without passing through areas where the function is singular. The damping term $e^{-\frac{(pl)^2}{4}}$ diverges when $-\Re{p^2} = |p|^2 (\sin^2(\arg(p)) - \cos^2(\arg(p))) > 0$ meaning which happens in the top and bottom quarters of the plane $|\cos(\arg(p))| > |\sin(\arg(p))|$. This, of course, is only a problem if $p$ goes to infinity in this region. If we limit it to go to infinity only on the real line, the problem would vanish.
+\newline
+Meanwhile, using the approximation $R \gg t$, the saddle point is $p = \pm im$. In order to work with both of these limitations, we will choose a countour that starts from $-\infty$, goes to $-\varepsilon$ where $\varepsilon\rightarrow0$ and $\varepsilon>0$, then goes up along the imaginary axis with values $-\varepsilon+iy$ until it passes through the saddle point, then goes down along the line $+\varepsilon + iy$ until it reachs the real line, and from there to infinity.
+This still leaves the problem of the singularity of the exponent at the saddle point. To avoid this problem we will use a Taylor approximation to second order $pR - t\sqrt{m^2 + p^2} \approx pr - \frac{it}{2}\left(m^2 + p^2\right)$.
+Now we are ready to use the saddle point approximation, we start by calculating the second derivative of the exponent at the point and taking its argument $\theta = arg (-it) = 1.5\pi$. This gives the value of the integral
+\begin{equation}
+    I_C = im e^{\frac{l^2m^2}{4}}e^{-i\pi/4}\sqrt{\frac{2\pi}{Rt}} = e^{i\pi/4} m e^{\frac{l^2m^2}{4}}\sqrt{\frac{2\pi}{Rt}}
+\end{equation} 
 \section{Discrete version of the free scalar field}
 \subsection{Commutation relations based on the Fourier modes}
 \begin{equation}
@@ -408,5 +541,13 @@ The first four terms can be factorized:
 \end{gathered}
 \end{equation}
 \subsection{The Vaccum Energy relation to N}
-
+In this situation we switch the formula for the commutator $\left[\phi(k),\pi(p)\right]$:
+\begin{equation}
+    \left[\phi(k),\pi(p)\right] = \sum_{-N}^{N} e^{-in(k+p)}
+\end{equation}
+And for the situation of the vaccum energy, we got
+\begin{equation}
+    \left[\phi(-k),\pi(k)\right] = \sum_{-N}^{N} e^{-in(-k+k)} = \sum_{-N}^{N} 1 = 2N+1
+\end{equation}
+Meaning that the energy is linear to the number of points.
 \end{document}
