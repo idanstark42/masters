@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1762981873.89995 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex1/ex1.tex" "ex1.pdf" "ex1" 1762981875.28817 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex1/ex1.tex" 1762981872 3400 476de805597a80e34ef5eeddd9275de1 ""
+["pdflatex"] 1763247285.903 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex1/ex1.tex" "ex1.pdf" "ex1" 1763247287.19212 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex1/ex1.tex" 1763247284 14737 ba558fdf1669f0bf953f5b50f70c3f16 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1761854989 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1761854989 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -26,9 +26,11 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1761854989 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1761854989 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1761854989 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1761854989 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1761854989 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1761854989 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1761854989 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1761854989 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1761854989 32716 08e384dc442464e7285e891af9f45947 ""
   "c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1761863489 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "c:/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1761855001 2222 27db7d52163edae53881b71ff62e754e ""
@@ -56,8 +58,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex1.aux" 1762981875 1105 44e6eccc3a4c41bd9bb0bcee0f1918a3 "pdflatex"
-  "ex1.tex" 1762981872 3400 476de805597a80e34ef5eeddd9275de1 ""
+  "ex1.aux" 1763247287 3087 ff5f7d1d94a6f907780c63ec20106648 "pdflatex"
+  "ex1.tex" 1763247284 14737 ba558fdf1669f0bf953f5b50f70c3f16 ""
   (generated)
   "ex1.aux"
   "ex1.log"

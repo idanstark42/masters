@@ -59,4 +59,226 @@ A Lorentz transformation $\Lambda$ is a linear transformation that preserves the
 Let $\Lambda_\mu^\nu$ and ${\Lambda'}_\mu^\nu$ be two Lorentz transofrmations. Their product is also linear, since the product of the two linear transformation is linear.
 \newline
 Now, let $v^\mu$ be a vector and $ds^2$ its squared norm. By the definition, the vector ${v'}^\mu = \Lambda_nu^\mu v^\nu$ has the same norm $ds^2$, and again, by the definition, the vector ${v''}^\mu = {\Lambda'}^\mu_\nu \Lambda^\nu_\sigma v^\sigma$ has the same norm as ${v'}^\mu$ and $v^\mu$. This means that the product of the two transformations $\Lambda' \circ \Lambda$ also preserves the norm and therefore a Lorentz transformation.
+\subsubsection{The Lorentz Group}
+To demonstrate that the set of all Lorentz transformations over a given Minkowski space is a group, we must show that it satisfies the four group axioms.
+\newline
+The first axiom is closure: the product of two items of the group is also an item of the group. We demonstrated that in section 2.1.2.
+\newline
+The second axiom is associativity, which is an inherit part of linear transformation product and therefore needs no additional proof.
+\newline
+The third axiom is the existance of an identity element. It's easy to see that the identity matrix follows the definition of a Lorentz transformation, and therefor is a part of the group.
+\newline
+The last axiom is the existance of an inverse element. Since all Lorentz transformation are linear, we can represent them in a generic base. Because the transformations preserve the Minkowski norm, their determinant must be $\pm1$ and not zero. This means they must be invertable.
+\newline
+These four conditions are the four axioms of a gropu, meaning they are enough to proove that the set of all Lorentz Transformation is a group.
+\subsubsection{Proper and Improper Lorentz Transformations}
+A Lorentz Transformation is proper if $\det(\Lambda) = 1$ and improper if $\det(\Lambda) = -1$. The product of two proper transformation is also proper, since determinant of a product of matrices is the product of the determinants:
+\begin{equation}
+    \det(\Lambda_{p1}\circ\Lambda_{p2}) = \det(\Lambda_{p1})\det(\Lambda_{p2}) = 1\cdot1 = 1
+\end{equation}
+Which means that the set of all proper Lorentz transformation over a given Minkowski space is closed under multiplication, and thus is a subset of the Lorentz group.
+\newline
+An example of an improper Lorentz Transformation would be:
+\begin{equation}
+    \Lambda = \begin{pmatrix}
+        -1 & & & \\
+        & 1 & & \\
+        & & 1 & \\
+        & & & 1
+    \end{pmatrix}
+\end{equation}
+This is the time reversal Transformation, and it's a Lorentz Transformation since for an infinitisimal vecotr $dx^\mu = (dt, d\vec{x})$ the transformed vector is ${x'}^\mu = \Lambda^\mu_\nu x^\nu = (-dt, d\vec{x})$, and the new norm is ${ds'}^2 = (-dt)^2 + d\vec{x}^2 = dt^2 + d\vec{x}^2 = ds^2$.
+\subsubsection{Orthochronous and Antichronous Lorentz Transformation}
+An Orthochronous Lorentz Transformation is one such that
+\begin{equation}
+    \Lambda(e_0)\cdot e_0 > 0
+\end{equation}
+Where $e_0$ is a future directed timelike unit vector. Using the definition of the inner product and writing in index notation we get
+\begin{equation}
+    \eta_{\alpha\beta}\Lambda^\alpha_\gamma e^\gamma_0e_0^\beta > 0
+\end{equation}
+\subsection{On Boosts}
+\subsubsection{Boost in an arbitrary direction}
+To get a boost in an arbitrary direction, we simply use a rotation matrix with angles $\theta$ and $\varphi$ turning the system around the $x^2$ and $x^3$ axes respectivly:
+\begin{equation}
+    R_y(\theta) = \begin{pmatrix}
+        1 &  &  & \\
+          & \cos\theta & &  -\sin\theta \\
+          &  & 1 & \\
+          & \sin\theta &  &  \cos\theta
+    \end{pmatrix}
+    \qquad
+    R_z(\varphi) = \begin{pmatrix}
+        1 & & & \\
+        & \cos\varphi & -\sin\varphi & \\
+        & \sin\varphi & \cos\varphi & \\
+        & & & 1
+    \end{pmatrix}
+\end{equation}
+Using these matrices to rotate the $\vec{\beta} = \beta\hat{x}$ vector and the $\Lambda$ Lorentz transformation along the x axis, around the y axis and then the z axis, we get:
+\begin{equation}
+\begin{gathered}
+    \beta' =  R_3(\varphi) R_2(\theta) \vec{\beta} = \beta\begin{pmatrix}
+        \\
+        \cos \theta \cos \varphi \\
+        \sin \varphi \\
+        \sin \theta \cos \varphi \\
+    \end{pmatrix}
+    \equiv
+    \begin{pmatrix}
+        \\
+        \beta^1 \\
+        \beta^2 \\
+        \beta^3 \\
+    \end{pmatrix}
+    \\
+    \Lambda' = R_2(\theta) R_3(\varphi) \Lambda R_3(-\varphi) R_2(-\theta) = 
+    \\
+    = \begin{pmatrix}
+            \gamma &
+            -\gamma\beta\cos\theta\cos\varphi &
+            -\gamma\beta\sin\varphi &
+            -\gamma\beta\sin\theta\cos\varphi
+        \\
+            -\gamma\beta\cos\theta\cos\varphi &
+            1 + (\gamma - 1)\cos^2\theta\cos^2\varphi &
+            (\gamma - 1)\cos\theta\cos\varphi\sin\varphi &
+            (\gamma - 1)\cos^2\varphi\cos\theta\sin\theta
+        \\
+            -\gamma\beta\sin\varphi &
+            (\gamma - 1)\cos\theta\cos\varphi\sin\varphi &
+            1 + (\gamma - 1)\sin^2\varphi &
+            (\gamma - 1)\sin\theta\cos\varphi\sin\varphi
+        \\
+            -\gamma\beta\sin\theta\cos\varphi &
+            (\gamma\ - 1)\cos^2\varphi\cos\theta\sin\theta &
+            (\gamma - 1) \sin\theta\cos\varphi\sin\varphi &
+            1 + (\gamma - 1)\sin^2\theta\cos^2\varphi
+    \end{pmatrix}
+\end{gathered}
+\end{equation}
+We can replace the angles in the matrix with the respected values of $\beta$.
+\begin{equation}
+    \Lambda' = \begin{pmatrix}
+            \gamma &
+            -\gamma\beta^1 &
+            -\gamma\beta^2 &
+            -\gamma\beta^3
+        \\
+            -\gamma\beta^1 &
+            1 + (\gamma - 1)\left(\frac{\beta^1}{\beta}\right)^2 &
+            (\gamma - 1)\frac{\beta^1\beta^2}{(\beta)^2} &
+            (\gamma - 1)\frac{\beta^1\beta^3}{(\beta)^2}
+        \\
+            -\gamma\beta^2 &
+            (\gamma - 1)\frac{\beta^1\beta^2}{(\beta)^2} &
+            1 + (\gamma - 1)\left(\frac{\beta^2}{\beta}\right)^2 &
+            (\gamma - 1)\frac{\beta^2\beta^3}{(\beta)^2}
+        \\
+            -\gamma\beta^3 &
+            (\gamma\ - 1)\frac{\beta^1\beta^3}{(\beta)^2} &
+            (\gamma - 1) \frac{\beta^2\beta^3}{(\beta)^2} &
+            1 + (\gamma - 1)\left(\frac{\beta^3}{\beta}\right)^2
+    \end{pmatrix}
+\end{equation}
+And writing the components gives us:
+\begin{equation}
+\begin{gathered}
+    \hat{x}^0 = \gamma(x^0 - \vec{\beta}\cdot\vec{x})
+    \\
+    \hat{\vec{x}} = \vec{x} + \frac{\gamma - 1}{\beta^2}\left(\vec{\beta}\cdot\vec{x}\right)\vec{\beta} - \gamma\vec{\beta}x^0
+\end{gathered}
+\end{equation}
+\subsubsection{Relativistic velocity addition of velocities}
+Our new velocity will be $\hat{\vec{u}} = d\hat{\vec{x}}/d\hat{t}$ where $\hat{t} = \hat{x}^0/c$. Using the last section, we can write the infinitisimal length in each coordinate
+\begin{equation}
+\begin{gathered}
+    d\hat{x}^0 = \gamma dx^0 - \vec{\beta}\cdot d\vec{x} = \gamma\left(1 - \vec{\beta}\cdot \frac{\vec{u}}{c}\right)dx^0
+    \\
+    d\hat{\vec{x}} = d\vec{x} + \frac{\gamma - 1}{\beta^2}\left(\vec{\beta}\cdot d\vec{x}\right)\vec{\beta} - \gamma\vec{\beta}dx^0 = \frac{1}{c}\left(\vec{u} + \frac{\gamma - 1}{\beta^2}\left(\vec{\beta}\cdot \vec{u}\right)\vec{\beta} - \gamma c\vec{\beta}\right)dx^0
+\end{gathered}
+\end{equation}
+Splitting $\vec{u}$ into $\vec{u} = \vec{u}_{\|} + \vec{u}_\perp$, we get
+\begin{equation}
+\begin{gathered}
+    d\hat{x}^0 = \gamma\left(1 - \beta \frac{u_{\|}}{c}\right)dx^0
+    \\
+    d\hat{\vec{x}} = \frac{1}{c}\left(\vec{u}_{\perp} + \gamma\vec{u}_{\|} - \gamma c\vec{\beta}\right)dx^0
+\end{gathered}
+\end{equation}
+And the velocity is
+\begin{equation}
+    \hat{\vec{u}} = c\frac{d\hat{\vec{x}}}{d\hat{x}^0} = \frac{\vec{u}_{\perp} + \gamma\vec{u}_{\|} - \gamma c\vec{\beta}}{\gamma\left(1 - \beta \frac{u_{\|}}{c}\right)}
+\end{equation}
+And for $c\rightarrow\infty$, which gives $\beta = 0$, $\vec{\beta} c = \vec{v}$, and $\gamma = 1$, the denominator becomes 1 and we get:
+\begin{equation}
+    \hat{\vec{u}} = \vec{u}_{\perp} + \vec{u}_{\|} - \vec{v} = \vec{u} - \vec{v}
+\end{equation}
+\section{Rocket}
+\subsection{Non-Relativistic Rocket}
+\subsubsection{Instantaneously Infinitesimal Change in the Rocket’s Velocity in its reference frame}
+Because the burning rate is constant, the masses of the rocket and the gasses expulted as a function of time is
+\begin{equation}
+\begin{gathered}
+    M_r(t) = M_i + \frac{M_f - M_i}{T}t \\
+    M_g(t) = \frac{M_i - M_f}{T}t
+\end{gathered}
+\end{equation}
+Since we assume an inertial frame of reference, we can use the preservation of momentum. The infinitisimal momentum leaving the rocket is
+\begin{equation}
+    dp = dM_g(t) v_e + M_g(t) dv_e = \frac{M_i - M_f}{T} v_e dt
+\end{equation}
+Because of the preservation of momentum, this is also the infinitisimal increase in the rocket's momentum to the opposite direction:
+\begin{equation}
+    dp = dM_r(t) v_r + M_r(t) dv_r = \frac{M_f - M_i}{T} v_r dt + \left(M_i + \frac{M_f - M_i}{T}t\right) dv_r = \frac{M_i - M_f}{T} v_e dt
+\end{equation}
+Assigning $v_r = 0$, since the rocket is at rest, and solving for $dv_r$, we get:
+\begin{equation}
+    dv_r = \frac{M_i - M_f}{M_i T + (M_f - M_i)t} v_e dt
+\end{equation}
+\subsubsection{The Acceleration $a(t)$}
+Simply dividing equation 22 by $dt$ gives
+\begin{equation}
+    a(t) = \frac{M_i - M_f}{M_i T + (M_f - M_i)t} v_e = \frac{\mu}{1 - \mu\tau} \frac{v_e}{T}
+\end{equation}
+Where
+\begin{equation}
+    \mu = \frac{M_i - M_f}{M_i} \qquad \tau = \frac{t}{T}
+\end{equation}
+\subsubsection{Final Velocity}
+By integrating over equation 22 from $t = 0$ to $t = T$ on the right and from $v = 0$ to $v = v_f$ on the left, we get
+\begin{equation}
+    v_f = v_e \int_{0}^{1} \frac{\mu}{1 - \mu\tau} d\tau = - v_e \left[\ln(1 - \mu\tau) \right]_0^1 = v_e \ln\frac{1}{1-\mu} = v_e ln\frac{M_i}{M_f}
+\end{equation}
+It can be seen that since the rocket's mass continues to decrease, the constant expulsion of gas, while increasing its momentum by a constant amount, increases the rocket's velocity by a uniformally increasing amount, causing it to eventually surpass the gas expulsion velocity.
+\subsection{Relativistic Rocket}
+\subsubsection{Moving between reference frames}
+When moving between inertial reference frames, the acceleration follows the Lorentz transformation, but also follows the formula in equation 23. For instance, moving to the inertial refrence frame where $v_e = 0$ would cause the acceleration to be zero as well, which of course cannot be the case.
+\subsubsection{Momentum and Energy Conservation in a generic reference frame}
+In a generic inertial reference frame, where the velocities of the rocket and the gas are $v_1$ and $v_2$ respectivly, and their masses are $m_1$ and $dm_2$ respectivly, the conservation of energy and momentum can be formulated as:
+\begin{equation}
+\begin{gathered}
+    m_1 v_1 = (m_1 + dm_1) (v_1 + dv_1) + dm_2 v_2 \\
+    \frac{1}{2} m_1 v_1^2 = \frac{1}{2}(m_1 + dm_1) (v_1 + dv_1)^2 + \frac{1}{2}dm_2 v_2^2
+\end{gathered}
+\end{equation}
+Or
+\begin{equation}
+\begin{gathered}
+    0 = m_1 dv_1 + dm_1 v_1 + dm_1 dv_1 + dm_2 v_2 \\
+    0 = 2 m_1 v_1 dv_1 + m_1 dv_1^2 + dm_1 v_1^2 + 2 dm_1 v_1 dv_1 + dm_1 dv_1^2 + dm_2 v_2^2 
+\end{gathered}
+\end{equation} 
+\subsubsection{The masses $dm_1$ and $dm_2$ as a function of $m_1$, $v_1$, $v_2$, and $dv_1$}
+Solving equation 27 we get
+\begin{equation}
+\begin{gathered}
+    (v_1 + dv_1) dm_1 + v_2 dm_2 = -m_1 dv_1 \\
+    (v_1 + dv_1)^2dm_1 + v_2^2 dm_2 = -2m_1v_1dv_1 + m_1dv_1^2
+    \\
+    \\
+    dm_2 = \frac{2dv_1 - v_1}{v_2(v_2 - v_1 - dv_1)}m_1 dv_1 \qquad
+    dm_1 = -\frac{v_2 - 2v_1 + dv_1}{(v_1 + dv_1)(v_2 - v_1 - dv_1)}m_1 dv_1
+\end{gathered}
+\end{equation}
 \end{document}
