@@ -15,11 +15,13 @@
 \maketitle
 \section{Warmup}
 \subsection{The Metric is symmetric}
-First of all, the metric tensor must be a symmetric one. This can be seen from the symmetry of the definition. Assuming $g_{ij} \ne g_{ji}$, we get
+The metric defines an inner product, which is symmetric by definition:
 \begin{equation}
-    ds^2 = g_{ij} dx^i dx^j \ne g_{ji} dx^i dx^j = ds^2
+\begin{gathered}
+    g_{ij} x_i y_j = g_{ji} x_j y_i \\
+    g = g^T
+\end{gathered}
 \end{equation}
-Which of course can't be the case, hense the metric is always symmetric.
 \subsection{A non-uniform metric}
 The most simple example of a non-uniform metric is the metric of the 2d Eucledean space in polar coordinates:
 \begin{equation}
@@ -76,7 +78,8 @@ A Lorentz Transformation is proper if $\det(\Lambda) = 1$ and improper if $\det(
 \begin{equation}
     \det(\Lambda_{p1}\circ\Lambda_{p2}) = \det(\Lambda_{p1})\det(\Lambda_{p2}) = 1\cdot1 = 1
 \end{equation}
-Which means that the set of all proper Lorentz transformation over a given Minkowski space is closed under multiplication, and thus is a subset of the Lorentz group.
+In addition, for a given proper Lorentz transformation $\Lambda_{p1}$, it is clear from the rule for the determinant of an inverse matrix that $\Lambda_{p1}^{-1}$ is also proper. 
+This means that the set of all proper Lorentz transformation over a given Minkowski space is closed under multiplication and the inverse operation, and thus is a subset of the Lorentz group.
 \newline
 An example of an improper Lorentz Transformation would be:
 \begin{equation}
@@ -89,14 +92,45 @@ An example of an improper Lorentz Transformation would be:
 \end{equation}
 This is the time reversal Transformation, and it's a Lorentz Transformation since for an infinitisimal vecotr $dx^\mu = (dt, d\vec{x})$ the transformed vector is ${x'}^\mu = \Lambda^\mu_\nu x^\nu = (-dt, d\vec{x})$, and the new norm is ${ds'}^2 = (-dt)^2 + d\vec{x}^2 = dt^2 + d\vec{x}^2 = ds^2$.
 \subsubsection{Orthochronous and Antichronous Lorentz Transformation}
-An Orthochronous Lorentz Transformation is one such that
+It is easy to see, using the Lorentz invarianve of the infinitisimal line segment, that $\left|\Lambda^0_0\right| > 1$:
+\begin{equation}
+\begin{gathered}
+    ds^2 = ds'^2 \\
+    ds^2 = ds \cdot ds = \eta_{\alpha\beta} ds^\alpha ds^\beta \\
+    ds'^2 = ds' \cdot ds' = \Lambda(ds) \cdot \Lambda(ds) = \eta_{\alpha\beta} \Lambda^\alpha_\gamma ds^\gamma \Lambda^\beta_\delta ds^\delta \\
+    \eta_{\alpha\beta} ds^\alpha ds^\beta = \eta_{\alpha\beta} \Lambda^\alpha_\gamma ds^\gamma \Lambda^\beta_\delta ds^\delta
+\end{gathered}
+\end{equation}
+This is true for every $ds$, therefore 
+\begin{equation}
+    \eta_{\alpha\beta} = \eta_{\gamma\delta} \Lambda_\alpha^\gamma \Lambda_\beta^\delta
+\end{equation}
+Where we replaced the indices on the right to match those on the left. Choosing the elemet for which $\alpha = \beta = 0$, we get $\eta_{00} = 1$
+\begin{equation}
+\begin{gathered}
+    1 = \eta_{\gamma\delta} \Lambda_0^\gamma \Lambda_0^\delta \\
+    1 = (\Lambda^0_0)^2 - \sum (\Lambda_0^i)^2 \\
+    \Lambda^0_0 = \pm\sqrt{1 + \sum (\Lambda_0^i)^2} \\
+    \left|\Lambda^0_0\right| > 1
+\end{gathered}
+\end{equation}
+Therefore it's enough to show that for orthochronous transformations, $\Lambda^0_0 > 0$. Using the definition of an orthochronous transformation
 \begin{equation}
     \Lambda(e_0)\cdot e_0 > 0
 \end{equation}
-Where $e_0$ is a future directed timelike unit vector. Using the definition of the inner product and writing in index notation we get
+This means that for every futurue directed $e_0$, $\Lambda(e_0)$ is also future directed: $\Lambda(e_0)^0 > 0$. Since thise is true for every $e_0$, it is true in particular to $e_0 = (1, 0, 0, 0)$:
 \begin{equation}
-    \eta_{\alpha\beta}\Lambda^\alpha_\gamma e^\gamma_0e_0^\beta > 0
+\begin{gathered}
+    \Lambda^0_\mu e_0^\mu = \Lambda^0_0 > 0
+\end{gathered}
 \end{equation}
+An antichronous transformation, on the other hand, will reverse the time direction. An example for that is the time reversal transformation in equation 8.
+\subsubsection{The Group of Proper Orthochronous Lorentz Transformation}
+Given two orthochronous Lorentz transformations $\Lambda_1$ and $\Lambda_2$, it is clear that their product is also orthochronous. We can see this by applying the first transformation to a future directed vector $e_0$ recieve another future directed vector $\Lambda_1(e_1)$, and then apply the second transformation to that vector, getting $\Lambda_2(\Lambda_1(e_0))$. This vecotr is also future directed, since $\Lambda_2$ is orthochronous and it acts on the future directed vector $\Lambda_1(e_0)$. But it can also be seen as the product of both transformation acting on $e_0$, which also evidently respects time direction. This means the product $\Lambda_1 \circ \Lambda_1$ is orthochronous as well.
+\newline
+It is also clear that the unit transformation is orthochronous, and that the inverse transformation of an orthochronous transformation is also orthochronous. This is because acting upon the definint equation using the inverse matrix from the left cancels out the original matrix, and leaves it to act on the original vector. In other words, given a orthochronous transformation $\Lambda(e_0)\cdot e_0 > 0$, it is clear that $\Lambda^{-1}(\Lambda(e_0))\cdot\Lambda(e_0) = e_0 \cdot \Lambda(e_0) > 0$, which means that for the future directed vector $\Lambda(e_0)$ the transformation $\Lambda^{-1}$ preserved time direction. Since we can choose $e_0$ however we want, $\Lambda^{-1}$ is orthochronous.
+\newline
+Putting these properties together we conclude that the set of all proper orthochronous Lorentz transformation is a group. 
 \subsection{On Boosts}
 \subsubsection{Boost in an arbitrary direction}
 To get a boost in an arbitrary direction, we simply use a rotation matrix with angles $\theta$ and $\varphi$ turning the system around the $x^2$ and $x^3$ axes respectivly:
@@ -270,15 +304,68 @@ Or
 \end{gathered}
 \end{equation} 
 \subsubsection{The masses $dm_1$ and $dm_2$ as a function of $m_1$, $v_1$, $v_2$, and $dv_1$}
-Solving equation 27 we get
+Solving equation 30 and dropping all the quadratic differential terms, we get
 \begin{equation}
 \begin{gathered}
     (v_1 + dv_1) dm_1 + v_2 dm_2 = -m_1 dv_1 \\
     (v_1 + dv_1)^2dm_1 + v_2^2 dm_2 = -2m_1v_1dv_1 + m_1dv_1^2
     \\
     \\
-    dm_2 = \frac{2dv_1 - v_1}{v_2(v_2 - v_1 - dv_1)}m_1 dv_1 \qquad
-    dm_1 = -\frac{v_2 - 2v_1 + dv_1}{(v_1 + dv_1)(v_2 - v_1 - dv_1)}m_1 dv_1
+    v_1 dm_1 + v_2 dm_2 = -m_1 dv_1 \\
+    v_1^2 dm_1 + v_2^2 dm_2 = -2m_1v_1dv_1
+    \\
+    \\
+    dm_2 = m_1 \frac{v_1}{v_1 - v_2} \frac{dv_1}{v_2}
+    \qquad
+    dm_1 = -m_1\frac{2v_1 - v_2}{v_1 - v_2}\frac{dv_1}{v_1}
 \end{gathered}
 \end{equation}
+\subsubsection{$v_e$ as a function of $v_1$ and $v_2$}
+Solving the last part in equation 31 we get
+\begin{equation}
+    \frac{dv_1}{dm_1} = -\frac{1}{m_1} \frac{v_1(v_1 - v_2)}{2v_1 - v_2}
+\end{equation}
+We can rename the velocities, where $v_1$ is the velocity of the rocket in our frame of reference $\hat{v}_r$, and $v_2 - v_1$ is the velocity of the gas relative to the rocket in our frame of reference $\hat{v}_e$. We will also relabel the mass $m_1$ to $\hat{m}_1$ to mark that it is also the mass in our frame of reference:
+\begin{equation}
+    \frac{d\hat{v}_r}{d\hat{m}_1} = -\frac{1}{\hat{m}_1} \frac{\hat{v}_r\hat{v}_e}{\hat{v}_r - \hat{v}_e}
+\end{equation}
+Moving to the rocket's frame of reference, with $\beta = \hat{v}_1 / c$, we get:
+\begin{equation}
+\begin{gathered}
+    v_r = 0 \\
+    v_e = \frac{\beta c + \hat{v}_e}{c + \beta\hat{v}_e}c = \frac{v_2}{c\left(1+\frac{v_1 (v_2 - v_1)}{c^2}\right)}
+\end{gathered}
+\end{equation}
+\subsubsection{The mass ratio for a given $v_f$}
+Solving the QED in equation 33 by seperation we get
+\begin{equation}
+\begin{gathered}
+    ln(\hat{v}_r) + ln(\hat{v}_e) = -\ln(\hat{m}_1) + \alpha \\
+    \frac{\hat{M}_f}{\hat{M}_i} = \frac{\hat{v}_{r,f}\hat{v}_{e,f}}{\hat{v}_{r,i}\hat{v}_{e,i}}
+\end{gathered}
+\end{equation}
+Using equation 20 to derive the opposite transformation to move to the rocket's frame of reference, the mass ratio remains the same and we get:
+\begin{equation}
+\begin{gathered}
+    \hat{v}_r = \beta c \qquad \hat{v}_e = \frac{v_e - \beta c}{c - \beta v_e}c \\
+    \frac{M_f}{M_i} =
+    \frac{\beta_f}{\beta_i}\cdot
+    \frac{v_e - \beta_f c}{v_e - \beta_i c}\cdot
+    \frac{c - \beta_i v_e}{c - \beta_f v_e}
+\end{gathered}
+\end{equation}
+Marking $v_f = \beta_f c$ and $v_i = \beta_i c$ we get
+\begin{equation}
+    \frac{M_f}{M_i} =
+    \frac{v_f}{v_i}\cdot
+    \frac{v_e - v_f}{v_e - v_i}\cdot
+    \frac{c^2 - v_i v_e}{c^2 - v_f v_e}
+\end{equation}
+It can be seen that when $v_e \gg v_i, v_f$, the first fraction on the right remains the same, the second fraction goes to one, and the third fraction is opposite to the first fraction, leaving the entire right side to go to one. This means that for a very fast fual, the fraction of rocket's mass used for fuel can be very small.
+\newline
+Equation 28 shows the result in the Newtonian limit, where dividing by $v_e$ to get a unitless equation gives
+\begin{equation}
+    \frac{v_f}{v_e} = \ln\frac{M_i}{M_f}
+\end{equation}
+And taking $v_e$ to be very large result in the same situation when $\frac{M_i}{M_f} \rightarrow 1$.
 \end{document}
