@@ -1,0 +1,212 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{pxfonts}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Differential Geometry Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\section*{Question 1}
+Let $M$ and $N$ be smooth manifolds. For every chart $\varphi_i : U_i \rightarrow R^m$ where $U_i \subseteq M$ and chart $\varphi_j : U_j \rightarrow R^n$ where $U_j \subseteq N$, define a chart
+\begin{equation}
+    \varphi_{i,j}: U_i \times U_j \rightarrow R^{m+n}
+    \qquad
+    \varphi_{i,j}(p, q) = (\varphi_i(p), \varphi_j(q))
+\end{equation}
+where $ \left(\cdot,\cdot\right) $ denotes coordinates concatenation.
+\newline
+Now let $\{U_i, \varphi_i\}$ and $\{V_j, \psi_j\}$ be atlases in the respective structures of $M$ and $N$. Then the set
+\begin{equation}
+    A = \left\{\left(U_i \times V_j, \varphi_{i, j}\right)\right\}
+\end{equation}
+covers every point on $M \times N$. In addition, every chart in $A$ is smooth. So, for every two subsets of $M \times N$ that coincide, $(U_i \times V_j) \cap (U_k \times V_l) \ne \emptyset$, the transition map from one subset to the other
+\begin{equation}
+    \varphi_{k,l}\circ\varphi_{i,j}^{-1} = (\varphi_k\circ\varphi_i^{-1}, \varphi_l\circ\varphi_j^{-1})
+\end{equation}
+is also smooth. Thus, $A$ is an atlas and it generates a smooth structure over $M \times N$, making it a smooth manifold with dimension $\dim(M) + \dim(N)$.
+
+\section*{Question 2}
+Let $f: M \rightarrow N$ be an immersion that is also a submersion. Because it is an immersion, for every point $p \in M$ its differential $Df_p$ is injective. Because it is an submersion, for every point $p \in M$ its differential $Df_p$ is surjective. Thus, $Df_p$ is invertible for every point $p \in M$.
+\newline
+According to the Inverse Function Theorem, for a smooth function $f: U \rightarrow \R^n$ where $U \subset \R^n$ for which $Df_p$ is invertible at point $p \in U$, there exist neighborhoods $V, W$ of $p$ and $f(p)$ respectively such $f:V \rightarrow W$ is a local diffeomorphism.
+
+\section*{Question 3}
+Let $f = (f_1,..., f_k): M \rightarrow \R^k$ be a submersion. Therefore its differential $Df_p: T_p M \rightarrow \R^k$ at each point $p$ is surjective, and spans $\R^k$.
+\newline
+The differential in terms of coordinates $\left\{(df_i)_p: T_p M \rightarrow \R, i = 1,...,k\right\}$ are $k$ linear maps. Let us assume that they are linearly dependent. This means that there exist a constant vector $u \in \R^k, u \ne 0$ such that
+\begin{equation}
+    u \cdot \left(df_i\right)_p = 0
+\end{equation}
+So, for every vector $v \in T_p M$
+\begin{equation}
+    u \cdot \left(df_i\right)_p (v) = 0
+\end{equation}
+but since $Df_p$ is surjective
+\begin{equation}
+    \left\{\left(df_i\right)_p (v): v \in T_p M\right\} = \R^k
+\end{equation}
+and so, for every vector $w \in \R^k$, $u\cdot w = 0$, which means $u = 0$.
+Therefore, the only linear combination of $(df_i)_p$ that vanished identically is the trivial one, and they are linearly independent.
+
+\section*{Question 4}
+$\R P^n$ is the set of all lines passing through the origin in $\R^{n+1}$:
+\begin{equation}
+    \R P^n = \left\{
+        \{\lambda x: \lambda \ne 0\}
+        : x \in \R^{n+1} \backslash \{0\}
+    \right\}
+\end{equation}
+Then, let $U_i = \{\{\lambda x: \lambda \ne 0\}: x \in \R^{n+1} \backslash \{0\}, x_i \ne 0 \}$. For each such open set $U_i$, define a bijection $\varphi_i : U_i \rightarrow \R^{n}$ such that
+\begin{equation}
+    \varphi_i (\{\lambda x: \lambda \ne 0\}) = x_i^{-1} (x_1, ..., x_{i-1}, x_{i+1}, ..., x_{n+1})
+\end{equation}
+The inverse of this bijection is clear:
+\begin{equation}
+    \varphi_i^{-1} (x) = \{\lambda y : \lambda \ne 0\}, \qquad y = (x_1, ..., x_{i-1}, 1, x_{i+1}, ..., x_{n+1})
+\end{equation}
+The set of all charts $\{\varphi_i: i = 1,..., n+1 \}$ covers $\R P^n$. The image of each bijection $\varphi_i (U_i)$ is an open set, and $\varphi_i$ is a homeomorphism, therefore $\varphi_i(U_i \cap U_j) \quad \forall \quad i,j = 1,...,n+1$ is also an open set. Finally, for each $i, j = 1,...,n+1$:
+\begin{equation}
+    \varphi_i \circ \varphi_j^{-1} (x) = \begin{cases}
+        x_i^{-1} (x_1, ..., x_{i-1}, x_{i+1}, ..., x_{j-1}, 1, x_{j+1},...,x_{n+1}) 
+        & i < j
+        \\
+        x_i^{-1} (x_1, ..., x_{i-1}, x_{i+1},...,x_{n+1}) 
+        & i = j
+        \\
+        x_i^{-1} (x_1, ..., x_{j-1}, 1, x_{j+1},..., x_{i-1}, x_{i+1}, ...,x_{n+1}) 
+        & j < i
+    \end{cases}
+\end{equation}
+Which is $C^\infty$ since $x_i \ne 0$. Thus, $\{\varphi_i\}$ is an atlas, and the smooth structure it defines makes $\R P^n$ a smooth manifold.
+
+\section*{Question 5}
+Let $\pi : S^n \rightarrow \R P^n$ be the map that associates to a point $x \in S^n$ the line through the origin that passes through $x$:
+\begin{equation}
+    \pi(x) = \{\lambda x: \lambda \ne 0\}
+\end{equation} 
+\subsection*{Proving $\pi$ is two-to-one}
+Given two points $x_1, x_2 \in S^n$, they give the same line if for each point $\lambda_1 y_1 \in \pi(x_1)$ there exists a $\lambda_2 \ne 0$ such that:
+\begin{equation}
+    \label{eq12}
+    \lambda_2 x_2 = \lambda_1 x_1
+\end{equation}
+Squaring equation \ref{eq12} results in
+\begin{equation}
+    \lambda_1^2 x_1^2 = \lambda_2^2 x_2^2
+\end{equation}
+but since $x_1, x_2 \in S^n$, their squares are $x_1^2 = x_2^2 = 1$, and thus
+\begin{equation}
+    \label{eq14}
+    \lambda_1 = \pm \lambda_2
+\end{equation}
+Assigning this back into \ref{eq12} and dividing by $\lambda_1$, which is not zero by definition, gives:
+\begin{equation}
+    x_1 = \pm x_2
+\end{equation}
+Meaning there are exactly two points on $S^n$ that gives each line in $\R P^n$, so the map $\pi$ is a two-to-one map.
+\subsection*{Proving $\pi$ is smooth}
+The function $\pi^{-1}$ gives the set of all points responding to a specific line, i.e. the two points shown in the previous subsection $\pm x$. Therefore for a point $x \in S^n$ and an open set $V \subseteq \R P^n$ such that $\pi(x) \in V$, the set $\pi^{-1}(V)$ is an open set made of two neighborhoods around the points $\pm x$.
+\newline
+Now, for a point $x \in S^n$, let $(U_i, \varphi_i)$ be the chart over $S^n$ that removes the $i$-th coordinate:
+\begin{equation}
+    \varphi_i : S^n \rightarrow \R^n \qquad \varphi_i(x) = (x_1, ..., x_{i-1}, x_{i+1}, ..., x_n)
+\end{equation}
+such that $x \in U_i$ and $(V_j, \psi_j)$ a chart in the atlas defined in Question 4 over $\R P^n$ such that $\pi(x) \in V_j$. The composite function $\psi_i \circ \pi \circ \varphi_i^{-1}$ of a point $y \in \R^n$ with coordinates $y_i : i = 1,...,n$ is:
+\begin{equation}
+    \psi_i \pi \varphi_i^{-1} (y) =
+    \left[1 - \sum_{j\ne i} y_j^2\right]^{-1/2}\left(y_1, ..., y_{i-1}, y_{i+1}, ..., y_n\right)
+\end{equation}
+Which is smooth for all $y \in \pi^{-1}(V_i)\cap U_i$, since the denominator is non zero. Since $\varphi_i \varphi_j^{-1}$ is smooth for ever $i,j$ as well as $\psi^i \psi_j^{-1}$, we can conclude that $\psi_i \pi \varphi_j^{-1}$ is also smooth for every $i, j$, which means it holds for all compatible atlases, and the function $\pi$ is smooth by definition.
+\newline
+\subsection*{proving $\pi$ is a local diffeomorphism}
+The inverse of $\pi$ is locally smooth, since for every point $x \in \R P^n$ and an open set $V \subseteq \R P^n$ such that $x \in V$, $\pi(V)$ gives the set of all lines passing through the origin and through the points in $V$, which is an open set, and while $\pi^{-1}$ is not invertible over all of $S^n$, locally for each point $x \in S^n$ there is a neighborhood $V$ of $x$ such that $\pi^{-1} : \pi(V) \rightarrow V$ is one-to-one, making the composite function in equation 17 invertible with a smooth inverse, meaning that $\pi^{-1}$ is locally smooth, and according to the definition $\pi$ is locally a diffeomorphism.
+
+\section*{Question 6}
+\subsection*{The structure on $f(N)$ induced by $N$}
+Let $f : N \rightarrow M$ be an embedding. Then, by definition, it is also a onto its image, and has a bijective inverse $f^{-1}$. For a chart $(U_i, \varphi_i)$ on $N$, define the chart $\left(f(U_i), \varphi_i f^{-1}\right)$ on $f(N)$, where $\varphi_i f^{-1}$ is a composition of bijections and therefore a bijection itself.
+\newline
+For a given atlas on $N$, the set of all such charts $\left\{\left(f(U_i), \varphi_i f^{-1}\right)\right\}$ matching charts $(U_i, \varphi_i)$ in the atlas, covers all of $f(N)$, because the atlas covers $\bigcup U_i = N$ and since $f$ is a bijection, $\bigcup f(U_i) = f\left(\bigcup U_i\right) = f(N)$.
+\newline
+In addition, the for each $i, j$:
+\begin{equation}
+    \varphi_i f^{-1} (f(U_i) \cap f(U_j)) = \varphi_i (U_i \cap U_j)
+\end{equation}
+And therefore, by the definition of the atlas on $N$, $\varphi_i f^{-1} (f(U_i) \cap f(U_j))$ is an open set in $\R^n$.
+\newline
+Finally, for every $i,j$:
+\begin{equation}
+    (\varphi_i f^{-1}) \circ (\varphi_j f^{-1}) = \varphi_i f^{-1} f \varphi_j^{-1} = \varphi_i \varphi_j^{-1}
+\end{equation}
+Which is again, by the definition of an atlas, $C^\infty$.
+These three points together make $\left\{\left(f(U_i), \varphi_i f^{-1}\right)\right\}$ a smooth atlas on $f(N)$, and the structure that it generates is the smooth structure that makes $f(N)$ a manifold.
+\subsection*{The structure on $f(N)$ induced by $M$}
+For every point $p \in f(N)$ let $\left(U_i, \varphi_i\right)$ be a chart on $M$ such that $p \in U_i$. Let $\pi: \R^{m} \rightarrow \R^{n}$ be the projection function, where $n$ and $m$ are the dimensions of $N$ and $M$ respectively.
+Thus, for an atlas $\left\{\left(U_i, \varphi_i\right)\right\}$ over $M$ the set of charts $\left\{\left(U_i \cap f(N), \pi \circ \varphi_i\right)\right\}$ covers $f(N)$, and from the rank theorem, there exist a chart $\left(V_i, \psi_i\right)$ for point $x \in N$ such that $\varphi_i \circ f \circ \psi_i^{-1} = \iota$, where $\iota$ is the inclusion map from $\R^n$ to $\R^m$ that leaves all other coordinates as zero. Acting on boths sides with the projection $\pi$, we get:
+\begin{equation}
+\begin{gathered}
+    \pi \circ \varphi_i \circ f \circ \psi_i^{-1} = Id_{\psi_i(V_i)}
+    \\
+    \pi \circ \varphi_i = \psi_i \circ f^{-1}
+\end{gathered}
+\end{equation}
+For every two charts $\left(U_i, \varphi_i\right)$ and $\left(U_j, \varphi_j\right)$ of $M$, the two induced charts on $f(N)$ are $\left(U_i \cap f(N), \pi\circ\varphi_i\right)$ and $\left(U_j \cap f(N), \pi\circ\varphi_j\right)$:
+\begin{equation}
+\begin{gathered}
+    \pi_{m\rightarrow n}\circ\varphi_i \left(\left(U_i \cap f(N)\right)\cup\left(U_j \cap f(N)\right)\right) = 
+    \\
+    = \psi_i \circ f^{-1} \left(\left(U_i \cap f(N)\right)\cup\left(U_j \cap f(N)\right)\right) =
+    \\
+    = \psi_i  \left(f^{-1}\left(U_i \cup U_j\right)\cap N\right) = 
+    \\
+    = \psi_i f^{-1}\left(U_i \cup U_j\right) = 
+    \\
+    = \pi_{m\rightarrow n}\circ\varphi_i \left(U_i \cup U_j\right) 
+\end{gathered}
+\end{equation}
+Since $\varphi(U_i \cup U_j)$ is an open set, and the projection is surjective and therefore is an open map, $\pi_{m\rightarrow n}\circ\varphi_i \left(U_i \cup U_j\right)$ is also an open set.
+Finally, for each two charts $\left(U_i \cap f(N), \pi \circ \varphi_i\right)$ and $\left(U_j \cap f(N), \pi \circ \varphi_j\right)$, their transition map is smooth:
+\begin{equation}
+    \left(\pi \circ \varphi_i\right) \circ \left(\pi \circ \varphi_j\right)^{-1} = 
+    \pi \circ \varphi_i \circ \varphi_j^{-1} \circ \iota
+\end{equation}
+Putting this all together, every smooth atlas on $M$ also induces a smooth atlas on $f(N)$, therefore the structure of $M$ induces a structure on $f(N)$, and $f(N)$ is a submanifold of $M$.
+
+\subsection*{Proving both structures coincide}
+Let $\left\{\left(f(U_i), \varphi_i f^{-1}\right)\right\}$ be an atlas induced from $N$, and let $\left\{\left(V_j, \psi_j\right)\right\}$ be an atlas induced by $M$. Since $f$ is an embedding, it is also a smooth map, which by definition means $\varphi_i \circ f^{-1} \circ \psi_j|_{f(N)}$ is also smooth. Thus, the two atlases are compatible and their structures coincide.
+
+\section*{Question 7}
+Let $\Delta = \left\{(p,p)\in M \times M : p \in M\right\}$ where $M$ is an m-dimensional smooth manifold. From question 1 it is clear that $M \times M$ is a manifold of dimension $2m$. So, to show that $\Delta$ is a submanifold of $M \times M$ we must find a smooth structure over $\Delta$ for which the inclusion map $\Delta \xhookrightarrow {} M \times M$ is an embedding.
+\newline
+First let us build the atlas for $\Delta$. Let $\left(U_i, \varphi_i\right)$ be a chart of $M$. Now, let $f: \Delta \rightarrow M$ be defined such that $f((p,p)) = p$. It is clear that the set of charts $\left\{\left(f^{-1}(U_i), \varphi_i\circ f\right)\right\}$ is an atlas:
+\begin{itemize}
+    \item It covers all of $\Delta$
+    \item For every two charts $\left(f^{-1}(U_i), \varphi_i\circ f\right)$ and $\left(f^{-1}(U_i), \varphi_i\circ f\right)$, the set $\varphi_i\circ f \left(f^{-1}(U_i) \cap f^{-1}(U_j)\right) = \varphi_i \left(U_i \cap U_j\right)$ is an open set.
+    \item For every two charts $\left(f^{-1}(U_i), \varphi_i\circ f\right)$ and $\left(f^{-1}(U_i), \varphi_i\circ f\right)$, their transition map $\varphi_i \circ f \circ \left(\varphi_j \circ f\right)^{-1} = \varphi_i \circ f \circ f^{-1} \circ \varphi_j^{-1} = \varphi_i \circ \varphi_j^{-1}$ is smooth.
+\end{itemize}
+This means $\Delta$ is a manifold with the structure generated by this atlas. It is also clear from the homeomorphism that it has the same dimension as M.
+\newline
+Next, let us consider the tangent space to $\Delta$. For every point $p \in M$ let $T_pM$ be the tangent space to $M$ at $p$, and let $v \in T_pM$. For every function $g \in C^{\infty}(\Delta)$, the differential of $f$, $df_p: T_p M \rightarrow T_{(p,p)\Delta}$ must follow the rule $df_p(v) = v(g \circ f) = v(g,g)$. This gives $df_p(v) = (v,v)$, and the tangent space to $\Delta$ at point $(p,p)$ is
+\begin{equation}
+    T_{(p,p)}\Delta = \left\{(v,v) : v \in T_pM\right\}
+\end{equation}
+Now, showing that the inclusion map $\theta: \Delta \rightarrow M \times M$ is an embedding is fairly simple. It is obvious that the inclusion map is smooth, and that it is a homeomorphism onto its image. So, all that is left to show is that it's an immersion. To show this, let us look at its differential $d\theta: T_{(p,p)\Delta} \rightarrow T_{(p,p)}(M \times M)$. According to proposition 3.9 in Lee's book, the differential of an inclusion map from a subset of a manifold to the manifold itself is an isomorphism, which is therefore injective. By the definition, $\theta$ is an immersion and therefore and embedding, and $\Delta$ is thus an embedded submanifold.
+\newline
+The map $\iota: M \rightarrow M \times M, \iota(p) = (p,p)$ is then exactly the inverse of $f$, and as we saw its differential is an isomorphism and therefore injective. It is obviously smooth and a homeomorphism onto its image, which is $\Delta$. This means that $\iota$ is an embedding.
+
+\section*{Question 8}
+Let $f : M \rightarrow N$ be a smooth immersion that is also injective, and let $M$ be compact. Since N is a manifold, and thus by definition a Hausdorff space, and since an injective function from a compact space to a Hausdorff space is a homeomorphism onto its image, $f$ is a homeomorphism onto its image and therefore an embedding.
+
+\end{document}

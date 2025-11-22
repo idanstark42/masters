@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{pxfonts}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Quantum Mechanics II Excercise 2}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{The wave functional of the vacuum}
+\subsection{The first oder ODE for the ground state of a harmonic oscillator}
+The ground state of the quantum harmonic oscillator is defined as the state that is annihilated by the ladder operator $\hat{a}$:
+\begin{equation}
+    \hat{a} \ket{0} = 0
+\end{equation}
+$\hat{a}$ can be expressed in terms of $\hat{x}$ and $\hat{p}$ we get:
+\begin{equation}
+    \hat{a} = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat{x} + \frac{i}{m\omega}\hat{p}\right)
+\end{equation}
+Assigning this to equation 1, we get:
+\begin{equation}
+    \left(\hat{x} + \frac{i}{m\omega}\hat{p}\right) \\ \ket{0} = 0
+\end{equation}
+In the position representation, $\hat{x} = x$ and $\hat{p} = -i \frac{\partial}{\partial x}$, which leaves us with the first order ODE:
+\begin{equation}
+    \left(x + \frac{\hbar}{m\omega}\frac{d}{dx}\right) \\ \ket{0} = 0
+\end{equation}
+Solving this gives the gaussian:
+\begin{equation}
+    \ket{0} = \exp\left[-\frac{m\omega x^2}{2\hbar}\right]
+\end{equation}
+\subsection{The wave functional of the ground state of the scalar field}
+Using the formulation we did in class, we can write the ladder operators for the scalar field:
+
+\end{document}

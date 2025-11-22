@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{pxfonts}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Quantum Mechanics II Excercise 2}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Analytical problems}
+\subsection{Ising model with nearest + next nearest interaction}
+The hamiltonian for the Ising model with nearest + next nearest interaction is
+\begin{equation}
+    H = -J_1 \sum_i \sigma_i \sigma_{i+1} - J_2 \sum_i \sigma_i \sigma_{i+2} - B \sum_i \sigma_i
+\end{equation}
+Since the boundries are negligable in the thermodynamic limit, we can select periodic boundary conditions $N + 1 = 1, N + 2 = 2$. The partition function is then
+\begin{equation}
+\begin{gathered}
+    Z_N = \sum_{\sigma_1 = \pm 1} \cdot\cdot\cdot \sum_{\sigma_N = \pm 1}
+    \exp\left[\beta J_1 \sum_i \sigma_i \sigma_{i+1} + \beta J_2 \sum_i \sigma_i \sigma_{i+2} + \beta B \sum_i \sigma_i\right] =
+    \\
+    = \sum_{\sigma_1 = \pm 1} \cdot\cdot\cdot \sum_{\sigma_N = \pm 1}
+    \prod_i \exp\left(
+        \beta J_1 \sigma_i \sigma_{i+1} +
+        \beta J_2 \sigma_i \sigma_{i+2} +
+        \beta B \sigma_i
+    \right)
+\end{gathered}
+\end{equation}
+To create a transfer matrix, let us define a superspin $\ket{\bar{\sigma}_i} \in \R^4$ out of every two consecutive spins:
+\begin{equation}
+    \ket{\uparrow \uparrow} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} \qquad
+    \ket{\uparrow \downarrow} = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} \qquad
+    \ket{\downarrow \uparrow} = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} \qquad
+    \ket{\downarrow \downarrow} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix}
+\end{equation}
+Which means the exponent in equation 2 is
+\begin{equation}
+    \exp\left(
+        \beta J_1 \sigma_i \sigma_{i+1} +
+        \beta J_2 \sigma_i \sigma_{i+2} +
+        \beta B \sigma_i
+    \right) = \bra{\bar{\sigma}_i}M\ket{\bar{\sigma}_{i+1}}
+\end{equation}
+Where $M$ is the transfer matrix:
+\begin{equation}
+    M = \exp \left[\beta \begin{pmatrix}
+        J_1 + J_2 + B & J_1 - J_2 + B & & \\
+        -J_1 + J_2 + B & -J_1 - J_2 + B & & \\
+        & & -J_1 - J_2 - B & -J_1 + J_2 - B \\
+        & & J_1 - J_2 - B & J_1 + J_2 - B
+    \end{pmatrix}\right]
+\end{equation}
+Naming the four vectors from equation 3 $b_1, ... b_4$, the partition function is
+\begin{equation}
+    Z_N = \sum_{\hat{\sigma}_1 = b_1 ... b_4} \cdot\cdot\cdot \sum_{\hat{\sigma}_N = b_1 ... b_4}
+    \bra{\bar{\sigma}_1}M\ket{\bar{\sigma}_2}
+    \bra{\bar{\sigma}_2}M\ket{\bar{\sigma}_3}
+    \dots
+    \bra{\bar{\sigma}_{N/4}}M\ket{\bar{\sigma}_1} = Tr(M^{N/4})
+\end{equation}
+Where in the last equation we used the fact that $M$ is translationaly invariant. Since the trance is base independent, we can epxress it as the sum of the matrix's eigenvalues, and in the thermodynamic limit, all eigenvalues except the largest one will be negliable, and the partition function is
+\begin{equation}
+    \lim_{N\rightarrow \infty} Z_N = \lambda_{max}^N
+\end{equation}
+This result makes sense because it gives us extensive free energy.
+\subsection{Ising model as a Lattice Gas}
+Given seven sites and three particles that could be in those sites, there is a $\binom{7}{3}$ options for their configuration, but we can make the situation much simpler. The first thing to notice is the translation invariance, so we can assume the first particle is in the first position, and simply multiply the options by 7 at the end. This should leave us with $\binom{7}{3} / 7 = 5$ options, which is a very managable number. Now let's look at the positions of the other two particles. We don't want to overcount by saying that placing the particles in positions $(1, 6, 7)$ is distinct from placing them in $(1,2,3)$. Those two situations are the same under translations, which we already acounted for. We can find duplicates by enumartion and remove them. The positions that are left after removing all duplicates are
+\begin{equation}
+\begin{gathered}
+    b_1 = (1,2,3) \qquad b_2 = (1,2,4) \qquad b_3 = (1,2,5) \qquad b_4 = (1,2,6) \qquad b_5 = (1,3,5)
+\end{gathered}
+\end{equation}
+Using the Ising hamiltonian for each configuration, the magnetic field term gives $-3B$ for every configuration, while the interaction term is positive if the two sites are both occupied or both unoccupied. i.e. we start from $-7J$ and gain $2J$ for every wall:
+\begin{equation}
+\begin{gathered}
+    Z_1 = e^{3\beta J + 3\beta B} \qquad Z_2 = Z_3 = Z_4 = e^{-\beta J + 3\beta B} \qquad Z_5 = e^{-5\beta J + 3\beta B}
+\end{gathered}
+\end{equation}
+In other words we have one situations with two walls, three situations with four walls and one situation with six walls. Summing over each of them and multiplying by seven for the translation invariance, we get:
+\begin{equation}
+\begin{gathered}
+    Z = e^{3\beta J + 3\beta B} + 3e^{-\beta J + 3\beta B} + e^{-5\beta J + 3\beta B} = 
+    \\
+    = e^{3\beta B} \left(
+        e^{3\beta J} + 3^{-\beta J} + e^{-5\beta J}
+    \right)
+\end{gathered}
+\end{equation}
+\section{Numeric Problems}
+\subsection{Easy Numeric}
+\subsubsection{The free energy and the partition function}
+\end{document}
