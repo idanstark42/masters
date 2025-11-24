@@ -1,0 +1,327 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Quantum Mechanics I Excercise 2}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{The relation between the propagator perturbation expension in path integral and operator level}
+\subsection{Schrodinger equation in the interaction representation}
+Considering the Schrodinger equation defined by
+\begin{equation}
+    i\hbar \frac{\partial}{\partial t}\psi(t) = \left(\hat{H}_0 + \hat{V}\right)\psi(t)
+\end{equation}
+Let us define the interaction wave function as
+\begin{equation}
+    \varphi(t) = e^{i \hat{H}_0 t / \hbar}\psi(t)
+\end{equation}
+Where $\psi(t)$ is the wave function solving equation (1). Solving equation (2) for $\psi(t)$ and assigning it into equation (1) gives
+\begin{equation}
+\begin{gathered}
+    i\hbar \frac{\partial}{\partial t}e^{-i \hat{H}_0 t / \hbar}\varphi(t) = \left(\hat{H}_0 + \hat{V}\right)e^{-i \hat{H}_0 t / \hbar}\varphi(t)
+    \\
+    \hat{H}_0 e^{-i \hat{H}_0 t / \hbar}\varphi(t) + i\hbar e^{-i \hat{H}_0 t / \hbar} \frac{\partial \varphi(t)}{\partial t} = \left(\hat{H}_0 + \hat{V}\right)e^{-i \hat{H}_0 t / \hbar}\varphi(t)
+    \\
+    i\hbar e^{-i \hat{H}_0 t / \hbar} \frac{\partial \varphi(t)}{\partial t} = \hat{V}e^{-i \hat{H}_0 t / \hbar}\varphi(t)
+    \\
+    i\hbar\frac{\partial \varphi(t)}{\partial t} = e^{i \hat{H}_0 t / \hbar}\hat{V}e^{-i \hat{H}_0 t / \hbar}\varphi(t)
+\end{gathered}
+\end{equation}
+And so we get the required equation where
+\begin{equation}
+    \hat{V}_I(t) = e^{i \hat{H}_0 t / \hbar}\hat{V}e^{-i \hat{H}_0 t / \hbar}
+\end{equation}
+Other operators would be represented in a similar manner:
+\begin{equation}
+    \hat{\Omega}_I(t) = e^{i \hat{H}_0 t / \hbar}\hat{\Omega}e^{-i \hat{H}_0 t / \hbar}
+\end{equation}
+\subsection{Time evolution operator in the interaction representation}
+The time evolution operator satisfies the equation
+\begin{equation}
+    \ket{\psi(t)} = \hat{U}_I(t, t_0) \ket{\psi(t_0)}
+\end{equation}
+Putting this into the interaction representation Schrodinger equation, we get
+\begin{equation}
+\begin{gathered}
+    i\hbar\frac{\partial}{\partial t}\hat{U}_I(t, t_0) \ket{\psi(t_0)} = \hat{V}_I(t) \hat{U}_I(t, t_0) \ket{\psi(t_0)}
+    \\
+    i\hbar\frac{\partial}{\partial t}\hat{U}_I(t, t_0) = \hat{V}_I(t) \hat{U}_I(t, t_0)
+\end{gathered}
+\end{equation}
+This is a simple ODE, the solution to which can be achieved using the Dyson Series
+\begin{equation}
+    \hat{U}_I(t,t_0) = \mathcal T \exp\left[-\frac{i}{\hbar} \int_{t_0}^{t} \hat{V}_I(\tau) d\tau\right]
+\end{equation}
+Since equation (5) is true for any operator, it's true in particular to $U(t_f, t_i)$. We multiply by the exponent from both sides to get:
+\begin{equation}
+    \hat{U}(t_f, t_i) = e^{-i \hat{H}_0 t_f / \hbar}\hat{U}_I(t_f,t_i)e^{i \hat{H}_0 t_i / \hbar}
+\end{equation}
+\subsection{The Perturbation expansion of $\hat{U}(t_f, t_i)$}
+Opennig equation (8) back into its exponent expansion, we get:
+\begin{equation}
+\begin{gathered}
+    \hat{U}(t_f, t_i) = 
+    e^{-i \hat{H}_0 t_f / \hbar}
+    \mathcal T \exp\left[-\frac{i}{\hbar} \int_{t_0}^{t} \hat{V}_I(\tau) d\tau\right]
+    e^{i \hat{H}_0 t_i / \hbar} =
+    \\
+    = \sum_{n=0}^\infty \frac{\left(-i\right)^n}{\hbar^n n!}
+    \int \prod_{k=1}^{n} dt_k
+    \mathcal T \left[
+        \prod_{k=1}^{n}
+        e^{-i \hat{H}_0 \left(t_f - t_k\right) / \hbar}
+        \hat{V}(t_k)
+        e^{-i \hat{H}_0 \left(t_k - t_i\right) / \hbar}
+    \right]
+\end{gathered}
+\end{equation}
+Where $t_n = t_f$ and $t_0 = t_i$. In other words, we can write $\hat{U}_I(t_f, t_i)$ as
+\begin{equation}
+    \hat{U}_I(t_f, t_i) = 1 + \frac{i}{\hbar}\int_{t_i}^{t_f}\hat{V}_I(\tau)d\tau + \cdots
+\end{equation}
+And so $\hat{U}(t_f, t_i)$ is
+\begin{equation}
+    \hat{U}(t_f, t_i) =
+        e^{-i \hat{H}_0 t_f / \hbar}
+        \left(1 + \frac{i}{\hbar}\int_{t_i}^{t_f}\hat{V}_I(\tau)d\tau+\cdots\right)
+        e^{i \hat{H}_0 t_i / \hbar}
+\end{equation}
+The zeroth order term is
+\begin{equation}
+    U_0 (t_f, t_i) = e^{-i \hat{H}_0 \left(t_f - t_i\right) / \hbar}
+\end{equation}
+So we can rewrite equation (10) as
+\begin{equation}
+    \hat{U}(t_f, t_i) = \sum_{n=0}^\infty \frac{\left(-i\right)^n}{\hbar^n n!}
+    \int \prod_{k=1}^{n} dt_k
+    \mathcal T \left[
+        \prod_{k=1}^{n}
+        \hat{U}_0 (t_f, t_k)
+        \hat{V}(t_k)
+        \hat{U}_0 (t_k, t_i)
+    \right]
+\end{equation}
+The first and second order terms are
+\begin{equation}
+    U_1 (t_f, t_i) =
+    -
+    \frac{i}{\hbar}
+    \int dt_1
+    \hat{U}_0 (t_f, t_1)
+    \hat{V}(t_1)
+    \hat{U}_0 (t_1, t_i)
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    U_2 (t_f, t_i) = -
+    \frac{1}{\hbar^2}
+    \int dt_1 dt_2
+    \hat{U}_0 (t_f, t_2)
+    \hat{V}(t_2)
+    \hat{U}_0 (t_2, t_1)
+    \hat{V}(t_1)
+    \hat{U}_0 (t_1, t_i) = 
+    \\
+    = -
+    \frac{i}{\hbar}
+    \int dt_2
+    \hat{U}_0 (t_f, t_2)
+    \hat{V}(t_2)
+    \hat{U}_1 (t_2, t_i)
+\end{gathered}
+\end{equation}
+Which is a similar relation to the one we got in equation (90) in the course notes:
+\begin{equation}
+    U_k (t_f, t_i) = -
+    \frac{i}{\hbar}
+    \int d\tau
+    \hat{U}_0 (t_f, \tau)
+    \hat{V}(\tau)
+    \hat{U}_{k-1} (\tau, t_i) 
+\end{equation}
+\subsection{The full integral equation for $\hat{U}(t_f, t_i)$}
+We can use the recursion relation that can be seen in equation (17) to find the full $\hat{U}(t_f, t_i)$ by simply assigning it into equation (14), remembering that everything inside the sum is $U_n$:
+\begin{equation}
+\begin{gathered}
+    \hat{U}(t_f, t_i) = \sum_{n=0}^\infty U_n(t_f, t_i) =
+    \\
+    = U_0 + \sum_{n=1}^\infty U_n(t_f, t_i) =
+    \\
+    = U_0 + \sum_{n=0}^\infty U_{n+1}(t_f, t_i) =
+    \\
+    = U_0 + \sum_{n=0}^\infty -
+    \frac{i}{\hbar}
+    \int d\tau
+    \hat{U}_0 (t_f, \tau)
+    \hat{V}(\tau)
+    \hat{U}_n (\tau, t_i) =
+    \\
+    = U_0 - \frac{i}{\hbar}
+    \int d\tau
+    \hat{U}_0 (t_f, \tau)
+    \hat{V}(\tau)
+    \sum_{n=0}^\infty \hat{U}_n (\tau, t_i) =
+    \\
+    = U_0 - \frac{i}{\hbar}
+    \int d\tau
+    \hat{U}_0 (t_f, \tau)
+    \hat{V}(\tau)
+    \hat{U} (\tau, t_i)
+\end{gathered}
+\end{equation}
+
+\newpage
+\section{The propagator in momentum space}
+Given a Hamiltonitan $H_{op}(p_{op}, x_{op})$, the propagator
+\begin{equation}
+    U(t_f, t_i) = e^{-i H_{op}(t_f - t_i) / \hbar}
+\end{equation}
+can be represented in the different bases by slicing it. Let
+\begin{equation}
+    \epsilon = \frac{t_f - t_i}{N}
+\end{equation}
+And let $\left\{\ket{q_n}\right\}$ be a complete bases
+\begin{equation}
+    \int \ket{q_n}\bra{q_n} dq_n = 1
+\end{equation}
+We can represent $U(t_f, t_i)$ in the $\left\{\ket{q_n}\right\}$, and insert the unit from equation (12) into the definition of $U$, slicing it into $N$ smaller propagators. Using the momentum base, this becomes:
+\begin{equation}
+\begin{gathered}
+    K(p_f, t_f; p_i, t_i) = \bra{p_f}U(t_f, t_i)\ket{p_i} = 
+    \\
+    = \int dp_1 dp_2\dots dp_{N-1}
+        \bra{p_f} e^{-i H_{op}\epsilon / \hbar} \ket{p_{N-1}}
+        \bra{p_{N-1}} e^{-i H_{op}\epsilon / \hbar} \ket{p_{N-2}}
+        \dots
+        \bra{p_2} e^{-i H_{op}\epsilon / \hbar} \ket{p_i}
+\end{gathered}
+\end{equation}
+Where $\ket{p_f} = \ket{p_N}$ and $\ket{p_i} = \ket{p_1}$.
+\newline
+For the simple Hamiltonitan
+\begin{equation}
+    H_{op} = \frac{p_{op}^2}{2m} + V(x_{op})
+\end{equation}
+we can expand each factor in the integral using exponent Taylor expansion. At the limit where $N\rightarrow \infty, \epsilon \rightarrow 0$, the commutator of the kinetic and potential terms of the Hamiltonitan gets a $O(\epsilon^2)$ in the exponent expansion, and since there are $N$ such factor get a total $O(\epsilon)$ which is negligable. We can then write the factors as
+\begin{equation}
+    e^{-i H_{op}\epsilon / \hbar} = 
+        e^{-\frac{i\epsilon}{\hbar}V(x_{op})}
+        e^{-\frac{i\epsilon}{\hbar}\frac{p_{op}^2}{2m}}
+\end{equation}
+Applying this to the $p_{n-1}$ state and inserting the $\ket{x_n}$ completion identity to evaluate $V(x_{op})$, we get:
+\begin{equation}
+\begin{gathered}
+    \bra{p_n} e^{-i \epsilon H_{op} / \hbar} \ket{p_{n-1}} = 
+    \\
+    = e^{-\frac{i\epsilon}{\hbar}\frac{p_n^2}{2m}} \bra{p_n} e^{-\frac{i\epsilon}{\hbar}V(x_{op})} \ket{p_{n-1}} =
+    \\
+    = \frac{1}{2\pi\hbar} e^{-\frac{i\epsilon}{\hbar}\frac{p_n^2}{2m}} \int dx_n \bra{p_n} e^{-\frac{i\epsilon}{\hbar}V(x_{op})} \ket{x_n} \bra{x_n} \ket{p_{n-1}} =
+    \\
+    = \frac{1}{2\pi\hbar} e^{-\frac{i\epsilon}{\hbar}\frac{p_n^2}{2m}} \int e^{-\frac{i\epsilon}{\hbar}V(x_n)- i(p_n - p_{n-1})x_n/\hbar} dx_n =
+    \\
+    = \frac{1}{2\pi\hbar}\int e^{-\frac{i\epsilon}{\hbar}H(p_n, x_n) + i(p_n - p_{n-1})x_n/\hbar}dx_n
+\end{gathered}
+\end{equation}
+This can be expanded to a generic Hamiltonitan. The steps are similar, with the one change begin that the expansion of the exponent is more direct:
+\begin{equation}
+\begin{gathered}
+    \bra{p_n} e^{-i \epsilon H_{op}(p_{op}, x_{op}) / \hbar} \ket{p_{n-1}} = 
+    \\
+    = \frac{1}{2\pi\hbar} \int dx_n \bra{p_n} e^{-i \epsilon H_{op}(p_{op}, x_{op}) / \hbar} \ket{x_n} \bra{x_n} \ket{p_{n-1}} =
+    \\
+    = \frac{1}{2\pi\hbar} \int dx_n \bra{p_n} e^{-i \epsilon H_{op}(p_n, x_n) / \hbar} \ket{x_n} \bra{x_n} \ket{p_{n-1}} =
+    \\
+    = \frac{1}{2\pi\hbar}\int e^{-\frac{i\epsilon}{\hbar}H(p_n, x_n) + i(p_n - p_{n-1})x_n/\hbar}dx_n
+\end{gathered}
+\end{equation}
+The result, in both cases, when accumliating all factors in the equation (13) integral, is:
+\begin{equation}
+    K(p_f, t_f, p_i, t_i) = \int \prod_{n=2}^{N} \frac{dx_n}{2\pi\hbar} \prod_{n=2}^{N} dp_n \exp \left[
+        \frac{i\epsilon}{\hbar}
+        \sum_{n=2}^{N}
+        \left(
+            x_n \frac{p_n - p_{n-1}}{\epsilon} - H(p_n, x_n)
+        \right)
+    \right]
+\end{equation}
+Where the factor $(2\pi\hbar)$ is the differential volume element. This is very similar to the position representation of the propagator. The key difference is in the first term of the sum in the exponent. If in the position representation propagator, this term reminded us of a Legendre transform according to position $p\dot{x} - H$, this time it reminds us of a Legendre transform according to the momentum $x\dot{p} - H$.
+\newline
+When the Hamiltonitan is dependent only on the momentum $H_{op} = H(p_{op})$, we get:
+\begin{equation}
+\begin{gathered}
+    K(p_f, t_f, p_i, t_i) = \int \prod_{n=2}^{N} \frac{dx_n}{2\pi\hbar} \prod_{n=2}^{N} dp_n \exp \left[
+        \frac{i\epsilon}{\hbar}
+        \sum_{n=2}^{N}
+        \left(
+            x_n \frac{p_n - p_{n-1}}{\epsilon} - H(p_n)
+        \right)
+    \right] = 
+    \\
+    = \left(\frac{1}{2\pi\hbar}\right)^N
+    \int
+    \prod_{n=2}^{N} dx_n
+    \prod_{n=2}^{N} dp_n
+    \exp \left[
+        \frac{i}{\hbar}
+        \sum_{n=2}^{N}
+        x_n \left(p_n - p_{n-1}\right)
+    \right]
+    \exp \left[
+        - \frac{i\epsilon}{\hbar}
+        \sum_{n=2}^{N} H(p_n)
+    \right]
+\end{gathered}
+\end{equation}
+For every integral position integral, we get:
+\begin{equation}
+    \int dx_n \exp \left[\frac{i}{\hbar}x_n \left(p_n - p_{n-1}\right)\right] = \delta(p_n - p_{n-1})
+\end{equation}
+Therefore:
+\begin{equation}
+\begin{gathered}
+    K(p_f, t_f, p_i, t_i) = \left(\frac{1}{2\pi\hbar}\right)^N
+    \int
+    \prod_{n=2}^{N}
+    \left[
+        \delta(p_n - p_{n-1})
+        e^{-\frac{i\epsilon}{\hbar}H(p_n)}
+        dp_n
+    \right] =
+    \\
+    = \left(\frac{1}{2\pi\hbar}\right)^N
+    \int
+        \delta(p_2 - p_1)
+        \delta(p_3 - p_2)
+        \cdots
+        \delta(p_N - p_{N-1})
+        e^{-\frac{i\epsilon}{\hbar}H(p_2)}
+        e^{-\frac{i\epsilon}{\hbar}H(p_3)}
+        \cdots
+        e^{-\frac{i\epsilon}{\hbar}H(p_f)}
+    dp_2 dp_3 \cdots dp_N =
+    \\
+    = \left(\frac{1}{2\pi\hbar} \right)^N e^{-\frac{i\epsilon}{\hbar} N H(p_i)}
+\end{gathered}
+\end{equation}
+\newpage
+\section{Morse index}
+We can think of the morse index as the number of directions in which the second variation operator is a "sad" parabula (i.e. a < 0), and thus a local maximum instead of minimum. If every eigenvalue in the second variation operator are positive, this means it's a minimum in all direciton, and therefore a minimum. If some are positive and some are negaitve, it is a saddle point, and if all are negative, it means it's a maximum.
+\newline
+Therefore, for classical paths, each one is either a minimum or a saddle point, depending on whether the second variation operator has negative eigenvalues, meaning if there exists focal points on the path.
+\newline
+As the path becomes a saddle point near the focal point, it makes sense that it would interact with another path. This is what happens when $x_f$ approaches the caustic. The two paths approaching $x_f$ get closer and closer until, when $x_f$ is on the caustic, one eigenvalue from each path vanishes as the paths merge locally to form a saddle point.
+\newline
+When $x_f$ is in a classically forbidden area, we must cross a focal point, adding a phase to the trajectory. As indicated, this makes the trajectory into a saddle point, and not a minimum, meaning that while the action is stationary it is not a stable solution to the Jacobi equation.
+\end{document}
