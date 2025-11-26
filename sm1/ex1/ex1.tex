@@ -101,4 +101,150 @@ In other words we have one situations with two walls, three situations with four
 \section{Numeric Problems}
 \subsection{Easy Numeric}
 \subsubsection{The free energy and the partition function}
+The Helmholtz free energy is defined using the Legendere transform over the energy
+\begin{equation}
+    F(T, V, N) = U(S, V, N) - TS
+\end{equation}
+We can calcualte the expected entropy using its defineition
+\begin{equation}
+    S = - k_B \ln(\Omega)
+\end{equation}
+Where $\Omega$ is the multiplicity of the macrostate. We can define all macrostates of the system $i$ where $p_i = \Omega_i / \Omega$ is the probability of the macrostate and get
+\begin{equation}
+    \langle S \rangle = - k_B \sum_i p_i \ln(p_i)
+\end{equation}
+Now, using the Boltzman factor as the probability, we get
+\begin{equation}
+\begin{gathered}
+    \langle S \rangle = - k_B \sum_i p_i \ln\left(\frac{e^{-\beta E_i}}{Z}\right) = 
+    - k_B \sum_i p_i \left[-\beta E_i - \ln Z\right] =
+    \\
+    = - k_B \left[-\beta \sum_i p_i E_i - \ln Z\sum_i p_i \right] =
+    k_B \beta \langle E \rangle + k_B \ln Z
+    \\
+    T \langle S \rangle = \langle E \rangle + k_B T \ln Z
+\end{gathered}
+\end{equation}
+Comparing this to equation (11) we get
+\begin{equation}
+    F = -k_B T \ln Z
+\end{equation}
+\subsubsection{The Helmholtz free energy for the 1D Ising model}
+
+\subsection{1D model with frustration}
+Let the hamiltonian of a triangular ladder be
+\begin{equation}
+    H = -J \sum_i \sigma_i^L \sigma_{i+1}^L + \sigma_i^U \sigma_{i+1}^U + \sigma_i^L \sigma_i^U + \sigma_i^U \sigma_{i+1}^L
+\end{equation}
+Let $\tilde{\sigma}_i$ be the superspin in $\R^4$ that encodes the information about $\sigma_i^L$ and $\sigma_i^U$:
+\begin{equation}
+\begin{gathered}
+    \tilde{\sigma}_i = \begin{pmatrix} 1 \\ 0 \\ 0 \\ 0 \end{pmatrix} \rightarrow \sigma_i^L = 1, \sigma_i^U = 1
+    \qquad
+    \tilde{\sigma}_i = \begin{pmatrix} 0 \\ 1 \\ 0 \\ 0 \end{pmatrix} \rightarrow \sigma_i^L = -1, \sigma_i^U = 1
+    \\
+    \tilde{\sigma}_i = \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} \rightarrow \sigma_i^L = 1, \sigma_i^U = -1
+    \qquad
+    \tilde{\sigma}_i = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 1 \end{pmatrix} \rightarrow \sigma_i^L = -1, \sigma_i^U = -1
+\end{gathered}
+\end{equation}
+The then partition function can be written as
+\begin{equation}
+    Z = \sum_{\tilde{\sigma}_1} \cdots \sum_{\tilde{\sigma}_N} \prod_i \bra{\tilde{\sigma}_i}M\ket{\tilde{\sigma}_{i+1}}
+\end{equation}
+Where M is the transition matrix
+\begin{equation}
+    M = \begin{pmatrix}
+        e^{-4\beta J} & 1 & e^{-2\beta J} & e^{2\beta J} \\
+        1 & 1 & e^{2\beta J} & e^{2\beta J} \\
+        e^{2\beta J} & e^{2\beta J} & 1 & 1 \\
+        e^{2\beta J} & e^{-2\beta J} & 1 & e^{-4\beta J}
+    \end{pmatrix}
+\end{equation}
+This makes the particle function
+\begin{equation}
+    Z = \Tr(M^N) = \sum_i^N \lambda_i^N
+\end{equation}
+And in the thermodynamic limit, only the highest eigenvalue remains. This changes based on weather $J$ is positive or negative. The eigen values are (from higest to lowest)
+\begin{equation}
+\begin{gathered}
+    \lambda_1 = \frac{1}{2}\left(2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}\right)
+    \\
+    \lambda_2 = \frac{1}{2}\left(-2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1-e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}\right)
+    \\
+    \lambda_3 = \frac{1}{2}\left(-2e^{2\beta J} + 1 + e^{-4\beta J} - e^{-4\beta J}\sqrt{\left(1-e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}\right)
+    \\
+    \lambda_4 = \frac{1}{2}\left(2e^{2\beta J} + 1 + e^{-4\beta J} - e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}\right)
+\end{gathered}
+\end{equation}
+We can see them in figure \ref{fig:correlation-distance}:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{eigenvalues-4.png}
+    \caption{The eigenvalues of the transfer matrix M as a function of $J \beta$. Since $\beta > 0$, the right half of the plane shows the ferromagnetic case while the left half of the plane shows the anti-ferromagneticfor both ferromagnetic ($J=1$) and anti-ferromagnetic ($J=-1$) cases. \newline purple = $\lambda_1$, red = $\lambda_2$, black = $\lambda_3$, gren = $\lambda_4$}
+    \label{fig:eigenvalues}
+\end{figure}
+For the ferromagnetic case, $J=1$, the two middle eigenvalues $\lambda_2, \lambda_3$ are not defined in the region $\beta > 0$, because of the negative value in the square root. But, in both cases $\lambda_max = \lambda_1$:
+\begin{equation}
+    F/N = \frac{1}{2}\left(2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}\right)
+\end{equation}
+Now let us find the correlation function $\langle\sigma_1^L \sigma^L_{1+r}\rangle$. Without loss of generalty, let $i=1$. The correlation function is, by defineition
+\begin{equation}
+    \langle\sigma_1^L \sigma^L_{1+r}\rangle = \frac{1}{Z} \sum_{\tilde{\sigma}_1} \cdots \sum_{\tilde{\sigma}_N} \bra{\tilde{\sigma}_1}AM\ket{\tilde{\sigma}_{2}}\cdots\bra{\tilde{\sigma}_{r}}AM\ket{\tilde{\sigma}_{r+1}}\cdots\bra{\tilde{\sigma}_N}M\ket{\tilde{\sigma}_{N+1}}
+\end{equation}
+Where
+\begin{equation}
+    A = \begin{pmatrix}
+        1 & & & \\
+        & -1 & & \\
+        & & 1 & \\
+        & & & -1
+    \end{pmatrix}
+\end{equation}
+Thus
+\begin{equation}
+    \langle\sigma_1^L \sigma^L_{1+r}\rangle = \frac{1}{Z} \Tr(AM^{r-1}AM^{N-r+1})
+\end{equation}
+To perform the power over the matrix $M$, we need to diagonlize it $M = C^{-1}DC$:
+\begin{equation}
+    \langle\sigma_1^L \sigma^L_{1+r}\rangle = \frac{1}{Z} \Tr(AC^{-1}D^{r-1}CAC^{-1}M^{N-r+1}C) = \frac{1}{Z} \Tr(CAC^{-1}D^{r-1}CAC^{-1}M^{N-r+1}) = \frac{1}{Z} \Tr(BD^{r-1}BD^{N-r+1})
+\end{equation}
+Where $B = CAC^{-1}$. Writing $M$ using its eigenvalues $\lambda_i$, the matrix multiplicaiton becomes a linear combination of products of two eignvalues in each terms $\lambda_i^{r-1} \lambda_j^{N-r+1}$. Assigning $Z = \lambda_1^N$, every term that doesn't have $\lambda_1^{N-r+1}$ is negligable, and we are left with the linear combinations of the terms that include it:
+\begin{equation}
+    \langle\sigma_1^L \sigma^L_{1+r}\rangle = a_1 + a_2 \left(\frac{\lambda_2}{\lambda_1}\right)^{r-1} + a_3 \left(\frac{\lambda_3}{\lambda_1}\right)^{r-1} + a_4 \left(\frac{\lambda_4}{\lambda_1}\right)^{r-1}
+\end{equation}
+Since in our superspin model this is a 1-D Ising model with closest neighboor interaction, there is no phase transition and the correlation should decay as $r\rightarrow\infty$ . Therefore $a_1 = 0$. Moreover, we can neglect the smaller ratios and get the well known relation
+\begin{equation}
+    \langle\sigma_1^L \sigma^L_{1+r}\rangle = e^{-r/\xi} \qquad \xi = \frac{1}{\ln\left(\frac{\lambda_{max}}{\lambda_{second}}\right)}
+\end{equation}
+For the ferromagnetic case $J=1$, we remember that $\lambda_2$ is not defined, and therefore $\lambda_{second} = \lambda_4$
+\begin{equation}
+    \xi = \left[\ln\left(\frac
+        {2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}}
+        {2e^{2\beta J} + 1 + e^{-4\beta J} - e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}}
+    \right)\right]^{-1}
+\end{equation}
+And for the anti-ferromagnetic case $J=-1$:
+\begin{equation}
+    \xi = \left[\ln\left(\frac
+        {2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1+e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}}
+        {-2e^{2\beta J} + 1 + e^{-4\beta J} + e^{-4\beta J}\sqrt{\left(1-e^{2\beta J}\right)^3\left(4e^{4\beta J} - 3e^{\beta J} + 1\right)}}
+    \right)\right]^{-1}
+\end{equation}
+Those correlation distances can be seen as a function of $\beta$ in figure \ref{fig:correlation-distance}:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{correlation-distances-4.png}
+    \caption{The correlation distance $\xi$ as a function of $\beta$ for both ferromagnetic ($J=1$) and anti-ferromagnetic ($J=-1$) cases. \newline green = ferromagnetic, blue = anti-ferromagnetic}
+    \label{fig:correlation-distance}
+\end{figure}
+Unsurprisingly, in both cases, the correlation length is zero at the hot limit ($\beta = 0$) and diverges at the cold limit ($\beta = \infty$).
+\appendix
+\section{Code for numeric problem #3}
+The code for the numeric problem \#3 can be found in the following GitHub repository:
+\begin{center}
+    \url{
+        https://github.com/username/repository
+    }
+\end{center}
 \end{document}
