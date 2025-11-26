@@ -35,15 +35,7 @@ class Ising1D:
     def free_energy_approx(self):
         return -self.T * self.N * np.log(self.eigenvalues()[0])
 
-
-if __name__ == "__main__":
-    J = 1  
-    beta_min = 0.1
-    beta_max = 10.0
-    beta_steps = 100
-    N_min = 6
-    N_max = 12
-
+def run(J, beta_min, beta_max, beta_steps, N_min, N_max):
     betas = []
     Ns = []
     F_exacts = []
@@ -66,16 +58,21 @@ if __name__ == "__main__":
             diffs.append(abs(F_exact - F_approx))
     
     plt.figure(figsize=(10, 6))
-    plt.scatter(betas, diffs, c=Ns, cmap='viridis', label='Difference in Free Energy', s=10, alpha=0.7)
-    for N in range(N_min, N_max + 1):
-        beta_N = [betas[i] for i in range(len(betas)) if Ns[i] == N]
-        diff_N = [diffs[i] for i in range(len(diffs)) if Ns[i] == N]
-        plt.plot(beta_N, diff_N, label=f'N={N}')
+    scatter = plt.scatter(betas, diffs, c=Ns, cmap='viridis', alpha=0.7)
 
-    plt.colorbar(label='System Size N')
     plt.xlabel('Beta (1/kT)')
     plt.ylabel('Difference |F_exact - F_approx|')
-    plt.title('Difference between Exact and Approximate Free Energy vs Beta')
+    plt.title('Difference between Exact and Approximate Free Energy vs Beta - ' + ('Ferromagnetic' if J > 0 else 'Antiferromagnetic'))
     plt.legend()
     plt.grid()
     plt.show()
+
+if __name__ == "__main__":
+    J = 1  
+    beta_min = 0.1
+    beta_max = 1.0
+    beta_steps = 100
+    N_min = 6
+    N_max = 12
+
+    run(J, beta_min, beta_max, beta_steps, N_min, N_max)

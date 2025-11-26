@@ -130,7 +130,23 @@ Comparing this to equation (11) we get
     F = -k_B T \ln Z
 \end{equation}
 \subsubsection{The Helmholtz free energy for the 1D Ising model}
-
+In this section we ran a simulation of the 1D Ising model, with $N \in [6,12]$ and $\beta \in [0.1, 10]$ with jumps ever $0.1$. We ran it in the ferromagnetic case $J = 1$ and in the anti-ferromagnetic case $J = -1$. For each simulation we calculated the free energy using the eigenvalue approximation and directly from the microstates of the system. We then plotted the difference between the approximation and the real value.\footnote{The code for this section can be found in \url{https://github.com/idanstark42/masters-homework/blob/master/sm1/ex1/ising_1d.py}} The results can be seen in figures figure \ref{fig:ferro-free-energy} and figure \ref{fig:antiferro-free-energy}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ex3_ferro.png}
+    \caption{The Helmholtz free energy per spin as a function of $\beta$ for the ferromagnetic case ($J=1$) for different system sizes $N$.}
+    \label{fig:ferro-free-energy}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ex3_antiferro.png}
+    \caption{The Helmholtz free energy per spin as a function of $\beta$ for the anti-ferromagnetic case ($J=-1$) for different system sizes $N$.}
+    \label{fig:antiferro-free-energy}
+\end{figure}
+\newline
+First thing we can see that in the ferromagnetic case the higher the number of particles, the more accurate the approximation is. In contrast, in the antiferromagnetic case, this is true only for odd and even $N$s seperatly. In general, below a certain temperature, the error of odd numbered models grows with $\beta$. This is expectd, since in the antiferromagnetic case with an odd number of particles and periodic boundary conditions, the ground state has degeneracy N (two neighbooring sites must be with the same spin, and there are N options to which two sites it would be). This means that ergodicity is broken in a way that our model wasn't built to analyse.
+\newline
+The second thing we notice is that for the ferromagnetic case and the even-N antiferromagnetic case, there is a maximum error around 
 \subsection{1D model with frustration}
 Let the hamiltonian of a triangular ladder be
 \begin{equation}
@@ -239,12 +255,4 @@ Those correlation distances can be seen as a function of $\beta$ in figure \ref{
     \label{fig:correlation-distance}
 \end{figure}
 Unsurprisingly, in both cases, the correlation length is zero at the hot limit ($\beta = 0$) and diverges at the cold limit ($\beta = \infty$).
-\appendix
-\section{Code for numeric problem #3}
-The code for the numeric problem \#3 can be found in the following GitHub repository:
-\begin{center}
-    \url{
-        https://github.com/username/repository
-    }
-\end{center}
 \end{document}

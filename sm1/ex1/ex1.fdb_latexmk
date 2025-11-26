@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1764190034.16975 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex1/ex1.tex" "ex1.pdf" "ex1" 1764190036.17788 2
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex1/ex1.tex" 1764190030 13951 d225f446cc063b85359b367f69f46d51 ""
+["pdflatex"] 1764192022.35229 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex1/ex1.tex" "ex1.pdf" "ex1" 1764192024.17072 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex1/ex1.tex" 1764192021 15802 130a7e4db09d4ddf5334c33145944c29 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/pxb.tfm" 1761865672 1908 71cbb8d876dcffec4b8b192a0ed11ec0 ""
@@ -76,8 +76,10 @@
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
   "correlation-distances-4.png" 1764182594 21236 dcb5d76629ac0deba9b03da95aef632f ""
   "eigenvalues-4.png" 1764179275 32582 d191b55675e28e6a58e2779dc046ea70 ""
-  "ex1.aux" 1764190035 2003 2d5dcbc3f1dedb28bf5e1e72862919d0 "pdflatex"
-  "ex1.tex" 1764190030 13951 d225f446cc063b85359b367f69f46d51 ""
+  "ex1.aux" 1764192023 2467 9e3b8a67aac295483286689ab96bb2a1 "pdflatex"
+  "ex1.tex" 1764192021 15802 130a7e4db09d4ddf5334c33145944c29 ""
+  "ex3_antiferro.png" 1764190895 114329 e528be7ab84c051d6b70821f73f27039 ""
+  "ex3_ferro.png" 1764190816 97572 c7c160c2afdda22ab87a83dec11d60ad ""
   (generated)
   "ex1.aux"
   "ex1.log"
