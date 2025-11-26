@@ -20,7 +20,7 @@
 
 \section{The wave functional of the vacuum}
 \subsection{The first oder ODE for the ground state of a harmonic oscillator}
-The ground state of the quantum harmonic oscillator is defined as the state that is annihilated by the ladder operator $\hat{a}$:
+The ground state of the quantum harmonic oscillator is defined as the state that is annihilated by the annihilation operator $\hat{a}$:
 \begin{equation}
     \hat{a} \ket{0} = 0
 \end{equation}
@@ -38,9 +38,281 @@ In the position representation, $\hat{x} = x$ and $\hat{p} = -i \frac{\partial}{
 \end{equation}
 Solving this gives the gaussian:
 \begin{equation}
-    \ket{0} = \exp\left[-\frac{m\omega x^2}{2\hbar}\right]
+    \bra{x}\ket{0} = \exp\left[-\frac{m\omega x^2}{2\hbar}\right]
 \end{equation}
 \subsection{The wave functional of the ground state of the scalar field}
-Using the formulation we did in class, we can write the ladder operators for the scalar field:
+In the Shcrodinger functional picture in the field base is:
+\begin{equation}
+    \bra{\phi}\hat{\phi}(x)\ket{\phi} = \phi(x) \qquad \bra{\phi}\hat{\pi}(x)\ket{\phi} = -i \frac{\delta}{\delta\phi}
+\end{equation}
+We can write the annihilation operator for the scalar field:
+\begin{equation}
+    a_p = \int \frac{d^3x}{2(2\pi)^3} e^{ipx} \left(\sqrt{2\omega_p}\hat{\phi} + i\sqrt{\frac{2}{\omega_p}}\hat{\pi}_p\right)
+\end{equation}
+The ground state follows the equation
+\begin{equation}
+\begin{gathered}
+    a_p\ket{0} = 0
+    \\
+    \frac{1}{\sqrt{2\omega_p}} \int \frac{d^3x}{(2\pi)^3} e^{ipx} \left(\omega_p\hat{\phi} + i\hat{\pi}\right)\ket{0} = 0
+    \\
+    \left(\omega_p\hat{\phi}_p + i\hat{\pi}\right)\ket{0} = 0
+\end{gathered}
+\end{equation}
+We can now project the equation on the field base $\ket{\phi_p}$ and get
+\begin{equation}
+    \omega_p \phi_p \Psi[\phi_p] + \frac{\delta}{\delta\phi_p}\Psi[\phi_p] = 0
+\end{equation}
+And solving this equation is identical to solving equation (4):
+\begin{equation}
+    \Psi[\phi_p] = \exp\left[\frac{1}{2}i \omega_p \phi_p^2\right]
+\end{equation}
+Taking the solutions for all momenta, we get an integral in the exponent
+\begin{equation}
+    \Psi[\phi_p] = \exp\left[\frac{1}{2}i \int \frac{d^3p}{(2\pi)^3} \omega_p \phi_p^2\right]
+\end{equation}
+\section{Commutator}
+The full space-time dependent quantum field operator can be written as
+\begin{equation}
+    \varPhi(x^\mu) = \int \frac{d^3p}{(2\pi)^3\sqrt{2p^0}}\left(a_p e^{ip^\mu x_\mu} + a_p^\dagger e^{-ip^\mu x_\mu}\right)
+\end{equation}
+Therefore, the commutator of two different events $x^\mu$ and $y^\nu$ is
+\begin{equation}
+\begin{gathered}
+    \left[\varPhi(x^\mu), \varPhi(y^\nu)\right] = \\
+    = \left[\int \frac{d^3p}{(2\pi)^3\sqrt{2p_0}}\left(a_p e^{ip_\mu x^\mu} + a_p^\dagger e^{-ip_\mu x^\mu}\right), \int \frac{d^3p}{(2\pi)^3\sqrt{2p_0}}\left(a_p e^{ip_\mu y^\mu} + a_p^\dagger e^{-ip_\mu y^\mu}\right)\right] = \\
+    = \int \frac{d^3p d^3q}{(2\pi)^6\sqrt{4p_0q_0}}
+    \left[\left(a_p e^{ip_\mu x^\mu} + a_p^\dagger e^{-ip_\mu x^\mu}\right), \left(a_q e^{iq_\mu y^\mu} + a_q^\dagger e^{-iq_\mu y^\mu}\right)\right] = \\
+    = \int \frac{d^3p d^3q}{(2\pi)^6\sqrt{4p_0q_0}}
+    \left(
+        [a_p, a_q] e^{i\left(p_\mu x^\mu + q_\mu y^\mu\right)} +
+        [a_p, a_q^{\dagger}] e^{i\left(p_\mu x^\mu - q_\mu y^\mu\right)} +
+        [a_p^{\dagger}, a_q] e^{i\left(-p_\mu x^\mu + q_\mu y^\mu\right)} +
+        [a_p^{\dagger}, a_q^{\dagger}] e^{i\left(-p_\mu x^\mu - q_\mu y^\mu\right)}
+    \right) = 
+    \\
+    = \int \frac{d^3p d^3q}{(2\pi)^3\sqrt{4p_0q_0}}
+    \left[
+        e^{i\left(p_\mu x^\mu - q_\mu y^\mu\right)} -
+        e^{-i\left(p_\mu x^\mu - q_\mu y^\mu\right)}
+    \right]\delta^3(p - q) = 
+    \\
+    = \int \frac{d^3p}{(2\pi)^3 2 p_0}
+    \left[
+        e^{i p_\mu \left(x^\mu - y^\mu\right)} -
+        e^{-i p_\mu \left(x^\mu - y^\mu\right)}
+    \right] = 
+    \\
+    = \frac{i \sin\left(p_0(x^0 - y^0)\right)}{p_0}
+    \delta\left(x^1 - y^1\right)\delta\left(x^2 - y^2\right)\delta\left(x^3 - y^3\right)
+\end{gathered}
+\end{equation}
+which is a c-number.
+\section{Green’s function: prelude to interactions}
+\subsection{The green function of the Klein-Gordon equaiton}
+Using the integral form of the result of the previous seciton, the function
+\begin{equation}
+    D_R(x - y) = \theta(x^0 - y^0)\bra{0}\left[\phi_0(x), \phi_0(y)\right]\ket{0}
+\end{equation}
+becomes
+\begin{equation}
+\begin{gathered}
+    D_R(x - y) = \theta(x^0 - y^0) \int \frac{d^3p}{(2\pi)^3 2 p_0}
+    \left[
+        e^{i p^\mu \left(x_\mu - y_\mu\right)} -
+        e^{-i p^\mu \left(x_\mu - y_\mu\right)}
+    \right] = 
+    \\
+    = \frac{i}{(2\pi)^3 p^0} \theta(x^0 - y^0) \int d^3p
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right)
+\end{gathered}
+\end{equation}
+Since the commutator is a c-number and therefore can move outside the bra-ket, leaving them to collapse to 1.
+The second derivative of this expression with respect to $x^\mu$ is
+\begin{equation}
+\begin{gathered}
+    \partial^0 \partial_0 D_R(x-y) =
+    \\
+    = \frac{i}{(2\pi)^3 p_0} \partial_0^2 \left[\theta(x^0 - y^0) \int d^3p
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right)\right] =
+    \\
+    = \frac{i}{(2\pi)^3 p_0} \partial_0 \left[
+        \delta(x^0 - y^0) \int d^3p
+        \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right) + 
+        \theta(x^0 - y^0) \int d^3p \
+        p_0\cos\left(p_\mu \left(x^\mu - y^\mu\right)\right)
+    \right] =
+    \\
+    = \frac{i}{(2\pi)^3 p_0} \left[
+        \delta(x^0 - y^0) \int d^3p
+        p_0\cos\left(p_\mu \left(x^\mu - y^\mu\right)\right) -
+        \theta(x^0 - y^0) \int d^3p \
+        p_0^2\sin\left(p_\mu \left(x^\mu - y^\mu\right)\right)
+    \right] =
+    \\
+    = i\delta^4(x^\mu - y^\mu) - \frac{i}{(2\pi)^3 p_0} \theta(x^0 - y^0) \int d^3p \
+        p^0 p_0 \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right)
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \partial^i \partial_i D_R(x-y) =
+    \\
+    = \partial_i^2 \left[\theta(x^0 - y^0) \int d^3p \frac{i}{(2\pi)^3 p_0}
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right)\right] = 
+    \\
+    = - \theta(x^0 - y^0) \int d^3p \ p^i p_i \frac{i}{(2\pi)^3 p_0}
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right) = 
+\end{gathered}
+\end{equation}
+So, applying the Klein-Gordon operator gives:
+\begin{equation}
+\begin{gathered}
+    \left(\Box_x + m^2\right) D_R(x - y) =
+    \\
+    = \int d^3p \left(- \partial^0 \partial_0 + \partial^i \partial_i + m^2\right) \theta(x^0 - y^0) \frac{i}{(2\pi)^3 p_0}
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right) = 
+    \\
+    = - i \delta^4(x^\mu - y^\mu) + \int d^3p \left(p^0p_0 - p^ip_i + m^2\right) \theta(x^0 - y^0) \frac{i}{(2\pi)^3 p_0}
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right) = 
+    \\
+    = \delta^4(x - y)
+\end{gathered}
+\end{equation}
+Where we used the fact that $m^2 = p^\mu p_\mu$ and assume, during the derivative, that $x^0 < y^0$.
+\subsection{An external source of particals}
+Given the action
+\begin{equation}
+    S = \int d^4x \left( \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{1}{2}m^2\phi^2 + j\phi \right)
+\end{equation}
+The Lagrangian density is
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{1}{2}m^2\phi^2 + j\phi
+\end{equation}
+Using the Euler-Lagrange equation for fields, we get:
+\begin{equation}
+    \partial_\mu\left(\frac{\partial\mathcal{L}}{\partial\left(\partial^\mu\phi\right)}\right) = \Box \phi
+    \qquad
+    \frac{\partial \mathcal{L}}{\partial\phi} = -m^2\phi + j
+\end{equation}
+And the EOM is:
+\begin{equation}
+    \left(\Box - m^2\right)\phi = -j
+\end{equation}
+The solution to this is simply
+\begin{equation}
+    \phi(x) = \phi_0(x) + i \int D_R(x-y)j(y)d^4y
+\end{equation}
+For all times where equation (12) is relevant, i.e. when $x^0 < y^0$ for all relevant $y$s, meaning that the source is still active. In times after the source has been deactivated $x^0 > y^0_{last}$, equation (16) becomes the Klein Gordon equation again, and the field turns back to the free field. At the border between those solutions, they are equal. At that point $x^0 = y^0$ and $D_R(x - y)$ becomes:
+\begin{equation}
+    D_R(x - y) = \frac{i}{(2\pi)^3 p^0} \int d^3p
+    \sin\left(p_\mu \left(x^\mu - y^\mu\right)\right) = \frac{i}{p_0}\delta^3(x^i - y^i)
+\end{equation}
+And so, for $x^0 > y^0_{last}$, equation (23) becomes:
+\begin{equation}
+    \phi(x) = \phi_0(x) + \frac{i}{2 \omega_p}j_0(x)
+\end{equation}
+Where $\omega_p = p^0$ and $j_0$ is a solution to the Klein Gordon equation with the starting condition
+\begin{equation}
+    j_0(x^0 = y^0_{last}) = j(x^0 = y^0_{last}) \qquad \left(\Box - m^2\right)j_0 = 0
+\end{equation}
+The solution to this is a simple wave packet:
+\begin{equation}
+    j_0(x) = \int \frac{d^3p}{(2\pi)^3} \left(\tilde{j}(p) e^{-ipx} + h.c.\right)
+\end{equation}
+Where $\tilde{j}(p)$ is the Fourier transform of $j(x)$ at time $x^0 = y^0_{last}$, and to solve the Klein Gordon equation it is required, of course, that $p^2 = m^2$.
+\newline
+Assigning the value of a free field and equation (27) into equation (25), we get:
+\begin{equation}
+\begin{gathered}
+    \phi(x) = \int \frac{d^3p}{(2\pi)^3}\left[
+        \frac{\hat{a}_p e^{-ipx} + \hat{a}_p^\dagger e^{ipx}}{\sqrt{2\omega_p}} + 
+        \frac{i}{2\omega_p}\left(\tilde{j}(p) e^{-ipx} - \tilde{j}^*(p) e^{ipx}\right)
+    \right] =
+    \\ 
+    = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2\omega_p}}\left[
+        \left(
+            \hat{a}^\dagger_p - \frac{i}{\sqrt{2\omega_p}}\tilde{j}^*
+        \right) e^{ipx} + h.c.
+    \right]
+\end{gathered}
+\end{equation}
+One can now define effective ladder operators
+\begin{equation}
+    \hat{a}_{eff} = \hat{a}_p + \frac{i}{\sqrt{2\omega_p}}\tilde{j}
+\end{equation}
+and based on the structure of the field, get the Hamiltonian
+\begin{equation}
+    H =
+    \int \frac{d^3p}{(2\pi)^3}\omega_p
+        \hat{a}_{eff}^\dagger \hat{a}_{eff}
+    =
+    \int \frac{d^3p}{(2\pi)^3}\omega_p
+        \left(a_p^\dagger - \frac{i}{\sqrt{2\omega_p}}\tilde{j}^*\right)
+        \left(a_p + \frac{i}{\sqrt{2\omega_p}}\tilde{j}\right)
+\end{equation}
+Which means the amount of energy injected into the system by the source is
+\begin{equation}
+\begin{gathered}
+    \bra{0}H\ket{0} =
+    \\
+    = \int \frac{d^3p}{(2\pi)^3}\omega_p\bra{0}
+        \left(a_p^\dagger - \frac{i}{\sqrt{2\omega_p}}\tilde{j}^*\right)
+        \left(a_p + \frac{i}{\sqrt{2\omega_p}}\tilde{j}\right)
+    \ket{0} = 
+    \\
+    = \frac{1}{2}\int \frac{d^3p}{(2\pi)^3}
+        \left|\tilde{j}\right|^2
+\end{gathered}
+\end{equation}
+Since this is the total energy, all we have to do is divide by the energy per particle to recieve the number of particles:
+\begin{equation}
+    N = \frac{1}{2}\int \frac{d^3p}{(2\pi)^3 \omega_p}
+        \left|\tilde{j}\right|^2
+\end{equation}
 
+\section{Conserved charge and Noether’s theorem}
+The action for the complex scalar field is
+\begin{equation}
+    S\left[\phi(x)\right] = \int d^4x \partial_\mu\phi^*\partial^\mu\phi - m^2\phi^*\phi
+\end{equation}
+So, let $\alpha$ be an infinitesimal real parameter and define the transformation
+\begin{equation}
+    \phi(x) \rightarrow \phi'(x) = e^{i\alpha}\phi(x)
+\end{equation}
+Promoting $\alpha$ to a function $\alpha(x)$, the new action is
+\begin{equation}
+\begin{gathered}
+    S\left[\phi'(x)\right] = \int d^4x \partial_\mu\phi'^*\partial^\mu\phi' - m^2\phi'^*\phi' = 
+    \\
+    = \int d^4x \partial_\mu e^{-i\alpha}\phi^*\partial^\mu e^{i\alpha}\phi - m^2e^{-i\alpha}\phi^*e^{i\alpha}\phi =
+    \\
+    = S\left[\phi(x)\right] + \int d^4x\left(\partial_\mu \alpha \partial^\mu \alpha \phi^* \phi - i\partial_\mu\alpha\left[\phi^*\partial^\mu\phi - \phi\partial^\mu\phi^*\right]\right)
+    \\
+\end{gathered}
+\end{equation}
+And the infinitesimal variation in the action is
+\begin{equation}
+    \delta S = - i \int d^4x \partial_\mu\alpha\left[\phi^*\partial^\mu\phi - \phi\partial^\mu\phi^*\right] = i \int d^4x \alpha \partial_\mu \left[\phi^*\partial^\mu\phi - \phi\partial^\mu\phi^*\right]
+\end{equation}
+Where in the last part we used integration by parts. This means the Noether Current is
+\begin{equation}
+    J^\mu = i\left[\phi^*\partial^\mu\phi - \phi\partial^\mu\phi^*\right]
+\end{equation}
+And the conserved charge is
+\begin{equation}
+    Q = \int d^4x J^0 = i \int d^4x \left[\phi^*\partial^0\phi - \phi\partial^0\phi^*\right]
+    = i \int d^4x \left[\phi^*\pi^* - \phi\pi\right]
+\end{equation}
+Or, using the ladder operators as seen in equations (12) to (15) of the tutorial:
+\begin{equation}
+    Q = \frac{1}{2}\int \frac{d^3k}{(2\pi)^3} \left[a^\dagger_k a_k - b^\dagger_k b_k\right]
+\end{equation}
+While the Hamiltonian operators
+\begin{equation}
+    H = \int \frac{d^3k}{(2\pi)^3}\omega_k \left[
+        a_k^\dagger a_k + b_k^\dagger b_k + (2\pi)^3\delta(0)
+    \right]
+\end{equation}
+conserves the total amount of particles of types a and b, and conserves them seperatly through the number operators of each particle type, our new charge conserves the differences between the different amounts, meaning that one type acts as positivly charged while the other type acts as negativly charged, and the total charged is conserved. This is a basic case of particales and anti-particles.
 \end{document}

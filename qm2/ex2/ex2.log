@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  21 NOV 2025 23:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  26 NOV 2025 14:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -307,25 +307,33 @@ LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 
 [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./ex2.aux)
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+
+[2]
+
+[3]
+
+[4]
+
+[5] (./ex2.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4498 strings out of 467746
- 63896 string characters out of 5431099
- 462515 words of memory out of 5000000
- 33137 multiletter control sequences out of 15000+600000
- 654827 words of font info for 120 fonts, out of 8000000 for 9000
+ 4502 strings out of 467746
+ 63969 string characters out of 5431099
+ 474515 words of memory out of 5000000
+ 33139 multiletter control sequences out of 15000+600000
+ 655714 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,6n,77p,392b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ex2.pdf (1 page, 59016 bytes).
+ 73i,12n,77p,478b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on ex2.pdf (5 pages, 91556 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 40 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

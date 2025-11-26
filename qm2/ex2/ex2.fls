@@ -184,9 +184,13 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxpplri.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/public/pxfonts/pxr.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxpplr.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxr.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/vf/public/pxfonts/pxmi.vf
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxmi.tfm
+INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxpplri.tfm
 INPUT ex2.aux
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb

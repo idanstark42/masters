@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1763758929.11777 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex2/ex2.tex" "ex2.pdf" "ex2" 1763758933.39464 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex2/ex2.tex" 1763758921 1583 7d78f6bce7c0930e5f34b2185ad20ca8 ""
+["pdflatex"] 1764161411.14916 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex2/ex2.tex" "ex2.pdf" "ex2" 1764161414.38462 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex2/ex2.tex" 1764161408 13979 f5f775243824b9cdd968c3f8e642acd7 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/pxb.tfm" 1761865672 1908 71cbb8d876dcffec4b8b192a0ed11ec0 ""
@@ -22,6 +22,7 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxr.tfm" 1761865672 1044 f70cfa4bf09ff6eb95520515850796cf ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb" 1761865672 18964 e01e97f07816aeb524ad5d4384a80c12 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb" 1761865672 20626 c292fe290cca6e2f2dfcae6644c2f432 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb" 1761865672 18977 d519a3bb9f65e0228905a11ced42d626 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb" 1761865672 24771 eb123b1d6db1a8a40172a27eb12cf6d5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb" 1761865672 14672 3ebf07b0dca23cd3f277dcca5042673e ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb" 1761865672 7191 79607a98b23ce10ce99a66b7d89948fa ""
@@ -70,8 +71,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex2.aux" 1763758933 462 547086a97e72d8d1d930c6c91745b3e1 "pdflatex"
-  "ex2.tex" 1763758921 1583 7d78f6bce7c0930e5f34b2185ad20ca8 ""
+  "ex2.aux" 1764161413 1083 bd311bbedf940e495985f851df4e3722 "pdflatex"
+  "ex2.tex" 1764161408 13979 f5f775243824b9cdd968c3f8e642acd7 ""
   (generated)
   "ex2.aux"
   "ex2.log"
