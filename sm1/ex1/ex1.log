@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  26 NOV 2025 23:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  27 NOV 2025 14:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -314,39 +314,62 @@ LaTeX Font Info:    Trying to load font information for OT1+pxtt on input line 1
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/ot1pxtt.fd
 File: ot1pxtt.fd 2000/12/14 v1.0
 )
-<ex3_ferro.png, id=15, 722.7pt x 433.62pt>
-File: ex3_ferro.png Graphic file (type png)
-<use ex3_ferro.png>
-Package pdftex.def Info: ex3_ferro.png  used on input line 136.
-(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
-<ex3_antiferro.png, id=17, 722.7pt x 433.62pt>
-File: ex3_antiferro.png Graphic file (type png)
-<use ex3_antiferro.png>
-Package pdftex.def Info: ex3_antiferro.png  used on input line 142.
-(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
-
 
 [2]
+<ising_1d_diff_J_ferro_0.1_10.0.png, id=18, 722.7pt x 433.62pt>
+File: ising_1d_diff_J_ferro_0.1_10.0.png Graphic file (type png)
+<use ising_1d_diff_J_ferro_0.1_10.0.png>
+Package pdftex.def Info: ising_1d_diff_J_ferro_0.1_10.0.png  used on input line 158.
+(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
+<ising_1d_diff_J_antiferro_0.1_10.0.png, id=20, 722.7pt x 433.62pt>
+File: ising_1d_diff_J_antiferro_0.1_10.0.png Graphic file (type png)
+<use ising_1d_diff_J_antiferro_0.1_10.0.png>
+Package pdftex.def Info: ising_1d_diff_J_antiferro_0.1_10.0.png  used on input line 164.
+(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
+<ising_1d_diff_J_ferro_0.1_1.0.png, id=21, 722.7pt x 433.62pt>
+File: ising_1d_diff_J_ferro_0.1_1.0.png Graphic file (type png)
+<use ising_1d_diff_J_ferro_0.1_1.0.png>
+Package pdftex.def Info: ising_1d_diff_J_ferro_0.1_1.0.png  used on input line 175.
+(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
+<ising_1d_diff_J_antiferro_0.1_1.0.png, id=22, 722.7pt x 433.62pt>
+File: ising_1d_diff_J_antiferro_0.1_1.0.png Graphic file (type png)
+<use ising_1d_diff_J_antiferro_0.1_1.0.png>
+Package pdftex.def Info: ising_1d_diff_J_antiferro_0.1_1.0.png  used on input line 181.
+(pdftex.def)             Requested size: 328.82707pt x 197.29741pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[3 <./ex3_ferro.png>]
+[3 <./ising_1d_diff_J_ferro_0.1_10.0.png>]
 
-[4 <./ex3_antiferro.png>]
-<eigenvalues-4.png, id=30, 450.18187pt x 353.06906pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[4 <./ising_1d_diff_J_antiferro_0.1_10.0.png>]
+<eigenvalues-4.png, id=32, 450.18187pt x 353.06906pt>
 File: eigenvalues-4.png Graphic file (type png)
 <use eigenvalues-4.png>
-Package pdftex.def Info: eigenvalues-4.png  used on input line 199.
+Package pdftex.def Info: eigenvalues-4.png  used on input line 234.
 (pdftex.def)             Requested size: 328.82707pt x 257.90527pt.
 
 
-[5 <./eigenvalues-4.png>]
-<correlation-distances-4.png, id=35, 329.73187pt x 398.23781pt>
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[5 <./ising_1d_diff_J_ferro_0.1_1.0.png>]
+
+[6 <./ising_1d_diff_J_antiferro_0.1_1.0.png>]
+<correlation-distances-4.png, id=41, 329.73187pt x 398.23781pt>
 File: correlation-distances-4.png Graphic file (type png)
 <use correlation-distances-4.png>
-Package pdftex.def Info: correlation-distances-4.png  used on input line 253.
+Package pdftex.def Info: correlation-distances-4.png  used on input line 288.
 (pdftex.def)             Requested size: 328.82707pt x 397.15518pt.
 
 
@@ -354,27 +377,27 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-[6]
+[7 <./eigenvalues-4.png>]
 
-[7 <./correlation-distances-4.png>] (./ex1.aux)
+[8 <./correlation-distances-4.png>] (./ex1.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4583 strings out of 467746
- 65491 string characters out of 5431099
- 476603 words of memory out of 5000000
- 33208 multiletter control sequences out of 15000+600000
+ 4599 strings out of 467746
+ 66431 string characters out of 5431099
+ 476647 words of memory out of 5000000
+ 33224 multiletter control sequences out of 15000+600000
  660025 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,12n,77p,916b,293s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/txfonts/txtt.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ex1.pdf (7 pages, 331397 bytes).
+Output written on ex1.pdf (8 pages, 507324 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 50 compressed objects within 1 object stream
+ 95 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -37,6 +37,7 @@ class Ising1D:
 
 def run(J, beta_min, beta_max, beta_steps, N_min, N_max):
     betas = []
+    Ts = []
     Ns = []
     F_exacts = []
     F_approxs = []
@@ -52,22 +53,24 @@ def run(J, beta_min, beta_max, beta_steps, N_min, N_max):
             F_approx = ising_model.free_energy_approx()
             print(f"{beta}  {N}  {F_exact}   {F_approx}  {abs(F_exact - F_approx)}")
             betas.append(beta)
+            Ts.append(1 / beta)
             Ns.append(N)
             F_exacts.append(F_exact)
             F_approxs.append(F_approx)
             diffs.append(abs(F_exact - F_approx))
     
     plt.figure(figsize=(10, 6))
-    scatter = plt.scatter(betas, diffs, c=Ns, cmap='viridis', alpha=0.7)
+    scatter = plt.scatter(Ts, diffs, c=Ns, cmap='viridis', alpha=0.7)
 
-    plt.xlabel('Beta (1/kT)')
+    plt.xlabel('Temperature (kT)')
     plt.ylabel('Difference |F_exact - F_approx|')
     plt.title('Difference between Exact and Approximate Free Energy vs Beta - ' + ('Ferromagnetic' if J > 0 else 'Antiferromagnetic'))
-    plt.legend()
     plt.grid()
+    cbar = plt.colorbar(scatter)
+    cbar.set_label('System Size N')
+    # save and show the figure
+    plt.savefig(f'ising_1d_diff_T_{'ferro' if J > 0 else 'antiferro'}_{beta_min}_{beta_max}.png')
     plt.show()
-    # save the figure
-    plt.savefig(f'free_energy_difference_{"ferro" if J > 0 else "antiferro"}_{beta_min}_{beta_max}.png')
 
 if __name__ == "__main__":
     J = 1  
