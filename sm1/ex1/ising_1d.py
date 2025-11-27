@@ -66,13 +66,19 @@ def run(J, beta_min, beta_max, beta_steps, N_min, N_max):
     plt.legend()
     plt.grid()
     plt.show()
+    # save the figure
+    plt.savefig(f'free_energy_difference_{"ferro" if J > 0 else "antiferro"}_{beta_min}_{beta_max}.png')
 
 if __name__ == "__main__":
     J = 1  
     beta_min = 0.1
-    beta_max = 1.0
+    beta_max1 = 1.0
+    beta_max2 = 10.0
     beta_steps = 100
     N_min = 6
     N_max = 12
 
-    run(J, beta_min, beta_max, beta_steps, N_min, N_max)
+    run(J, beta_min, beta_max1, beta_steps, N_min, N_max)
+    run(-J, beta_min, beta_max1, beta_steps, N_min, N_max)
+    run(J, beta_min, beta_max2, beta_steps, N_min, N_max)
+    run(-J, beta_min, beta_max2, beta_steps, N_min, N_max)
