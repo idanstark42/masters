@@ -1,0 +1,690 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\DeclareMathOperator{\erfi}{erfi}
+
+\title{General Realtivity Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Warmup}
+\subsection{Given two points in a space, the geodesic between them is unique}
+This is false. The simple counter example is the two poles of $S^2$ sphere, through which there are infinity large circles, which are the solutions to the geodesic equation on the sphere.
+\subsection{A geodesic can intersect itself}
+This is false. By definition the geodesic minimizes the action, i.e. the length fo the curve. Assuming that there is a self interesting geodesic $A \rightarrow B \rightarrow C \rightarrow B \rightarrow D$, one can define a curve $A \rightarrow B \rightarrow D$ that will be shorter, and therefore the original curve was not a geodesic.
+\subsection{Given two points $p_1$, $p_2$ and a solution to the geodesic equation which starts at $p_1$ and ends on $p_2$, that
+solution is the shortest line between the two points}
+This is fasle. The counter example is a pair of points on a sphere, that are not opposites. There is a single large circle passing through both of them, and so there are two paths to get from $p_1$ to $p_2$. One of the two paths is shorter. In this case, while the longer path is a solution to the geodesic equation, which starts at $p_1$ and ends at $p_2$, it is not the shortest line between them.
+\newline
+On the other hand, if by "solution" we mean the entire circle, then the statement is true, in the sense that the shortest path is going along the geodesic, but is not the entire geodesic. This is because the geodesic equations define the minimal action, where action is just the integral over the infinitisimal length elements. This means that action is the total curve length and the geodesics are - by definition - the paths with the shortest curve length.
+
+\section{Geodesics and Christoffel Symbols}
+For each of the following metrix, we will calculate the Christoffel Symbols, the Geodesics and the line equations. The Christoffel Symbols are
+\begin{equation}
+    \Gamma^\mu_{\alpha\beta} = \frac{1}{2}g^{\mu\nu}\left(\partial_{\alpha}g_{\nu\beta} + \partial_{\beta}g_{\nu\alpha} - \partial_{\nu}g_{\alpha\beta}\right)
+\end{equation}
+and the geodesic equation, in terms of some curve variable $\lambda$, is
+\begin{equation}
+    \frac{\partial^2 x^\mu}{\partial \lambda^2} + \Gamma^\mu_{\alpha\beta} \frac{\partial x^\alpha}{\partial \lambda} \frac{\partial x^\beta}{\partial \lambda} = 0
+\end{equation}
+We will write them with the dot over the leter to mark a partial derivative over $\lambda$:
+\begin{equation}
+\label{eq:geodesic}
+    \ddot{x}^\mu + \Gamma^\mu_{\alpha\beta}\dot{x}^\alpha\dot{x}^\beta = 0
+\end{equation}
+Additionaly, since all the metrics in this section are diagonal, we can see what Christoffel Symbols survive in this case. In fact, all terms in the Christoffel Symbols formula that include an off-diagonal element of the metric $g^{ij}$ where $i \ne j$ disappear:
+\begin{equation}
+    \Gamma^\mu_{\alpha\beta} = \frac{1}{2}g^{\mu\mu}\left(\partial_{\alpha}g_{\mu\beta} + \partial_{\beta}g_{\mu\alpha} - \partial_{\mu}g_{\alpha\beta}\right)
+\end{equation}
+We can perform this again for the derivatives and get that the only non-zero Christoffel Symbols are
+\begin{equation}
+\label{eq:christoffel}
+\begin{gathered}
+    \Gamma^\mu_{\mu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\mu\mu}
+    \qquad
+    \Gamma^\mu_{\nu\nu} = -\frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\nu\nu}
+    \\
+    \Gamma^\mu_{\mu\nu} = \Gamma^\mu_{\nu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\nu}g_{\mu\mu}
+\end{gathered}
+\end{equation}
+Where in the last two equations we did not use the Einstein summation convention. 
+\subsection{Flat Sapce}
+The metric of flat space in polar coordinates is
+\begin{equation}
+    g_{ij} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}
+\end{equation}
+And the inverse metric is
+\begin{equation}
+    g^{ij} = \begin{pmatrix} 1 & 0 \\ 0 & r^{-2} \end{pmatrix}
+\end{equation}
+Using equation \ref{eq:christoffel}, we get:
+\begin{equation}
+\begin{gathered}
+    \Gamma^{r}_{rr} = 0
+    \\
+    \Gamma^{r}_{\varphi\varphi} = -r
+    \\
+    \Gamma^{\varphi}_{rr} = 0
+    \\
+    \Gamma^{\varphi}_{\varphi\varphi} = 0
+    \\
+    \Gamma^{r}_{r\varphi} = \Gamma^{r}_{\varphi r} = \frac{1}{r}
+    \\
+    \Gamma^{\varphi}_{r\varphi} = \Gamma^{\varphi}_{\varphi r} = 0
+\end{gathered}
+\end{equation}
+And from equation \ref{eq:geodesic}, we get
+\begin{equation}
+\label{eq:flat}
+    \begin{cases}
+        \ddot{r} - r\dot{\varphi}^2 = 0
+        \\
+        \ddot{\varphi} + \frac{2}{r}\dot{r}\dot{\varphi} = 0
+    \end{cases}
+\end{equation}
+Renaming $\omega = \dot{\varphi}$ and dividing the second equation by $\omega$, we get:
+\begin{equation}
+    \begin{cases}
+        \ddot{r} - r\omega^2 = 0
+        \\
+        \frac{\dot{\omega}}{\omega} + 2\frac{\dot{r}}{r} = 0
+    \end{cases}
+\end{equation}
+Meaning that the second equation can be written 
+\begin{equation}
+    \frac{\partial}{\partial\lambda}\ln(\omega r^2) = 0
+\end{equation}
+Or
+\begin{eqnarray}
+\label{eq:omega}
+    \omega = A r^{-2}
+\end{eqnarray}
+Where $A$ is a constant. Inserting this into the first equation in equation \ref{eq:flat}, we get
+\begin{equation}
+    \ddot{r} - A^{2}r^{-3} = 0
+\end{equation}
+The solution to which is
+\begin{equation}
+\label{eq:r}
+    r = \sqrt{(t - t_0)^2 + A^2}
+\end{equation}
+Putting this back into the equation \ref{eq:omega} gives
+\begin{equation}
+    \dot{\varphi} = \omega = \frac{A}{(t - t_0)^2 + A^2}    
+\end{equation}
+And so
+\begin{equation}
+    \varphi = \arctan(\frac{t - t_0}{A}) + \varphi_0
+\end{equation}
+Solving for t, we get
+\begin{equation}
+    t = t_0 + A\tan(\varphi - \varphi_0)
+\end{equation}
+And putting that into equation \ref{eq:r}, we get:
+\begin{equation}
+    r = \frac{A}{\cos(\varphi - \varphi_0)}
+\end{equation}
+These are line equations in the polar coordinates. The shortest distance between each two points $(r_1, \varphi_1)$ and $(r_2, \varphi_2)$ is the integral of $ds$ along this line:
+\begin{equation}
+\begin{gathered}
+    S = \int ds = \int \sqrt{dr^2 + r^2d\varphi^2} = 
+    \int \sqrt{\left(\frac{dr}{d\varphi}\right)^2 + r^2}d\varphi = 
+    \\
+    = \int \sqrt{A^2\left(\frac{\tan(\varphi - \varphi_0)}{\cos(\varphi - \varphi_0)}\right)^2 + \frac{A^2}{\cos^2(\varphi - \varphi_0)}}d\varphi
+    = \int \frac{A}{\cos^2(\varphi - \varphi_0)} d\varphi = 
+    \\
+    = A \left[\tan(\varphi_2 - \varphi_0) - \tan(\varphi_1 - \varphi_0)\right]
+\end{gathered}
+\end{equation}
+\subsection{2-Sphere}
+Now let us consider the metric
+\begin{equation}
+    g_{ij} = \begin{pmatrix} 1 & 0 \\ 0 & sin^2\theta\end{pmatrix}
+    \qquad
+    g^{ij} = \begin{pmatrix} 1 & 0 \\ 0 & \frac{1}{sin^2\theta}\end{pmatrix}
+\end{equation}
+Using again equation \ref{eq:christoffel}, we get
+\begin{equation}
+\begin{gathered}
+    \Gamma^{\theta}_{\theta\theta} = 0
+    \\
+    \Gamma^{\theta}_{\varphi\varphi} = -\frac{1}{2}\sin(2\theta)
+    \\
+    \Gamma^{\varphi}_{\theta\theta} = 0
+    \\
+    \Gamma^{\varphi}_{\varphi\varphi} = 0
+    \\
+    \Gamma^{\theta}_{\theta\varphi} = \Gamma^{\theta}_{\varphi\theta} = 0
+    \\
+    \Gamma^{\varphi}_{\varphi\theta} = \Gamma^{\varphi}_{\theta\varphi} = \cot(\theta)
+\end{gathered}
+\end{equation}
+And from equation \ref{eq:geodesic}:
+\begin{equation}
+    \begin{cases}
+        \ddot{\theta} - \sin(\theta)\cos(\theta)\dot{\varphi}^2 = 0
+        \\
+        \ddot{\varphi} + 2 \cot(\theta) \dot{\theta}\dot{\varphi} = 0
+    \end{cases}
+\end{equation}
+To solve this, we can start from the second equation. We multiply it by $\sin^2(\theta)$ and get
+\begin{equation}
+\begin{gathered}
+    \sin^2(\theta)\ddot{\varphi} + 2\cos(\theta)\sin(\theta)\dot{\theta}\dot{\varphi} = 0
+    \\
+    \frac{\partial}{\partial \lambda}\left(\sin^2(\theta)\dot{\varphi}\right) = 0
+    \\
+    \sin^2(\theta)\dot{\varphi} = A
+\end{gathered}
+\end{equation}
+Where $A$ is a constant. Assigning this into the first equation and following a similar process
+\begin{equation}
+\begin{gathered}
+    \ddot{\theta} - \sin(\theta)\cos(\theta)\dot{\varphi}^2 = 0
+    \\
+    \ddot{\theta} - \frac{A^2}{\sin^2(\theta)}\cos(\theta) = 0
+    \\
+    2\ddot{\theta}\dot{\theta} - 2\frac{A^2}{\sin^2(\theta)}\cos(\theta)\dot{\theta} = 0
+    \\
+    \frac{\partial}{\partial \lambda}\left(\dot{\theta}^2 + \frac{A^2}{\sin^2(\theta)}\right) = 0
+    \\
+    \dot{\theta}^2 + \frac{A^2}{\sin^2(\theta)} = B
+    \\
+    \dot{\theta}^2 + \sin^2(\theta)\dot{\varphi}^2 = B
+\end{gathered}
+\end{equation}
+These two equations define the great circles on the sphere. To see that, we can rename B into
+\begin{equation}
+    B = A^2(1+\alpha^2) = A^2\left(1 + \alpha^2\cos^2(\varphi - \varphi_0)\right) + \left(\alpha A\sin(\varphi - \varphi_0)\right)^2
+\end{equation}
+Where $\varphi_0$ is some constant reference angle. Also, let use define the angle $\eta$ such that
+\begin{equation}
+    \cot(\eta) = \alpha \cos(\varphi - \varphi_0)
+\end{equation}
+Deriving both sides, we get the derivative of $\eta$
+\begin{equation}
+\begin{gathered}
+    -\frac{1}{\sin^2(\eta)}\dot{\eta} = -\alpha\sin(\varphi - \varphi_0)\dot{\varphi}
+    \\
+    \dot{\eta} = \alpha A \frac{\sin^2(\eta)}{\sin^2(\theta)} \sin(\varphi - \varphi_0)
+\end{gathered}
+\end{equation}
+And so
+\begin{equation}
+    B = A^2\left(1 + \cot^2(\eta)\right) + \left(\frac{\sin(\theta)}{\sin(\eta)}\right)^4\dot{\eta}^2 = \frac{A^2}{\sin^2(\eta)} + \left(\frac{\sin(\theta)}{\sin(\eta)}\right)^4\dot{\eta}^2
+\end{equation}
+Which solves the second equation for $\eta = \theta$. This means the 
+relation between $\theta$ and $\varphi$ is
+\begin{equation}
+    \cot(\theta) = \alpha\cos(\varphi - \varphi_0)
+\end{equation}
+Which is the equation for great circles in $S^2$.
+\newline
+The distance on those circles can be calcualted using the $R^3$ inner product between the corresponding vectors on the sphere. The distance between points $(\theta_1, \varphi_1)$ and $(\theta_2, \varphi_2)$ on a sphere is the length of the arc $s = l = r\sigma = \sigma$ where $\sigma$ is the central angle between the radii to the points on the sphere and we took $r = 1$.
+\newline
+The cartesian coordinates of each point on the sphere is $(\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)$. So:
+\begin{equation}
+\begin{gathered}
+    cos(\sigma) = \boldsymbol{v_1}\cdot\boldsymbol{v_2} = 
+    \\
+    = \sin\theta_1\cos\varphi_1\sin\theta_2\cos\varphi_2 + \sin\theta_1\sin\varphi_1\sin\theta_2\sin\varphi_2 + \cos\theta_1\cos\theta_2 =
+    \\
+    = \cos\theta_1\cos\theta_2 + \sin\theta_1\sin\theta_2\cos\left(\varphi_2 - \varphi_1\right)
+\end{gathered}
+\end{equation}
+And the distance is
+\begin{eqnarray}
+    s = \sigma = \arccos\left(\cos\theta_1\cos\theta_2 + \sin\theta_1\sin\theta_2\cos\left(\varphi_2 - \varphi_1\right)\right)
+\end{eqnarray}
+\subsection{Poincare Half-Plane}
+This time
+\begin{equation}
+    g_{ij} = \begin{pmatrix} y^{-2} & 0 \\ 0 & y^{-2} \end{pmatrix}
+    \qquad
+    g^{ij} = \begin{pmatrix} y^2 & 0 \\ 0 & y^2 \end{pmatrix}
+\end{equation}
+And so the non-zero Christoffel Symbols are
+\begin{equation}
+\begin{gathered}
+    \Gamma^{x}_{xx} = 0
+    \\
+    \Gamma^{x}_{yy} = 0
+    \\
+    \Gamma^{y}_{xx} = \frac{1}{y}
+    \\
+    \Gamma^{y}_{yy} = -\frac{1}{y}
+    \\
+    \Gamma^{x}_{xy} = \Gamma^{x}_{yx} = -\frac{1}{y}
+    \\
+    \Gamma^{y}_{yx} = \Gamma^{y}_{xy} = 0
+\end{gathered}
+\end{equation}
+Which means the geodesic equations are
+\begin{equation}
+    \begin{cases}
+        \ddot{x} - \frac{2\dot{x}\dot{y}}{y} = 0
+        \\
+        \ddot{y} + \frac{\dot{x}^2 - \dot{y}^2}{y} = 0
+    \end{cases}
+\end{equation}
+We can solve these euqations with a similar approach to the one used for $S^2$. We start with the first equation, but this time we get the derivative of a fraction, not product:
+\begin{equation}
+\begin{gathered}
+    \frac{\ddot{x}y - 2\dot{x}\dot{y}}{y} = 0
+    \\
+    \frac{\ddot{x}y^2 - \dot{x}\cdot2y\dot{y}}{y^4} = 0
+    \\
+    \frac{\partial}{\partial \lambda}\left(\frac{\dot{x}}{y^2}\right) = 0
+    \\
+    \dot{x} = Ay^2
+\end{gathered}
+\end{equation}
+Inserting this into the second equation, we get
+\begin{equation}
+\begin{gathered}
+    \ddot{y} + \frac{A^2y^4 - \dot{y}^2}{y} = 0
+    \\
+    \frac{\ddot{y}y - \dot{y}^2}{y} + A^2y^3 = 0
+    \\
+    \frac{\ddot{y}y - \dot{y}^2}{y^2} + A^2y^2 = 0
+    \\
+    \frac{\partial}{\partial \lambda}\left(\frac{\dot{y}}{y}\right) + A^2y^2 = 0
+\end{gathered}
+\end{equation}
+Now, let us define
+\begin{equation}
+    u = \frac{\dot{y}}{y}
+    \qquad y^2 = \frac{y\dot{y}}{u}
+\end{equation}
+And we get
+\begin{equation}
+\begin{gathered}
+    \dot{u} + A^2\frac{y\dot{y}}{u} = 0
+    \\
+    u\dot{u} + A^2y\dot{y} = 0
+    \\
+    u^2 + A^2y^2 = B
+    \\
+    \dot{y}^2 + A^2 y^4 = By^2
+    \\
+    \dot{y} = \sqrt{By^2-A^2y^4}
+\end{gathered}
+\end{equation}
+Which gives us an expression for $\dot{y}$. Since we have an expression for $\dot{x}$, we can now divide the two to get the relation of $x$ and $y$:
+\begin{equation}
+    \frac{dx}{dy} = \frac{\dot{x}}{\dot{y}} = \frac{Ay^2}{\sqrt{By^2-A^2y^4}} = \frac{1}{\sqrt{\frac{B}{A^2y^2}-1}}
+\end{equation}
+Integrating, we get:
+\begin{equation}
+\begin{gathered}
+    x - x_0 = -y \sqrt{\frac{B}{A^2y^2}-1}
+    \\
+    \left(x - x_0\right)^2 = y^2 \left(\frac{B}{A^2y^2}-1\right) = \frac{B}{A^2} - y^2
+    \\
+    \left(x - x_0\right)^2 + y^2 = \frac{B}{A^2}
+\end{gathered}
+\end{equation}
+Which means the geodesics are the semi-circles with centers are on the x axis. In addition, we should note the case where $A = 0$. In our calcualtion, we divided by $A$, which is impossible in the case where $A = 0$. However, it can be solved much more simply from equation 35, resulting in an additional set of solutions which are vertical lines $x = x_0$.
+\newline
+For a constant $y > 0$ coordinate, the distance between $(x_1,y)$ and $(x_2,y)$ is
+\begin{equation}
+    s = \int ds = \int \frac{\sqrt{dx^2+dy^2}}{y} = \int \frac{dx}{y} = \frac{x_2 - x_1}{y}
+\end{equation}
+\section{A Wierd Metric}
+\subsection{The Christoffel Symbols}
+For the metric
+\begin{equation}
+    g_{ij} = \begin{pmatrix}
+        -t^{-1} & 0 \\ 0 & t
+    \end{pmatrix}
+    \qquad
+    g^{ij} = \begin{pmatrix}
+        -t & 0 \\ 0 & t^{-1}
+    \end{pmatrix}
+\end{equation}
+We can again use the trick for diagonal metrics, and get the Christoffel Symbols:
+\begin{equation}
+\begin{gathered}
+    \Gamma^{t}_{tt} = -\frac{1}{2t^2}
+    \\
+    \Gamma^{t}_{\varphi\varphi} = \frac{1}{2}t
+    \\
+    \Gamma^{\varphi}_{tt} = 0
+    \\
+    \Gamma^{\varphi}_{\varphi\varphi} = 0
+    \\
+    \Gamma^{t}_{t\varphi} = \Gamma^{t}_{\varphi t} = 0
+    \\
+    \Gamma^{\varphi}_{\varphi t} = \Gamma^{\varphi}_{t\varphi} = \frac{1}{2t}
+\end{gathered}
+\end{equation}
+\subsection{Constnat $t$ curve}
+The geodesic equations are
+\begin{equation}
+    \begin{cases}
+        \ddot{t} -\frac{\dot{t}^2}{2t^2} + \frac{t\dot{\varphi}^2}{2} = 0
+        \\
+        \ddot{\varphi} + \frac{\dot{t}\varphi}{2t} = 0
+    \end{cases}
+\end{equation}
+To see if the $t=T=const, \dot{\varphi} = \omega$ curve is a geodesic, we put $\dot{t} = \ddot{t} = 0$ and get:
+\begin{equation}
+    \begin{cases}
+        \frac{T\omega^2}{2} = 0
+        \\
+        \dot{\omega} = 0
+    \end{cases}
+\end{equation}
+This means the curve is a geodesic only if $T = 0$ or $\omega = 0$. Since $\omega$ is non-zero by definition, the curve is only a geodesic if $T = 0$.
+The $ds^2$ along the curve is
+\begin{equation}
+    ds^2 = -\frac{dt^2}{T} + Td\varphi^2 = Td\varphi^2
+\end{equation}  
+Which is timelike when $ds^2 > 0$, and spacelike when $ds^2 < 0$. Since $d\varphi^2$ is always positive, this relies on the sign of T: timelike for $T > 0$ and spacelike for $T < 0$, while $T = 0$ is the lightlike geodesic.
+\newline
+For $T > 0$, after completing a $2\pi$ rotation, the trajectory returns to the same point. This means that even if the curve is not a geodesic, it can still - for this specific interval - have $S = S_{min}$.
+\subsection{Change of coordinates}
+Using the new coordinates $\left(\tau, x\right)$
+\begin{equation}
+\begin{gathered}
+    \varphi = 2\tanh^{-1}\frac{x}{\tau} \qquad t = \frac{1}{4}\left(x^2 - \tau^2\right)
+    \\
+    d\varphi = \frac{2}{1- \left(\frac{x}{\tau}\right)^2}\left(\frac{dx}{\tau} - \frac{x}{\tau^2}d\tau\right) = \frac{2x\tau}{x^2 - \tau^2}\left(\frac{dx}{x} - \frac{d\tau}{\tau}\right)
+    \\
+    dt = \frac{1}{4}\left(2xdx - 2\tau d\tau\right) = \frac{1}{2}\left(xdx - \tau d\tau\right)
+\end{gathered}
+\end{equation}
+and squaring the differentials
+\begin{equation}
+\begin{gathered}
+    d\varphi^2 = \frac{4x^2\tau^2}{\left(x^2 - \tau^2\right)^2}\left(\frac{dx^2}{x^2} - 2\frac{dxd\tau}{x\tau} + \frac{d\tau^2}{\tau^2}\right)
+    \\
+    dt^2 = \frac{1}{4}\left(x^2dx^2 - 2x\tau dx d\tau + \tau^2 d\tau^2\right)
+\end{gathered}
+\end{equation}
+we get the metric
+\begin{equation}
+\begin{gathered}
+    ds^2 = -\frac{dt^2}{t} + td\varphi^2 =
+    \\
+    = -\frac{1}{\left(x^2 - \tau^2\right)}\left(x^2dx^2 - 2x\tau dx d\tau + \tau^2 d\tau^2\right) + \frac{1}{4}\left(x^2 - \tau^2\right)\frac{4x^2\tau^2}{\left(x^2 - \tau^2\right)^2}\left(\frac{dx^2}{x^2} - 2\frac{dxd\tau}{x\tau} + \frac{d\tau^2}{\tau^2}\right) =
+    \\
+    = \frac{1}{x^2 - \tau^2}\left(
+        - x^2dx^2 + 2x\tau dx d\tau - \tau^2 d\tau^2
+        + \tau^2dx^2 - 2x\tau dxd\tau + x^2d\tau^2
+    \right) = 
+    \\
+    = \frac{1}{x^2 - \tau^2}\left(\left(\tau^2 - x^2\right)d\tau^2-\left(\tau^2 - x^2\right)dx^2\right) = d\tau^2 - dx^2
+\end{gathered}
+\end{equation}
+This is obviously the Minkowsky metric, which makes this a Minkowsky space.
+
+\section{Gravitational Bending of Light in Newtonian Mechanics}
+The kinetic energy is spherical coordinates is
+\begin{equation}
+    T = \frac{1}{2}m\left(
+        \dot{x}^2 + \dot{y}^2 + \dot{z}^2
+    \right) = \frac{1}{2}m\left(
+        \dot{r}^2 + r^2\dot{\theta}^2 + r^2\sin^2(\theta)\dot{\varphi}^2
+    \right) = \frac{1}{2m}\left(
+        p_r^2 + \frac{p_\theta^2}{r^2} + \frac{p_\varphi^2}{r^2\sin^2(\theta)}
+    \right)
+\end{equation}
+So, given the potential
+\begin{equation}
+    V(r) = -\frac{GMm}{r}
+\end{equation}
+The Hamiltonian in spherical coordinates is
+\begin{equation}
+    H = \frac{1}{2m}\left(
+        p_r^2 + \frac{p_\theta^2}{r^2} + \frac{p_\varphi^2}{r^2\sin^2(\theta)}
+    \right) - \frac{GMm}{r}
+\end{equation}
+Where
+\begin{equation}
+    p_i = \partial_i S
+\end{equation}
+Using seperation of variables
+\begin{equation}
+    S = W_r(r) + W_\theta(\theta) + W_\varphi(\varphi) + W_t(t)
+\end{equation}
+We can write
+\begin{equation}
+    p_i = \partial_i W_i
+\end{equation}
+Which means the H-J equations becomes
+\begin{equation}
+    - \partial_t W_t = \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\left(\partial_\theta W_\theta\right)^2}{r^2} + \frac{\left(\partial_\varphi W_\varphi\right)^2}{r^2\sin^2(\theta)}
+    \right) - \frac{GMm}{r}
+\end{equation}
+We can now use repeated seperation of variables. First, we see that the partial derivatives with respect to time is on one side, with no time dependence on the other side. This makes it a constant of motion:
+\begin{equation}
+    - \alpha_1 = \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\left(\partial_\theta W_\theta\right)^2}{r^2} + \frac{\left(\partial_\varphi W_\varphi\right)^2}{r^2\sin^2(\theta)}
+    \right) - \frac{GMm}{r}
+    \qquad
+    \alpha_1 = \partial_t W_t
+\end{equation}
+Then, we seperate the partial derivative with respect to $\varphi$, since it can be easily seperated, making it another constant of motion:
+\begin{equation}
+    - \alpha_1 = \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\left(\partial_\theta W_\theta\right)^2}{r^2} + \frac{\alpha_3^2}{r^2\sin^2(\theta)}
+    \right) - \frac{GMm}{r}
+    \qquad
+    \alpha_3 = \partial_\varphi W_\varphi
+\end{equation}
+and finally we can see the final constant of motion as the part that is dependent on $\theta$:
+\begin{equation}
+    - \alpha_1 = \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\alpha_2^2}{r^2}
+    \right) - \frac{GMm}{r}
+    \qquad
+    \alpha_2 = \sqrt{\left(\partial_\theta W_\theta\right)^2 + \frac{\alpha_3^2}{\sin^2(\theta)}}
+\end{equation}
+In total, we got
+\begin{equation}
+\label{eq:constants}
+    \alpha_1 = \partial_t W_t \qquad \alpha_2 = \sqrt{\left(\partial_\theta W_\theta\right)^2 + \frac{\alpha_3^2}{\sin^2(\theta)}} \qquad \alpha_3 = \partial_\varphi W_\varphi
+\end{equation}
+We can now organize the equation for $r$ into
+\begin{equation}
+\begin{gathered}
+    - \alpha_1 = \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\alpha_2^2}{r^2}
+    \right) - \frac{GMm}{r}
+    \\
+    \frac{1}{2m}\left(
+        \left(\partial_r W_r\right)^2 + \frac{\alpha_2^2}{r^2}
+    \right) - \frac{GMm}{r} + \alpha_1 = 0
+    \\
+    \left(\partial_r W_r\right)^2 + \frac{\alpha_2^2}{r^2} + 2m\left(\alpha_1 - \frac{GMm}{r}\right) = 0
+\end{gathered}
+\end{equation}
+And we can now isolate the derivative and integrate to get
+\begin{equation}
+\begin{gathered}
+\label{eq:rs}
+    \left(\partial_r W_r\right)^2 = 2m\left(\frac{GMm}{r} - \alpha_1\right)-\frac{\alpha_2^2}{r^2}
+    \\
+    \partial_r W_r = \sqrt{2m\left(\frac{GMm}{r} - \alpha_1\right)-\frac{\alpha_2^2}{r^2}}
+    \\
+    W_r = \int \sqrt{2m\left(\frac{GMm}{r} - \alpha_1\right)-\frac{\alpha_2^2}{r^2}} dr
+\end{gathered}
+\end{equation}
+Additionaly, isolating $\partial_\theta W_\theta$ from equation \ref{eq:constants}, we get
+\begin{equation}
+\label{eq:alphas}
+    \alpha_2^2 - \frac{\alpha_3^2}{\sin^2\theta} = \left(\partial_\theta W_\theta\right)^2
+\end{equation}
+Choosing a constant $\theta = \theta_0 = \pm\pi/2$ means, first of all, that the conjugate momentum to $\theta$ is zero, since by using the canonical relations, we can see that
+\begin{equation}
+    \dot{\theta} = \frac{\partial H}{\partial p_\theta} = \frac{p_\theta}{mr^2} = 0 \rightarrow p_\theta = 0 \rightarrow \partial_\theta W_\theta = 0
+\end{equation}
+And since we chose $\theta = \pi/2$, the sine in equation \ref{eq:alphas} is one, and we get
+\begin{equation}
+    \alpha_2 = \pm \alpha_3
+\end{equation}
+At this point, it is clear - from the equations and the definitions - that $\alpha_1 = -E$ is the energy (up to a sign), $\alpha_2 = L$ is the angular momentum, and $\alpha_3 = L_z$ is the z-projection of the angular momentum.
+\newline
+Using the canonical relations, we can find the scattering angle $\varphi - \varphi_0$ by integrating over $\dot{\varphi}$:
+\begin{equation}
+    \dot{\varphi} = \frac{\partial H}{\partial p_\varphi} = \frac{p_\varphi}{mr^2}
+\end{equation}
+Where we again used $\theta = \theta_0 = \pi/2$. Writing $p_\varphi = L_z$, the integral over this is
+\begin{equation}
+    \varphi - \varphi_0 = \int \frac{L_z}{2mr^2} dt =\int \frac{L_z}{2mr^2 \dot{r}} dr
+\end{equation}
+The change to integrate using $r$ is useful because the range of R is known as $r_0 \rightarrow \infty$. This does require of us to know the velocity of r. To calcualte it, we will use the canonical relations:
+\begin{equation}
+    \dot{r} = \frac{\partial H}{\partial p_r} = \frac{p_r}{m}
+\end{equation}
+And $p_r$ can be extracted from equation \ref{eq:rs}:
+\begin{equation}
+    p_r = \partial_r W_r = \sqrt{2m\left(\frac{GMm}{r} + E\right)-\frac{L_z^2}{r^2}} = \sqrt{2m(E - u_{eff})}
+\end{equation}
+Which gives
+\begin{equation}
+\label{eq:phi_integral}
+    \varphi - \varphi_0 = \int_{r_0}^\infty \frac{L_z}{mr^2 \sqrt{2m(E - u_{eff})} / m} dr = \int_{r_0}^\infty \frac{L_z / r^2}{\sqrt{2m(E - u_{eff})}} dr
+\end{equation}
+Where $r_0$, as indicated, is the middle of the motion, at the exact moment where $p_r$ is zero:
+\begin{equation}
+\begin{gathered}
+\label{eq:r_0}
+    p_r = \sqrt{2m(E - u_{eff})} = 0
+    \\
+    E = u_{eff}
+    \\
+    r_0 = \frac{GMm}{2E}\left(\sqrt{1 + \frac{2E L_z^2/m}{\left(GMm\right)^2}}-1\right)
+\end{gathered}
+\end{equation}
+Now we are ready to analyze a light ray coming from infinity. If it has energy $E = \frac{1}{2}mc^2$ and angular momentum $L_z = mbc$, we can find the total angle using equation \ref{eq:phi_integral}:
+\begin{equation}
+\begin{gathered}
+    \varphi - \varphi_0 = \int_{r_0}^\infty \frac{L_z / r^2}{\sqrt{2m(E - u_{eff})}} dr = 
+    \\
+    = \int_{r_0}^\infty \frac{mbc / r^2}{\sqrt{2m(\frac{1}{2}mc^2 + \frac{GMm}{r} - \frac{(mbc)^2}{2mr^2})}} dr = 
+    \\
+    = \int_{r_0}^\infty \frac{mbc / r^2}{\sqrt{m^2c^2 + 2\frac{GMm^2}{r} - \frac{m^2b^2c^2}{r^2}}} dr = 
+    \\
+    = \int_{r_0}^\infty \frac{b / r^2}{\sqrt{1 + \frac{2GM}{c^2r} - \frac{b^2}{r^2}}} dr
+\end{gathered}
+\end{equation}
+Changing variables to $z = b/r, dz = -b/r^2dr, z_0 = br_0^{-1}, z_\infty = 0$, we get:
+\begin{equation}
+\begin{gathered}
+    \varphi - \varphi_0 = -\int_{z_0}^0 \frac{dz}{\sqrt{1 + \frac{2GM}{c^2b}z - z^2}}
+    = \int_0^{z_0} \frac{dz}{\sqrt{1 + \frac{2GM}{c^2b}z - z^2}}
+\end{gathered}
+\end{equation}
+Using the known integral $\int(1-x^2)^{-1/2}dx = \arcsin(x)$, we can complete the square in the denominator and divide by the remaining terms, getting:
+\begin{equation}
+\begin{gathered}
+    1 + \frac{2GM}{c^2b}z - z^2 = 
+    \\
+    = 1 + \left(\frac{GM}{c^2b}\right)^2 - \left(\frac{GM}{c^2b}\right)^2 + \frac{2GM}{c^2b}z - z^2 = 
+    \\
+    = 1 + \left(\frac{GM}{c^2b}\right)^2 - \left(z - \frac{GM}{c^2b}\right)^2 = 
+    \\
+    = \left(1 + \left(\frac{GM}{c^2b}\right)^2\right)\left[1 - \left(\frac{z - \frac{GM}{c^2b}}{\sqrt{1 + \left(\frac{GM}{c^2b}\right)^2}}\right)^2\right]
+\end{gathered}
+\end{equation}
+Doing another variable subtitution:
+\begin{equation}
+    x = \frac{z - \frac{GM}{c^2b}}{\sqrt{1 + \left(\frac{GM}{c^2b}\right)^2}}
+    \qquad
+    dx = \frac{dz}{\sqrt{1 + \left(\frac{GM}{c^2b}\right)^2}}
+\end{equation}
+Gives:
+\begin{equation}
+    \varphi - \varphi_0
+    = \int_0^{x_0} \frac{dx}{\sqrt{1 - x^2}} = \arcsin(x_0) - \arcsin(x(0))
+\end{equation}
+Assigning back $z_0$ and then $r_0$ gives
+\begin{equation}
+    \varphi - \varphi_0 = \arcsin\left(
+        \frac{\frac{b}{r_0} - \frac{GM}{c^2b}}{\sqrt{1 + \left(\frac{GM}{c^2b}\right)^2}}
+    \right)
+     - \arcsin\left(\frac{-\frac{GM}{c^2b}}{\sqrt{1 + \left(\frac{GM}{c^2b}\right)^2}}\right)
+\end{equation}
+Marking $r_s = \frac{2GM}{c^2}$ we get
+\begin{equation}
+\label{eq:phi}
+    \varphi - \varphi_0 = \arcsin\left(
+        \frac{\frac{b}{r_0} - \frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}}
+    \right)
+     + \arcsin\left(\frac{\frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}}\right)
+\end{equation}
+Rewriting $r_0$ from equation \ref{eq:r_0} in terms of $r_s$, we get
+\begin{equation}
+    r_0 = \frac{GMm}{2\cdot\frac{1}{2}mc^2}\left(
+        \sqrt{1+\frac{2\cdot\frac{1}{2}mc^2\cdot m^2b^2c^2/m}{G^2M^2m^2}}-1
+    \right) = 
+    \frac{r_s}{2}\left(\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1\right)
+\end{equation}
+And so the first term in equation \ref{eq:phi} becomes
+\begin{equation}
+\begin{gathered}
+    \frac{\frac{b}{r_0} - \frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}} =
+    \frac{\frac{2b}{r_s\left(\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1\right)} - \frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}} = 
+    \frac{\frac{2b}{r_s\left(\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1\right)} - \frac{r_s}{2b}}{\frac{r_s}{2b}\sqrt{1 + \left(\frac{2b}{r_s}\right)^2}} =
+    \\
+    = \frac{\frac{\left(\frac{2b}{r_s}\right)^2}{\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1} - 1}{\sqrt{1 + \left(\frac{2b}{r_s}\right)^2}} =
+    \frac{\left(\frac{2b}{r_s}\right)^2 - \left(\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1\right)}{\sqrt{1 + \left(\frac{2b}{r_s}\right)^2}\left(\sqrt{1+\left(\frac{2b}{r_s}\right)^2}-1\right)} =
+    \\
+    = 1
+    \\
+    \arcsin\left(\frac{\frac{b}{r_0} - \frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}}\right) = \arcsin(1) = \frac{\pi}{2}
+\end{gathered}
+\end{equation}
+Marking
+\begin{equation}
+\label{eq:eta}
+    \eta = \arcsin\left(\frac{\frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}}\right)
+\end{equation}
+We get
+\begin{equation}
+    \varphi - \varphi_0 = \frac{\pi}{2} + \eta
+\end{equation}
+The total change of angle is
+\begin{equation}
+\begin{gathered}
+    \Delta\varphi = 2(\varphi - \varphi_0) - \pi = \pi + 2\eta - \pi = 2\eta
+\end{gathered}
+\end{equation}
+and assigning this back into equation \ref{eq:eta}
+\begin{equation}
+    \Delta\varphi = 2\arcsin\left(\frac{\frac{r_s}{2b}}{\sqrt{1 + \left(\frac{r_s}{2b}\right)^2}}\right) = 2\arcsin\left(\frac{1}{\sqrt{1 + \left(\frac{2b}{r_s}\right)^2}}\right)
+\end{equation}
+Finally, using the identity
+\begin{equation}
+    \sin(x) = \frac{1}{\sqrt{1+\cot^2(x)}}
+\end{equation}
+We get
+\begin{equation}
+    \Delta\varphi = 2\arctan(\frac{r_s}{2b})
+\end{equation}
+The radius $r_s$ is the Schwarzschild radius, which acts as the characteristic distance for the motion of light under the effect of a gravitational field.
+\newline
+\newline
+For the sun, we can input
+\begin{equation}
+    b = R_{sun} \approx 7\cdot10^8 m \qquad M \approx 2\cdot10^{30} kg
+\end{equation}
+Which means
+\begin{equation}
+    r_s = \frac{2GM}{c^2} \approx 2963 m
+\end{equation}
+\begin{equation}
+    \Delta\varphi \approx 4.2\cdot10^{-6}
+\end{equation}
+Where the actual measured value is around $8.4\cdot10^{-6}$. We got half the real value, stemming from not accounting for the reletavistic effects of motion at such speeds.
+\end{document}
