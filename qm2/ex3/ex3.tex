@@ -1,0 +1,291 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Quantum Mechanics II Excercise 3}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{$SU(2), SO(3)$}
+\subsection{$SU(2)$ and the Pauli matrices}
+$SU(2)$ is defined as the set of all $2\times2$ complex matrices such that $U^\dagger U = \mathbb{1}$ and $\det U = 1$. We can characterise those matrices by starting from a generic $2\times2$ matrix and narrowing down using the conditions.
+\newline
+Given a $2\times2$ matrix U, it can be written as
+\begin{equation}
+    U = \begin{pmatrix}a & b \\ c & d\end{pmatrix}
+\end{equation}
+The first condition for it to be in $SU(2)$ is $U^\dagger U = \mathbb{1}$. This means that the matrix is invertible and that its inverse is its complex conjugate
+\begin{equation}
+    U^\dagger = U^{-1}
+\end{equation}
+Using the formula for the inverse of a $2\times2$ matrix:
+\begin{equation}
+    U^{-1} = \frac{1}{|\det U|}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+\end{equation}
+And using the second condition $\det U = 1$ we get:
+\begin{equation}
+    \begin{pmatrix} a^* & c^* \\ b^* & d^* \end{pmatrix}
+    =
+    \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+\end{equation}
+\begin{equation}
+    a^* = d \qquad d^* = a \qquad b^* = -c \qquad c^* = -b
+\end{equation}
+In other words, we can write $U$ as:
+\begin{equation}
+    U = \begin{pmatrix} a & b \\ -b^* & a^* \end{pmatrix}
+\end{equation}
+Writing $a$ and $b$ in their complex cartesian representation, we get:
+\begin{equation}
+    \label{eq:final_u}
+    U = \begin{pmatrix} x + iy & w + iz \\ -w + iz & x - iy \end{pmatrix}
+\end{equation}
+And requiring $\det U = 1$ gives us:
+\begin{equation}
+    \label{eq:final_u_condition}
+    x^2 + y^2 + w^2 + z^2 = 1
+\end{equation}
+Now, let us look at the expression
+\begin{equation}
+    A = \exp\left[\frac{1}{2} i\theta_i \sigma_i\right]
+\end{equation}
+Using the definition of the Pauli matrices, we get
+\begin{equation}
+    A = \exp\left[\frac{1}{2}i\theta_i \sigma_i\right] = \exp
+        \begin{pmatrix}
+            i\theta_z & \theta_y + i\theta_x \\
+            - \theta_y+ i\theta_x & -i\theta_z
+        \end{pmatrix} \equiv \exp P(\theta)
+\end{equation}
+Where we named the matrix in the exponent $P(\theta)$. We can now expand the exponent, but first let us calculate the powers of $P(\theta)$:
+\begin{equation}
+    P^2(\theta) = \begin{pmatrix}
+            i\theta_z & \theta_y + i\theta_x \\
+            - \theta_y+ i\theta_x & -i\theta_z
+        \end{pmatrix}\begin{pmatrix}
+            i\theta_z & \theta_y + i\theta_x \\
+            - \theta_y+ i\theta_x & -i\theta_z
+        \end{pmatrix}
+        =
+        -\begin{pmatrix}
+            \theta_x^2 + \theta_y^2 + \theta_z^2 & 0 \\ 0 & \theta_x^2 + \theta_y^2 + \theta_z^2
+        \end{pmatrix} \equiv -\theta^2 \mathbb{1}
+\end{equation}
+Therefore, we can split the powers of $P$ to even and odd powers:
+\begin{equation}
+    P^{2n}(\theta) = \left(-1\right)^n\theta^{2n}\mathbb{1} \qquad P^{2n+1}(\theta) = \left(-1\right)^n\theta^{2n}P
+\end{equation}
+And thus
+\begin{equation}
+\begin{gathered}
+    A = \exp P = \sum_{n=0}^\infty \frac{P^n}{n!} = \mathbb{1}\sum_{n \ even}\frac{\left(i\theta\right)^n}{n!} + P\sum_{n \ odd}\frac{\left(i\theta\right)^{n - 1}}{n!} = \cos(\theta)\mathbb{1} + \sin(\theta) \frac{P}{\theta} = \\
+    = \begin{pmatrix}
+        \cos(\theta) + i\sin(\theta)\frac{\theta_z}{\theta} & \sin(\theta)\frac{\theta_y + i\theta_x}{\theta} \\ 
+        \sin(\theta)\frac{-\theta_y + i\theta_x}{\theta} & \cos(\theta) - i\sin(\theta)\frac{\theta_z}{\theta}
+    \end{pmatrix}
+\end{gathered}
+\end{equation}
+The determinant of this matrix is:
+\begin{equation}
+\begin{gathered}
+    \det A = \left(\cos(\theta) + i\sin(\theta)\frac{\theta_z}{\theta}\right) \left(\cos(\theta) - i\sin(\theta)\frac{\theta_z}{\theta}\right) - \sin^2(\theta)\frac{- \theta_x^2 - \theta_y^2}{\theta^2} = 
+    \\
+    = \cos^2(\theta) + \sin^2(\theta)\frac{\theta_z^2}{\theta^2} + \sin^2(\theta)\frac{\theta_x^2 + \theta_y^2}{\theta^2} = \cos^2(\theta) + \sin^2(\theta)\frac{\theta_x^2 + \theta_y^2 + \theta_z^2}{\theta^2} =
+    \\
+    = \cos^2(\theta) + \sin^2(\theta) = 1
+\end{gathered} 
+\end{equation}
+Which means that with a small change of variables we can make it fit the matrix in equation \ref{eq:final_u}:
+\begin{equation}
+    x = \cos(\theta) \qquad y = \sin(\theta)\frac{\theta_z}{\theta}
+    \qquad w = \sin(\theta)\frac{\theta_y}{\theta} \qquad z = \sin(\theta)\frac{\theta_x}{\theta}
+\end{equation}
+Which means that for every $2\times2$ matrix $U$ in $SU(2)$ one can find $\theta_x, \theta_y, \theta_z$ such that $U = \exp\left[\frac{1}{2}i \theta_i\sigma_i\right]$, and thus $t_i = \frac{1}{2}\sigma_i$ furnish a representation of the $su(2)$ algebra. 
+\subsection{The $SO(3)$ group}
+For the $SO(3)$ group, we can follow the same pattern. Starting from a $3\times3$ matrix
+\begin{equation}
+    O = \begin{pmatrix}
+        a & b & c \\
+        d & e & f \\
+        h & k & l
+    \end{pmatrix}
+\end{equation}
+And demanding that $O^TO = \mathbb{1}$, we get:
+\begin{equation}
+    O^T = \begin{pmatrix}
+        a & d & h \\
+        b & e & k \\
+        c & f & l
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    O^TO = \begin{pmatrix}
+        a^2 + d^2 + h^2 & ab + de + hk & ac + df + hl \\
+        ab + de + hk & b^2 + e^2 + k^2 & bc + ef + kl \\
+        ac + df + hl & bc + ef + kl & c^2 + f^2 + l^2
+    \end{pmatrix}
+\end{equation}
+Which gives the equations
+\begin{equation}
+    a^2 + d^2 + h^2 = b^2 + e^2 + k^2 = c^2 + f^2 + l^2 = 1
+\end{equation}
+\begin{equation}
+    ab + de + hk = ac + df + hl = bc + ef + kl = 0
+\end{equation}
+The three matrices that make up the representation of the algebra are:
+\begin{equation}
+    L_1 = \begin{pmatrix}
+        0 & 0 & 0 \\
+        0 & 0 & -i \\
+        0 & i & 0
+    \end{pmatrix}
+    \qquad
+    L_2 = \begin{pmatrix}
+        0 & 0 & i \\
+        0 & 0 & 0 \\
+        -i & 0 & 0
+    \end{pmatrix}
+    \qquad
+    L_3 = \begin{pmatrix}
+        0 & -i & 0 \\
+        i & 0 & 0 \\
+        0 & 0 & 0
+    \end{pmatrix}
+\end{equation}
+Their linear sum with constant $\varphi_i$ is
+\begin{equation}
+    P = (-i) i \begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix} = \begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix}
+\end{equation}
+Which means that
+\begin{equation}
+    A = \exp\left[-i\varphi_i L_i\right] = \exp P = \exp \begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix}
+\end{equation}
+We can now look at the powers of $P$ to get
+\begin{equation}
+    P^2 = \begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix}\begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix}
+    = \begin{pmatrix}
+        -\varphi_2^2 - \varphi_3^2 & \varphi_1\varphi_2 & \varphi_1\varphi_3 \\ \varphi_1\varphi_2 & -\varphi_1^2 - \varphi_3^2 & \varphi_2\varphi_3 \\ \varphi_1\varphi_3 & \varphi_2\varphi_3 & -\varphi_1^2 - \varphi_2^2
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    P^3 = \begin{pmatrix}
+        0 & -\varphi_3 & \varphi_2 \\
+        \varphi_3 & 0 & -\varphi_1 \\
+        -\varphi_2 & \varphi_1 & 0
+    \end{pmatrix} \begin{pmatrix}
+        -\varphi_2^2 - \varphi_3^2 & \varphi_1\varphi_2 & \varphi_1\varphi_3 \\ \varphi_1\varphi_2 & -\varphi_1^2 - \varphi_3^2 & \varphi_2\varphi_3 \\ \varphi_1\varphi_3 & \varphi_2\varphi_3 & -\varphi_1^2 - \varphi_2^2
+    \end{pmatrix} = -\varphi^2 P
+\end{equation}
+Then, for $n > 0$
+\begin{equation}
+    P^{2n} = (i\varphi)^{2n-2} P^{2} \qquad P^{2n+1} = (i\varphi)^{2n}P
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    A = \exp P = \sum_{n=0}^{\infty} \frac{P^n}{n!} =
+    \sum_{n \ even}\frac{P^n}{n!} + \sum_{n \ odd}\frac{P^n}{n!} = 
+    \mathbb{1} + \sum_{n > 0 \ even}\frac{(i\varphi)^{n - 1}}{n!}P^2 + \sum_{n \ odd}\frac{(i\varphi)^n}{n!}P = 
+    \\
+    = \mathbb{1} - i \frac{\cos(\varphi) - 1}{\varphi}P^2 + \sin(\varphi)P
+\end{gathered}
+\end{equation}
+\subsection{Commutation relations}
+It's easy to see that for $t_i = \frac{1}{2}\sigma_i$, $\left[t_i,t_j\right] = i\varepsilon_{ijk}t_k$. The simplest way is just to check them one by one:
+\begin{equation}
+\begin{gathered}
+    \left[t_1,t_1\right] = 0
+    \qquad
+    \left[t_2,t_2\right] = 0
+    \qquad
+    \left[t_3,t_3\right] = 0
+    \\
+    \left[t_1,t_2\right] = - \left[t_2,t_1\right] = t_1t_2 - t_2t_1 = \\ = \frac{1}{4}\left[\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}0&-i\\i&0\end{pmatrix} - \begin{pmatrix}0&-i\\i&0\end{pmatrix}\begin{pmatrix}0&1\\1&0\end{pmatrix}\right] = \frac{1}{4}\left[\begin{pmatrix}i&0\\0&-i\end{pmatrix} - \begin{pmatrix}-i&0\\0&i\end{pmatrix}\right] = \\ = \frac{1}{4}\left[i\sigma_3 - \left(-i\right)\sigma_3\right] = \frac{1}{2}i\sigma_3 = it_3
+    \\
+    \left[t_1,t_3\right] = - \left[t_3,t_1\right] = t_1t_3 - t_3t_1 = \\ = \frac{1}{4}\left[\begin{pmatrix}0&1\\1&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix} - \begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0&1\\1&0\end{pmatrix}\right] = \frac{1}{4}\left[\begin{pmatrix}0&-1\\1&0\end{pmatrix} - \begin{pmatrix}0&1\\-1&0\end{pmatrix}\right] = \\ = \frac{1}{4}\left[-i\sigma_2 + \left(-i\right)\sigma_2\right] = -\frac{1}{2}i\sigma_2 = -it_2
+    \\
+    \left[t_2,t_3\right] = - \left[t_3,t_2\right] = t_2t_3 - t_3t_2 = \\ = \frac{1}{4}\left[\begin{pmatrix}0&-i\\i&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix} - \begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0&-i\\i&0\end{pmatrix}\right] = \frac{1}{4}\left[\begin{pmatrix}0&i\\i&0\end{pmatrix} - \begin{pmatrix}0&-i\\-i&0\end{pmatrix}\right] = \\ = \frac{1}{4}\left[i\sigma_1 - \left(-i\right)\sigma_1\right] = \frac{1}{2}i\sigma_1 = it_1
+\end{gathered}
+\end{equation}
+Similarly, for $Li$ we get
+\begin{equation}
+\begin{gathered}
+    \left[L_1,L_1\right] = 0
+    \qquad
+    \left[L_2,L_2\right] = 0
+    \qquad
+    \left[L_3,L_3\right] = 0
+    \\
+    \left[L_1,L_2\right] = - \left[L_2,L_1\right] = L_1L_2 - L_2L_1 = \\ = 
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & 0 & i \\ 0 & 0 & 0 \\ -i & 0 & 0 \end{pmatrix}
+    -
+    \begin{pmatrix} 0 & 0 & i \\ 0 & 0 & 0 \\ -i & 0 & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}
+    = \\ =
+    \begin{pmatrix} 0 & 0 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+    -
+    \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ \end{pmatrix}
+    = i\begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} = iL_3
+    \\
+    \left[L_1,L_3\right] = - \left[L_3,L_1\right] = L_1L_3 - L_3L_1 = \\ = 
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}
+    -
+    \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0 \end{pmatrix}
+    = \\ =
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix}
+    -
+    \begin{pmatrix} 0 & 0 & -1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \\ \end{pmatrix}
+    = i\begin{pmatrix} 0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0\end{pmatrix} = -iL_2
+    \\
+    \left[L_2,L_3\right] = - \left[L_3,L_2\right] = L_2L_3 - L_3L_2 = \\ = 
+    \begin{pmatrix} 0 & 0 & i \\ 0 & 0 & 0 \\ -i & 0 & 0\end{pmatrix}
+    \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}
+    -
+    \begin{pmatrix} 0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}
+    \begin{pmatrix} 0 & 0 & i \\ 0 & 0 & 0 \\ -i & 0 & 0\end{pmatrix}
+    = \\ =
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & -1 & 0 \end{pmatrix}
+    -
+    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 0 & 0 \\ \end{pmatrix}
+    = i\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & -i \\ 0 & i & 0\end{pmatrix} = iL_1
+\end{gathered}
+\end{equation}
+This means that both $t_i$ and $L_i$ satisfy the same commutation relations, and there is an obvious isomorphism between their respective algebras.
+
+\section{A bit of $SO(1,3)$}
+\section{What adds under Lorentz transformations?}
+\end{document}
