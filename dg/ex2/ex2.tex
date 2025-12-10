@@ -1,0 +1,38 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{pxfonts}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Differential Geometry Excercise 2}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Naturality of the Lie bracket}
+\section{Verify the Jacobi identity}
+% TODO read/watch the definitions from the course to make sure you don't to prove associativity or something.
+For every three vector fields $X, Y,$ and $Z$:
+\begin{equation}
+\begin{gathered}
+    \left[X,\left[Y,Z\right]\right] + \left[Y,\left[Z,X\right]\right] + \left[Z,\left[X,Y\right]\right] =
+    \\
+    = X \circ \left[Y, Z\right] - \left[Y, Z\right] \circ X + 
+    Y \circ \left[Z, X\right] - \left[Z, X\right] \circ Y + 
+    Z \circ \left[X, Y\right] - \left[X, Y\right] \circ Z =
+    \\
+    = X \circ Y \circ Z - X \circ Z \circ Y - Y \circ Z \circ X + Z \circ Y \circ X + \\
+    + Y \circ Z \circ X - Y \circ X \circ Z - Z \circ X \circ Y + X \circ Z \circ Y + \\ 
+    + Z \circ X \circ Y - Z \circ Y \circ X - X \circ Y \circ Z + Y \circ X \circ Z = 0
+\end{gathered}
+\end{equation}
+\end{document}

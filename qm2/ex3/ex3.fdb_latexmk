@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1765064226.86312 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex3/ex3.tex" "ex3.pdf" "ex3" 1765064228.9028 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex3/ex3.tex" 1765064223 12790 a9988db1397e1bee36aee6dae787a929 ""
+["pdflatex"] 1765409829.83681 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex3/ex3.tex" "ex3.pdf" "ex3" 1765409831.36563 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex3/ex3.tex" 1765409828 34110 610730a43d90f4b8146eebd14ca13b35 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1761854989 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1761854989 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -66,8 +66,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex3.aux" 1765064228 817 117b891284cbd631106fa181657094cb "pdflatex"
-  "ex3.tex" 1765064223 12790 a9988db1397e1bee36aee6dae787a929 ""
+  "ex3.aux" 1765409831 2492 867ad16518a0725aef22ffbe6569e7b2 "pdflatex"
+  "ex3.tex" 1765409828 34110 610730a43d90f4b8146eebd14ca13b35 ""
   (generated)
   "ex3.aux"
   "ex3.log"

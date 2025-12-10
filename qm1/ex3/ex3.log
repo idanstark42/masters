@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  6 DEC 2025 18:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  8 DEC 2025 21:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -188,48 +188,71 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (14.52443pt too wide) detected at line 147
+[][][]
+ []
+
+
 
 [2]
-<classical-trajectories.png, id=21, 290.58563pt x 179.92218pt>
-File: classical-trajectories.png Graphic file (type png)
-<use classical-trajectories.png>
-Package pdftex.def Info: classical-trajectories.png  used on input line 183.
-(pdftex.def)             Requested size: 140.92793pt x 87.2594pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<classical-trajectories-with-tunneling.png, id=23, 262.73157pt x 167.87718pt>
-File: classical-trajectories-with-tunneling.png Graphic file (type png)
-<use classical-trajectories-with-tunneling.png>
-Package pdftex.def Info: classical-trajectories-with-tunneling.png  used on input line 195.
-(pdftex.def)             Requested size: 140.92793pt x 90.05034pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 
 [3]
+<classical-trajectories.png, id=25, 414.04688pt x 309.40594pt>
+File: classical-trajectories.png Graphic file (type png)
+<use classical-trajectories.png>
+Package pdftex.def Info: classical-trajectories.png  used on input line 236.
+(pdftex.def)             Requested size: 140.92793pt x 105.31465pt.
 
-[4 <./classical-trajectories.png> <./classical-trajectories-with-tunneling.png>] (./ex3.aux)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[4]
+<classical-trajectories-with-tunneling.png, id=30, 345.54094pt x 310.91156pt>
+File: classical-trajectories-with-tunneling.png Graphic file (type png)
+<use classical-trajectories-with-tunneling.png>
+Package pdftex.def Info: classical-trajectories-with-tunneling.png  used on input line 249.
+(pdftex.def)             Requested size: 140.92793pt x 126.80563pt.
+<classical-trajectories-above-barrier.png, id=31, 395.22656pt x 392.21532pt>
+File: classical-trajectories-above-barrier.png Graphic file (type png)
+<use classical-trajectories-above-barrier.png>
+Package pdftex.def Info: classical-trajectories-above-barrier.png  used on input line 258.
+(pdftex.def)             Requested size: 140.92793pt x 139.85085pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<classical-trajectories-above-barrier-with-tunneling.png, id=32, 803.0pt x 803.0pt>
+File: classical-trajectories-above-barrier-with-tunneling.png Graphic file (type png)
+<use classical-trajectories-above-barrier-with-tunneling.png>
+Package pdftex.def Info: classical-trajectories-above-barrier-with-tunneling.png  used on input line 267.
+(pdftex.def)             Requested size: 140.92793pt x 140.91919pt.
+
+
+[5 <./classical-trajectories.png> <./classical-trajectories-with-tunneling.png>]
+
+[6 <./classical-trajectories-above-barrier.png> <./classical-trajectories-above-barrier-with-tunneling.png>]
+
+[7] (./ex3.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3370 strings out of 467746
- 51474 string characters out of 5431099
- 478529 words of memory out of 5000000
- 32056 multiletter control sequences out of 15000+600000
+ 3389 strings out of 467746
+ 52380 string characters out of 5431099
+ 478647 words of memory out of 5000000
+ 32075 multiletter control sequences out of 15000+600000
  632796 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,11n,77p,659b,243s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on ex3.pdf (4 pages, 173394 bytes).
+ 73i,11n,77p,697b,243s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on ex3.pdf (7 pages, 262996 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

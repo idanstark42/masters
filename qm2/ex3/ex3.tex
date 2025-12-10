@@ -45,6 +45,7 @@ And using the second condition $\det U = 1$ we get:
 \end{equation}
 In other words, we can write $U$ as:
 \begin{equation}
+\label{eq:su_complex_numebrs_rep}
     U = \begin{pmatrix} a & b \\ -b^* & a^* \end{pmatrix}
 \end{equation}
 Writing $a$ and $b$ in their complex cartesian representation, we get:
@@ -59,15 +60,15 @@ And requiring $\det U = 1$ gives us:
 \end{equation}
 Now, let us look at the expression
 \begin{equation}
-    A = \exp\left[\frac{1}{2} i\theta_i \sigma_i\right]
+    A = \exp\left[i t_i \sigma_i\right]
 \end{equation}
 Using the definition of the Pauli matrices, we get
 \begin{equation}
     A = \exp\left[\frac{1}{2}i\theta_i \sigma_i\right] = \exp
-        \begin{pmatrix}
+        \left[\frac{1}{2}\begin{pmatrix}
             i\theta_z & \theta_y + i\theta_x \\
             - \theta_y+ i\theta_x & -i\theta_z
-        \end{pmatrix} \equiv \exp P(\theta)
+        \end{pmatrix}\right] \equiv \exp \left[\frac{1}{2}P(\theta)\right]
 \end{equation}
 Where we named the matrix in the exponent $P(\theta)$. We can now expand the exponent, but first let us calculate the powers of $P(\theta)$:
 \begin{equation}
@@ -90,60 +91,32 @@ Therefore, we can split the powers of $P$ to even and odd powers:
 And thus
 \begin{equation}
 \begin{gathered}
-    A = \exp P = \sum_{n=0}^\infty \frac{P^n}{n!} = \mathbb{1}\sum_{n \ even}\frac{\left(i\theta\right)^n}{n!} + P\sum_{n \ odd}\frac{\left(i\theta\right)^{n - 1}}{n!} = \cos(\theta)\mathbb{1} + \sin(\theta) \frac{P}{\theta} = \\
+\label{eq:su_final_rep}
+    A = \exp \left[\frac{1}{2}P\right] = \sum_{n=0}^\infty \frac{(P/2)^n}{n!} =
+    \mathbb{1}\sum_{n \ even}\frac{\left(i\theta/2\right)^n}{n!} + \frac{1}{2}P\sum_{n \ odd}\frac{\left(i\theta/2\right)^{n - 1}}{n!} = \cos(\frac{\theta}{2})\mathbb{1} + \sin(\frac{\theta}{2}) \frac{P}{\theta} = \\
     = \begin{pmatrix}
-        \cos(\theta) + i\sin(\theta)\frac{\theta_z}{\theta} & \sin(\theta)\frac{\theta_y + i\theta_x}{\theta} \\ 
-        \sin(\theta)\frac{-\theta_y + i\theta_x}{\theta} & \cos(\theta) - i\sin(\theta)\frac{\theta_z}{\theta}
+        \cos(\theta/2) + i\sin(\theta/2)\frac{\theta_z}{\theta} & \sin(\theta/2)\frac{\theta_y + i\theta_x}{\theta} \\ 
+        \sin(\theta/2)\frac{-\theta_y + i\theta_x}{\theta} & \cos(\theta/2) - i\sin(\theta/2)\frac{\theta_z}{\theta}
     \end{pmatrix}
 \end{gathered}
 \end{equation}
 The determinant of this matrix is:
 \begin{equation}
 \begin{gathered}
-    \det A = \left(\cos(\theta) + i\sin(\theta)\frac{\theta_z}{\theta}\right) \left(\cos(\theta) - i\sin(\theta)\frac{\theta_z}{\theta}\right) - \sin^2(\theta)\frac{- \theta_x^2 - \theta_y^2}{\theta^2} = 
+    \det A = \left(\cos(\theta/2) + i\sin(\theta/2)\frac{\theta_z}{\theta}\right) \left(\cos(\theta/2) - i\sin(\theta/2)\frac{\theta_z}{\theta}\right) - \sin^2(\theta/2)\frac{- \theta_x^2 - \theta_y^2}{\theta^2} = 
     \\
-    = \cos^2(\theta) + \sin^2(\theta)\frac{\theta_z^2}{\theta^2} + \sin^2(\theta)\frac{\theta_x^2 + \theta_y^2}{\theta^2} = \cos^2(\theta) + \sin^2(\theta)\frac{\theta_x^2 + \theta_y^2 + \theta_z^2}{\theta^2} =
+    = \cos^2(\theta/2) + \sin^2(\theta/2)\frac{\theta_z^2}{\theta^2} + \sin^2(\theta/2)\frac{\theta_x^2 + \theta_y^2}{\theta^2} = \cos^2(\theta/2) + \sin^2(\theta/2)\frac{\theta_x^2 + \theta_y^2 + \theta_z^2}{\theta^2} =
     \\
-    = \cos^2(\theta) + \sin^2(\theta) = 1
+    = \cos^2(\theta/2) + \sin^2(\theta/2) = 1
 \end{gathered} 
 \end{equation}
 Which means that with a small change of variables we can make it fit the matrix in equation \ref{eq:final_u}:
 \begin{equation}
-    x = \cos(\theta) \qquad y = \sin(\theta)\frac{\theta_z}{\theta}
-    \qquad w = \sin(\theta)\frac{\theta_y}{\theta} \qquad z = \sin(\theta)\frac{\theta_x}{\theta}
+    x = \cos(\theta/2) \qquad y = \sin(\theta/2)\frac{\theta_z}{\theta}
+    \qquad w = \sin(\theta/2)\frac{\theta_y}{\theta} \qquad z = \sin(\theta/2)\frac{\theta_x}{\theta}
 \end{equation}
 Which means that for every $2\times2$ matrix $U$ in $SU(2)$ one can find $\theta_x, \theta_y, \theta_z$ such that $U = \exp\left[\frac{1}{2}i \theta_i\sigma_i\right]$, and thus $t_i = \frac{1}{2}\sigma_i$ furnish a representation of the $su(2)$ algebra. 
 \subsection{The $SO(3)$ group}
-For the $SO(3)$ group, we can follow the same pattern. Starting from a $3\times3$ matrix
-\begin{equation}
-    O = \begin{pmatrix}
-        a & b & c \\
-        d & e & f \\
-        h & k & l
-    \end{pmatrix}
-\end{equation}
-And demanding that $O^TO = \mathbb{1}$, we get:
-\begin{equation}
-    O^T = \begin{pmatrix}
-        a & d & h \\
-        b & e & k \\
-        c & f & l
-    \end{pmatrix}
-\end{equation}
-\begin{equation}
-    O^TO = \begin{pmatrix}
-        a^2 + d^2 + h^2 & ab + de + hk & ac + df + hl \\
-        ab + de + hk & b^2 + e^2 + k^2 & bc + ef + kl \\
-        ac + df + hl & bc + ef + kl & c^2 + f^2 + l^2
-    \end{pmatrix}
-\end{equation}
-Which gives the equations
-\begin{equation}
-    a^2 + d^2 + h^2 = b^2 + e^2 + k^2 = c^2 + f^2 + l^2 = 1
-\end{equation}
-\begin{equation}
-    ab + de + hk = ac + df + hl = bc + ef + kl = 0
-\end{equation}
 The three matrices that make up the representation of the algebra are:
 \begin{equation}
     L_1 = \begin{pmatrix}
@@ -164,7 +137,7 @@ The three matrices that make up the representation of the algebra are:
         0 & 0 & 0
     \end{pmatrix}
 \end{equation}
-Their linear sum with constant $\varphi_i$ is
+Their linear sum with constant $-i\varphi_i$ is
 \begin{equation}
     P = (-i) i \begin{pmatrix}
         0 & -\varphi_3 & \varphi_2 \\
@@ -184,7 +157,7 @@ Which means that
         -\varphi_2 & \varphi_1 & 0
     \end{pmatrix}
 \end{equation}
-We can now look at the powers of $P$ to get
+To show that every matrix in $SO(3)$ has the form of $A$, we need to open the exponent. The powers of $P$ are:
 \begin{equation}
     P^2 = \begin{pmatrix}
         0 & -\varphi_3 & \varphi_2 \\
@@ -216,11 +189,56 @@ Then, for $n > 0$
 \begin{gathered}
     A = \exp P = \sum_{n=0}^{\infty} \frac{P^n}{n!} =
     \sum_{n \ even}\frac{P^n}{n!} + \sum_{n \ odd}\frac{P^n}{n!} = 
-    \mathbb{1} + \sum_{n > 0 \ even}\frac{(i\varphi)^{n - 1}}{n!}P^2 + \sum_{n \ odd}\frac{(i\varphi)^n}{n!}P = 
+    \mathbb{1} + \sum_{n > 0 \ even}\frac{(i\varphi)^{n - 1}}{n!}P^2 + \sum_{n \ odd}\frac{(i\varphi)^{n-1}}{n!}P = 
     \\
-    = \mathbb{1} - i \frac{\cos(\varphi) - 1}{\varphi}P^2 + \sin(\varphi)P
+    = \mathbb{1} + \sin(\varphi)\frac{P}{\varphi} + \left(1 - \cos\varphi\right)\frac{P^2}{\varphi^2} =
+    \\
+    = \begin{pmatrix}
+        \cos\varphi + n_1^2\left(1 - \cos\varphi\right) &
+        n_1n_2\left(1 - \cos\varphi\right) - n_3 \sin\varphi &
+        n_1n_3\left(1 - \cos\varphi\right) + n_2 \sin\varphi \\
+        n_1n_2\left(1 - \cos\varphi\right) - n_3 \sin(\varphi) &
+        \cos(\varphi) + n_2^2\left(1 - \cos(\varphi)\right) &
+        n_2n_3\left(1 - \cos\varphi\right) - n_1 \sin(\varphi) \\
+        n_1n_3\left(1 - \cos\varphi\right) - n_2 \sin(\varphi) &
+        n_2n_3\left(1 - \cos\varphi\right) + n_1 \sin(\varphi) &
+        \cos(\varphi) + n_3^2\left(1 - \cos(\varphi)\right)
+    \end{pmatrix}
 \end{gathered}
 \end{equation}
+Where $n_i = \varphi_i/\varphi$. This is Rodrigues' rotation formula, which is the most general form of a 3D rotation matrix.
+\newline
+Now, for any $3\times3$ matrix $O$ we can write:
+\begin{equation}
+    O = \begin{pmatrix}
+        a & b & c \\ d & e & f \\ g & j & h
+    \end{pmatrix}
+\end{equation} 
+And if it's in $SO(3)$, $O^T = O^{-1}$, we can use the generic formula $A^{-1} = \frac{1}{|\det A|}Adj(A)$ and the fact that $\det O = 1$ to get
+\begin{equation}
+    O^T = O^{-1} = \frac{1}{|\det O|}Adj(O) = Adj(O)
+\end{equation}
+This gives us the formulas:
+\begin{equation}
+    \begin{pmatrix} a \\ d \\ g \end{pmatrix} = \begin{pmatrix} eh - fj \\ cj - bh \\ bf - ce \end{pmatrix} = \begin{pmatrix}
+        c \\ f \\ h
+    \end{pmatrix} \times \begin{pmatrix}
+        b \\ e \\ j
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \begin{pmatrix} b \\ e \\ j \end{pmatrix} =
+    \begin{pmatrix} a \\ d \\ g \end{pmatrix}
+    \times
+    \begin{pmatrix} c \\ f \\ h \end{pmatrix}
+    \qquad
+    \begin{pmatrix} b \\ e \\ j \end{pmatrix} =
+    \begin{pmatrix} a \\ d \\ g \end{pmatrix}
+    \times
+    \begin{pmatrix} c \\ f \\ h \end{pmatrix}
+\end{equation}
+In other words, the three columns of the matrix are an orthonormal basis of $\R^3$ (what a surprise! It was definity not in the group's name or anything). Every orthonormal basis can be displayed as a rotation from some preselected reference base. This means the $SO(3)$ matrices are rotation matrices, and can therefore be written in the form of the Rodrigues formula.
+
 \subsection{Commutation relations}
 It's easy to see that for $t_i = \frac{1}{2}\sigma_i$, $\left[t_i,t_j\right] = i\varepsilon_{ijk}t_k$. The simplest way is just to check them one by one:
 \begin{equation}
@@ -238,7 +256,7 @@ It's easy to see that for $t_i = \frac{1}{2}\sigma_i$, $\left[t_i,t_j\right] = i
     \left[t_2,t_3\right] = - \left[t_3,t_2\right] = t_2t_3 - t_3t_2 = \\ = \frac{1}{4}\left[\begin{pmatrix}0&-i\\i&0\end{pmatrix}\begin{pmatrix}1&0\\0&-1\end{pmatrix} - \begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}0&-i\\i&0\end{pmatrix}\right] = \frac{1}{4}\left[\begin{pmatrix}0&i\\i&0\end{pmatrix} - \begin{pmatrix}0&-i\\-i&0\end{pmatrix}\right] = \\ = \frac{1}{4}\left[i\sigma_1 - \left(-i\right)\sigma_1\right] = \frac{1}{2}i\sigma_1 = it_1
 \end{gathered}
 \end{equation}
-Similarly, for $Li$ we get
+Similarly, for $L_i$ we get
 \begin{equation}
 \begin{gathered}
     \left[L_1,L_1\right] = 0
@@ -286,6 +304,361 @@ Similarly, for $Li$ we get
 \end{equation}
 This means that both $t_i$ and $L_i$ satisfy the same commutation relations, and there is an obvious isomorphism between their respective algebras.
 
+\subsection{Equivilance of transformations in $SU(2)$ and $SO(3)$}
+For every $x_i \in \R^3$, let the $2\times2$ matrix be 
+\begin{equation}
+    X = x_i\cdot\sigma_i = \begin{pmatrix} x_3 & x_1 - i x_2 \\ x_1 + i x_2 & x_3 \end{pmatrix}
+\end{equation}
+Now, using equation \ref{eq:su_final_rep}, we can transform $X$ as such:
+\begin{equation}
+    U = \cos(\theta/2)\mathbb{1} + \sin(\theta/2) \frac{P}{\theta}
+    \qquad
+    P = \begin{pmatrix}
+            i\theta_z & \theta_y + i\theta_x \\
+            - \theta_y+ i\theta_x & -i\theta_z
+        \end{pmatrix} = i\sum_k \theta_k \sigma_k
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    U^\dagger X U = \\ =
+    \left[\cos(\theta/2)\mathbb{1} + \sin(\theta/2) \frac{P}{\theta}\right]^\dagger X \left[\cos(\theta/2)\mathbb{1} + \sin(\theta/2) \frac{P}{\theta}\right] = \\ =
+    \cos^2(\theta/2)X + \theta^{-1}\sin(\theta/2)\cos(\theta/2)[P^\dagger X - X P] + \theta^{-2}\sin^2(\theta/2)P^\dagger X P
+\end{gathered}
+\end{equation}
+Now we can open each term using $\sigma_i\sigma_j = i\varepsilon_{ijk}\sigma_k + \delta_{ij}\mathbb{1}$ and $\sigma^\dagger = \sigma$:
+\begin{equation}
+\begin{gathered}
+    XP = (x_i\sigma_i)(i\theta_j\sigma_j) = ix_i\theta_j \sigma_i \sigma_j = ix_i\theta_j (i\varepsilon_{ijk}\sigma_k + \delta_{ij}\mathbb{1}) = -x_i\theta_j\varepsilon_{ijk}\sigma_k + ix_i\theta_i\mathbb{1}
+    \\
+    P^\dagger X = (i\theta_j\sigma_j^\dagger)(x_i\sigma_i) = ix_i\theta_j \sigma_j \sigma_i = ix_i\theta_j (-i\varepsilon_{ijk}\sigma_k + \delta_{ij}\mathbb{1}) = x_i\theta_j\varepsilon_{ijk}\sigma_k + ix_i\theta_i\mathbb{1}
+    \\
+    P^\dagger X - XP = -2x_i\theta_j\varepsilon_{ijk}\sigma_k = 2(\vec{\theta}\times\vec{x})\cdot\vec{\sigma}
+    \\
+    P^\dagger X P = (x_i\theta_j\varepsilon_{ijk}\sigma_k + ix_i\theta_i\mathbb{1})(i\theta_l\sigma_l) = ix_i\theta_j\theta_l\varepsilon_{ijk}\sigma_k\sigma_l - x_i\theta_i\theta_l\sigma_l = \\ = 
+    ix_i\theta_j\theta_l\varepsilon_{ijk}(i\varepsilon_{klm}\sigma_m + \delta_{kl}\mathbb{1}) - x_i\theta_i\theta_l\sigma_l = \\ =
+    -x_i\theta_j\theta_l\varepsilon_{ijk}\varepsilon_{klm}\sigma_m + ix_i\theta_j\theta_l\varepsilon_{ijk}\delta_{kl}\mathbb{1} - x_i\theta_i\theta_l\sigma_l = \\ =
+    -x_i\theta_j\theta_l(\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl})\sigma_m + ix_i\theta_j\theta_l\varepsilon_{ijl}\mathbb{1} - x_i\theta_i\theta_l\sigma_l
+\end{gathered}
+\end{equation}
+The third term this equaiton is a product of a symmetric tensor $x_i\theta_j\theta_l$ and an antisymmetric tensor $\varepsilon_{ijl}$, which means it's zero. This leaves:
+\begin{equation}
+\begin{gathered}
+    P^\dagger X P = -x_i\theta_j\theta_i\sigma_j + x_i\theta_j\theta_j\sigma_i - x_i\theta_i\theta_l\sigma_l = \theta^2\vec{x}\cdot\vec{\sigma} - 2(\vec{x}\cdot\vec{\theta})(\vec{\theta}\cdot\vec{\sigma})
+\end{gathered}
+\end{equation}
+In total, we get
+\begin{equation}
+\begin{gathered}
+    U^\dagger X U = \\ = \cos^2(\theta/2)X + \theta^{-1}\sin(\theta/2)\cos(\theta/2)\cdot2(\vec{\theta}\times\vec{x})\cdot\vec{\sigma} + \theta^{-2}\sin^2(\theta/2)\left(\theta^2\vec{x}\cdot\vec{\sigma} - 2(\vec{x}\cdot\vec{\theta})(\vec{\theta}\cdot\vec{\sigma})\right) = \\ =
+    \cos^2(\theta/2)X + 2\theta^{-1}\sin(\theta/2)\cos(\theta/2)(\vec{\theta}\times\vec{x})\cdot\vec{\sigma} + \sin^2(\theta/2)X - 2\theta^{-2}\sin^2(\theta/2)(\vec{x}\cdot\vec{\theta})(\vec{\theta}\cdot\vec{\sigma}) = \\ =
+    X + \theta^{-1}\sin(\theta)(\vec{\theta}\times\vec{x})\cdot\vec{\sigma} - \theta^{-2}(1 - \cos(\theta))(\vec{\theta}\cdot\vec{x})(\vec{\theta}\cdot\vec{\sigma}) = \\ =
+    \left(x_i + \theta^{-1}\sin(\theta)(\varepsilon_{jki} \theta_j x_k) - \theta^{-2}(1 - \cos(\theta))\theta_j\theta_ix_j\right)\sigma_i
+\end{gathered}
+\end{equation}
+defining $L_{ij} = \varepsilon_{kij}\theta_k$, we get:
+\begin{equation}
+    L^2x = L\times(L\times x) = L(Lx) = \theta_i\theta_jx_j
+\end{equation}
+Which means
+\begin{equation}
+    U^\dagger X U = \left(x_i + \theta^{-1}\sin(\theta)(\varepsilon_{jki} \theta_j x_k) - \theta^{-2}(1 - \cos(\theta))\theta_j\theta_ix_j\right)\sigma_i
+\end{equation}
+Which is exactly the Rodrigues Rotation formula, meanign the vector $x_i$ transforms like a vector in 3d under an $SO(3)$ transformation.
+\newline
+This is the $SU(2) \rightarrow SO(3)$ mapping
+\begin{equation}
+    U \in SU(2) \sim O \in SO(3) \ if \ U^\dagger X U = (O\vec{x})\cdot\vec{\sigma}
+\end{equation}
+Since $U$ appears twice in the equation, the same matrix $O$ maps to both $U$ and $-U$, making this mapping a surjective two-to-one homomorphism.
+\newpage
 \section{A bit of $SO(1,3)$}
+\subsection{Weyl Spinor and Lorentz transformation relations}
+Using the hist, let us first show that any Pauli matrix $\sigma_n$ satisfies $\sigma_n\sigma_2 = -\sigma_2\sigma_n^T$. The easiest way to show this is just to calculte both sides for each of the matrices and see that they give the same result. We will use the identities $\sigma_i\sigma_j = i\varepsilon_{ijk}\sigma_k + \delta_{ij}\mathbb{1}$ and $\sigma_1^T = \sigma_1, \sigma_2^T = -\sigma_2,$ and $\sigma_3^T = \sigma_3$.
+\begin{equation}
+\begin{gathered}
+    \sigma_1\sigma_2 = i\sigma_3 \qquad -\sigma_2\sigma_1^T = -\sigma_2\sigma_1 = -(-i\sigma_3) = i\sigma_3
+    \\
+    \sigma_2\sigma_2 = \mathbb{1} \qquad -\sigma_2\sigma_2^T = \sigma_2\sigma_2 = \mathbb{1}
+    \\
+    \sigma_3\sigma_2 = -i\sigma_1 \qquad -\sigma_2\sigma_3^T = -\sigma_2\sigma_3 = -(i\sigma_1) = -i\sigma_1
+\end{gathered}
+\end{equation}
+This property is true, not only for $\sigma_n$, but also for $\sigma_n^T$, since they are just $\sigma_n$ up to a constant.
+\newline
+Using the representation we found in \ref{eq:su_final_rep}:
+\begin{equation}
+\begin{gathered}
+    M_L^{T}\sigma_2 = \exp(-i\left(\theta_n - iy_n\right)\frac{\sigma_n}{2})^T\sigma_2 =
+    \left[\cos(\frac{\sqrt{\theta^2 + y^2}}{2})\mathbb{1} - \sin(\frac{\sqrt{\theta^2 + y^2}}{2}) \frac{\theta_n - iy_n}{\sqrt{\theta^2 + y^2}}\sigma_n^T\right]\sigma_2
+    = \\ =
+    \left[\cos(\frac{\sqrt{\theta^2 + y^2}}{2})\sigma_2 + \sin(\frac{\sqrt{\theta^2 + y^2}}{2}) \frac{\theta_n - iy_n}{\sqrt{\theta^2 + y^2}}\sigma_2\sigma_n\right]
+    = \\ =
+    \sigma_2\left[\cos(\frac{\sqrt{\theta^2 + y^2}}{2})\mathbb{1} + \sin(\frac{\sqrt{\theta^2 + y^2}}{2}) \frac{\theta_n - iy_n}{\sqrt{\theta^2 + y^2}}\sigma_n\right]
+    = \\ =
+    \sigma_2\exp(i\left(\theta_n - iy_n\right)\frac{\sigma_n}{2})
+    = \sigma_2M_R^\dagger
+\end{gathered}
+\end{equation}
+It is also easy to see that
+\begin{equation}
+    M_R^\dagger M_L = \exp(i\left(\theta_n - iy_n\right)\frac{\sigma_n}{2})\exp(-i\left(\theta_n - iy_n\right)\frac{\sigma_n}{2}) = \mathbb{1}
+\end{equation}
+Which is to say $M_R^\dagger = M_L^{-1}$ and so
+\begin{equation}
+    M_L^T\sigma_2 = \sigma_2M_R^\dagger = \sigma_2M_L^{-1}
+\end{equation}
+\subsection{Lorentz scalar from the spinor fields}
+The Lorentz transformaiton for the vector $A^\mu$ is $A^\mu \rightarrow A'^\mu = \Lambda^\mu_\nu A^\nu$. We saw in section 1 that this is equivilant to transform the matrix $A^\mu \bar{\sigma}_\mu \rightarrow M_R A^\mu \bar{\sigma}_\mu M_R^\dagger$. We saw in class that $\bar{\sigma}_\mu$ transforms using $U = M_R^\dagger$. Using this, together with the transformations given for the spinor fields in the question, we get
+\begin{equation}
+    \xi^\dagger A^\mu \bar{\sigma}_\mu \xi \rightarrow
+    \xi^\dagger M_L^\dagger M_R A^\mu \bar{\sigma}_\mu M_R^\dagger M_L\xi = \xi^\dagger A^\mu \bar{\sigma}_\mu \xi
+\end{equation}
+There is, of course, a simialr scalar for the $\chi$ field, simply by replacing $\xi \rightarrow \chi, \bar{\sigma}_\mu \rightarrow \sigma_\mu$. Then, $\sigma_\mu \rightarrow M_L \sigma_mu M_L^\dagger$:
+\begin{equation}
+    \chi^\dagger A^\mu \sigma_\mu \chi \rightarrow
+    \chi^\dagger M_R^\dagger M_L A^\mu \sigma_\mu M_L^\dagger M_R\chi = \chi^\dagger A^\mu \sigma_\mu \chi
+\end{equation}
+In both cases we used $M_L^{-1} = M_R^\dagger$.
+
 \section{What adds under Lorentz transformations?}
+\subsection{Rotations}
+For a rotation around the z-axis, the $4\times4$ Lorentz transformation is
+\begin{equation}
+    \Lambda^\mu_\nu(\theta) = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\theta & -\sin\theta & 0 \\
+        0 & \sin\theta & \cos\theta & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{equation}
+Using the well known trigonometric identities for angle addition, it's easy to see that performing two successive rotations around the z-axis by two angles $\theta_1$ and $\theta_2$ is equivilant to a single rotation by $\theta_1 + \theta_2$
+\begin{equation}
+\begin{gathered}
+    \Lambda^\mu_\alpha(\theta_1) \Lambda^\alpha_\nu(\theta_2) =
+    \\
+    = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\theta_1 & -\sin\theta_1 & 0 \\
+        0 & \sin\theta_1 & \cos\theta_1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\theta_2 & -\sin\theta_2 & 0 \\
+        0 & \sin\theta_2 & \cos\theta_2 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} = 
+    \\
+    = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\theta_1\cos\theta_2 - \sin\theta_1\sin\theta_2 & -\cos\theta_1\sin\theta_2-\sin\theta_1\cos\theta_2 & 0 \\
+        0 & \sin\theta_1\cos\theta_2 + \cos\theta_1\sin\theta_2 & \sin\theta_1\sin\theta_2 + \cos\theta_1\cos\theta_2 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} = 
+    \\
+    = \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & \cos\left(\theta_1+\theta_2\right) & -\sin\left(\theta_1+\theta_2\right) & 0 \\
+        0 & \sin\left(\theta_1+\theta_2\right) & \cos\left(\theta_1+\theta_2\right) & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} = \Lambda^\mu_\nu(\theta_1 + \theta_2)
+\end{gathered}
+\end{equation}
+\subsection{Boosts}
+A boost along the x-axis by a velocity parameter $\beta$ is
+\begin{equation}
+    \Lambda^\mu_\nu(\beta) = \begin{pmatrix}
+        \gamma & -\beta\gamma & 0 & 0 \\
+        -\beta\gamma & \gamma & 0 & 0 \\\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{equation}
+Where $\gamma = \left(1-\beta^2\right)^{-1/2}$. Performing two consecutive such transformations by two different velocities $\beta_1$ and $\beta_2$, will amount to
+\begin{equation}
+\begin{gathered}
+    \Lambda^\mu_\alpha(\beta_1) \Lambda^\alpha_\nu(\beta_2) =
+    \\
+    = \begin{pmatrix}
+        \gamma_1 & -\beta_1\gamma_1 & 0 & 0 \\
+        -\beta_1\gamma_1 & \gamma_1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \gamma_2 & -\beta_2\gamma_2 & 0 & 0 \\
+        -\beta_2\gamma_2 & \gamma_2 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix} =
+    \\
+    = \begin{pmatrix}
+        \gamma_1\gamma_2\left(1 + \beta_1\beta_2\right) & -\gamma_1\gamma_2\left(\beta_1 + \beta_2\right) & 0 & 0 \\
+        -\gamma_1\gamma_2\left(\beta_1 + \beta_2\right) & \gamma_1\gamma_2\left(1 + \beta_1\beta_2\right) & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{gathered}
+\end{equation}
+Let us now look for what $\beta$ and $\gamma$ fit this new transformation. This means we are looking for $\beta$ and its matching $\gamma$ for which $\Lambda^\mu_\alpha(\beta_1)\Lambda^\alpha_\nu(\beta_2) = \Lambda^\mu_\nu(\beta)$, so we can find the addative connection. From the last matrix, we can see that
+\begin{equation}
+    \gamma = \gamma_1\gamma_2(1 + \beta_1\beta_2) \qquad \-\beta\gamma = -\gamma_1\gamma_2(\beta_1 + \beta_2)
+\end{equation}
+Therefore
+\begin{equation}
+\label{eq:betas_relation}
+    \beta = \frac{\gamma\beta}{\gamma} = \frac{\gamma_1\gamma_2(\beta_1 + \beta_2)}{\gamma_1\gamma_2(1+\beta_1\beta_2)} = \frac{\beta_1+\beta_2}{1+\beta_1\beta_2}
+\end{equation}
+This reminds us of the addition formula for hyperbolic tangent:
+\begin{equation}
+    \tanh(\alpha+\beta) = \frac{\tanh\alpha + \tanh\beta}{1 + \tanh\alpha\tanh\beta}
+\end{equation}
+So let us define the rapidity, with a range $(-\infty,\infty)$:
+\begin{equation}
+    y(\beta) = \tanh^{-1}(\beta)
+\end{equation}
+and thus equation \ref{eq:betas_relation} becomes
+\begin{equation}
+    \tanh(y) = \frac{\tanh(y_1) + \tanh(y_2)}{1 + \tanh(y_1)\tanh(y_2)}
+\end{equation}
+\begin{equation}
+    y = \tanh^{-1}\left(\frac{\tanh(y_1) + \tanh(y_2)}{1 + \tanh(y_1)\tanh(y_2)}\right) = \tanh^{-1}(\tanh(y_1 + y_2)) = y_1 + y_2
+\end{equation}
+Which means
+\begin{equation}
+    \Lambda^\mu_\alpha(y_1)\Lambda^\alpha_\nu(y_2) = \Lambda^\mu_\nu(y_1 + y_1)
+\end{equation}
+
+\section{Translation in field space}
+\subsection{Translation using the Noether charge}
+Opening the equation using Campbell identity
+\begin{equation}
+    e^{i\alpha Q}\phi(x)e^{-i\alpha Q} = \sum_{n=0}^\infty \frac{1}{n!}\left[i\alpha Q, \phi(x)\right]_n
+\end{equation}
+Where
+\begin{equation}
+    \left[A, B\right]_n = [A, [A,B]_{n-1}] \qquad [A,B]_0 = B
+\end{equation}
+Specifically, for the charge $Q = \int d^3x \pi$, we can use the commutation relations
+\begin{equation}
+    \left[\phi(x),\pi(y)\right] = i\delta^3(x - y)
+\end{equation}
+Which means
+\begin{equation}
+    [i\alpha Q, \phi(x)] = i\alpha \int d^3y [\pi(y), \phi(x)] = i\alpha \int d^3y (-i)\delta^3(x - y) = \alpha
+\end{equation}
+And so every commutation relations after the second order vanish, and we are left with
+\begin{equation}
+    e^{i\alpha Q}\phi(x)e^{-i\alpha Q} = \phi(x) + \alpha
+\end{equation}
+\subsection{Additional Lorentz invariants}
+Any other Lorentz invariant that is only dependent on the derivative of the field is also invariant to an addition of a constant to the field. The most simple function of derivatives is polynomials, and the next polynomial that is not already in the Lagrangian is the quadruple derivative:
+\begin{equation}
+    S = \int d^4x \frac{1}{2}\partial_\mu\phi\partial^\mu\phi + \frac{1}{4}\left(\partial_\mu\phi\partial^\mu\phi\right)^2
+\end{equation}
+
+\subsection{The new Conjugate momentum}
+The new conjugate momentum is
+\begin{equation}
+    \pi = \frac{\partial \mathcal{L}}{\partial \dot{\phi}} = [1 + \left(\partial_\mu\phi\partial^\mu\phi\right)]\dot{\varphi}
+\end{equation}
+Using this new momentum, we can see if the shift in the field space is stil the same. For this we will calculate the commutation relations:
+\begin{equation}
+    [\phi(x),\pi(y)] = [\dot{\varphi} + \partial^{(x)}_\mu\phi\partial^{(x)\mu}\phi\dot{\varphi}, pi(y)] = i\delta^3(x-y)(1 + \partial^{(x)}_\mu \partial^{(x)\mu})
+\end{equation}
+And thus, since the derivative of 1 vanishes, we get:
+\begin{equation}
+    [i\alpha Q, \phi(x)] = i\alpha \int d^3y [\pi(y), \phi(x)] = i\alpha \int d^3y (-i)\delta^3(x - y)(1 + \partial^{(x)}_\mu \partial^{(x)\mu}) = \alpha
+\end{equation}
+Meaning that once again, the Campbell identity gets cut off after the linear term in $\alpha$, and the momentum once again shifts the field by a constant.
+
+\section{The Baker-Campbell-Hausdorff formula}
+\subsection{Proving for the first and second order}
+Opening the exponents up to second order:
+\begin{equation}
+\begin{gathered}
+    e^Ae^B = \left(1 + A + \frac{1}{2}A^2 + O(A^3)\right)\left(1 + B + \frac{1}{2}B^2 + O(B^3)\right) = \\ =
+    1 + A + B + \frac{1}{2}A^2 + AB + \frac{1}{2}B^2 + \cdots = \\ =
+    1 + (A + B) + \frac{1}{2}(A + B)^2 + \frac{1}{2}[A,B] + \cdots = \\ = \exp(A + B + \frac{1}{2}[A,B] + \cdots) = e^C
+\end{gathered}
+\end{equation}
+As for the third order, there each term requires a different commutator, since the third term in the exponent of $A+B$ is
+\begin{equation}
+    \frac{1}{6}(A+B)^3 = \frac{1}{6}\left(A^3 + A^2B + AB^2 + B^3 + B^2A + BA^2 + ABA + BAB\right)
+\end{equation}
+While the third order of the result from the product of the exponent $e^Ae^B$ is
+\begin{equation}
+    \frac{1}{2}AB^2 + \frac{1}{2}A^2B + \frac{1}{6}A^3 + \frac{1}{6}B^3
+\end{equation}
+Subtracting them will give us the remainder, which is the third order term in $C$:
+\begin{equation}
+\begin{gathered}
+    \frac{1}{2}AB^2 + \frac{1}{2}A^2B + \frac{1}{6}A^3 + \frac{1}{6}B^3 - \frac{1}{6}\left(A^3 + A^2B + AB^2 + B^3 + B^2A + BA^2 + ABA + BAB\right) = \\ =
+    \frac{1}{6}\left(2AB^2 - A^2B - ABA + 2BA^2 - B^2A - BAB\right) = \\ =
+    \frac{1}{6}\left([AB, B] + [BA, A] + [A,B^2] + [B,A^2]\right)
+\end{gathered}
+\end{equation}
+Which means that the third order of the approximation is also made of commutators.
+\subsection{The $SL(2,C)$ group and the divergence of the identity}
+The gropu $SL(2,C)$ is defined as the group of all complex $2x2$ matrices with determinant 1. Now, let us take a matrix $S \in SL(2, C)$ very close to the identity:
+\begin{equation}
+    S \approx \mathbb{1} + \epsilon = \begin{pmatrix}
+        1 + \epsilon_{11} & \epsilon_{12} \\ \epsilon_{21} & 1 + \epsilon_{22}
+    \end{pmatrix}
+\end{equation}
+This matrix must satisfy $\det S = 1$, and so:
+\begin{equation}
+    (1 + \epsilon_{11})(1 + \epsilon_{22}) - \epsilon_{12}\epsilon_{21} = 1 + \epsilon_{11} + \epsilon_{22} + \epsilon_{11}\epsilon_{22} - \epsilon_{12}\epsilon_{21} = 1 + \tr(\epsilon) + \det(\epsilon) = 1
+\end{equation}
+Since $\det \epsilon$ is of the second order, we can neglect it and get
+\begin{equation}
+    \tr \epsilon = 0
+\end{equation}
+Or, in other words
+\begin{equation}
+    \epsilon_{11} = -\epsilon_{22}
+\end{equation}
+Which means that a simple basis of three traceless matrices for the algebra is
+\begin{equation}
+    A = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}
+    \qquad
+    B = \begin{pmatrix}0 & 1 \\ 0 & 0\end{pmatrix}
+    \qquad
+    C = \begin{pmatrix}0 & 0 \\ 1 & 0\end{pmatrix}
+\end{equation}
+Now we can look at the matrices $X$ and $Y$ from $SL(2, C)$:
+\begin{equation}
+    X = \begin{pmatrix}0 & i\pi \\ i\pi & 0\end{pmatrix}
+    \qquad
+    Y = \begin{pmatrix}0 & -1 \\ 0 & 0\end{pmatrix}
+\end{equation}
+To calcualte their exponents, we will first calcualte their powers:
+\begin{equation}
+    X^2 = -\pi^2 \mathbb{1} \qquad Y^2 = 0
+\end{equation}
+Therefore:
+\begin{equation}
+\begin{gathered}
+    e^X = \sum_n \frac{X^n}{n!} = \sum_{n \ even} \frac{X^n}{n!} + \sum_{n \ odd} \frac{X^n}{n!} = \sum_{n \ even} \frac{(i\pi)^n}{n!}\mathbb{1} + \sum_{n \ odd} \frac{(i\pi)^{n-1}}{n!}X = \\ =
+    \cos(\pi)\mathbb{1} + \frac{1}{\pi}\sin(\pi)X = -\mathbb{1}
+\end{gathered}
+\end{equation}
+Which is, of course, part of the group, and
+\begin{equation}
+    e^{Y} = \sum_n \frac{X^n}{n!} = \mathbb{1} + Y = \begin{pmatrix}
+        1 & -1 \\ 0 & 1
+    \end{pmatrix}
+\end{equation}
+which is also a part of the group. However:
+\begin{equation}
+    e^Xe^Y = \begin{pmatrix}
+        -1 & 0 \\ 0 & -1
+    \end{pmatrix}\begin{pmatrix}
+        1 & -1 \\ 0 & 1
+    \end{pmatrix} = \begin{pmatrix}
+        -1 & 1 \\ 0 & -1
+    \end{pmatrix}
+\end{equation}
+The determinant of which is $\det(e^Xe^Y) = 1$, which means it is a part of $SL(2,C)$. However, if we try to find the matrix $Z$ such that $e^Z = e^Xe^Y$, we will find that we can't. The proof goes as follows:
+\newline
+The matrix $Z$ has two eigenvalues which could be differen or equal. If they are different, they must satisfy $\lambda_1 = -\lambda_2$, since $\tr Z = 0$. This would mean $Z$ is diagonalizable and thus $e^Z$ is also diagonalizable. If the two eigenvalues are equal, then they must be zero, which means that there exist a vector $\vec{v}$ such that $e^Z\vec{v} = e^0\vec{v} = 1\vec{v} = \vec{v}$, meaning that $1$ must be an eigenvalue of the matrix $e^Z$. We got a conclusion that every matrix that can be displayed as $e^Z$ is either diagonalizable or has an eigenvalue $1$. Since the matrix that we got is doesn't satisfy any of these requirements, it canno't be represented in this form. 
 \end{document}
