@@ -1,0 +1,541 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{General Realtivity Excercise 3}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Warmup}
+\subsection{The Metric}
+The metric, which defines the lengths in the manifold, is intrinsic. It is used to measure lengths along the manifold, and therefore does not depend on factors external to it.
+\subsection{Angles}
+Angles, as defined using geometry from inside the space, are intrinsic as well. The best way to see it is by using a dot product on two vectors at some point in the space. The result can be displayed as dependent on their coordinates and the metric, all of which is intrinsic, therefore the dot product itself is intrinsic. However, the dot can also be viewed as dependent on the magnitude of the vectors and the angle between them. The magnitude is again intrinsic, which means the angle must be intrinsic as well.
+\subsection{1d curvature}
+When defining curvature of a 1d line, we must use some external measure from the embedding space. Angles are not defined in 1 dimension, therefore the curvature, which measures the change of direction along the line, cannot be defined without external measurements. 
+\section{The 3-Sphere}
+The parametrization of the 3-sphere $(\psi, \theta, \varphi)$ in $\mathbb{R}^4$ space $(x, y, z, w)$ is
+\begin{equation}
+\begin{gathered}
+    x = R\cos\psi \\
+    y = R\sin\psi\cos\theta \\
+    z = R\sin\psi\sin\theta\cos\varphi \\
+    w = R\sin\psi\sin\theta\sin\varphi
+\end{gathered}
+\end{equation}
+\subsection{The sphere equation}
+It's easy to see that the parametrization follows the sphere equation:
+\begin{equation}
+\begin{gathered}
+    x^2 + y^2 + z^2 + w^2 = \\
+    = R^2\cos^2\psi + R^2\sin^2\psi\cos^2\theta + R^2\sin^2\psi\sin^2\theta\cos^2\varphi + R^2\sin^2\psi\sin^2\theta\sin^2\varphi = \\
+    = R^2\left(\cos^2\psi + \sin^2\psi\cos^2\theta + \sin^2\psi\sin^2\theta\cos^2\varphi + \sin^2\psi\sin^2\theta\sin^2\varphi\right) = \\
+    = R^2\left(\cos^2\psi + \sin^2\psi\cos^2\theta + \sin^2\psi\sin^2\theta\left(\cos^2\varphi + \sin^2\varphi\right)\right) = \\
+    = R^2\left(\cos^2\psi + \sin^2\psi\cos^2\theta + \sin^2\psi\sin^2\theta\right) = \\
+    = R^2\left(\cos^2\psi + \sin^2\psi\left(\cos^2\theta + \sin^2\theta\right)\right) = \\ = R^2\left(\cos^2\psi + \sin^2\psi\right) = R^2
+\end{gathered}
+\end{equation}
+\subsection{The Metric}
+To find the metric, we will use the metric of $\R^4$ and the parametrization. First, let us write the coordinate differentials:
+\begin{equation}
+\begin{gathered}
+    dx = \frac{\partial x}{\partial \psi}d\psi = -R\sin\psi d\psi \\
+    dy = \frac{\partial y}{\partial \psi}d\psi + \frac{\partial y}{\partial \theta}d\theta = R\cos\psi\cos\theta d\psi - R\sin\psi\sin\theta d\theta \\
+    dz = \frac{\partial z}{\partial \psi}d\psi + \frac{\partial z}{\partial \theta}d\theta + \frac{\partial z}{\partial \varphi}d\varphi = R\cos\psi\sin\theta\cos\varphi d\psi + R\sin\psi\cos\theta\cos\varphi d\theta - R\sin\psi\sin\theta\sin\varphi d\varphi \\
+    dw = \frac{\partial w}{\partial \psi}d\psi + \frac{\partial w}{\partial \theta}d\theta + \frac{\partial w}{\partial \varphi}d\varphi = R\cos\psi\sin\theta\sin\varphi d\psi + R\sin\psi\cos\theta\sin\varphi d\theta + R\sin\psi\sin\theta\cos\varphi d\varphi
+\end{gathered}
+\end{equation}
+Now, squaring those:
+\begin{equation}
+\begin{gathered}
+    dx^2 = R^2\sin^2\psi d\psi^2 \\
+    dy^2 = R^2\left(
+        \cos^2\psi\cos^2\theta d\psi^2 + \sin^2\psi\sin^2\theta d\theta^2 - 2\cos\psi\cos\theta\sin\psi\sin\theta d\psi d\theta
+    \right) \\
+    dz^2 = R^2(
+        \cos^2\psi\sin^2\theta\cos^2\varphi d\psi^2 +
+        \sin^2\psi\cos^2\theta\cos^2\varphi d\theta^2 +
+        \sin^2\psi\sin^2\theta\sin^2\varphi d\varphi^2 + \\
+        + 2\cos\psi\sin\psi\cos\theta\sin\theta\cos^2\varphi d\psi d\theta
+        - 2\cos\psi\sin\psi\sin^2\theta\cos\varphi\sin\varphi d\psi d\varphi
+        - 2\sin^2\psi\cos\theta\sin\theta\cos\varphi\sin\varphi d\theta d\varphi
+    ) \\
+    dw^2 = R^2(
+        \cos^2\psi\sin^2\theta\sin^2\varphi d\psi^2 +
+        \sin^2\psi\cos^2\theta\sin^2\varphi d\theta^2 +
+        \sin^2\psi\sin^2\theta\cos^2\varphi d\varphi^2 + \\
+        + 2\cos\psi\sin\psi\cos\theta\sin\theta\sin^2\varphi d\psi d\theta
+        + 2\cos\psi\sin\psi\sin^2\theta\cos\varphi\sin\varphi d\psi d\varphi
+        + 2\sin^2\psi\cos\theta\sin\theta\cos\varphi\sin\varphi d\theta d\varphi
+    )
+\end{gathered}
+\end{equation}
+Summing these, we can see that all the mixing terms cancel out. Specifically, when looking inside the parentheses, the last two terms from $dz^2$ are the exact opposite of the last two terms of $dw^2$, leaving:
+\begin{equation}
+\begin{gathered}
+    - 2\cos\psi\cos\theta\sin\psi\sin\theta d\psi d\theta + 2\cos\psi\sin\psi\cos\theta\sin\theta\cos^2\varphi d\psi d\theta + 2\cos\psi\sin\psi\cos\theta\sin\theta\sin^2\varphi d\psi d\theta = \\ =
+    2\cos\psi\cos\theta\sin\psi\sin\theta d\psi d\theta + 
+    2\cos\psi\sin\psi\cos\theta\sin\theta(\cos^2\varphi + \sin^2\varphi) d\psi d\theta = \\ =
+    - 2\cos\psi\cos\theta\sin\psi\sin\theta d\psi d\theta + 
+    2\cos\psi\sin\psi\cos\theta\sin\theta d\psi d\theta = 0
+\end{gathered}
+\end{equation}
+This leaves only the non-mixing terms. Using the same proces we used in the previous calculations to merge the similar sines and cosines:
+\begin{equation}
+\begin{gathered}
+    ds^2 = 
+    R^2(\sin^2\psi + \cos^2\psi\cos^2\theta + \cos^2\psi\sin^2\theta\cos^2\varphi + \cos^2\psi\sin^2\theta\sin^2\varphi)d\psi^2 + \\ + R^2(\sin^2\psi\sin^2\theta + \sin^2\psi\cos^2\theta\cos^2\varphi + \sin^2\psi\cos^2\theta\sin^2\varphi)d\theta^2 + \\ + R^2(\sin^2\psi\sin^2\theta\sin^2\varphi + \sin^2\psi\sin^2\theta\cos^2\varphi)d\varphi^2 = \\
+    = R^2d\psi^2 + R^2\sin^2\psi d\theta^2 + R^2\sin^2\psi\sin^2\theta d\varphi^2
+\end{gathered}
+\end{equation}
+So our metric is:
+\begin{equation}
+    g_{ij} = R^2\begin{pmatrix}
+        1 & & \\ & \sin^2\psi & \\ & & \sin^2\psi\sin^2\theta
+    \end{pmatrix}
+\end{equation}
+\subsection{Properties and relation to $\mathbb{S}^2$}
+\subsubsection{Relation of $\mathbb{S}^3$ to $\mathbb{S}^2$}
+Let us define a map $\mathbb{C}^2 \rightarrow \mathbb{C}\times\R$ such that
+\begin{equation}
+    p(z_0, z_1) = (2z_0z_1, |z_0|^2 - |z_1|^2)
+\end{equation}
+We can think of this map as a $f: \R^4 \rightarrow \R^3$ map using two additional functions:
+\begin{equation}
+\begin{gathered}
+    g: \R^4 \rightarrow \C^2 \qquad g(x_1, x_2, x_3, x_4) = (x_1 + ix_2, x_3 + ix_4) \\
+    h: \C \times \R \rightarrow \R^3 \qquad h(z, x) = (\Re z, \Im z, x)
+\end{gathered}
+\end{equation}
+Then the map $f: \R^4 \rightarrow R^3$ looks like:
+\begin{equation}
+\begin{gathered}
+    f(x, y, z, w) = g \circ p \circ h = f \circ p (x + iy, z + iw) = \\ =
+    f (2(x + iy)(z + iw), |x+iy|^2 - |z + iw|^2) = \\ =
+    f(2(xz - yw) +i \cdot 2(xw + yz), x^2 + y^2 - z^2 - w^2) = \\ =
+    (2(xz - yw), 2(xw + yz), x^2 + y^2 - z^2 - w^2)
+\end{gathered}
+\end{equation}
+The magnitude of such vector in $\R^3$ is:
+\begin{equation}
+\begin{gathered}
+    |f(x, y, z, w)|^2 = 4(xz - yw)^2 + 4(xw + yz)^2 + (x^2 + y^2 - z^2 - w^2)^2 = \\ =
+    4(xz)^2 - 8xyzw + 4(yw)^2 + 4(xw)^2 + 4(yz)^2 + 8xyzw + \\ +
+    x^4 + y^4 + z^4 + w^4 + 2(xy)^2 - 2(xz)^2 - (xw)^2 - (yz)^2 - (yw)^2 + (zw)^2 = \\ =
+    x^4 + y^4 + z^4 + w^4 + 2(xy)^2 + 2(xz)^2 + (xw)^2 + (yz)^2 + (yw)^2 + (zw)^2 = \\ =
+    (x^2 + y^2 + z^2 + w^2)^2
+\end{gathered}
+\end{equation}
+Meaning that the magnitude of the $\R^3$ vector is exactly the square of the magnitude of the $\R^4$ vector. So, for every vector on $\mathbb{S}^3$, the magnitude of which is $R$, we get a constant magnitude $R^2$ for the $\R^3$ vector, meaning the $\R^3$ vector is in $\mathbb{S}^2$.
+\subsubsection{Equivilance class}
+Let us now look at two points $(z_0, z_1), (w_0, w_1) \in \mathbb{C}^2$  that have the same image $p(z_0, z_1) = p(w_0, w_1)$ that are in the $\mathbb{S}^3$ sphere. This means that
+\begin{equation}
+\begin{gathered}
+    g^{-1}(z_0,z_1), g^{-1}(z_0,z_1) \in \mathbb{S}^3
+    g^{-1}(z_1, z_2) = (\Re(z_0), \Im(z_0), \Re(z_1), \Im(z_1))
+\end{gathered}
+\end{equation}
+These points will satisfy:
+\begin{equation}
+    \begin{cases}
+        z_0z_1 = w_0w_1 \\
+        |z_0|^2 - |z_1|^2 = |w_0|^2 - |w_1|^2 \\
+        |z_0|^2 + |z_1|^2 = |w_0|^2 + |w_1|^2
+    \end{cases}
+\end{equation}
+Displaying each complex number in polar coordinates, and using the notaiton $z_i = r_i e^{i\varphi_i}, w_i = s_i e^{i\theta_i}$, we get:
+\begin{equation}
+    \begin{cases}
+        r_0r_1 \exp(i\varphi_0 + i\varphi_1) = s_0s_1\exp(i\theta_0 + i\theta_1) \\
+        r_0^2 - r_1^2 = s_0^2 - s_1^2 \\
+        r_0^2 + r_1^2 = s_0^2 + s_1^2
+    \end{cases}
+\end{equation}
+The second and third equations mix and we get:
+\begin{equation}
+    \begin{cases}
+        r_0^2 = s_0^2 \\
+        r_1^2 = r_0^2
+    \end{cases}
+\end{equation}
+In other words:
+\begin{equation}
+    \begin{cases}
+        z_0 = \lambda w_0 \\
+        z_1 = \lambda w_1
+    \end{cases}
+\end{equation}
+Such that $|\lambda|^2 = 1$.
+\subsubsection{Local description of $\mathbb{S}^3$}
+From the last subsection, we have an equivalence class for vectors on $\mathbb{S}^3$ that map to the same vector on $\mathbb{S}^2$. These are vector that are along the same line from the origin, i.e. that are multiplcities of the same unit vector. In that since, each point on the $\mathbb{S}^2$ maps to a single direction in $\mathbb{S}^3$. In the other direction, $\mathbb{S}^3$ can be viewed as equivilant to $\mathbb{S}^2 \times \mathbb{S}^1$. In that since, every point in $\mathbb{S}^3$ maps to a 2-sphere $\mathbb{S}^2$ with a specific radius between 0 and $2\pi$.
+
+\section{Conformally Flat Spaces}
+Given a function $\Omega^2(\vec{x})$ of the coordinates, a conformally flat space is a space with the metric
+\begin{equation}
+    g_{ij} = \Omega^2(\vec{x})\delta_{ij}
+\end{equation}
+\subsection{The Riemann tensor}
+To calculate the Riemann tensor of a conformally flat space, we must first find the Christoffel symbols. As we saw in the previous excercise, for a diagonal metric the only non-zero Christoffel Symbols are
+\begin{equation}
+\label{eq:christoffel}
+\begin{gathered}
+    \Gamma^\mu_{\mu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\mu\mu}
+    \qquad
+    \Gamma^\mu_{\nu\nu} = -\frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\nu\nu}
+    \\
+    \Gamma^\mu_{\mu\nu} = \Gamma^\mu_{\nu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\nu}g_{\mu\mu}
+\end{gathered}
+\end{equation}
+Where we do not use the Einstein summation convention and $\mu \ne \nu$. For a conformally flat metric:
+\begin{equation}
+    g_{ii} = \Omega^2 \qquad g^{ii} = \Omega^{-2} \qquad \partial_j g_{ii} = 2\Omega\partial_j\Omega
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \Gamma^i_{ii} = \frac{1}{2}\Omega^{-2}\cdot2\Omega\partial_i\Omega = \Omega^{-1}\partial_i\Omega = \partial_i \ln \Omega \\
+    \Gamma^i_{jj} = -\frac{1}{2}\Omega^{-2}2\Omega\partial_i\Omega = -\partial_i \ln \Omega \\
+    \Gamma^i_{ij} = \Gamma^i_{ji} = \frac{1}{2}\Omega^{-2}2\Omega\partial_j \Omega = \partial_j \ln \Omega
+\end{gathered}
+\end{equation}
+And so, in the Riemann tensor:
+\begin{equation}
+    R^{\rho}_{\sigma\mu\nu} = \partial_\mu\Gamma^\rho_{\sigma\nu} - \partial_\nu\Gamma^\rho_{\sigma\mu} + \Gamma^{\rho}_{\lambda\mu}\Gamma^\lambda_{\sigma\nu} - \Gamma^{\rho}_{\lambda\nu}\Gamma^\lambda_{\sigma\mu}
+\end{equation}
+Every component where $\sigma = \rho$ and $\mu = \nu$ is zero. Additionaly, every component where all four indices are different will be also zero, because all of the matching Christoffel symbosl are zero (In the last two terms one of the symbols may survive in each term, but then the other one will be zero and the total contraction will be zero). This means the only non-zero terms are the ones with both first pair of different indices and second pair different indices, but not all four indices are different. In other words, one of the first two indices must equal one of the later two indices:
+\begin{equation}
+\begin{gathered}
+    R^i_{jij} = R^j_{iji} = -R^j_{iij} = -R^i_{jji} = \partial_i \Gamma^i_{jj} - \partial_j \Gamma^i_{ij} + \Gamma^i_{\lambda i}\Gamma^\lambda_{jj} - \Gamma^i_{\lambda j}\Gamma^\lambda_{ji} = \\ =
+    \partial_i \Gamma^i_{jj} - \partial_j \Gamma^i_{ij} + (\Gamma^i_{ii}\Gamma^i_{jj} + \Gamma^i_{ji}\Gamma^j_{jj}) - (\Gamma^i_{ij}\Gamma^i_{ji} + \Gamma^i_{jj}\Gamma^j_{ji}) = \\ =
+    -\partial^2_i \ln\Omega - \partial^2_j \ln \Omega - (\partial_i \ln \Omega)^2 + (\partial_j \ln \Omega)^2 - (\partial_j \ln \Omega)^2 - (-\partial_i \ln \Omega)^2 = \\ =
+    -\partial^2_i \ln\Omega - \partial^2_j \ln \Omega
+\end{gathered}
+\end{equation}
+\subsection{The 2-Sphere as a conformally flat space}
+We can use the stereographic projection for the 2-sphere to find a metric for it. for a point $(x, y) \in \R^2$, the matching point $(x, y, z) \in \R^3$ on the sphere is given by
+\begin{equation}
+    (X, Y, Z) = \frac{1}{x^2 + y^2 + R^2} \left(2Rx, 2Ry, x^2 + y^2 - R^2\right)
+\end{equation}
+So the differentials are:
+\begin{equation}
+\begin{gathered}
+    dX = 2R\frac{(-x^2 + y^2 + R^2)dx - 2xydy}{(x^2 + y^2 + R^2)^2}
+    \\
+    dY = 2R\frac{(x^2 - y^2 + R^2)dy - 2xydx}{(x^2 + y^2 + R^2)^2}
+    \\
+    dZ = 4R^2\frac{xdx + ydy}{(x^2 + y^2 + R^2)^2}
+\end{gathered}
+\end{equation}
+And so:
+\begin{equation}
+\begin{gathered}
+    dX^2 = 4R^2\frac{(-x^2 + y^2 + R^2)^2dx^2 + (2xy)^2dy^2 - 4(-x^2 + y^2 + R^2)xydxdy}{(x^2 + y^2 + R^2)^4} \\
+    dY^2 = 4R^2\frac{(2xy)^2dx^2 + (x^2 - y^2 + R^2)^2dy^2 - 4(x^2 - y^2 + R^2)xydxdy}{(x^2 + y^2 + R^2)^4} \\
+    dX^2 = 16R^4\frac{x^2dx^2 + y^2dy^2 + 2xydxdy}{(x^2 + y^2 + R^2)^4} \\
+\end{gathered}
+\end{equation}
+Adding all of them together, it's easy to see that the mixed terms cancel out:
+\begin{equation}
+    \frac{1}{x^2+y^2+R^2}\left[-16R^2(-x^2 + y^2 + R^2) - 16R^2(x^2 - y^2 + R^2) + 32R^2\right]xydxdy = 0
+\end{equation}
+And we are left with:
+\begin{equation}
+\begin{gathered}
+    ds^2 = \frac{4R^2}{(x^2+y^2+R^2)^2}\left[
+        \left((-x^2 + y^2 + R^2)^2 + (2xy)^2 + 4R^2x^2 \right)dx^2
+         +
+        \left((x^2 - y^2 + R^2)^2 + (2xy)^2 + 4R^2y^2 \right)dy^2
+    \right] = \\ =
+    \frac{4R^2(x^2 + y^2 + R^2)^2}{(x^2+y^2+R^2)^2}\left(
+        dx^2+dy^2
+    \right) = \left(\frac{2}{1 + (x^2 + y^2)/R^2}\right)^2\left(dx^2 + dy^2\right)
+\end{gathered}
+\end{equation}
+Which is a conformally flat space, with
+\begin{equation}
+    \Omega(x, y) = \frac{2}{1 + (x^2 + y^2)/R^2} = \frac{2R^2}{R^2 + x^2 + y^2}
+\end{equation}
+\subsection{The Ricci scalar}
+Using the equation we found for the Riemann curvature tensor, we can find the Ricci scalar by contraction. First, let us find the Riemann tensor for the case of the 2-sphere:
+\begin{equation}
+\begin{gathered}
+    \ln \Omega = ln(2R^2) - \ln(x^2 + y^2 + R^2) \\
+    \partial_x \ln \Omega = -\frac{2x}{x^2 + y^2 + R^2} \qquad
+    \partial_y \ln \Omega = -\frac{2y}{x^2 + y^2 + R^2} \\
+    \partial_x^2 \ln \Omega = -\frac{2(-x^2 + y^2 + R^2)}{(x^2 + y^2 + R^2)^2} \qquad
+    \partial_y^2 \ln \Omega = -\frac{2(x^2 - y^2 + R^2)}{(x^2 + y^2 + R^2)^2} \\
+    R^x_{yxy} = R^y_{xyx} = -\left(\partial_x^2 + \partial_y^2\right)\ln \Omega = \frac{4R^2}{(x^2 + y^2 + R^2)^2}
+\end{gathered}
+\end{equation}
+Thus, the only components of the Ricci curvature tensor that is not zero are
+\begin{equation}
+    R_{xx} = R^y_{xyx} = R_{yy} = R^x_{yxy} = \frac{4R^2}{(x^2 + y^2 + R^2)^2}
+\end{equation}
+And so the Ricci curvature scalar is
+\begin{equation}
+    R_{ricci} = R_{xx} + R_{yy} = g^{xi}R_{ix} + g^{yi}R_{iy} = \Omega^{-2}\frac{8R^2}{(x^2 + y^2 + R^2)^2} = \frac{2}{R^2}
+\end{equation}
+We got a constant $R \ne 0$ at every point. This means that the Ricci scalar is independent of the coordinate system, and so there is no coordinate system for which the curvature of the sphere is zero.
+\subsection{Vanishing Ricci scalar}
+On the other hand, if the Ricci scalar is identically zero, i.e. $R(x,y) = 0$ for every point $(x,y)$, then the space is, by definition, flat. This means that there exists some coordinate system for which the metric is that of a flat space.
+
+\section{A Non-Euclidean Geometry}
+Given the unit disc $x^2 + y^2 \le 1$ with the metric:
+\begin{equation}
+    ds^2 = \Omega^2(x, y)(dx^2 + dy^2) \qquad \Omega(x, y) = \frac{2}{1 - x^2 - y^2}
+\end{equation}
+\subsection{New coordinates}
+Now let us define new coordinates:
+\begin{equation}
+    \zeta = \frac{2x}{1 + x^2 + y^2} \qquad \eta = \frac{2y}{1 + x^2 + y^2}
+\end{equation}
+To find the metric, let us solve the coordinate relations for $(x,y)$:
+\begin{equation}
+    x = \frac{\zeta}{1 + \sqrt{1 - \rho^2}} \qquad y = \frac{\eta}{1 + \sqrt{1 - \rho^2}} \qquad : \qquad \rho^2 = \zeta^2 + \eta^2
+\end{equation}
+Now we can differentiate, remembering that:
+\begin{equation}
+    d\rho = \frac{\zeta d\zeta + \eta d\eta}{\rho} \qquad d(\rho^2) = 2\zeta d\zeta + 2\eta d\eta
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    dx = \frac{1}{1 + \sqrt{1 - \rho^2}}d\zeta + \frac{\zeta(\zeta d\zeta + \eta d\eta)}{(1 + \sqrt{1 - \rho^2})^2\sqrt{1 - \rho^2}}
+    \\
+    dy = \frac{1}{1 + \sqrt{1 - \rho^2}}d\eta + \frac{\eta(\zeta d\zeta + \eta d\eta)}{(1 + \sqrt{1 - \rho^2})^2\sqrt{1 - \rho^2}}
+\end{gathered}
+\end{equation}
+It is now easy to see from the defintions, that if we define $r = \sqrt{x^2+y^2}$, we get
+\begin{equation}
+\begin{gathered}
+    \Omega = \frac{2}{1-r^2} \\
+    \rho = \sqrt{\zeta^2 + \eta^2} = \frac{2r}{1+r^2} \\
+    1+\sqrt{1-\rho^2} = \frac{2}{1+r^2} \\
+    \sqrt{1-\rho^2} = \frac{1-r^2}{1+r^2}
+\end{gathered}
+\end{equation}
+And so:
+\begin{equation}
+\begin{gathered}
+    dx = \frac{1+r^2}{2}d\zeta + \frac{(1+r^2)^3}{4(1-r^2)}(\zeta^2 d\zeta + \zeta\eta d\eta) = \\ = \frac{1+r^2}{2}\left[\left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\zeta^2\right)d\zeta + \frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta d\eta\right]
+    \\
+    dy = \frac{1+r^2}{2}\left[\frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta d\zeta + \left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\eta^2\right)d\eta\right]
+\end{gathered}
+\end{equation}
+Now squaring:
+\begin{equation}
+\begin{gathered}
+    dx^2 = \left(\frac{1+r^2}{2}\right)^2\left[
+        \left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\zeta^2\right)^2d\zeta^2 +
+        \left(\frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta\right)^2d\eta^2 +
+        2\left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\zeta^2\right)\left(\frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta\right)d\zeta d\eta
+    \right]
+    \\
+    dy^2 = \left(\frac{1+r^2}{2}\right)^2\left[
+        \left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\eta^2\right)^2d\eta^2 +
+        \left(\frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta\right)^2d\zeta^2 +
+        2\left(1 + \frac{(1+r^2)^2}{2(1-r^2)}\eta^2\right)\left(\frac{(1+r^2)^2}{2(1-r^2)}\zeta\eta\right)d\zeta d\eta
+    \right]
+\end{gathered}
+\end{equation}
+Adding these terms and naming $\frac{(1+r^2)^2}{2(1-r^2)} = \varphi$ for ease of calculation, we get:
+\begin{equation}
+\begin{gathered}
+    dx^2 + dy^2 = \left(\frac{1+r^2}{2}\right)^2\left[
+        \left((1 + \varphi\zeta^2)^2 + (\varphi\zeta\eta)^2\right)d\zeta^2 + 
+        \left((1 + \varphi\eta^2)^2 + (\varphi\zeta\eta)^2\right)d\eta^2 +
+        2\varphi\zeta\eta(2+\varphi(\zeta^2 + \eta^2))
+    \right] = \\ =
+    \left(\frac{1+r^2}{2}\right)^2\left[
+        \left(1 + 2\varphi\zeta^2 + \varphi^2\zeta^2\rho^2\right)d\zeta^2 + 
+        \left(1 + 2\varphi\eta^2 + \varphi^2\eta^2\rho^2\right)d\eta^2 +
+        2\varphi\zeta\eta(2+\varphi\rho^2)
+    \right] = \\ =
+    \left(\frac{1+r^2}{2}\right)^2\left[
+        \left(1 + \varphi\zeta^2(2 + \varphi\rho^2)\right)d\zeta^2 + 
+        \left(1 + \varphi\eta^2(2 + \varphi\rho^2)\right)d\eta^2 +
+        2\varphi\zeta\eta(2+\varphi\rho^2)
+    \right] = \\ =
+    \left(\frac{1+r^2}{2}\right)^2\left[d\zeta^2 + d\eta^2
+        + \varphi(2 + \varphi\rho^2)(\zeta d\zeta + \eta d\eta)^2
+    \right]
+\end{gathered}
+\end{equation}
+We can see that
+\begin{equation}
+    \varphi(2 + \varphi\rho^2) = \frac{(1+r^2)^2}{2(1-r^2)}\left(2 + \frac{(1+r^2)^2}{2(1-r^2)}\left(\frac{2r}{1+r^2}\right)^2\right) = \frac{(1+r^2)^2}{(1-r^2)^2} = \frac{1}{1-\rho^2}
+\end{equation}
+And therefore:
+\begin{equation}
+\begin{gathered}
+    ds^2 = \Omega^2(dx^2 + dy^2) = \Omega^2\left(\frac{1+r^2}{2}\right)^2\left[d\zeta^2 + d\eta^2
+        + \varphi(2 + \varphi\rho^2)(\zeta d\zeta + \eta d\eta)^2
+    \right] = \\ =
+    \left(\frac{1+r^2}{1-r^2}\right)^2\left[d\zeta^2 + d\eta^2
+        + \frac{(1+r^2)^2}{(1-r^2)^2}(\zeta d\zeta + \eta d\eta)^2
+    \right] = \\ = \frac{d\zeta^2 + d\eta^2}{1-\rho^2} + \frac{(\zeta d\zeta + \eta d\eta)^2}{(1-\rho^2)^2}
+\end{gathered}
+\end{equation}
+Or, in matrix form:
+\begin{equation}
+    g_{\alpha\beta} = \frac{1}{1-\rho^2}\begin{pmatrix}
+        1 + \frac{\zeta^2}{1-\rho^2} & \frac{\zeta\eta}{1-\rho^2} \\
+        \frac{\zeta\eta}{1-\rho^2} & 1 + \frac{\eta^2}{1-\rho^2}
+    \end{pmatrix} = \left(\frac{1}{1-\rho^2}\right)^2\begin{pmatrix}
+        1 - \eta^2 & \zeta\eta \\ \zeta\eta & 1 - \zeta^2
+    \end{pmatrix}
+\end{equation}
+\subsection{The Geodesics}
+To find the geodesic let us first find the Christoffel symbols:
+\begin{equation}
+    \Gamma^\mu_{\alpha\beta} = \frac{1}{2}g^{\mu\nu}\left(\partial_\alpha g_{\beta\nu} + \partial_\beta g_{\alpha\nu} - \partial_\nu g_{\alpha\beta}\right)
+\end{equation}
+The inverse metric is
+\begin{equation}
+    g^{\alpha\beta} = \frac{1}{\det g}\frac{1}{1-\rho^2}\begin{pmatrix}
+        1 + \frac{\eta^2}{1-\rho^2} & -\frac{\zeta\eta}{1-\rho^2} \\
+        -\frac{\zeta\eta}{1-\rho^2} & 1 + \frac{\zeta^2}{1-\rho^2}
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \det g = \left(\frac{1}{1-\rho^2}\right)^2\left[
+        \left(1 + \frac{\eta^2}{1-\rho^2}\right)\left(1 + \frac{\zeta^2}{1-\rho^2}\right) - \left(\frac{\zeta\eta}{1-\rho^2}\right)^2
+    \right] = \left(\frac{1}{1-\rho^2}\right)^3
+\end{equation}
+\begin{equation}
+    g^{\alpha\beta} = (1-\rho^2)\begin{pmatrix}
+        1-\rho^2 + \eta^2 & -\zeta\eta \\
+        -\zeta\eta & 1-\rho^2 + \zeta^2
+    \end{pmatrix} = (1-\rho^2)\begin{pmatrix}
+        1-\zeta^2 & -\zeta\eta \\
+        -\zeta\eta & 1 - \eta^2
+    \end{pmatrix}
+\end{equation}
+And the derivatives are:
+\begin{equation}
+\begin{gathered}
+    \partial_\zeta g_{\zeta\zeta} = \frac{4\zeta(1-\eta^2)}{(1-\rho^2)^3}
+    \qquad
+    \partial_\eta g_{\zeta\zeta} = \frac{2\eta(1-\eta^2+\zeta^2)}{(1-\rho^2)^3}
+    \\
+    \partial_\zeta g_{\eta\eta} = \frac{2\zeta(1+\eta^2-\zeta^2)}{(1-\rho^2)^3}
+    \qquad
+    \partial_\eta g_{\eta\eta} = \frac{4\eta(1-\zeta^2)}{(1-\rho^2)^3}
+    \\
+    \partial_\zeta g_{\zeta\eta} = \partial_\zeta g_{\eta\zeta} = \frac{\eta(1-\eta^2+3\zeta^2)}{(1-\rho^2)^3}
+    \qquad
+    \partial_\eta g_{\zeta\eta} = \partial_\eta g_{\eta\zeta} = \frac{\zeta(1-\zeta^2+3\eta^2)}{(1-\rho^2)^3}
+\end{gathered}
+\end{equation}
+And so we get (after some simplification):
+\begin{equation}
+\begin{gathered}
+    \Gamma^\zeta_{\zeta\zeta} = \frac{2\zeta}{1-\rho^2}\\
+    \Gamma^\zeta_{\zeta\eta} = \Gamma^\zeta_{\eta\zeta} = \frac{\eta}{1-\rho^2}\\
+    \Gamma^\zeta_{\eta\eta} = 0 \\
+    \Gamma^\eta_{\eta\eta} = \frac{2\eta}{1-\rho^2}\\
+    \Gamma^\eta_{\eta\zeta} = \Gamma^\eta_{\zeta\eta} = \frac{\zeta}{1-\rho^2}\\
+    \Gamma^\eta_{\zeta\zeta} = 0 \\
+\end{gathered}
+\end{equation}
+Which means the geodesic equations are
+\begin{equation}
+    \begin{cases}
+        \ddot{\zeta} + \frac{2\zeta}{1-\rho^2}\dot{\zeta}^2 + \frac{2\eta}{1-\rho^2}\dot{\zeta}\dot{\eta} = 0 \\
+        \ddot{\eta} + \frac{2\eta}{1-\rho^2}\dot{\eta}^2 + \frac{2\zeta}{1-\rho^2}\dot{\zeta}\dot{\eta} = 0
+    \end{cases}
+\end{equation}
+Looking at the second last two terms in each equation, we can see
+\begin{equation}
+    \frac{2\zeta}{1-\rho^2}\dot{\zeta}^2 + \frac{2\eta}{1-\rho^2}\dot{\zeta}\dot{\eta} = \frac{\left(\rho^2\right)^{.}}{1-\rho^2}\dot{\zeta}
+\end{equation}
+And the same for the other equation. So the geodesic equations can be written as:
+\begin{equation}
+    \begin{cases}
+        \ddot{\zeta} + \frac{\left(\rho^2\right)^{.}}{1-\rho^2}\dot{\zeta} = 0 \\
+        \ddot{\eta} + \frac{\left(\rho^2\right)^{.}}{1-\rho^2}\dot{\eta} = 0
+    \end{cases}
+\end{equation}
+These equations can be solved by multiplying each equation by $\dot{\zeta}, \dot{\eta}$ respectively, and noticing that
+\begin{equation}
+    \dot{\zeta}\ddot{\zeta} = \frac{1}{2}\left(\dot{\zeta}^2\right)^{.} \qquad \dot{\eta}\ddot{\eta} = \frac{1}{2}\left(\dot{\eta}^2\right)^{.}
+\end{equation}
+This gives:
+\begin{equation}
+    \begin{cases}
+        \frac{1}{2}\left(\dot{\zeta}^2\right)^{.} + \frac{\left(\rho^2\right)^{.}}{1-\rho^2}\dot{\zeta}^2 = 0 \\
+        \frac{1}{2}\left(\dot{\eta}^2\right)^{.} + \frac{\left(\rho^2\right)^{.}}{1-\rho^2}\dot{\eta}^2 = 0
+    \end{cases}
+\end{equation}
+Dividing both equations by $\dot{\zeta}^2, \dot{\eta}^2$ respectively, we get:
+\begin{equation}
+    \frac{\ddot{\zeta}}{\dot{\zeta}} = \frac{\ddot{\eta}}{\dot{\eta}} = -\frac{\left(\rho^2\right)^{.}}{1-\rho^2}
+\end{equation}
+This can be rearranged to:
+\begin{equation}
+    \left(\ln \dot{\eta}\right)^{.} = \left(\ln \dot{\zeta}\right)^{.} = -\frac{\left(\rho^2\right)^{.}}{1-\rho^2}
+\end{equation}
+Integrating both sides gives:
+\begin{equation}
+    \dot{\zeta} = D(1-\rho^2) \qquad \dot{\eta} = E(1-\rho^2)
+\end{equation}
+Which means that $\frac{d\eta}{d\zeta} = \frac{E}{D} = k$, a constant, meaning the geodesics are straight lines.
+\subsection{Breaking of Euclid's parallel postulate}
+Euclid's parallel postulate states that given a line $L$ and a point $P$ not on the line, there is exactly one line through $P$ that does not intersect $L$. This is not the case in this geometry. The geodesics are straight lines that intersect the unit circle, but in this geometry the unit circle is at infinity, a fact that can be verified using the coordinates transformation, meaning that these lines do not intersect.
+\newline
+In other words, given a line $L$ and a point $P$ not on the line, we can draw an infinite number of lines through $P$ that will not intersect $L$. This is because in the Euclidean since, they are chords of the unit circle that do not intersect $L$, while in the given geometry they are all geodesics.
+\subsection{The Ricci scalar}
+In 2D spaces, the Ricci scalar, defined as the trace of the Ricci tensor, can fully define the curvature of the space. In general, the curvature of a space can by fully defined only by the Riemann tensor, which is a 4 degree tensor with various symmetries, reducing the number of independent components it has to $d^2(d^2 - 1)/12$, where $d$ is the dimension. In $d=2$, however, the number of DOF in the Riemann tensor reduces to one, which means the curvature can be expressed using a single scalar. That scalar is the Ricci tensor.
+\newline
+We can start from the Riemann tensor, expecting only one factor to remain:
+\begin{equation}
+    R^{\rho}_{\sigma\mu\nu} = \partial_\mu\Gamma^\rho_{\sigma\nu} - \partial_\nu\Gamma^\rho_{\sigma\mu} + \Gamma^{\rho}_{\lambda\mu}\Gamma^\lambda_{\sigma\nu} - \Gamma^{\rho}_{\lambda\nu}\Gamma^\lambda_{\sigma\mu}
+\end{equation}
+We have two coordinates, $(\zeta, \eta)$. From symmetries, we get:
+\begin{equation}
+\begin{gathered}
+    R^{\zeta}_{\zeta\zeta\zeta} = R^{\eta}_{\eta\eta\eta} = 0
+    \qquad
+    R^{\zeta}_{\zeta\eta\eta} = R^{\eta}_{\eta\zeta\zeta} = 0
+    \\
+    R^{\zeta}_{\zeta\zeta\eta} = -R^{\zeta}_{\zeta\eta\zeta} = -R^{\eta}_{\eta\zeta\zeta} = R^{\eta}_{\eta\zeta\eta} = 0
+    \qquad
+    R^{\eta}_{\zeta\zeta\zeta} = -R^{\eta}_{\zeta\eta\zeta} = -R^{\zeta}_{\eta\zeta\zeta} = R^{\zeta}_{\eta\zeta\eta} = 0
+\end{gathered}
+\end{equation}
+While the other components reduce to:
+\begin{equation}
+\begin{gathered}
+    R^{\zeta}_{\eta\zeta\eta} = -R^{\zeta}_{\eta\eta\zeta} = -R^{\eta}_{\zeta\zeta\eta} = R^{\eta}_{\zeta\eta\zeta} = \\ = \partial_\zeta \Gamma^\zeta_{\eta\eta} - \partial_\eta \Gamma^\zeta_{\eta\zeta} + \Gamma^\zeta_{\lambda\zeta}\Gamma^\lambda_{\eta\eta} - \Gamma^\zeta_{\lambda\eta}\Gamma^\lambda_{\eta\zeta} = \\ = -\partial_\eta \Gamma^\zeta_{\eta\zeta} - \Gamma^\zeta_{\lambda\eta}\Gamma^\lambda_{\eta\zeta} = \\ = -\frac{1 + \rho^2}{(1-\rho^2)^2}
+\end{gathered}
+\end{equation}
+The Ricci tensor is then:
+\begin{equation}
+    R_{\mu\nu} = R_{\nu\mu} = R^\alpha_{\mu\alpha\nu}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    R_{\zeta\zeta} = R^\zeta_{\zeta\zeta\zeta} + R^\eta_{\zeta\eta\zeta} = -\frac{1 + \rho^2}{(1-\rho^2)^2} \\
+    R_{\eta\eta} = R^\zeta_{\eta\zeta\eta} + R^\eta_{\eta\eta\eta} = -\frac{1 + \rho^2}{(1-\rho^2)^2} \\
+    R_{\zeta\eta} = R_{\eta\zeta} = R^\zeta_{\zeta\zeta\eta} + R^\eta_{\zeta\eta\eta} = 0
+\end{gathered}
+\end{equation}
+And the Ricci scalar is
+\begin{equation}
+    R = R^\alpha_\alpha = \frac{-2(1+\rho^2)}{(1-\rho^2)^2}
+\end{equation}
+The Ricci scalar we got is negative. This is a sign of the hyperbolic nature of the space. Geodesics diverge from one another and avoid intersection, breaking Euclid's parallel postulate.
+\newline
+From the relation of the Ricci tensor to the intrinsic curvature, it can be seen that it is also negative. This means that the space has a saddle-like geometry, where the sum of the angles of a triangle is less than 180 degrees.
+\end{document}
