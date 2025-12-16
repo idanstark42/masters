@@ -18,21 +18,182 @@
 \begin{document}
 \maketitle
 
-\section{Naturality of the Lie bracket}
-\section{Verify the Jacobi identity}
-% TODO read/watch the definitions from the course to make sure you don't to prove associativity or something.
+\section*{Question 1}
+Let $\psi: M \rightarrow N$ be a diffeomorphism and $X, Y$ vector fields on $M$. Then, for each $f \in C^\infty(N)$:
+\begin{equation}
+    d\psi X (f) = X (f \circ \psi) \qquad d\psi Y (f) = Y (f \circ \psi)
+\end{equation}
+Thus, for every point $p \in N$ for which $q = \psi^{-1}(p) \in M$, we get
+\begin{equation}
+    [d\psi X, d\psi Y](f)(p) = X (Y (f \circ \psi))(q) - Y (X (f \circ \psi))(q) = [X,Y](f \circ \psi)(q) = d\psi[X,Y](f)(p)
+\end{equation}
+
+\section*{Question 2}
 For every three vector fields $X, Y,$ and $Z$:
 \begin{equation}
 \begin{gathered}
     \left[X,\left[Y,Z\right]\right] + \left[Y,\left[Z,X\right]\right] + \left[Z,\left[X,Y\right]\right] =
     \\
-    = X \circ \left[Y, Z\right] - \left[Y, Z\right] \circ X + 
-    Y \circ \left[Z, X\right] - \left[Z, X\right] \circ Y + 
-    Z \circ \left[X, Y\right] - \left[X, Y\right] \circ Z =
+    = X\left[Y, Z\right] - \left[Y, Z\right]X + 
+    Y\left[Z, X\right] - \left[Z, X\right]Y + 
+    Z\left[X, Y\right] - \left[X, Y\right]Z =
     \\
-    = X \circ Y \circ Z - X \circ Z \circ Y - Y \circ Z \circ X + Z \circ Y \circ X + \\
-    + Y \circ Z \circ X - Y \circ X \circ Z - Z \circ X \circ Y + X \circ Z \circ Y + \\ 
-    + Z \circ X \circ Y - Z \circ Y \circ X - X \circ Y \circ Z + Y \circ X \circ Z = 0
+    = XYZ - XZY - YZX + ZYX + \\
+    + YZX - YXZ - ZXY + XZY + \\ 
+    + ZXY - ZYX - XYZ + YXZ = 0
 \end{gathered}
 \end{equation}
+
+\section*{Question 3}
+\subsection*{part 1}
+Let X be a field vector over a smooth manifold $M$ such that $Xf = 0$ for any smooth scalar function $f \in C^\infty(M)$. We can write $X$ using its local expression in a point $x \in M$:
+\begin{equation}
+\label{eq:3_base}
+    X(x)(f) = \sum_i y_i(x)\frac{\partial f}{\partial x_i}(x)
+\end{equation}
+We can now choose functions $\{f_i\}$ such that in the neighborhood of $x$:
+\begin{equation}
+    \frac{\partial f_i}{\partial x_j}(x) = \begin{cases}
+        1 & i = j \\ 0 & i \ne j
+    \end{cases}
+\end{equation}
+These are smooth functions, so according to the assumption $X f_i = 0$. Therefore, for each $f_i$, the LHS of equation \ref{eq:3_base} is zero. The RHS gives:
+\begin{equation}
+    \sum_j y_j(x)\frac{\partial f_i}{\partial x_j}(x) = y_i(x)
+\end{equation}
+Putting the two together means that
+\begin{equation}
+    y_i(x) = 0 \qquad \forall \ x, i
+\end{equation}
+Which is equvilant to saying $X = 0$.
+\subsection*{part 2}
+Let $f$ be a smooth, scalar function over a manifold $M$ with $df \equiv 0$. For every point $x \in M$, we can define a coordinate chart $(U, \varphi)$, with coordinates $x_1, \dots, x_n$ such that $dx_1, \dots, dx_n$ is a basis for the cotangent space $T^*_xM$. If in that coordinate chart $f\varphi^{-1} = \phi(x_1,\dots,x_n)$, where $\phi: \R^n \rightarrow \R$, then
+\begin{equation}
+    df_x = \sum_i \frac{\partial\phi}{\partial x_i}(\varphi(x))(dx_i)_x 
+\end{equation}
+But since $df_x = 0$ for every $x \in M$, we get:
+\begin{equation}
+    \sum_i \frac{\partial\phi}{\partial x_i}(\varphi(x))(dx_i)_x  = 0
+\end{equation}
+This is a linear sum of $\{dx_i\}$, which are linearly independent. It vanishes if and only if:
+\begin{equation}
+    \frac{\partial\phi}{\partial x_i}(\varphi(x)) = 0 \qquad \forall \ i
+\end{equation}
+So all first order partial derivative vanish in $U$. Therefore $\phi$ is constant in $U$. Which means $f = \phi\circ\varphi$ is locally constant.
+
+\section*{Question 4}
+Let $M$ be a smooth manifold and let $\{(U_i, \varphi_i)\}$ be an atlas over $M$. For every point $p_i$ in $U_i$:
+\begin{equation}
+    \varphi_i(p_i) = (x_1(p_i), \dots, x_n(p_i))
+\end{equation}
+Where $\{x_i\}$ are the coordinates induced by the chart $(U_i, \varphi_i)$. This induces a set of coordinates for $T^*_{p_i}M$, such that every $v \in T^*_{p_i}M$:
+\begin{equation}
+    v = \sum_j \xi_j (dx_j)_{p_i}
+\end{equation}
+The "associated coordinates", or "natural coordinates", are the set of coordinates for the cotangent bundle $T^*M$ that is defined as:
+\begin{equation}
+    \tilde{\varphi}_i(p_i, v) = (x_1(p_i), \dots, x_n(p_i), \xi_1, \dots, \xi_n) \in \R^{2n}
+\end{equation}
+It is clear to see, that since the atlas $\{(U_i, \varphi_i)\}$ covers all of $M$, then the set of charts $\{(U_i\times T^*_{U_i}M, \tilde{\varphi}_i)\}$ covers all of $T^*M$, and also that since for each $i, j \in I$, $U_i \cap U_j$ is an open set, then $U_i\times T^*_{U_i}M \cap U_j\times T^*_{U_j}M$ is also open in $\R^{2n}$, since the product of open sets is open.
+Finally, we need to show that for each $i, j \in I$, the function $\tilde{\varphi}_i\tilde{\varphi}^{-1}_j$ is smooth in all of it's components. It's easy to see that it is smooth in the first $n$ components since those are the components taken from $\varphi_i\varphi^{-1}_j$. To show that is smooth in the last $n$ components, let $p \in U_i \cap U_j$ and let $v \in T^*_pM$. It can be represented in both coordinates systems $dx_j$ and $dy_j$:
+\begin{equation}
+    v = \sum_j \xi_j (dx_j)_p \qquad v = \sum_j \xi'_j (dy_j)_p
+\end{equation}
+Comparing the two, we get an equality of sums. Applying each sum to $\frac{\partial}{\partial x_k} \in T_pM$ and using the orthogonality of the basis, makes the entire sum on the LHS disappear, except for $\xi_k$:
+\begin{equation}
+    \xi_k = \sum_j \xi'_j (dy_j)_p\left(\frac{\partial}{\partial x_k}\right)_p = 
+    \sum_j \xi'_j (dy_j)_p\left(\frac{\partial}{\partial y_j}\right)_p\left(\frac{\partial y_j}{\partial x_k}\right)_p = 
+    \sum_j \xi'_j \left(\frac{\partial y_j}{\partial x_k}\right)_p
+\end{equation}
+This is the transition map for the second $n$ components of $\tilde{\varphi}_i\tilde{\varphi}^{-1}_j$, and is clearly smooth. Therefore all transition maps between charts are smooth, and the set $\{(U_i\times T^*_{U_i}M, \tilde{\varphi}_i)\}$ is an atlas over $T^*M$.
+
+\section*{Question 6}
+Let $f: \mathbb{C}\rightarrow\mathbb{C}$ be a smooth map, and let $\Re(f), \Im(f): \mathbb{C}\rightarrow \R$ be the real and imaginary parts of it. We can write it then as:
+\begin{equation}
+    f = \Re(f) + i\Im(f)
+\end{equation}
+The straightforward coordinate chart $(\mathbb{C}, \varphi: \mathbb{C} \rightarrow \R)$ such that $\varphi(z) = (\Re(z), \Im(z)) \equiv (x, y)$. This means:
+\begin{equation}
+    \varphi f \varphi^{-1}: \R^2 \rightarrow \R^2 \qquad
+    \varphi f \varphi^{-1} = (u(x,y), v(x,y)) 
+\end{equation}
+Where we define $\Re(f(x+iy)) = u(x,y), \Im(f(x+iy)) = v(x,y)$ for convenience.
+Now, $f$ is a diffeomorphism if and only if its derivative $df$ is invertible. In the basis induced by $\varphi$ over $T^*M$, $df$ can be written as:
+\begin{equation}
+    df = 
+    \begin{pmatrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+    \end{pmatrix}
+\end{equation}
+Which is invertible if and only if
+\begin{equation}
+    \det\begin{pmatrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+    \end{pmatrix} \ne 0
+\end{equation}
+On the other hand, since $f$ is smooth, we can write $du$ and $dv$ in the basis of $dx$ and $dy$:
+\begin{equation}
+    du = \frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy \qquad dv = \frac{\partial v}{\partial x}dx + \frac{\partial v}{\partial y}dy
+\end{equation}
+which makes their wedge product:
+\begin{equation}
+    du \wedge dv = \left(
+        \frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy
+    \right) \wedge
+    \left(
+        \frac{\partial v}{\partial x}dx + \frac{\partial v}{\partial y}dy
+    \right) = \det\begin{pmatrix}
+        \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+    \end{pmatrix} dx \wedge dy
+\end{equation}
+Thus, $du \wedge dv \ne 0$ if and only if the determinant of the Jacobian is non zero, which is true if and only if $df$ is invertible, or in other words that $f$ is a local diffeomorphism.
+\newline
+It is easy to see that this is identical to saying $df \wedge d\bar{f} \ne 0$, since:
+\begin{equation}
+    df \wedge d\bar{f} = \left(du + idv\right)\wedge\left(du - idv\right) = 2i du \wedge dv
+\end{equation}
+
+\section*{Question 7}
+Let $M$ be a manifold, $p \in M$, and let $X_p: C^\infty(M) \rightarrow \R$ be a linear map satisfying the Leibniz rule:
+\begin{equation}
+    X_p(fg) = f(p)X_p(g)+g(p)X_p(f) \qquad \forall \ f,g \in C^\infty(M)
+\end{equation}
+Now let $f = gh + c$ where $c \in \R$ is a constant and $f,g \in C^\infty(M)$ vanish at $p$. Then:
+\begin{equation}
+    X_p(f) = X_p(c) + X_p(gh) = X_p(c) + g(p)X_p(h)+h(p)X_p(g)
+\end{equation}
+Because $X_p$ is linear and follows the Leibniz rule, it's easy to see that $X_p(c) = 0$ for any constant $c \in \R$, and because $g(p) = h(p) = 0$, we get:
+\begin{equation}
+    X_p(f) = 0
+\end{equation}
+In other words, when $f$ vanished to the first order in $p$, we get $X_p(f) = 0$.
+\newline
+So, let $(U, \varphi)$ be a coordinates chart such that $p \in U$ and let $(x_1, \dots, x_n)$ be the coordinates induced by it. For a general $f \in C^\infty(M)$, we can write its Taylor expansion using these coordinates:
+\begin{equation}
+    f = f(p) + \sum_i \frac{\partial f}{\partial x_i}(p)x_i + \cdots
+\end{equation}
+When acting on $f$ with $X_p$, we can split it into the zeroth and first order, and all the higher order, but $X_p$ of all the higher orders is zero, since we just saw that $X_p$ vanished if the first order vanishes, giving:
+\begin{equation}
+    X_p(f) = \sum_i \frac{\partial f}{\partial x_i}(p)X_p(x_i)
+\end{equation}
+Which is exactly a form of a tangent vector acting on $f$:
+\begin{equation}
+    v = \sum_i X_p(x_i) \frac{\partial}{\partial x_i}
+\end{equation}
+
+\section*{Question 9}
+Let $M$ be a compact manifold and let $V$ be a smooth vector field on $M$. Let $(\phi_t)_{t\in\R}$ the transformations associated with $V$.
+Since $\phi_t$ is a local diffeomorphism and from the ODE theorem, for every $x$ there is a neighborhood $x \in U$ and a positive number $\varepsilon>0$ such that $\phi_\varepsilon(x)$ is well defined. Using compactness, we can choose a uniform $\varepsilon$, for which $\phi_t(x)$ is defined for all $x \in M$.
+\newline
+Once there is a uniform $\varepsilon > 0$, this process can be extended by repeatedly composing $\phi_\varepsilon$. Therefore, $\phi_t(x)$ is well-defined for all $x \in M$.
+\newline
+Therefore, for every $t \in \R$ and $x \in M$, from the definition of the transformations, $\phi_t(x)$ is a composite function built from the repeated composition of $\phi_{\varepsilon}$. Since each of them is a local diffeomorphism, $\phi_{-t}$ exists globally as well and $\phi_t$ is a diffeomorphism.
+
+\section*{Question 10}
+Let $C$ be a connected, one-dimensional manifold. Let $\{(U_i, \varphi_i)\}$ be an atlas on $C$. Using $\varphi_i$, every open segment $U_i$ is homeomorphic to an open segment in $\R$.
+Since $C$ is connected, we can choose a chart $(U_0, \varphi_0)$ such that for evrey point $p \in C$ exists a finite chain of overlapping charts that will lead from $U_0$ to the chart containing $p$. This means we can construct a global smooth map by transporting the local coordinates along the finite number of smooth transition maps of overlapping charts. This gives us a smooth map that spans the entire manifold $\varphi: C \rightarrow \R$. Since transition maps and charts are both bijectives and smooth with a smooth inverse, this is a local diffeomorphism.
+\newline
+Let us assume now that $C$ is not compact. From the local diffeomorphism it stems that $\varphi(C)$ is an open interval. Since $C$ is not compact, one can choose the atlas $\{(U_i, \varphi_i)\}$ to have strictly increasing charts. This gives a global order, which makes $\varphi$ injective, and therefore a diffeomorphism. Therefore $C \cong (0,1)$.
+\newline
+Let us assume now that $C$ is compact. This means that $\varphi(C)$ is also compact. But the image of a the coordinate chart $\varphi_0$, which is the last map in the composition, is an open set. There are no open sets on $\R$ that are compact, and so $\varphi$ cannot be injective. In other words, there exist points $p \ne q \in C$ such that $\varphi(p) = \varphi(q)$. Since $C$ is connected, there is a continous path $l$ from $p$ to $q$. The image of that path $\varphi(l) \in \R$ is a covering map of $S^1$. Therefore $C \cong S^1$.
 \end{document}

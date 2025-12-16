@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1765142610.13625 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/dg/ex2/ex2.tex" "ex2.pdf" "ex2" 1765142611.59835 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/dg/ex2/ex2.tex" 1765142609 1275 765b26314c003dc264011d635d5ef895 ""
+["pdflatex"] 1765843422.98901 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/dg/ex2/ex2.tex" "ex2.pdf" "ex2" 1765843425.05836 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/dg/ex2/ex2.tex" 1765843421 12474 99a9bf1d757ad8f4e704c09bc42fa5fc ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/pxb.tfm" 1761865672 1908 71cbb8d876dcffec4b8b192a0ed11ec0 ""
@@ -20,7 +20,10 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxpplr.tfm" 1761865672 2800 9aa3469800906f6a88df141cc3ffb02c ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxpplri.tfm" 1761865672 2728 4b4b6637cf36958d09a5c0783164477e ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxr.tfm" 1761865672 1044 f70cfa4bf09ff6eb95520515850796cf ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb" 1761865672 18964 e01e97f07816aeb524ad5d4384a80c12 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb" 1761865672 20626 c292fe290cca6e2f2dfcae6644c2f432 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb" 1761865672 24771 eb123b1d6db1a8a40172a27eb12cf6d5 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyc.pfb" 1761865672 28027 7846449d09ca7f6d84fc47b092eb4f86 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb" 1761865672 14672 3ebf07b0dca23cd3f277dcca5042673e ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb" 1761865672 7191 79607a98b23ce10ce99a66b7d89948fa ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb" 1761864315 52406 dad2f72863a03727d5f536c64a69c452 ""
@@ -68,8 +71,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex2.aux" 1765142611 263 f7758aa6d0c163fc74e51bb63fcb82e8 "pdflatex"
-  "ex2.tex" 1765142609 1275 765b26314c003dc264011d635d5ef895 ""
+  "ex2.aux" 1765843424 77 12b9a5d916af4912d327a044defaa7ba "pdflatex"
+  "ex2.tex" 1765843421 12474 99a9bf1d757ad8f4e704c09bc42fa5fc ""
   (generated)
   "ex2.aux"
   "ex2.log"
