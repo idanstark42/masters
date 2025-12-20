@@ -1,0 +1,128 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{pxfonts}
+\usepackage{mathtools}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\title{Quantum Mechanics II Excercise 2}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Another approximation to the 2D Ising Model}
+\subsection{The surface free energy}
+Surface free energy is the excess energy associated with the surface, in this case the boundary between the "up" section and the "down" section. By this definition, the durface enegy can be calculated by taking the energy without the surface, i.e. when all spins along the boundary of the lattice are in the same direction, and the surface energy with the boundary, i.e. when the bottom half of spins along the boundary of the lattice are "down" and top half is "up". This difference is, by definition, the surface free energy.
+\newline
+For $T = 0$, the free energy is equal to the hamiltonian, since $F = H - TS = H$, and the top half of spins are "up" and the bottom half of spins are "down". The energy is then:
+\begin{equation}
+    \Delta F = \Delta H = \left(
+        -J (n-1)(m-1) - 2n
+    \right) - \left(
+        -J (n-1)(m-1) - Bnm
+    \right) = (2J + Bm)n 
+\end{equation}
+\subsection{Generic boundary}
+Let us look at the hamiltonian for a generic boundary $h(n)$. In the difference we calcualted, the only term that will change with the function is $2Jn$. This term is proportional to the length of the boundary. So, in an expansion around this solution, let us treat the boundary energy as this term. In the thermodynamic limit, the function can be thought of as $h: \R \rightarrow \R$, and thus:
+\begin{equation}
+    l = \int dl = \int_0^{x_f} \sqrt{1 + \left(\frac{dh}{dx}\right)^2}dx
+\end{equation}
+And so, the boundary energy is
+\begin{equation}
+    \Delta F = 2Jl = 2J \int_0^{x_f} \sqrt{1 + \left(\frac{dh}{dx}\right)^2}dx
+\end{equation}
+
+\section{'Too many loops' approximation to the 3D Ising Model}
+\subsection{Counting walks}
+The number of closed walks from $(x,y,z)$ to $(x',y',z')$ can be calcualted usnig the same iterative method we used in the tutorial. First, let us look at the last step of the walk. To get to $(x',y',z')$, the last step must be from one the points:
+\begin{itemize}
+    \item $(x'-1,y,z)$
+    \item $(x'+1,y,z)$
+    \item $(x,y'-1,z)$
+    \item $(x,y'+1,z)$
+    \item $(x,y,z'-1)$
+    \item $(x,y,z'+1)$
+\end{itemize}
+Which means:
+\begin{equation}
+\begin{gathered}
+    \bra{x, y, z}W(l)\ket{x', y', z'} = \sum_{(x'',y'',z'')}
+    \bra{x, y, z}W(l-1)\ket{x'', y'', z''}
+    \bra{x'', y'', z''}W(1)\ket{x', y', z'} = \\ =
+    \bra{x, y, z}W(l-1)W(1)\ket{x', y', z'} = \\
+    = \bra{x, y, z}A^l\ket{x', y', z'}
+\end{gathered}
+\end{equation}
+Where again $A$ is the adjacency matrix. So, to get only closed walks of length $l$, we need:
+\begin{equation}
+    \text{Number of walks of length l} = \sum_{x, y, z}\bra{x, y, z}W(1)^l\ket{x, y, z} = Tr(A^l)
+\end{equation}
+\subsection{Diagonalizing the adjacency matrix}
+The adjacency matrix $A$ is:
+\begin{equation}
+    \bra{x, y, z}A\ket{x', y', z'} = \delta_{x',x}\delta_{y',y}(\delta_{z',z+1} + \delta_{z',z-1}) + \delta_{y',y}\delta_{z',z}(\delta_{x',x+1} + \delta_{x',x-1}) + \delta_{z',z}\delta_{x',x}(\delta_{y',y+1} + \delta_{y',y-1})
+\end{equation}
+Since the matrix is translationally invariant, let us move to Fourier space:
+\begin{equation}
+    \braket{x,y,z}{q_x,q_y,q_z} = \frac{1}{\sqrt{N}}e^{i(xq_x + yq_y + zq_z)}
+\end{equation}
+So, we can write:
+\begin{equation}
+\begin{gathered}
+    \bra{x,y,z}A\ket{q_x,q_y,q_z} = 
+    \sum_{(x',y',z')}\bra{x,y,z}A\ket{x',y',z'}\bra{x',y',z'}\ket{q_x,q_y,q_z} = \\ =
+    \sum_{(x',y',z')} [\delta_{x',x}\delta_{y',y}(\delta_{z',z+1} + \delta_{z',z-1}) + \delta_{y',y}\delta_{z',z}(\delta_{x',x+1} + \delta_{x',x-1}) + \\ + \delta_{z',z}\delta_{x',x}(\delta_{y',y+1} + \delta_{y',y-1})]\frac{1}{\sqrt{N}}e^{i(xq_x + yq_y + zq_z)} = \\ =
+    \frac{e^{i(xq_x + yq_y + zq_z)}}{\sqrt{N}}\left[
+        e^{iq_x} + e^{-iqx} + e^{iq_y} + e^{-iqy} + e^{iq_z} + e^{-iqz}
+    \right] = \\ =
+    \braket{x,y,z}{q_x,q_y,q_z}2\left[cos(q_x) + cos(q_y) + cos(q_z)\right]
+\end{gathered}
+\end{equation}
+And so, $A$ is diagonal in Fourier space with the eigenvalues:
+\begin{equation}
+    A[q_x,q_y,q_z] = 2\left[cos(q_x) + cos(q_y) + cos(q_z)\right]
+\end{equation}
+And finally:
+\begin{equation}
+    Tr(A^l) = \sum_{q_x, q_y, q_z} 2^l \left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l \rightarrow \int \frac{dq^3}{(2\pi)^3}\left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l
+\end{equation}
+\subsection{Partition function}
+
+\section{Order from disorder}
+Consider a toy model of a square lattice where each link inlcudes an additional boson:
+\begin{equation}
+    H = \sum_{\langle i, j \rangle} (a - b\sigma_i\sigma_j) (1 + n_{ij})
+\end{equation}
+Where $n_{ij} = 0,1,2,3,\dots$
+\subsection{Partition function}
+To get the partition function, we must sum over all spin valus for each spin $\sigma_i$, and for each link $\langle i,j \rangle$, we must sum over all possible $n_{ij}$. The partition function is:
+\begin{equation}
+    Z = \sum_{\{\sigma_i\}}\sum_{\{n_{ij}\}}\prod_{\langle i,j \rangle}e^{-\beta\left(a - b\sigma_i\sigma_j\right)\left(1 + n_{ij}\right)} = \sum_{\{\sigma_i\}}\prod_{\langle i,j \rangle}e^{-\beta\left(a - b\sigma_i\sigma_j\right)}\sum_{\{n_{ij}\}}e^{-\beta\left(a - b\sigma_i\sigma_j\right)n_{ij}}
+\end{equation}
+The last part is a geometric series, which converges only when
+\begin{equation}
+    a-b\sigma_i\sigma_j > 0
+\end{equation}
+For the system to be stable, the partition function must be finite, which will occour only when the system converges for every spin configuration. For a spcific connection, $\sigma_i\sigma_j=\pm1$, this gives
+\begin{equation}
+    a < |b|
+\end{equation}
+The sum of the geometric series for each link will be:
+\begin{equation}
+    \sum_{n_{ij}=0,1,2,\dots}e^{-\beta\left(a - b\sigma_i\sigma_j\right)n_{ij}} = 
+    \sum_{n_{ij}=0,1,2,\dots}\left(e^{-\beta\left(a - b\sigma_i\sigma_j\right)}\right)^{n_{ij}} = 
+    \frac{1}{1-e^{-\beta\left(a - b\sigma_i\sigma_j\right)}}
+\end{equation}
+And so the partition function can be written as:
+\begin{equation}
+    Z = \sum_{\{\sigma_i\}}\prod_{\langle i,j \rangle}\frac{e^{-\beta\left(a - b\sigma_i\sigma_j\right)}}{1-e^{-\beta\left(a - b\sigma_i\sigma_j\right)}} = \sum_{\{\sigma_i\}}\prod_{\langle i,j \rangle}\frac{1}{e^{\beta\left(a - b\sigma_i\sigma_j\right)}-1}
+\end{equation}
+\end{document}
