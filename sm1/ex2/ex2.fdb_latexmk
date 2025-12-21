@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1766225836.82389 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex2/ex2.tex" "ex2.pdf" "ex2" 1766225841.00304 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex2/ex2.tex" 1766225833 6677 62ec518a6e9e161d0db684226b7a9144 ""
+["pdflatex"] 1766279318.69115 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex2/ex2.tex" "ex2.pdf" "ex2" 1766279320.38705 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex2/ex2.tex" 1766279317 18507 2410e774352e4ce5b52062e855a48589 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/pcxr.tfm" 1761865672 1500 0e656ea8eb79997feb10bea27ed72329 ""
@@ -24,7 +24,6 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/pxfonts/rpxr.tfm" 1761865672 1044 f70cfa4bf09ff6eb95520515850796cf ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb" 1761865672 18964 e01e97f07816aeb524ad5d4384a80c12 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb" 1761865672 20626 c292fe290cca6e2f2dfcae6644c2f432 ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb" 1761865672 24771 eb123b1d6db1a8a40172a27eb12cf6d5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpcxr.pfb" 1761865672 16316 4d08244d226e4fedda79ab2df045fbf7 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb" 1761865672 14672 3ebf07b0dca23cd3f277dcca5042673e ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb" 1761865672 7191 79607a98b23ce10ce99a66b7d89948fa ""
@@ -75,8 +74,9 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex2.aux" 1766225840 1091 a0b84759d320b85422df20737877a545 "pdflatex"
-  "ex2.tex" 1766225833 6677 62ec518a6e9e161d0db684226b7a9144 ""
+  "ex2.aux" 1766279320 2183 17c73bf94fc3598b2b815e7a6578bdf3 "pdflatex"
+  "ex2.tex" 1766279317 18507 2410e774352e4ce5b52062e855a48589 ""
+  "k-T plane.png" 1766268159 85474 f30588dcb5378c7a50701f1d8f39957e ""
   (generated)
   "ex2.aux"
   "ex2.log"

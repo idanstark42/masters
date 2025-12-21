@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  20 DEC 2025 12:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  21 DEC 2025 03:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -303,36 +303,61 @@ LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <14.4> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 21.
 LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 (Font)              Font shape `OT1/pxr/bx/n' tried instead on input line 22.
-LaTeX Font Info:    Trying to load font information for TS1+pxr on input line 47.
- (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/ts1pxr.fd
-File: ts1pxr.fd 2000/12/14 v1.0
-)
+
 
 [1
 
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 
 [2]
+LaTeX Font Info:    Trying to load font information for TS1+pxr on input line 161.
+ (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/ts1pxr.fd
+File: ts1pxr.fd 2000/12/14 v1.0
+)
 
-[3] (./ex2.aux)
+[3]
+
+[4]
+
+[5]
+
+[6]
+<k-T plane.png, id=29, 803.0pt x 803.0pt>
+File: k-T plane.png Graphic file (type png)
+<use k-T plane.png>
+Package pdftex.def Info: k-T plane.png  used on input line 325.
+(pdftex.def)             Requested size: 281.85587pt x 281.8629pt.
+
+Overfull \hbox (174.40234pt too wide) in paragraph at lines 326--326
+[]\OT1/pxr/m/n/10 Figure 1: K as a func-tion of tem-per-a-ture for $(\OML/pxmi/m/it/10 a; b\OT1/pxr/m/n/10 ) = (11\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 10)(\OML/pxmi/m/it/10 black\OT1/pxr/m/n/10 )\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 (6\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 5)(\OML/pxmi/m/it/10 green\OT1/pxr/m/n/10 )\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 (2\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 1)(\OML/pxmi/m/it/10 red\OT1/pxr/m/n/10 )\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 (11\OML/pxmi/m/it/10 ; \OMS/pxsy/m/n/10 ^^@\OT1/pxr/m/n/10 10)(\OML/pxmi/m/it/10 black dashed\OT1/pxr/m/n/10 )\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 (6\OML/pxmi/m/it/10 ; \OMS/pxsy/m/n/10 ^^@\OT1/pxr/m/n/10 5)(\OML/pxmi/m/it/10 green dashed\OT1/pxr/m/n/10 )\OML/pxmi/m/it/10 ; \OT1/pxr/m/n/10 (2\OML/pxmi/m/it/10 ; \OMS/pxsy/m/n/10 ^^@\OT1/pxr/m/n/10 1)(\OML/pxmi/m/it/10 red dashed\OT1/pxr/m/n/10 )$.
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[7]
+
+[8 <./k-T plane.png>] (./ex2.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 4538 strings out of 467746
- 64493 string characters out of 5431099
- 471515 words of memory out of 5000000
- 33170 multiletter control sequences out of 15000+600000
- 656387 words of font info for 124 fonts, out of 8000000 for 9000
+ 4558 strings out of 467746
+ 64817 string characters out of 5431099
+ 474563 words of memory out of 5000000
+ 33184 multiletter control sequences out of 15000+600000
+ 659126 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,10n,77p,619b,234s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpcxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ex2.pdf (3 pages, 79029 bytes).
+ 73i,10n,77p,724b,243s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpcxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on ex2.pdf (8 pages, 144336 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -20,27 +20,141 @@
 
 \section{Another approximation to the 2D Ising Model}
 \subsection{The surface free energy}
-Surface free energy is the excess energy associated with the surface, in this case the boundary between the "up" section and the "down" section. By this definition, the durface enegy can be calculated by taking the energy without the surface, i.e. when all spins along the boundary of the lattice are in the same direction, and the surface energy with the boundary, i.e. when the bottom half of spins along the boundary of the lattice are "down" and top half is "up". This difference is, by definition, the surface free energy.
+Surface free energy is the excess energy associated with the surface, in this case the boundary between the "up" section and the "down" section. By this definition, the durface enegy can be calculated by taking the energy without the surface, i.e. when all spins along the boundary of the lattice are in the same direction, and the energy with the surface, i.e. when the bottom half of spins along the boundary of the lattice are "down" and top half is "up". This difference is, by definition, the surface free energy.
 \newline
 For $T = 0$, the free energy is equal to the hamiltonian, since $F = H - TS = H$, and the top half of spins are "up" and the bottom half of spins are "down". The energy is then:
 \begin{equation}
     \Delta F = \Delta H = \left(
-        -J (n-1)(m-1) - 2n
+        -J (N-1)(M-1) - 2N
     \right) - \left(
-        -J (n-1)(m-1) - Bnm
-    \right) = (2J + Bm)n 
+        -J (N-1)(M-1) - BNM
+    \right) = (2J + BM)N 
 \end{equation}
 \subsection{Generic boundary}
-Let us look at the hamiltonian for a generic boundary $h(n)$. In the difference we calcualted, the only term that will change with the function is $2Jn$. This term is proportional to the length of the boundary. So, in an expansion around this solution, let us treat the boundary energy as this term. In the thermodynamic limit, the function can be thought of as $h: \R \rightarrow \R$, and thus:
+Let us look at the hamiltonian for a generic boundary $h(n)$. In the difference we calcualted, the only term that will change with the function is $2JN$. This term is proportional to the length of the boundary. So, in an expansion around this solution, let us treat the boundary energy as this term. The minimum length of the boundary is $n$. Then, for each two neighboring sites, the difference between them is added to the length:
 \begin{equation}
-    l = \int dl = \int_0^{x_f} \sqrt{1 + \left(\frac{dh}{dx}\right)^2}dx
+    \Delta F = 2Jl = 2J \left(
+        N + \sum_{i=1}^{N}|h(i) - h(i-1)|
+    \right)
 \end{equation}
-And so, the boundary energy is
+Or, in the thermodynamic limit:
 \begin{equation}
-    \Delta F = 2Jl = 2J \int_0^{x_f} \sqrt{1 + \left(\frac{dh}{dx}\right)^2}dx
+    \Delta F = 2Jl = 2J\int_0^N \sqrt{1 + \left(\frac{dh}{dx}\right)^2}dx
+\end{equation}
+\subsection{Partition function}
+The partition function for the boundary is
+\begin{equation}
+    Z = \sum_{\{h(i)\}} \exp[-2\beta J \left(
+        N + \sum_{i=1}^{N}|h(i) - h(i-1)|
+    \right)] = e^{-2\beta JN} \sum_{\{h(i)\}} \exp[-2\beta J \left(
+        \sum_{i=1}^{N}|h(i) - h(i-1)|
+    \right)]
+\end{equation}
+The value of the exponent in the product can have infinite values:
+\begin{equation}
+    -2\beta J |h(i) - h(i-1)| \in \{
+        0, -2\beta J, -2\beta J, -2 \beta J, \dots
+    \}
+\end{equation}
+Which means we can write the height of each site as a a vector with an infinite but countable dimension where only one of the components is one and the rest are zero, marking the value of $h(n)$ at the site:
+\begin{equation}
+    \ket{h_i} = \begin{pmatrix}
+        0 \\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots
+    \end{pmatrix}
+\end{equation}
+The transfer matrix is then:
+\begin{equation}
+    M = \begin{pmatrix}
+        1 & e^{-2 \beta J} & e^{-2 \beta J} & \cdots \\ 
+        e^{-2 \beta J} & 1 & e^{-2 \beta J} & \cdots \\
+        e^{-2 \beta J} & e^{-2 \beta J} & e^{-2 \beta J} & \cdots \\
+        \vdots & \vdots & \vdots & \ddots
+    \end{pmatrix}
+\end{equation}
+And then
+\begin{equation}
+    Z = e^{-2\beta JN} \sum_{\{h(i)\}} \prod_{i=1}^{N} \bra{h_{i-1}}M\ket{h_i} = e^{-2\beta JN} \sum_{\{h(i)\}} \bra{0}M^N\ket{0} = e^{-2\beta JN} Tr(M^N)
+\end{equation}
+\subsection{Fourier space}
+Since the transfer matrix\footnote{I assume you meant the transfer matrix and not the adjacency operator, because we already proved in class that the adjacency operator is diagonal in phase space and it doesn't really realte to the question. If you did mean the adjacency operator, pretend I copied the relevant part of the notes.} is translation invariant, we can expect that it will be diagonal in Fourier space. In general:
+\begin{equation}
+    \bra{h_1}M\ket{h_2} = e^{-2\beta J|h_1 - h_2|}
+\end{equation}
+We can write:
+\begin{equation}
+    \bra{h}\ket{q} = e^{iqh}
+\end{equation}
+And so:
+\begin{equation}
+\begin{gathered}
+    \bra{h}M\ket{q}
+    = \sum_{h'} \bra{h}M\ket{h'}\bra{h'}\ket{q} = \\
+    = \sum_{h'} e^{-2\beta J|h - h'|}\frac{e^{iqh'}}{\sqrt{N}}
+    = \frac{1}{\sqrt{N}}\sum_{h'} e^{-2\beta J|h - h'|}e^{iqh'} = \\
+    = \frac{e^{iqh}}{\sqrt{N}}\sum_{h'} e^{-2\beta J|h - h'|} e^{iq(h'-h)}
+\end{gathered}
+\end{equation}
+The value of $m = h - h'$ goes from minus infinity to plus infinity, and therefore the sum becomes:
+\begin{equation}
+\begin{gathered}
+    \sum_{h'} e^{-2\beta J|m|} e^{iqm} = \sum_{m=-\infty}^\infty e^{-2\beta J|m|} e^{iqm} = 1 + \sum_{m = 1}^{\infty}e^{(-2\beta J + iq)m} + \sum_{m = 1}^{\infty}e^{(-2\beta J - iq)m} = \\
+    = 1 + \frac{e^{-2\beta J + iq}}{1 - e^{-2\beta J + iq}} + \frac{e^{-2\beta J - iq}}{1 - e^{-2\beta J - iq}} = 1 + \frac{1}{e^{2\beta J - iq} - 1} + \frac{1}{e^{2\beta J + iq} - 1}
+\end{gathered}
+\end{equation}
+Which means we can write:
+\begin{equation}
+    \bra{h}M\ket{q} = \frac{e^{iqh}}{\sqrt{N}}\left(1 + \frac{1}{e^{2\beta J - iq} - 1} + \frac{1}{e^{2\beta J + iq} - 1}\right) = \lambda_{q}\bra{h}\ket{q}
+\end{equation}
+Where
+\begin{equation}
+    \lambda_q = 1 + \frac{1}{e^{2\beta J - iq} - 1} + \frac{1}{e^{2\beta J + iq} - 1} = 1 + 2\frac{e^{2\beta J}\cos(q) - 1}{e^{4\beta J} - 2e^{2\beta J}\cos(q) + 1}
+\end{equation}
+is the eigenvalue, which is maximal when $\cos(q) = 1$, i.e. when $q = 0$:
+\begin{equation}
+    \lambda_{max} = 1 + 2\frac{e^{2\beta J}-1}{e^{4\beta J} - 2e^{2\beta J}+1} = 1 + 2\frac{1}{e^{2\beta J}-1} = \frac{e^{2\beta J} + 1}{e^{2\beta J} - 1} = \coth(\beta J)
+\end{equation}
+And so the free energy is:
+\begin{equation}
+\begin{gathered}
+    F = -\beta^{-1}\ln(Z) =
+    -\beta^{-1}\ln(e^{-2\beta JN} Tr(M^N)) \approx -\beta^{-1}N
+        \ln(e^{-2\beta J}\coth(\beta J)) = \\ =
+    N\left[2J - \beta^{-1}\ln(\coth(\beta J))\right]
+\end{gathered}
+\end{equation}
+\subsection{Phase Transition}
+In genertal, the free energy has a competition between energy and entorpy. In our case, the energy will be lowest when the boundary is along the shortest possible path, which is a stragith horizontal line. The entropy, on the other hand, grows as the path gets longer, since it allows for more shapes. At cold temperatures, the cost of elongating the path by moving the boundary one site up or down, is neglegible and the energy wins the competition, keeping the boundary along the shortest possible path. At high temperatures, the fluctuations in the path are so great that it becomes not energetically effective to the shorten it.
+\newline
+The temperature at which the free energy per site is zero is the temperature where the energy cost of moving a site is exactly zero, and therefore it is the critical temperature:
+\begin{equation}
+    F/N = 2J - \beta^{-1}\ln(\coth(\beta J)) = 0
+\end{equation}
+\begin{equation}
+    2\beta J = \ln(\coth(\beta J))
+\end{equation}
+\begin{equation}
+    e^{2\beta J} = \coth(\beta J) = \frac{e^{2\beta J} + 1}{e^{2\beta J} - 1}
+\end{equation}
+\begin{equation}
+    \beta J = \frac{1}{2}\ln(1 + \sqrt{2})
+\end{equation}
+\begin{equation}
+    T_c = \frac{2J}{k_B \ln(1 + \sqrt{2})}
+\end{equation}
+As we saw in class, the exact solution to the 2D Ising model satisfies:
+\begin{equation}
+    t_c = \tanh(\beta_c J) = \sqrt{2} - 1
+\end{equation}
+It's easy to see that our solution gives the same result. Using
+\begin{equation}
+    e^{2 \beta J} = \sqrt{2} + 1
+\end{equation}
+we get
+\begin{equation}
+    \tanh(\beta J) = \frac{e^{\beta J} - e^{-\beta J}}{e^{\beta J} + e^{-\beta J}} = \frac{(\sqrt{2} + 1) - 1}{(\sqrt{2} + 1) + 1} = \frac{\sqrt{2}}{2 + \sqrt{2}} = \frac{1}{\sqrt{2} + 1} = \sqrt{2} - 1
 \end{equation}
 
-\section{'Too many loops' approximation to the 3D Ising Model}
+\section{"Too many loops" approximation to the 3D Ising Model}
 \subsection{Counting walks}
 The number of closed walks from $(x,y,z)$ to $(x',y',z')$ can be calcualted usnig the same iterative method we used in the tutorial. First, let us look at the last step of the walk. To get to $(x',y',z')$, the last step must be from one the points:
 \begin{itemize}
@@ -92,9 +206,53 @@ And so, $A$ is diagonal in Fourier space with the eigenvalues:
 \end{equation}
 And finally:
 \begin{equation}
-    Tr(A^l) = \sum_{q_x, q_y, q_z} 2^l \left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l \rightarrow \int \frac{dq^3}{(2\pi)^3}\left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l
+    Tr(A^l) = \sum_{q_x, q_y, q_z} 2^l \left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l \rightarrow 2^l \int \frac{dq^3}{(2\pi)^3}\left[cos(q_x) + cos(q_y) + cos(q_z)\right]^l
 \end{equation}
 \subsection{Partition function}
+Similar to the 2D modle, we start by rewriting the partition function:
+\begin{equation}
+    Z = \sum_{\{\sigma_i\}}\prod_{\langle i, j \rangle}
+        e^{K\sigma_i\sigma_j} = 
+        \cosh(K)^{3N}\sum_{\{\sigma_i\}}\prod_{\langle i, j \rangle}
+        (1 + \sigma_i\sigma_j t)
+\end{equation}
+Where $K = \beta J$ and $t = \tanh(K)$. Here, we used $3N$ in the exponent of $\coth(K)$ because we count for three connection from each lattice point instead of the two that exist in 2D.
+\newline
+We can now name the sum $S$, and it will be again the count of the number of loops of length $l$ times $t^l$:
+\begin{equation}
+    Z = 2^N \cosh(K)^{3N}\exp(S) \qquad S = \sum_{G \ \in \ all \ closed \ loops} t^{l(G)}
+\end{equation}
+Where we used the same expansion as in 2D to allow us to count graphs that contain multiple closed walks. Similarly:
+\begin{equation}
+    S = \frac{N}{2}\sum_l \frac{t^{l} Tr(A^l)}{l} = \Tr\left(
+        \sum_l \frac{(tA)^{l}}{l}
+    \right) = -\Tr\left(\ln(1-tA)\right)
+\end{equation}
+Openning $A$ in the Fourier space, we get:
+\begin{equation}
+    S = -\frac{N}{2} \int \frac{dq^3}{(2\pi)^3}\ln(1 - 2t(cos(q_x) + cos(q_y) + cos(q_z)))
+\end{equation}
+And therefore, our parition function can be written as:
+\begin{equation}
+    Z = 2^N \cosh(K)^{3N} \exp(-\frac{N}{2} \int \frac{dq^3}{(2\pi)^3}\ln(1 - 2t(cos(q_x) + cos(q_y) + cos(q_z))))
+\end{equation}
+\subsection{Critical temperature}
+The ciritcal temperature will occour in the singularity of the partition function, which in this case comes from the $\log$ in the integral:
+\begin{equation}
+    1 - 2t(cos(q_x) + cos(q_y) + cos(q_z)) = 0
+\end{equation}
+Since:
+\begin{equation}
+    |cos(q_x) + cos(q_y) + cos(q_z)| < 3
+\end{equation}
+For any $t < 1/6$ there is no singularity, while there is a singularit above it. This means
+\begin{equation}
+    t_c = \frac{1}{6} \rightarrow \tanh(\beta_c J) = \frac{1}{6} \rightarrow \beta_c J = \tanh^{-1}\left(\frac{1}{6}\right)
+\end{equation}
+Which means that the critical temperature is:
+\begin{equation}
+    T_c = \beta_c^{-1} = J/\tanh^{-1}\left(\frac{1}{6}\right) \approx 5.94 \ J/k_B
+\end{equation}
 
 \section{Order from disorder}
 Consider a toy model of a square lattice where each link inlcudes an additional boson:
@@ -113,10 +271,11 @@ The last part is a geometric series, which converges only when
 \end{equation}
 For the system to be stable, the partition function must be finite, which will occour only when the system converges for every spin configuration. For a spcific connection, $\sigma_i\sigma_j=\pm1$, this gives
 \begin{equation}
-    a < |b|
+    a > |b|
 \end{equation}
 The sum of the geometric series for each link will be:
 \begin{equation}
+\label{eq:sum}
     \sum_{n_{ij}=0,1,2,\dots}e^{-\beta\left(a - b\sigma_i\sigma_j\right)n_{ij}} = 
     \sum_{n_{ij}=0,1,2,\dots}\left(e^{-\beta\left(a - b\sigma_i\sigma_j\right)}\right)^{n_{ij}} = 
     \frac{1}{1-e^{-\beta\left(a - b\sigma_i\sigma_j\right)}}
@@ -125,4 +284,54 @@ And so the partition function can be written as:
 \begin{equation}
     Z = \sum_{\{\sigma_i\}}\prod_{\langle i,j \rangle}\frac{e^{-\beta\left(a - b\sigma_i\sigma_j\right)}}{1-e^{-\beta\left(a - b\sigma_i\sigma_j\right)}} = \sum_{\{\sigma_i\}}\prod_{\langle i,j \rangle}\frac{1}{e^{\beta\left(a - b\sigma_i\sigma_j\right)}-1}
 \end{equation}
+\subsection{Phase Diagram}
+There are no phase transition in short range 1D systems, and since the interaction here is nearest-neighbors, there is no phase transition. For 2D systems, let us look at the cold temperature expansion and the high temperature expansion and find use the Kramer-Wannier duality to find the ciritcal temperature for a set of $(a,b)$.
+\newline
+Let us first look at the cold temperature expansion. At $T = 0$, all spins are in the same direction, and therefore $\sigma_i\sigma_j = 1$:
+\begin{equation}
+    Z_{T=0} = 2\left(\frac{1}{e^{\beta\left(a - b\right)}-1}\right)^{3N} \equiv 2\alpha_{-}^{3N}
+\end{equation}
+Where we defined:
+\begin{equation}
+    \alpha_{\pm} = \frac{1}{e^{\beta\left(a \pm b\right)}-1}
+\end{equation}
+The expansion around this temperature is identical to the one done for the 2D Ising model: in the first term we change the situation so that there is one excited site, then two and so forth. For a single excited site, four bonds switch sides, which means it will get a factor of $(\alpha_{+}/\alpha_{-})^{4}$. The next order is when two adjacent sites are flipped, which makes six bonds switch sides. The factor then will be $(\alpha_{+}/\alpha_{-})^{4}$. In total, we can look at the cold termperature expansion as:
+\begin{equation}
+    Z_{cold} = 2\alpha_{-}^{3N}\left(1 + \left(\frac{\alpha_{+}}{\alpha_{-}}\right)^4 + \left(\frac{\alpha_{+}}{\alpha_{-}}\right)^6 + \cdots\right)
+\end{equation}
+In inspiration from the Ising model, we can name:
+\begin{equation}
+    K = -\frac{1}{2}\ln(\frac{\alpha_{+}}{\alpha_{-}}) = \frac{1}{2}\ln(\frac{\alpha_{-}}{\alpha_{+}}) = \frac{1}{2}\ln(\frac{e^{\beta\left(a + b\right)}-1}{e^{\beta\left(a - b\right)}-1})
+\end{equation}
+And so we get:
+\begin{equation}
+    Z_{cold} = 2\alpha_{-}^{3N}\left(1 + e^{-8KN} + e^{-12KN} + \cdots \right)
+\end{equation}
+And now we don't need to calculate the high temperature expansion, since we have $K$ and can now use the Kramer-Wannier duality. In other words, since the model has the same structure as the 2D Ising model over a square lattice, it will follow the same high termperature expansion, and the duality will have the same condition for the critical temperature:
+\begin{equation}
+    e^{-2K} = \tanh(K)
+\end{equation}
+And so $K$ will get the same result:
+\begin{equation}
+    K = \frac{1}{2}\ln(\sqrt{2}+1)
+\end{equation}
+Comparing that to the value of $K$ we required, we get:
+\begin{equation}
+    \frac{e^{\beta\left(a + b\right)}-1}{e^{\beta\left(a - b\right)}-1} = \sqrt{2} + 1
+\end{equation}
+We can see $K$ as a function of $T$ in figure \ref{fig:K_vs_T}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{k-T plane.png}
+    \caption{K as a function of temperature for $(a,b) = (11,10) (black), (6,5) (green), (2,1) (red), (11,-10) (black \ dashed), (6, -5) (green \ dashed), (2,-1) (red \ dashed)$. The horizontal line is the critical value of K $K = \sqrt{2}+1$.}
+    \label{fig:K_vs_T}
+\end{figure}
+It can be seen that for $b < 0$ there is no phase transition, which matches the antiferromagentic case.
+\newline
+Additionally, this graph is also true for 1D, though in that case the horizontal line representing the critical value of $K$ should be ignored.
+\newline
+The difference between this model and the Ising model lies in the difference in $K$. In the Ising model, $K$ is linear in $\beta$, reaching zero as $T \rightarrow \infty$. In this model, $K$ is non-zero even in very high temperatures.
+
+\subsection{Limiting the boson's occupation}
+Limiting the boson's occupation will limit the sum in equation \ref{eq:sum}, and change it to a finite sum. This will create a maximum energy for each bond, which, similarly to the Ising model where there is a finite energy to each bond, will resume the relationship $\lim_{T \rightarrow \infty} K = 0$.
 \end{document}
