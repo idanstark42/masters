@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+# This script creates a new homework file with a predefined template.
+# structure: 
+# create <course> <exercise_number>
+
+import os
+import sys
+
+TEMPLATE = r"""\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{General Realtivity Excercise 3}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\end{document}"""
+
+if __name__ == "__main__":
+  course = sys.argv[1]
+  exercise_number = ''.join(filter(str.isdigit, sys.argv[2]))
+
+  filename = f"{course}/ex{exercise_number}/ex{exercise_number}.tex"
+  os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+  with open(filename, "w") as f:
+    f.write(TEMPLATE)
+
+  print(f"Created {filename}")
+  
