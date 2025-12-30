@@ -19,5 +19,565 @@
 \begin{document}
 \maketitle
 
+\section{Warmup}
+In a d-dimensional Euclidean space, there are $d(d+1)/2$ Killing vectors. In the simple cartesian coordinate system, i.e. using $\partial/\partial x_i$ base for the tangent bundle
+\begin{equation}
+    v = \sum_i \alpha_i \frac{\partial}{\partial x_i} \equiv \sum_i \alpha_i \hat{x}_i
+\end{equation}
+we can write the translation Killing vectors as simply the vectors of the base:
+\begin{equation}
+    \xi_i = \hat{x}_i = \frac{\partial}{\partial x_i}
+\end{equation}
+This gives the first $d$ Killing vectors. The remaining $d(d-1)/2$ Killing vectors are rotation Killing vectors, and correspond to a rotation between each two axes. This gives us
+\begin{equation}
+    \binom{d}{2} = \frac{d!}{(d-2)!2!} = \frac{d(d-1)}{2}
+\end{equation}
+combinations of axes, which correspond exactly to the number of Killing vectors we need to find. Following from the 2D and 3D examples, these Killing vectors are
+\begin{equation}
+    \zeta_{ij} = x_i \hat{x}_j - x_j \hat{x}_i = x_i \frac{\partial}{\partial x_j} - x_j \frac{\partial}{\partial x_i}
+\end{equation}
 
+\section{Killing Vectors and Lie Groups}
+Let $(M, g_{\mu\nu})$ be a Riemanian manifold and let $X_\mu$, $Y_\mu$ be vector fields supported at some point $p \in M$. The Lie bracket is defined such that it's $\nu$ component is:
+\begin{equation}
+\label{eq:lie_bracket_def}
+    \left(\left[X, Y\right]\right)^\nu = X^\mu\partial_\mu Y^\nu - Y^\mu\partial_\mu X^\nu
+\end{equation}
+\subsection{Lie Algebra stemming from Killing vectors}
+In this section we will construct the Lie algebra stemming from the Killing vectors.
+\newline\newline
+Firstly, let us show that the linear combination of two Killing vector fields is also a Killing vector field. This is clear from the linearity of the Killing equation. In other words, taking a linear combination of the two Killing vector fields
+\begin{equation}
+    \xi_3 = \alpha\xi_1 + \beta\xi_2
+\end{equation}
+and plugging it into the LHS of the Killing equation gives
+\begin{equation}
+    D_\nu\left(\alpha\xi_1 + \beta\xi_2\right)_\mu + 
+    D_\mu\left(\alpha\xi_1 + \beta\xi_2\right)_\nu
+\end{equation}
+But since the covariant derivative is linear, this becomes:
+\begin{equation}
+    \alpha D_\nu\xi_{1,\mu} + \beta D_\nu\xi_{2,\mu} + 
+    \alpha D_\mu\xi_{1,\nu} + \beta D_\mu\xi_{2,\nu} = 
+    \alpha \left(D_\nu\xi_{1,\mu} + D_\mu\xi_{1,\nu}\right) + \beta \left(D_\nu\xi_{2,\mu} + D_\mu\xi_{2,\nu}\right) = 0
+\end{equation}
+Which means $\xi_3$ satisfies the Killing equation and thus is also a Killing vector field.
+\newline\newline
+Next, let us show that the Lie bracket is antisymmetric:
+\begin{equation}
+    \left(\left[Y, X\right]\right)^\nu = Y^\mu\partial_\mu X^\nu - X^\mu\partial_\mu Y^\nu = -\left(X^\mu\partial_\mu Y^\nu - Y^\mu\partial_\mu X^\nu\right) = -\left(\left[X, Y\right]\right)^\nu
+\end{equation}
+and that it obets the Jacobi identity:
+\begin{equation}
+\begin{gathered}
+    \left(\left[\left[X, Y\right], Z\right] +
+    \left[\left[Z, X\right], Y\right] +
+    \left[\left[Y, Z\right], X\right]\right)^\nu = \\ =
+    \left(\left[X, Y\right]\right)^\mu\partial_\mu Z^\nu - Z^\mu\partial_\mu \left(\left[X, Y\right]\right)^\nu + \\ +
+    \left(\left[Z, X\right]\right)^\mu\partial_\mu Y^\nu - Y^\mu\partial_\mu \left(\left[Z, X\right]\right)^\nu + \\ +
+    \left(\left[Y, Z\right]\right)^\mu\partial_\mu X^\nu - X^\mu\partial_\mu \left(\left[Y, Z\right]\right)^\nu = \\ =
+    X^\sigma\partial_\sigma Y^\mu\partial_\mu Z^\nu - Y^\sigma\partial_\sigma X^\mu\partial_\mu Z^\nu - Z^\mu\partial_\mu \left(X^\sigma\partial_\sigma Y^\nu\right) + Z^\mu\partial_\mu \left(Y^\sigma\partial_\sigma X^\nu\right) + \\ +
+    Z^\sigma\partial_\sigma X^\mu\partial_\mu Y^\nu - X^\sigma\partial_\sigma Z^\mu\partial_\mu Y^\nu - Y^\mu\partial_\mu \left(Z^\sigma\partial_\sigma X^\nu\right) + Y^\mu\partial_\mu \left(X^\sigma\partial_\sigma Z^\nu\right) + \\ +
+    Y^\sigma\partial_\sigma Z^\mu\partial_\mu X^\nu - Z^\sigma\partial_\sigma Y^\mu\partial_\mu X^\nu - X^\mu\partial_\mu \left(Y^\sigma\partial_\sigma Z^\nu\right) + X^\mu\partial_\mu \left(Z^\sigma\partial_\sigma Y^\nu\right) = \\ =
+    X^\sigma\partial_\sigma Y^\mu\partial_\mu Z^\nu - Y^\sigma\partial_\sigma X^\mu\partial_\mu Z^\nu - Z^\mu\partial_\mu X^\sigma\partial_\sigma Y^\nu - Z^\mu X^\sigma\partial_\mu\partial_\sigma Y^\nu + Z^\mu\partial_\mu Y^\sigma\partial_\sigma X^\nu + Z^\mu Y^\sigma \partial_\mu \partial_\sigma X^\nu + \\ +
+    Z^\sigma\partial_\sigma X^\mu\partial_\mu Y^\nu - X^\sigma\partial_\sigma Z^\mu\partial_\mu Y^\nu - Y^\mu\partial_\mu Z^\sigma\partial_\sigma X^\nu - Y^\mu Z^\sigma\partial_\mu\partial_\sigma X^\nu + Y^\mu\partial_\mu X^\sigma\partial_\sigma Z^\nu + Y^\mu X^\sigma \partial_\mu \partial_\sigma Z^\nu + \\ +
+    Y^\sigma\partial_\sigma Z^\mu\partial_\mu X^\nu - Z^\sigma\partial_\sigma Y^\mu\partial_\mu X^\nu - X^\mu\partial_\mu Y^\sigma\partial_\sigma Z^\nu - X^\mu Y^\sigma\partial_\mu\partial_\sigma Z^\nu + X^\mu\partial_\mu Z^\sigma\partial_\sigma Y^\nu + X^\mu Z^\sigma \partial_\mu \partial_\sigma Y^\nu = \\
+    = 0
+\end{gathered}
+\end{equation}
+Finally, let us show closure, i.e. that the Lie bracket of two Killing vector fields is also a Killing vector field. To show that, let us define the Lie derivative. For any 2-tensor $h_{\mu\nu}$ and a vector field $X^\mu$, the Lie derivative is:
+\begin{equation}
+    \mathcal{L}_X h = h_{\alpha\beta,\gamma}X^\gamma + h_{\alpha\gamma}X^\gamma_{,\beta} + h_{\gamma\beta}X^\gamma_{,\alpha}
+\end{equation}
+Then the Killing equation takes the simple form:
+\begin{equation}
+    \mathcal{L}_\xi g = 0
+\end{equation}
+For every two vector fields $X, Y$:
+\begin{equation}
+\begin{gathered}
+\label{eq:second_lie_derivative}
+    \mathcal{L}_X \mathcal{L}_Y h = \mathcal{L}_X \left(
+        h_{\alpha\beta,\gamma}Y^\gamma + h_{\alpha\gamma} Y^\gamma_{,\beta} + h_{\gamma\beta}Y^\gamma_{,\alpha}
+    \right) = \\ =
+    \left(
+        h_{\alpha\beta,\gamma}Y^\gamma + h_{\alpha\gamma} Y^\gamma_{,\beta} + h_{\gamma\beta}Y^\gamma_{,\alpha}
+    \right)_{,\delta} X^\delta + \left(h_{\alpha\delta,\gamma}Y^\gamma + h_{\alpha\gamma} Y^\gamma_{,\delta} + h_{\gamma\delta} Y^\gamma_{,\alpha}\right) X^\delta_{,\beta} +
+    \left(h_{\delta\beta,\gamma}Y^\gamma + h_{\delta\gamma} Y^\gamma_{,\beta} + h_{\gamma\beta}Y^\gamma_{,\delta}\right) X^\delta_{,\alpha}
+\end{gathered}
+\end{equation}
+And the Lie derivative with respect to their Lie bracket is
+\begin{equation}
+\begin{gathered}
+\label{eq:dev_lie_derivative_lie_brackets}
+    \mathcal{L}_{[X,Y]} h = h_{\alpha\beta,\gamma}([X,Y])^\gamma + h_{\alpha\gamma} ([X,Y])^\gamma_{,\beta} + h_{\gamma\beta} ([X,Y])^\gamma_{,\alpha} = \\
+    = h_{\alpha\beta,\gamma}X^\delta Y^\gamma_{,\delta} - h_{\alpha\beta,\gamma}Y^\delta X^\gamma_{,\delta} + 
+    h_{\alpha\gamma}\left(X^\delta Y^\gamma_{,\delta}\right)_{,\beta} - h_{\alpha\gamma}\left(Y^\delta X^\gamma_{,\delta}\right)_{,\beta} + h_{\gamma\beta}\left(X^\delta Y^\gamma_{,\delta}\right)_{,\alpha} - h_{\gamma\beta}\left(Y^\delta X^\gamma_{,\delta}\right)_{,\alpha} = \\
+    = h_{\alpha\beta, \gamma}X^\delta Y^\gamma_{,\delta} - h_{\alpha\beta,\gamma}Y^\delta X^\gamma_{,\delta} + 
+    h_{\alpha\gamma} X^\delta_{,\beta} Y^\gamma_{,\delta} + 
+    h_{\alpha\gamma} X^\delta Y^\gamma_{,\delta\beta} - \\ - h_{\alpha\gamma}Y^\delta_{,\beta} X^\gamma_{,\delta} - h_{\alpha\gamma}Y^\delta X^\gamma_{,\delta\beta} + h_{\gamma\beta} X^\delta_{,\alpha} Y^\gamma_{,\delta} + h_{\gamma\beta} X^\delta Y^\gamma_{,\delta\alpha} - h_{\gamma\beta} Y^\delta_{,\alpha} X^\gamma_{,\delta} - h_{\gamma\beta} Y^\delta X^\gamma_{,\delta\alpha} = \\ =
+    \left[
+        \left(
+            h_{\alpha\beta, \gamma} Y^\gamma_{,\delta} +
+            h_{\alpha\gamma} Y^\gamma_{,\delta\beta} +
+            h_{\gamma\beta} Y^\gamma_{,\delta\alpha}
+        \right)X^\delta +
+        h_{\alpha\gamma} X^\delta_{,\beta} Y^\gamma_{,\delta} +
+        h_{\gamma\beta} X^\delta_{,\alpha} Y^\gamma_{,\delta}
+    \right] - \\
+    - \left[
+        \left(
+            h_{\alpha\beta,\gamma} X^\gamma_{,\delta} +
+        h_{\alpha\gamma} X^\gamma_{,\delta\beta} +
+        h_{\gamma\beta} X^\gamma_{,\delta\alpha}
+        \right) Y^\delta +
+        h_{\alpha\gamma}Y^\delta_{,\beta}
+        X^\gamma_{,\delta} +
+        h_{\gamma\beta} Y^\delta_{,\alpha} X^\gamma_{,\delta}
+    \right]
+\end{gathered}
+\end{equation}
+This is the part of the second Lie derivative that is antisymmetric to $X \leftrightarrow Y$. To see that, let us look more closely at the second Lie derivative in equation \ref{eq:second_lie_derivative}, and compare it to each of the bracketed parts of the above expression. For the first term of the final expression of equation \ref{eq:second_lie_derivative}, we can open the derivative and directly arrive to the first term in the brackets, in addition to three more terms that do not appear there:
+\begin{equation}
+    t_1 = h_{\alpha\beta,\gamma\delta} X^\delta Y^\gamma \qquad t_2 = h_{\alpha\gamma,\delta}  X^\delta Y^\gamma_{,\beta} \qquad t_3 = h_{\gamma\beta,\delta} X^\delta Y^\gamma_{,\alpha}
+\end{equation}
+Each of the other two terms in equation \ref{eq:second_lie_derivative} is equal to one of the remaining terms in the bracket, with two additional terms that do not appear there:
+\begin{equation}
+    t_4 = h_{\alpha\delta,\gamma} X^\delta_{,\beta} Y^\gamma \qquad t_5 = h_{\gamma\delta} X^\delta_{,\beta} Y^\gamma_{,\alpha} \qquad
+    t_6 = h_{\delta\beta,\gamma} X^\delta_{,\alpha} Y^\gamma \qquad t_7 = h_{\delta\gamma} X^\delta_{,\alpha} Y^\gamma_{,\beta}
+\end{equation}
+It's easy to see that under the substitution $X \leftrightarrow Y$:
+\begin{itemize}
+    \item $t_1$ is symmetric
+    \item $t_2 \leftrightarrow t_4$
+    \item $t_3 \leftrightarrow t_6$
+    \item $t_5 \leftrightarrow t_7$
+\end{itemize}
+Meaning that the sum of the terms in equation \ref{eq:second_lie_derivative} that are missing from the brackets in equation \ref{eq:dev_lie_derivative_lie_brackets} are symmetric to $X \leftrightarrow Y$, and so we can add them to each of the brackets in equation \ref{eq:dev_lie_derivative_lie_brackets} and get:
+\begin{equation}
+    \mathcal{L}_{[X,Y]} h = \mathcal{L}_X \mathcal{L}_Y h - \mathcal{L}_Y \mathcal{L}_X h
+\end{equation}
+Finally we can trun to show closure. Let $\xi_1$ and $\xi_2$ be two Killing vectors. Then, plugging their Lie bracket into the Killing equation gives:
+\begin{equation}
+    \mathcal{L}_{[\xi_1,\xi_2]}g = \mathcal{L}_{\xi_1} \mathcal{L}_{\xi_2} g - \mathcal{L}_{\xi_2} \mathcal{L}_{\xi_1} g = 0
+\end{equation}
+Thus we showed the the Lie bracket defined in \ref{eq:lie_bracket_def} is linear in both terms, anticommutative, and satisfies the Jacobi identity, making the vector space of Killing vectors into a Lie algebra.
+\subsection{The Killing vector Lie group of the 2-sphere}
+For a 2-sphere, we saw in tutorial that
+\begin{equation}
+    \xi_1 = \begin{pmatrix}0 \\ 1\end{pmatrix} \qquad
+    \xi_2 = \begin{pmatrix}\sin\phi \\ \cot\theta\cos\phi\end{pmatrix} \qquad
+    \xi_3 = \begin{pmatrix}\cos\phi \\ -\cot\theta\sin\phi\end{pmatrix}
+\end{equation}
+Their Lie brackets are:
+\begin{equation}
+\begin{gathered}
+    [\xi_1,\xi_2] = \begin{pmatrix}
+        \xi_1^\theta\partial_\theta\xi_2^\theta + \xi_1^\phi\partial_\phi\xi_2^\theta - \xi_2^\theta\partial_\theta\xi_1^\theta - \xi_2^\phi\partial_\phi\xi_1^\theta \\
+        \xi_1^\theta\partial_\theta\xi_2^\phi + \xi_1^\phi\partial_\phi\xi_2^\phi - \xi_2^\theta\partial_\theta\xi_1^\phi - \xi_2^\phi\partial_\phi\xi_1^\phi
+    \end{pmatrix} = \begin{pmatrix}
+        \cos\phi \\ -\cot\theta\sin\phi
+    \end{pmatrix} = \xi_3
+    \\
+    [\xi_1,\xi_3] = \begin{pmatrix}
+        \xi_1^\theta\partial_\theta\xi_3^\theta + \xi_1^\phi\partial_\phi\xi_3^\theta - \xi_3^\theta\partial_\theta\xi_1^\theta - \xi_3^\phi\partial_\phi\xi_1^\theta \\
+        \xi_1^\theta\partial_\theta\xi_3^\phi + \xi_1^\phi\partial_\phi\xi_3^\phi - \xi_3^\theta\partial_\theta\xi_1^\phi - \xi_3^\phi\partial_\phi\xi_1^\phi
+    \end{pmatrix} = \begin{pmatrix}
+        -\sin\phi \\ -\cot\theta\cos\phi
+    \end{pmatrix} = -\xi_2
+    \\
+    [\xi_2,\xi_3] = \begin{pmatrix}
+        \xi_2^\theta\partial_\theta\xi_3^\theta + \xi_2^\phi\partial_\phi\xi_3^\theta - \xi_3^\theta\partial_\theta\xi_2^\theta - \xi_3^\phi\partial_\phi\xi_2^\theta \\
+        \xi_2^\theta\partial_\theta\xi_3^\phi + \xi_2^\phi\partial_\phi\xi_3^\phi - \xi_3^\theta\partial_\theta\xi_2^\phi - \xi_3^\phi\partial_\phi\xi_2^\phi
+    \end{pmatrix} = \\ = \begin{pmatrix}
+        -\cot\theta\cos\phi\sin\phi + \cot\theta\sin\phi\cos\phi \\
+        \frac{\sin^2\phi}{\sin^2\theta} -
+        \cot^2\theta\cos^2\phi + \frac{\cos^2\phi}{\sin^2\theta} - \cot^2\theta\sin^2\phi
+    \end{pmatrix} = \begin{pmatrix}
+        0 \\ 1
+    \end{pmatrix} = \xi_1
+\end{gathered}
+\end{equation}
+So, we got three Killing vectors as the generator of a Lie algebra that has the commutation relations $[\xi_i,\xi_j] = \epsilon_{ijk}\xi_k$ where $\epsilon_{ijk}$ is the Levi-Civita symbol. This fits the $so(3)$ algebra. So, it is fair to guess that the group generated by the 2-sphere Killing vectors is $SO(3)$.
+
+\section{The Conformal Killing Equation}
+The Conformal Killing Equation is defined using:
+\begin{equation}
+\label{eq:conformal_killing_original}
+    \xi_{\mu;\nu} + \xi_{\nu;\mu} = \lambda g_{\mu\nu}
+\end{equation}
+For some function $\lambda$. In this section we solve for the Euclidean space $g_{\mu\nu} = \delta_{\mu\nu}$
+\subsection{Isloating $\lambda$}
+To express $\lambda$ in terms of $\xi$, let us contract the equation and get:
+\begin{equation}
+    \xi_{\mu;\mu} + \xi_{\mu;\mu} = \lambda \delta_{\mu\mu}
+\end{equation}
+Since in d-dimensional Euclidean space $\delta_{\mu\mu} = d$, we can write:
+\begin{equation}
+\label{eq:lambda}
+    \lambda = \frac{2}{d}\xi_{\mu;\mu} = \frac{2}{d}\xi_{\mu,\mu}
+\end{equation}
+Where the last equation used the fact the in Euclidean space $D_\mu = \partial_\mu$. This turns equation \ref{eq:conformal_killing_original} into
+\begin{equation}
+\label{eq:conformal_killing_after_assignment}
+    \partial_\nu \xi_{\mu} + \partial_\mu \xi_{\nu} = \frac{2}{d}\partial_\tau \xi_{\tau} \delta_{\mu\nu}
+\end{equation}
+\subsection{Dimesnion $d > 2$}
+Let us now solve for $d > 2$. We shall start by acting with $\partial_\sigma$ on \ref{eq:conformal_killing_original}.\footnote{The hint said to act with the second derivative directly, I found it more constructive for the next parts to do it one derivative at a time.}
+\begin{equation}
+    \partial_\sigma\partial_\nu \xi_{\mu} + \partial_\sigma\partial_\mu \xi_{\nu} = \partial_\sigma \lambda \delta_{\mu\nu}
+\end{equation}
+We can rename the indices as follows:
+\begin{equation}
+\label{eq:flip1}
+    \partial_\mu\partial_\sigma \xi_{\nu} + \partial_\mu\partial_\nu \xi_{\sigma} = \partial_\mu \lambda \delta_{\sigma\nu}
+\end{equation}
+\begin{equation}
+    \partial_\nu\partial_\mu \xi_{\sigma} + \partial_\nu\partial_\sigma \xi_{\mu} = \partial_\nu \lambda \delta_{\mu\sigma}
+\end{equation}
+Since the partial derivatives commute, we can add the three equation, flipping \ref{eq:flip1}, to get:
+\begin{equation}
+\label{eq:conformal_second_derivative}
+    2 \partial_\sigma\partial_\nu \xi_{\mu} = \partial_\sigma \lambda \delta_{\mu\nu} + \partial_\nu \lambda \delta_{\mu\sigma} - \partial_\mu \lambda \delta_{\sigma\nu}
+\end{equation}
+Before differentiating it again, let us reach some conclusions from this equation. Contracting $\sigma$ with $\nu$ to get a laplacian on the LHS, we get:
+\begin{equation}
+    2 \Delta \xi_\mu = (2 - d)\partial_\mu \lambda
+\end{equation}
+Taking the derivative $\partial_\sigma$ and then contracting $\sigma$ with $\mu$ gives:
+\begin{equation}
+    \Delta \partial_\mu \xi_\mu = \frac{2-d}{2}\Delta \lambda
+\end{equation}
+But using \ref{eq:lambda} to repalce the LHS with a term related to $\lambda$ will give:
+\begin{equation}
+    \frac{d}{2} \Delta \lambda = \frac{2-d}{2}\Delta \lambda
+\end{equation}
+\begin{equation}
+\label{eq:delta_lambda}
+    (d-1) \Delta \lambda = 0
+\end{equation}
+In other words, we got that for every $d \ne 1$, $\Delta \lambda = 0$. Now,
+differentiating \ref{eq:conformal_second_derivative}, we get:
+\begin{equation}
+\label{eq:conformal_third_derivative}
+    2 \partial_\rho \partial_\sigma\partial_\nu \xi_{\mu} = \partial_\rho \partial_\sigma \lambda \delta_{\mu\nu} + \partial_\rho \partial_\nu \lambda \delta_{\mu\sigma} - \partial_\rho \partial_\mu \lambda \delta_{\sigma\nu}
+\end{equation}
+And contracting $\rho$ with $\mu$, we get:
+\begin{equation}
+    d \partial_\sigma \partial_\nu \lambda = \partial_\sigma \partial_\nu \lambda + \partial_\sigma \partial_nu \lambda - \Delta \lambda \delta_{\sigma\nu}
+\end{equation}
+Using the result from \ref{eq:delta_lambda}:
+\begin{equation}
+    (d-2)\partial_\sigma \partial_\nu \lambda = 0
+\end{equation}
+Which means for every $d > 2$, we get
+\begin{equation}
+    \partial_\sigma \partial_\nu \lambda = 0
+\end{equation}
+Plugging this into \ref{eq:conformal_third_derivative}, all the RHS terms cancel and we get:
+\begin{equation}
+    \partial_\rho \partial_\sigma\partial_\nu \xi_{\mu} = 0
+\end{equation}
+For every $d > 2$. In other words, $\xi_{\mu}$ must be a maximally quadratic plynomial:
+\begin{equation}
+\label{eq:quad_form}
+    \xi^\mu = a^\mu + b^{\mu\nu} x_\nu + m^{\mu\nu\rho}x_\nu x_\rho
+\end{equation}
+Now let us look at the result of using this expression. First of all, let us write down its derivatives:
+\begin{equation}
+\label{eq:quad_derivatives}
+    \partial_\alpha \xi^\mu = b_{\alpha}^{\mu} + \left(m_{\ \ \alpha}^{\mu\nu} + m_{\ \alpha}^{\mu \ \nu}\right)x_\nu \qquad
+    \partial_\alpha \partial_\beta \xi^\mu = m_{\ \beta\alpha}^{\mu} + m_{\ \alpha\beta}^{\mu}
+\end{equation}
+This means that
+\begin{equation}
+    \lambda =  \partial_\mu \xi^\mu = b_{\mu}^{\mu} + \left(m_{\ \ \mu}^{\mu\nu} + m_{\ \mu}^{\mu \ \nu}\right)x_\nu
+\end{equation}
+\begin{equation}
+    \partial_\alpha \lambda =  m_{\ \alpha\mu}^{\mu} + m_{\ \mu\alpha}^{\mu}
+\end{equation}
+plugging it into \ref{eq:conformal_second_derivative} gives:
+\begin{equation}
+    2\left(m^{\mu \sigma\nu} + m_{\ \nu\sigma}^{\mu}\right) =
+    \left(m_{\ \sigma\alpha}^{\alpha} + m_{\ \alpha\sigma}^{\alpha}\right)\delta_{\mu\nu} +
+    \left(m_{\ \nu\alpha}^{\alpha} + m_{\ \alpha\nu}^{\alpha}\right) \delta_{\mu\sigma} -
+    \left(m_{\ \mu\alpha}^{\alpha} + m_{\ \alpha\mu}^{\alpha}\right) \delta_{\sigma\nu}
+\end{equation}
+It can be seen that $m^{\mu\nu\rho}$ is symmetric in the second and third indices. In other words, defining the quadratic term prefactor vector $m_\mu = m^\nu_{\nu\mu}$, we get:
+\begin{equation}
+    m_{\mu\sigma\nu} =  m_{\sigma}\delta_{\mu\nu} +
+    m_\nu \delta_{\mu\sigma} -
+    m_\mu \delta_{\sigma\nu}
+\end{equation}
+The tensor $m^{\mu\nu\rho}$ can be fully expressed by $d$ parameters, as requested. Let us look now at \ref{eq:conformal_killing_after_assignment} while assuming $m^{\mu\nu\rho} = 0$. We then get, for the off diagonal case:
+\begin{equation}
+    \partial_\nu \left(
+        a_\mu + b_\mu^{\alpha}x_\alpha
+    \right) + \partial_\mu \left(
+        a_\nu + b_\nu^{\alpha}x_\alpha
+    \right) = 0
+\end{equation}
+\begin{equation}
+\label{eq:b}
+    b_{\mu\nu} + b_{\nu\mu} = 0
+\end{equation}
+On the diagonal, we get:
+\begin{equation}
+    b_{\mu\mu} = \frac{1}{d}\sum_\tau b_{\tau\tau} = \frac{\tr(b)}{d}
+\end{equation}
+In other words, $b^{\mu\nu}$ is a sum of an antisymmetric tensor and the tensor $b^{(sym)}_{\mu\nu} = \frac{\tr(b)}{d}\delta_{\mu\nu}$. The symmetric part of the tensor gives us a single linear solution:
+\begin{equation}
+    \xi^{(s)}_\mu = s x_\mu
+\end{equation}
+This solution is the scaling Killing vector field. This can be seen from the fact that it pushes in all direction at the same scale, i.e. it is a scalar multiplication of the unit matrix.
+\newline
+The antisymmetric part of the tensor gives us and additional set of solutions:
+\begin{equation}
+    \xi^{(b)}_\mu = b_{\mu}^\nu x_\nu
+\end{equation}
+These solutions are the Killing vector fields corresponding to rotations. The antisymmetric version of $b^{\mu\nu}$ described in equation \ref{eq:b} has exactly $d(d-1)/2$ degrees of freedom, which correspond to the correct number of rotations in d-dimensional Euclidean space.
+\newline
+Finally, let us acknowledge that $a^\mu$ does not appear in the Killing equation at all, and thus there is another set of solutions to it that are just constants:
+\begin{equation}
+    \xi^{(a)} = a^\mu
+\end{equation}
+This are, as we saw in the tutorial, the translations in the $a^\mu$ direction.
+\newline
+The final, total form of $\xi^\mu$ is:
+\begin{equation}
+    \xi^\mu = a^\mu + s x^\mu + \left(b^{\mu\nu} - b^{\nu\mu}\right)x_\nu + \left(m_{\rho}\delta^\mu_{\nu} +
+    m_\nu \delta^\mu_{\rho} -
+    m^\mu \delta_{\rho\nu}\right)x_\rho x_\nu
+\end{equation}
+Let us now find the global transformations for the scaling and translation solutions. To do this, let $\gamma^\mu(\zeta)$ be a curve. For the translation solutions $\xi^\mu = a^\mu$ we get:
+\begin{equation}
+    \frac{d}{d\zeta}\gamma^\mu = a^\mu
+\end{equation}
+\begin{equation}
+    \gamma^\mu = \zeta a^\mu
+\end{equation}
+These are straight lines in the $a^\mu$ direction, as expected. For the scaling solutions $\xi^\mu = s x^\mu$ we get:
+\begin{equation}
+    \frac{d}{d\zeta}\gamma^\mu = s \gamma^\mu
+\end{equation}
+\begin{equation}
+    \gamma^\mu = e^s
+\end{equation}
+Thess exponentials respond to the exponential scaling resulting from repeated application of the scaling transformation.
+\newline
+\newline
+In conclusion, the conformal Killing equation extends the Killing equation to include solutions that do not conserve lengths yet conserve angles. In flat space, for instance, this includes, in addition to the translation and rotations known as the regular Killing vectors, it gives the scaling Killing vectors and additional $d$ transformations that do not conserve length.
+\newline
+This is the reason it is called the conformal Killing equation, since conformal transformations do not conserve length but conserve angles. These transformations make up the conformal group, which, when taken over d-dimensional flat space, has dimension $\frac{1}{2}(d+1)(d+2) = \frac{d(d-1)}{2} + 2d + 1$, corresponding to $\frac{d(d-1)}{2}$ rotations, $d$ translations, 1 scaling and $d$ additional transformations.
+\subsection{Solving for d=2}
+In 2-dimensions, equation \ref{eq:conformal_killing_after_assignment} can be written as:
+\begin{equation}
+    \partial_x \xi_y + \partial_y \xi_x = 0 \qquad 2\partial_x \xi_x = 2\partial_y \xi_y = \partial_x \xi_x + \partial_y \xi_y
+\end{equation}
+Or:
+\begin{equation}
+\label{eq:cauchy-riemann-and-such}
+    \partial_x \xi_x = \partial_y \xi_y \qquad \partial_x \xi_y = -\partial_y \xi_x
+\end{equation}
+Which is exactly the Cauchy-Riemann equations. This means that we can think of $\xi$ as a complex number and the complex differentiable functions define the conformal Killing vector fields. In other words, if $\xi = \xi_x \pm i \xi_y$ is a function of $z \in \mathbb{C}$, then $\xi$ is differentiable if and only if $(\xi_x, \xi_y) \in \R^2$ is a conformal Killing vector field.
+\newline
+Now, let us change coordinates:
+\begin{equation}
+    z = x + iy \qquad \bar{z} = x - iy
+\end{equation}
+Or, the opposite way:
+\begin{equation}
+    x = \frac{z + \bar{z}}{2} \qquad y = \frac{z - \bar{z}}{2i}
+\end{equation}
+This gives:
+\begin{equation}
+    \partial_x = \partial_z + \partial_{\bar{z}} \qquad \partial_y = i\left(\partial_z - \partial_{\bar{z}}\right)
+\end{equation}
+In these new coordinates, the metric becomes:
+\begin{equation}
+    ds^2 = dx^2 + dy^2 = \frac{dz^2 + 2dzd\bar{z} + d\bar{z}^2}{4} - \frac{dz^2 - 2dzd\bar{z} + d\bar{z}^2}{4} = dzd\bar{z}
+\end{equation}
+\begin{equation}
+    g^{\mu\nu} = \begin{pmatrix} 0 & \frac{1}{2} \\ \frac{1}{2} & 0 \end{pmatrix}
+\end{equation}
+And equation \ref{eq:cauchy-riemann-and-such} becomes:
+\begin{equation}
+\begin{cases}
+    \left(\partial_z + \partial_{\bar{z}}\right)(\xi^z + \xi^{\bar{z}}) = 
+    \left(\partial_z - \partial_{\bar{z}}\right)(\xi^z - \xi^{\bar{z}}) \\
+    \left(\partial_z + \partial_{\bar{z}}\right)(\xi^z - \xi^{\bar{z}}) = 
+    \left(\partial_z - \partial_{\bar{z}}\right)(\xi^z + \xi^{\bar{z}})
+\end{cases}
+\end{equation}
+Rearanging:
+\begin{equation}
+\begin{cases}
+    \partial_z \xi^{\bar{z}} + \partial_{\bar{z}} \xi^z = 0
+    \\
+    \partial_z \xi^{\bar{z}} = \partial_{\bar{z}} \xi^z
+\end{cases}
+\end{equation}
+Which can only mean
+\begin{equation}
+    \partial_z \xi^{\bar{z}} = \partial_{\bar{z}} \xi^z = 0
+\end{equation}
+In other words, $\xi_z$ depends only on $z$ and $\xi_{\bar{z}}$ depends only on
+$\bar{z}$. The result is that in these coordinates, all conformal Killing vectors are built from independent components:
+\begin{equation}
+    \xi = \xi_z(z)\partial_z + \xi_{\bar{z}}({\bar{z}})\partial_{\bar{z}}
+\end{equation}
+It is important to notice the missing constraints. While we have two functions of two variables, we only have two constraints from the Killing equations (in both bases). The result is what we just got: the most general form of the conformal Killing vector field still has two functions that are free. This means the space of conformal Killing vector fields has a dimension of infinity. A possible basis for it will be a doublet of the set of polynomials over $\mathbb{C}$:
+\begin{equation}
+    \xi = (\alpha_1,\dots,\beta_1,\dots) = \left(\sum_n^\infty \alpha_n z^n\right)\partial_z + \left(\sum_n^\infty \alpha_n \bar{z}^n\right)\partial_{\bar{z}}
+\end{equation}
+With this in mind, the translation, rotation, and scaling transformations become easy to find:
+\begin{equation}
+    \xi^{t}_z = \partial_z \qquad \xi^{t}_{\bar{z}} = \partial_{\bar{z}}
+\end{equation}
+Or, if we want translations along $x$ and $y$:
+\begin{equation}
+    \xi^{t}_x = \left(\partial_z + \partial_{\bar{z}}\right) \qquad
+    \xi^{t}_y = \left(\partial_z - \partial_{\bar{z}}\right)
+\end{equation}
+These actually make up all vectors where only $\alpha_1$ and $\beta_1$ are non-zero, i.e. all the zeroth order polynomials.
+The scaling and rotatiosn are then the first order polynomials:
+\begin{equation}
+    \xi^s = x\partial_x + y\partial_y \propto \left(z + \bar{z}\right)\left(\partial_z + \partial_{\bar{z}}\right) + \left(z - \bar{z}\right)\left(\partial_z - \partial_{\bar{z}}\right) \propto z\partial_z + \bar{z}\partial_{\bar{z}}
+\end{equation}
+\begin{equation}
+    \xi^r = y\partial_x - x\partial_y \propto -i(z - \bar{z})(\partial_z + \partial_{\bar{z}}) - i(z + \bar{z})(\partial_z - \partial_{\bar{z}}) \propto i\left(
+        z\partial_z - \bar{z}\partial_{\bar{z}}
+    \right)
+\end{equation}
+
+\section{The Poincare Half-Plane}
+The metric of the Poincare half-plane is
+\begin{equation}
+\label{eq:poincare-metric}
+    g_{\mu\nu} = y^{-2}\delta_{\mu\nu}
+\end{equation}
+\subsection{The Killing equations}
+The Killing equation is
+\begin{equation}
+    \partial_\rho g_{\mu\nu}\xi^\rho + g_{\mu\rho}\partial_\nu \xi^\rho + g_{\rho\nu}\partial_\mu \xi^\rho = 0
+\end{equation}
+For $\mu = \nu = x$ we get:
+\begin{equation}
+    \partial_\rho \left(y^{-2}\right)\xi^\rho + g_{x\rho}\partial_x \xi^\rho + g_{\rho x}\partial_x \xi^\rho = 0
+\end{equation}
+\begin{equation}
+    -2y^{-3}\xi_y + y^{-2}\partial_x \xi^x  + y^{-2}\partial_x \xi^x = 0
+\end{equation}
+\begin{equation}
+    \partial_x \xi^x - y^{-1}\xi_y = 0
+\end{equation}
+Similarly, for $\mu = \nu = y$:
+\begin{equation}
+    \partial_y \xi^y - y^{-1}\xi_y = 0
+\end{equation}
+And for $\mu = x, \nu = y$ (Which is identical to $\mu = y, \nu = x$):
+\begin{equation}
+    \partial_\rho g_{xy}\xi^\rho + g_{x\rho}\partial_y \xi^\rho + g_{\rho y}\partial_x \xi^\rho = 0
+\end{equation}
+\begin{equation}
+    \partial_y \xi_x + \partial_x \xi_y = 0
+\end{equation}
+The three Killing equations are then:
+\begin{equation}
+\begin{gathered}
+    (i) \ \partial_x \xi^x - y^{-1}\xi_y = 0 \qquad
+    (ii) \ \partial_y \xi^y - y^{-1}\xi_y = 0 \qquad
+    (iii) \ \partial_x \xi_y + \partial_y \xi_x = 0
+\end{gathered}
+\end{equation}
+Substracting $(i)$ and $(ii)$ gives:
+\begin{equation}
+    \partial_x \xi_x - \partial_y \xi_y = 0
+\end{equation}
+Which together with $(iii)$ implies the Cauchy-Riemann equations for $\xi_x, \xi_y$.
+\subsection{The Killing vectors}
+Solving equation $(ii)$, we get:
+\begin{equation}
+    \frac{\partial \xi_y}{\partial y} = \frac{\xi_y}{y}
+\end{equation}
+\begin{equation}
+    \frac{d\xi_y}{\xi_y} = \frac{dy}{y}
+\end{equation}
+\begin{equation}
+    \ln \xi_y = \ln y + f(x)
+\end{equation}
+\begin{equation}
+    \xi_y = y \cdot f(x)
+\end{equation}
+plugging it into $(i)$:
+\begin{equation}
+    \partial_x \xi_x - f(x) = 0
+\end{equation}
+\begin{equation}
+    \xi_x = F(x) + g(y)
+\end{equation}
+Where $F'(x) = f(x)$. Plugging these two into $(iii)$ gives:
+\begin{equation}
+    \partial_x \left(y \cdot F'\right) + \partial_y \left(F + g\right) = 0
+\end{equation}
+\begin{equation}
+    y F''(x) + g' = 0
+\end{equation}
+Solving by seperation of variables:
+\begin{equation}
+    F''(x) = -y^{-1}g'
+\end{equation}
+The LHS now depends only on x and the RHS now dependends only on y, and they are both therefore constants:
+\begin{equation}
+    F(x) = a x^2 + bx + c \qquad g = -a y^2
+\end{equation}
+This gives:
+\begin{equation}
+    \xi_x = F(x) + g(y) = ax^2 + bx + c - ay^2 \qquad
+    \xi_y = y\cdot f(x) = 2axy + by
+\end{equation}
+In other words:
+\begin{equation}
+    \xi = \begin{pmatrix} ax^2 + bx + c - ay^2 \\ 2axy + by \end{pmatrix} =
+    a \begin{pmatrix} x^2 - y^2 \\ 2xy \end{pmatrix} +
+    b \begin{pmatrix} x \\ y \end{pmatrix} +
+    c \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\end{equation}
+And so the three Killing vectors are:
+\begin{equation}
+    \xi_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \qquad
+    \xi_2 = \begin{pmatrix} x \\ y \end{pmatrix} \qquad
+    \xi_3 = \begin{pmatrix} x^2 - y^2 \\ 2xy \end{pmatrix} \qquad
+\end{equation}
+\subsection{Interpreting the Killing vectors}
+The three Killing vectors each match an isometry of the space:
+\begin{itemize}
+    \item It is clear that $\xi_1$ matches the translation in $x$, similar to the Euclidean space and in check with the independence of the metric of the coordinate $x$.
+    \item The second vector $\xi_2$ is a scaling transformation, linearly dependent on the vector with $\xi_2 \propto r$.
+    \item For the last vector $\xi_3$, let us remember the geodesic equations for the Poincare half plane as we saw them in assignment 2:
+    \begin{equation}
+        \begin{cases}
+            \ddot{x} - \frac{2\dot{x}\dot{y}}{y} = 0
+            \\
+            \ddot{y} + \frac{\dot{x}^2 - \dot{y}^2}{y} = 0
+        \end{cases}
+    \end{equation}
+    It's easy to see that these equations generate geodesics that are perpendicular to $\xi_3$. In other words, $\xi_3$ acts as a sort of hyperbolic rotation, preserving the metric while mixing the coordinates. 
+\end{itemize}
+\subsection{The type of maximally symmetric space}
+Since the space is 2d and there are 3 independent Killing vector fields, this must be a maximally symmetric space. To see what type it is, let us look at its curvature. The non-zero Christoffel symbols are (from assignment 2):
+\begin{equation}
+    \Gamma^{y}_{xx} = \frac{1}{y}
+    \qquad
+    \Gamma^{y}_{yy} = -\frac{1}{y}
+    \qquad
+    \Gamma^{x}_{xy} = \Gamma^{x}_{yx} = -\frac{1}{y}
+\end{equation}
+And the scalar curvature is:
+\begin{equation}
+    R = g^{\mu\nu}\left(
+        \Gamma^\lambda_{\mu\nu,\lambda} - \Gamma^\lambda_{\mu\lambda,\nu} + \Gamma^{\sigma}_{\mu\nu}\Gamma^{\lambda}_{\lambda\sigma} - \Gamma^{\sigma}_{\mu\lambda}\Gamma^{\lambda}_{\nu\sigma}
+    \right)
+\end{equation}
+Each of the terms appears twice, once for $g^{xx}$ and once for $g^{yy}$. The first and third terms cancel themselves since they appear once with $\Gamma^{y}_{xx}$ and once with $\Gamma^{y}_{yy}$, which are opposite while everything else is symmetric. The last term cancels itself as well, since it can be either $\Gamma^{y}_{xx}\Gamma^{x}_{xy}$ or $\Gamma^{y}_{yy}\Gamma^{x}_{yx}$. These appear an equal number of times and are opposite, and therefore cancel out. Lastly, the second term disapears for $g^{xx}$, and for $g^{yy}$ it remains negative, since the minus from $\Gamma^{x}_{yx}$ cancels with the one from the derivative. In total we got that only the second term doesn't vanish, and it gives a negative curvature.
 \end{document}
