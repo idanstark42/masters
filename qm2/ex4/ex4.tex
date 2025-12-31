@@ -1,0 +1,589 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\let\breaklesssection\section
+\renewcommand\section{\clearpage\breaklesssection}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Mechanics II Excercise 4}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\breaklesssection{Complex scalar field, again}
+\subsection{Euler-Lagrange equation of motion}
+The Lagrangian density of the Complex scalar field is
+\begin{equation}
+\label{eq:complex-lagrangian}
+    \mathcal{L} = \partial_\mu \varphi^* \partial^\mu \varphi - V(\varphi^*\varphi)
+\end{equation}
+Let us now derive the EOM in two ways.
+\subsubsection{Option 1 - treating $\varphi$ and $\varphi^*$ as formally independent variables}
+In this method, we treat $\varphi$ and $\varphi^*$ as formally independent variables. This allows us to derive the EOM of $\varphi$ by taking EL equation according to $\varphi^*$:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \varphi^*} = - \varphi V'(\varphi^*\varphi)
+    \qquad
+    \partial_\mu \frac{\partial \mathcal{L}}{\partial\left(\partial_\mu \varphi^*\right)} = \Box\varphi
+\end{equation}
+\begin{equation}
+\label{eq:compelx_field_eom1}
+    \left(\Box + V'(\varphi^*\varphi)\right)\varphi = 0
+\end{equation}
+Now we can do the same for the other field, or simply take the copmlex conjugate of  \ref{eq:compelx_field_eom1}:
+\begin{equation}
+    \left(\Box + V'(\varphi^*\varphi)\right)\varphi^* = 0
+\end{equation}
+\subsubsection{Option 2 - Changing to real fields}
+Let us now rewrite the Lagrangian in terms of two real fields:
+\begin{equation}
+    \varphi = \frac{1}{\sqrt{2}}\left(\phi_r + i\phi_l\right) \qquad
+    \varphi^* = \frac{1}{\sqrt{2}}\left(\phi_r - i\phi_l\right)
+\end{equation}
+The expressions in the Lagrangian then become:
+\begin{equation}
+    \varphi^*\varphi = \frac{1}{2}\left(\phi_r + i\phi_l\right)\left(\phi_r - i\phi_l\right) = \frac{1}{2}\left(\phi_r^2 + \phi_l^2\right)
+\end{equation}
+\begin{equation}
+    \partial_\mu \varphi^* \partial^\mu \varphi = \frac{1}{2}\left[
+        \partial_\mu \left(\phi_r + i\phi_l\right)\partial^\mu \left(\phi_r - i\phi_l\right)
+    \right] = \frac{1}{2}\left(
+        \partial_\mu \phi_r \partial^\mu \phi_r + \partial_\mu \phi_l \partial^\mu \phi_l
+    \right)
+\end{equation}
+Where the mixed terms cancel out since, in general
+\begin{equation}
+    \partial_\mu \phi_1 \partial^\mu \phi_2 = \eta_{\mu\nu}\eta^{\mu\sigma}\partial^\nu \phi_1 \partial_\sigma \phi_2 = \delta^\sigma_\nu \partial^\nu \phi_1 \partial_\sigma \phi_2 = \partial^\mu \phi_1 \partial_\mu \phi_2
+\end{equation}
+This means the Lagrangian density can be written as:
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\left(
+        \partial_\mu \phi_r \partial^\mu \phi_r + \partial_\mu \phi_l \partial^\mu \phi_l
+    \right) - V\left(\frac{\phi_r^2 + \phi_l^2}{2}\right)
+\end{equation}
+Using EL equation for $\phi_l$, gives
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \phi_l} = - \phi_l V'\left(\frac{\phi_r^2 + \phi_l^2}{2}\right)
+    \qquad
+    \partial_\mu \frac{\partial \mathcal{L}}{\partial\left(\partial_\mu \phi_l\right)} = \Box\phi_l
+\end{equation}
+\begin{equation}
+\label{eq:phi-l-eom}
+    \left[\Box + V'\left(\frac{\phi_r^2 + \phi_l^2}{2}\right)\right] \phi_l = 0
+\end{equation}
+And the same for $\phi_r$:
+\begin{equation}
+\label{eq:pho-r-eom}
+    \left[\Box + V'\left(\frac{\phi_r^2 + \phi_l^2}{2}\right)\right] \phi_r = 0
+\end{equation}
+To go back to $\varphi$ and $\varphi^*$, we can simply use linear combinations of equations \ref{eq:phi-l-eom} and \ref{eq:pho-r-eom} to get:
+\begin{equation}
+    \frac{LHS \ of \ Equation \ \ref{eq:phi-l-eom} + LHS \ of \  Equation \ \ref{eq:pho-r-eom}}{\sqrt{2}} = \left[\Box + V'\left(\frac{\phi_l^2 + \phi_r^2}{2}\right) \right]\frac{\phi_r + i\phi_l}{\sqrt{2}} = LHS \ of \ Equation \ \ref{eq:compelx_field_eom1}
+\end{equation}
+And similarly for the complex conjugate.
+\subsection{Fermionic version of $\varphi(x)$?}
+The field operator and its complex conjugate can be written as
+\begin{equation}
+\label{eq:field-ladder}
+    \varphi(x) = \int \frac{d^3k}{(2\pi)^3\sqrt{2\omega_k}}\left(a_k e^{-ikx} + b_k^\dagger e^{ikx}\right)
+    \qquad
+    \varphi^*(x) = \int \frac{d^3k}{(2\pi)^3\sqrt{2\omega_k}}\left(a_k^\dagger e^{ikx} + b_k e^{-ikx}\right)
+\end{equation}
+So their momenta are, by definition $\pi = \frac{\partial \mathcal{L}}{\dot{\varphi}} = \dot{\varphi}^*$ and  $\pi^* = \frac{\partial \mathcal{L}}{\dot{\varphi}^*} = \dot{\varphi}$
+\begin{equation}
+\label{eq:momentum-ladder}
+    \pi(x) = \int \frac{d^3k}{(2\pi)^3}\sqrt{\frac{\omega_k}{2}}\left(ia_k^\dagger e^{ikx} -i b_k e^{-ikx}\right) \qquad 
+    \pi^*(x) = \int \frac{d^3k}{(2\pi)^3}\sqrt{\frac{\omega_k}{2}}\left(-ia_k e^{-ikx} + ib_k^\dagger e^{ikx}\right)
+\end{equation}
+We wish to get anticommutation relations
+\begin{equation}
+    \left\{\varphi(x),\pi(y)\right\} = \left\{\varphi^*(x),\pi^*(y)\right\} = i\delta(x - y)
+\end{equation}
+With all other anticommutators vanishing.
+So, let us flip the relation in equations \ref{eq:field-ladder} and \ref{eq:momentum-ladder} to get the expression we saw in TA:
+\begin{equation}
+    a_k = \int d^3x \left(\sqrt{\frac{\omega_k}{2}}\varphi(x) + \frac{i}{\sqrt{2\omega_k}}\pi^*(x)\right)e^{-ikx}
+    \qquad
+    b_k = \int d^3x \left(\sqrt{\frac{\omega_k}{2}}\varphi^*(x) + \frac{i}{\sqrt{2\omega_k}}\pi(x)\right)e^{-ikx}
+\end{equation}
+Now we can calculate the anticommutation relations between $a_k$, $b_k$ and their hermitian conjugates:
+\begin{equation}
+    \left\{a_k, a_q\right\} = \int d^3x d^3y\left(
+        \frac{\omega_k}{2}\left\{\varphi(x), \varphi(y)\right\} +
+        \frac{i}{2}\left(
+            \left\{\varphi(x), \pi^*(y)\right\} +
+            \left\{\pi^*(x), \varphi(y)\right\}
+        \right) -
+        \frac{1}{2\omega_k}\left\{\pi^*(x), \pi^*{y}\right\}
+    \right)e^{-i(kx + qy)} = 0
+\end{equation}
+Similarly:
+\begin{equation}
+    \left\{a_k^\dagger, a_q^\dagger\right\} = 
+    \left\{b_k, b_q\right\} = 
+    \left\{b_k^\dagger, b_q^\dagger\right\} = 0
+\end{equation}
+In addition
+\begin{equation}
+\begin{gathered}
+    \left\{a_k, b_q\right\} = \\ = \int d^3x d^3y\left(
+        \frac{\omega_k}{2}\left\{\varphi(x), \varphi^*(y)\right\} +
+        \frac{i}{2}\left(
+            \left\{\varphi(x), \pi(y)\right\} +
+            \left\{\pi^*(x), \varphi^*(y)\right\}
+        \right) -
+        \frac{1}{2\omega_k}\left\{\pi(x), \pi^*{y}\right\}
+    \right)e^{-i(kx + qy)} = \\ =
+    \frac{i}{2} \int d^3x d^3y \left(
+        \left\{\varphi(x), \pi(y)\right\} +
+        \left\{\varphi^*(y), \pi^*(x)\right\}
+    \right)e^{-i(kx + qy)} = \\ =
+    \frac{i}{2} \int d^3x d^3y \left(
+        i\delta(x - y) +
+        i\delta(x - y)
+    \right)e^{-i(kx + qy)} = \\ =
+    - \int d^3x e^{-ix(k + q)} = -(2\pi)^3\delta(k+q)
+\end{gathered}
+\end{equation}
+And similarly
+\begin{equation}
+    \left\{a_k^\dagger, b_q^\dagger\right\} = (2\pi)^3\delta(k+q)
+\end{equation}
+Finally
+\begin{equation}
+\begin{gathered}
+    \left\{a_k, a_q^\dagger\right\} = \\ = \int d^3x d^3y\left(
+        \frac{\omega_k}{2}\left\{\varphi(x), \varphi^*(y)\right\} -
+        \frac{i}{2}\left(
+            \left\{\varphi(x), \pi(y)\right\} -
+            \left\{\pi^*(x), \varphi^*(y)\right\}
+        \right) +
+        \frac{1}{2\omega_k}\left\{\pi(x), \pi^*{y}\right\}
+    \right)e^{-i(kx - qy)} = \\ =
+    0
+\end{gathered}
+\end{equation}
+And similarly
+\begin{equation}
+    \left\{b_k, b_q^\dagger\right\} = 0
+\end{equation}
+Let us now look at the Hamiltonian. The Hamiltonian density is
+\begin{equation}
+    \mathcal{H} = \pi\dot{\varphi} + \pi^*\dot{\varphi}^* - \mathcal{L} = \pi\pi^* + \pi^*\pi - \mathcal{L} = \left\{\pi, \pi^*\right\} - \mathcal{L} = -\mathcal{L}
+\end{equation}
+Pluggin in the Lagrangian with $V(\varphi^*\varphi) = m^2\varphi^*\varphi$
+\begin{equation}
+    \mathcal{H} = - \partial_\mu\varphi^*\partial^\mu\varphi - m^2\varphi^*\varphi = -\pi\pi^* + \nabla \varphi^* \nabla\varphi + m^2\varphi^*\varphi
+\end{equation}
+So the Hamiltonian is
+\begin{equation}
+    H = \int \mathcal{H} d^3x = \int d^3x \left(
+        -\pi\pi^* + \nabla \varphi^* \nabla\varphi + m^2\varphi^*\varphi
+    \right)
+\end{equation}
+Developing each of the expressions using the mode expansion, we get:
+\begin{equation}
+\begin{gathered}
+    \int d^3x \pi\pi^* = \\ = \int d^3x \int \frac{d^3k}{(2\pi)^3} \frac{d^3q}{(2\pi)^3}\frac{\sqrt{\omega_k \omega_q}}{2}\left(
+        a_k^\dagger a_q e^{ix(k-q)} + b_k b_q^\dagger e^{ix(q-k)}
+        - b_k a_q e^{-ix(k+q)} - a_k^\dagger b_q^\dagger e^{ix(k+q)} 
+    \right) = \\ =
+    \int \frac{d^3k}{(2\pi)^3}\frac{\omega_k}{2}\left(
+        a_k^\dagger a_k + b_k b_k^\dagger
+        - b_k a_{-k} - a_k^\dagger b_{-k}^\dagger 
+    \right)
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \int d^3x \nabla \varphi^* \nabla \varphi + m^2 \varphi^* \varphi = \\ = 
+    \int d^3 x  \int \frac{d^3k}{(2\pi)^3} \frac{d^3q}{(2\pi)^3}
+    \frac{k \cdot q + m^2}{2\sqrt{\omega_k \omega_q}}
+    \left(
+        a_k^\dagger a_q e^{ix(k-q)} + b_k b_q^\dagger e^{-ix(k-q)} +
+        b_k a_q e^{-ix(k+q)} + a_k^\dagger b_q^\dagger e^{ix(k+q)}
+    \right) = \\ =
+    \int \frac{d^3k}{(2\pi)^3} \frac{k^2 + m^2}{2\omega_k} \left(
+        a_k^\dagger a_k + b_k b_k^\dagger + b_k a_{-k} + a_k^\dagger b_{-k}^\dagger
+    \right) = \\ =
+    \int \frac{d^3k}{(2\pi)^3} \frac{\omega_k}{2} \left(
+        a_k^\dagger a_k + b_k b_k^\dagger + b_k a_{-k} + a_k^\dagger b_{-k}^\dagger
+    \right)
+\end{gathered}
+\end{equation}
+So, we get:
+\begin{equation}
+\begin{gathered}
+    H = \int \frac{d^3k}{(2\pi)^3} \frac{\omega_k}{2} \left(
+        - a_k^\dagger a_k - b_k b_k^\dagger + b_k a_{-k} + a_k^\dagger b_{-k}^\dagger 
+        + a_k^\dagger a_k + b_k b_k^\dagger + b_k a_{-k} + a_k^\dagger b_{-k}^\dagger
+    \right) = \\ =
+    \int \frac{d^3k}{(2\pi)^3} \frac{\omega_k}{2} \left(
+        b_k a_{-k} + a_k^\dagger b_{-k}^\dagger +
+        b_k a_{-k} + a_k^\dagger b_{-k}^\dagger
+    \right) = \\ =
+    \int \frac{d^3k}{(2\pi)^3} \omega_k\left(
+        b_k a_{-k} + a_k^\dagger b_{-k}^\dagger
+    \right)
+\end{gathered}
+\end{equation}
+The Hamiltonian we got is problematic. Putting aside the fact that there is no vaccum energy (which is no particular problem, it's just strange), the creation and annihilation operators come in pairs such that for any creation of one type of particle, another particle of the second type must also be created, and the same for the annihilation. We cannot, then, construct number operators to those fields and therefore we cannot reach stable solutions to this Hamiltonian using the ladder operators formulation. Since we made no assumptions other then that $\varphi(x)$ is fermionic, and got a non-physical Hamiltonian, we conclude that developing a fermionic theory for a complex scalar field is impossible.
+
+\section{Some fun with Weyl spinors}
+Let us look at the Lagrangian density
+\begin{equation}
+\label{eq:spinors-lagrangian-density}
+    \mathcal{L} = i\psi^{\dagger}\bar{\sigma}^\mu\partial_\mu\psi + i\chi^{\dagger}\bar{\sigma}^\mu\partial_\mu\chi - \left\{M\chi\chi + m\psi\chi + h.c.\right\}
+\end{equation}
+Where $\chi$ and $\psi$ are LH Weyl spinor fields.
+\subsection{The contractions $\chi\chi$ and $\psi\chi$}
+The two terms $M\chi\chi$ and $m\psi\chi$ must be Lorentz scalars. For this to happen, they must follow the structure of indices contractions of LH Weyl spinor fields:
+\begin{equation}
+    \chi\chi = \chi^T i\sigma_2 \chi = \begin{pmatrix} \chi_1 & \chi_2 \end{pmatrix} \begin{pmatrix} & 1 \\ -1 & \end{pmatrix} \begin{pmatrix} \chi_1 \\ \chi_2 \end{pmatrix} = \chi_1\chi_2 - \chi_2\chi_1
+\end{equation}
+And similarly
+\begin{equation}
+    \psi\chi = \psi^T i\sigma_2 \chi = \begin{pmatrix} \psi_1 & \psi_2 \end{pmatrix} \begin{pmatrix} & 1 \\ -1 & \end{pmatrix} \begin{pmatrix} \chi_1 \\ \chi_2 \end{pmatrix} = \psi_1\chi_2 - \psi_2\chi_1
+\end{equation}
+It is easy to see that this is Lorentz invariant\footnote{We did this in class.}. The transformation of an LH Weyl spinor is
+\begin{equation}
+    \chi \rightarrow e^{-(\theta_\alpha + ib_\alpha)t_\alpha}\chi
+\end{equation}
+And so:
+\begin{equation}
+    \chi^T i\sigma_2 \chi \rightarrow (\chi')^T i\sigma_2 \chi' = \chi^T e^{-(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma^T_\alpha} i\sigma_2 e^{-(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma_\alpha} \chi = \chi^T i\sigma_2 \chi
+\end{equation}
+Where we used the relation $\sigma_\alpha^T\sigma_2 = -\sigma_2\sigma_\alpha$ to show that
+\begin{equation}
+    e^{-(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma^T_\alpha} i\sigma_2 e^{-(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma_\alpha} = i\sigma_2 e^{(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma_\alpha} e^{-(\theta_\alpha + ib_\alpha)\frac{1}{2}\sigma_\alpha} = i\sigma_2
+\end{equation}
+More interestingly, in the case where $\chi$-s are not anticommuting fields but commuting fields, we get:
+\begin{equation}
+    \chi\chi = \chi_1\chi_2 - \chi_2\chi_1 = [\chi_1, \chi_2] = 0
+\end{equation}
+Which means thae for commuting fields these terms vanish identically.
+\subsection{Equations of motion}
+Using EL for each field, we can write the EOM of the fields. For $\psi$, we get:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \psi} - \partial_\mu \frac{\partial \mathcal{L}}{\partial\left(\partial_\mu \psi\right)} = -m\chi^T i\sigma_2 - i \partial_\mu \psi^\dagger \bar{\sigma}^\mu = 0
+\end{equation}
+For $\chi$:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \chi} - \partial_\mu \frac{\partial \mathcal{L}}{\partial\left(\partial_\mu \chi\right)} = -2M\chi^T i\sigma_2 - m\psi^T i\sigma_2 - i \partial_\mu \chi^\dagger \bar{\sigma}^\mu = 0
+\end{equation}
+Multiplying from the right by $-i\sigma_2$ and trasposing, the interaction terms in each lose their $\sigma_2$ factor and the last term becomes (in the first equation for instance, but the result in the second equation is the same):
+\begin{equation}
+    \left[- i \partial_\mu \psi^\dagger \bar{\sigma}^\mu i \sigma_2\right]^T = \left[\partial_\mu \psi^\dagger \bar{\sigma}^\mu \sigma_2\right]^T = \sigma_2^T (\bar{\sigma}^\mu)^T \partial_\mu \psi^* = - \bar{\sigma}^\mu \sigma_2  \partial_\mu \psi^* 
+\end{equation}
+So we get The system of equations for $\chi$ and $\chi^* = \left(\chi^\dagger\right)^T$ are:
+\begin{equation}
+\begin{cases}
+    m\chi - \bar{\sigma}^\mu \sigma_2  \partial_\mu \psi^*  = 0
+    \\
+    2M\chi + m\psi - \bar{\sigma}^\mu \sigma_2  \partial_\mu \chi^* = 0
+\end{cases}
+\end{equation}
+\subsection{Finding the solution for large $M$}
+For large $M$, we can expand $\chi$ and $\chi^*$ in $1/M$:
+\begin{equation}
+    \chi = \sum_n \chi^{(n)} \left(\frac{1}{M}\right)^n
+    \qquad
+    \chi^* = \sum_n \left(\chi^{(n)}\right)^* \left(\frac{1}{M}\right)^n
+\end{equation}
+Assigning up to first order into the second EOM, we get:
+\begin{equation}
+    2M\left(\chi^{(0)} + \frac{1}{M}\chi^{(1)}\right) + m\psi - \bar{\sigma}^{\mu}\sigma_2\partial_\mu \left(\left(\chi^{(0)}\right)^* + \frac{1}{M}\left(\chi^{(1)}\right)^*\right) = 0
+\end{equation}
+Dividing by $2M$ and reorganizing:
+\begin{equation}
+    \left(\chi^{(0)} + \frac{1}{M}\chi^{(1)}\right) = - \frac{m}{2M} \psi - \bar{\sigma}^{\mu}\sigma_2\partial_\mu \left(\frac{1}{M}\left(\chi^{(0)}\right)^* + \frac{1}{M^2}\left(\chi^{(1)}\right)^*\right)
+\end{equation}
+Taking the leading order $\chi = \chi^{(0)}$ we get:
+\begin{equation}
+\label{eq:first-order-chi}
+    \chi = - \frac{m}{2M} \psi
+\end{equation}
+\subsection{Plugging it back in}
+Plugging equation \ref{eq:first-order-chi} back into \ref{eq:spinors-lagrangian-density}, we get:
+\begin{equation}
+    \mathcal{L} = \left(1 + \frac{m^2}{4M^2}\right)i\psi^{\dagger}\bar{\sigma}^\mu\partial_\mu\psi - \frac{m^2}{4M}\left\{\psi\psi + h.c.\right\}
+\end{equation}
+We can now multiply the Lagrangian density by a constant to remove the prefactor of the kinetic term, and denoting
+\begin{equation}
+    m_\psi = 2 \frac{\frac{m^2}{4M}}{1 + \frac{m^2}{4M^2}} = \frac{m}{\frac{2M}{m} + \frac{m}{2M}}
+\end{equation}
+To get
+\begin{equation}
+    \mathcal{L} = i\psi^{\dagger}\bar{\sigma}^\mu\partial_\mu\psi - \frac{m_\psi}{2}\left\{\psi\psi + h.c.\right\}
+\end{equation}
+\subsection{Equation of motion for $\psi$}
+Using EL, we can now find the EOM for $\psi$. As usual, we will do this by treating $\psi$ and $\psi^\dagger$ as two independent fields. The EL equation for $\psi^\dagger$ gives:
+\begin{equation}
+    i\bar{\sigma}^\mu\partial_\mu \psi - m_\psi i \sigma_2 \psi^* = 0
+\end{equation}
+While the EL for $\psi$ gives:
+\begin{equation}
+    - m_\psi\psi^T i \sigma_2 - i \partial_\mu\psi^\dagger \bar{\sigma}^\mu = 0
+\end{equation}
+Dividing both equations by $i$ and organizing them, we get:
+\begin{equation}
+\begin{cases}
+    \bar{\sigma}^\mu\partial_\mu \psi - m_\psi \sigma_2 \psi^* = 0
+    \\
+    \partial_\mu\psi^\dagger \bar{\sigma}^\mu + m_\psi\psi^T \sigma_2 = 0
+\end{cases}
+\end{equation}
+Transposing the second equation
+\begin{equation}
+    \left(\bar{\sigma}^\mu\right)^T \partial_\mu\psi^* + m_\psi\sigma_2 \psi = 0
+\end{equation}
+We can now isolate $\psi^*$ from the first equation:
+\begin{equation}
+    \sigma_2 \psi^* = \frac{1}{m_\psi}\bar{\sigma}^\mu\partial_\mu \psi \rightarrow \psi^* = \frac{1}{m_\psi}\sigma_2 \bar{\sigma}^\mu\partial_\mu \psi
+\end{equation}
+And assign this into the transposed second equation, we get:
+\begin{equation}
+    \left[
+        \frac{1}{m_\psi} \left(\bar{\sigma}^\mu\right)^T \partial_\mu \left(\sigma_2 \bar{\sigma}^\nu\partial_\nu\right) + m_\psi\sigma_2
+    \right] \psi = 0
+\end{equation}
+In the first term we can switch the order of the matrices using $\sigma_\alpha^T \sigma_2 = - \sigma_2\sigma_\alpha$ Which means $\left(\bar{\sigma}^\mu\right)^T\sigma_2 = \sigma_2 \sigma^\mu$:
+\begin{equation}
+    \sigma_2\left[
+        \frac{1}{m_\psi} \sigma^\mu \partial_\mu \left(\bar{\sigma}^\nu\partial_\nu\right) + m_\psi
+    \right] \psi = 0
+\end{equation}
+Multiplying from the left by $m_\psi \sigma_2$ and remembering we saw in TA that $(\sigma^\nu \partial_\nu)(\bar{\sigma}^\mu \partial_\mu) = \Box$:
+\begin{equation}
+    \left(\Box + m_\psi^2\right)\psi = 0
+\end{equation}
+\section{The Proca field: part I}
+In this section we look at the theory of a massive Lorentz four-vector field $B^\mu$ with the Lagrangian density
+\begin{equation}
+    \mathcal{L} = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu} + \frac{1}{2}m^2B^\mu B_\mu
+    \qquad
+    F_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu
+\end{equation}
+\subsection{Equations of motion}
+Using EL, together with the result we saw for the massless Lorentz four-vector field in TA 2, we get:
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial B_\nu} - \partial_\alpha \frac{\partial \mathcal{L}}{\partial\left(\partial_\alpha B_\nu\right)} =  (\Box + m^2)B^\nu - \partial^\nu \partial_\alpha B^\alpha = 0
+\end{equation}
+Lowering the indices to organize the equation, we get:
+\begin{equation}
+\label{eq:b-eom}
+    \left(
+        \eta^{\alpha\nu}\Box + m^2\eta^{\alpha\nu} - \partial^\alpha \partial^\nu
+    \right) B_\alpha = 0
+\end{equation}
+\subsection{Simplifying the equation}
+Taking the divergence $\partial_\nu$ of the above equation, we can simplify the equation:
+\begin{equation}
+    \left(
+        \Box\partial^\alpha + m^2\partial^\alpha - \partial^\alpha \Box
+    \right) B_\alpha = 0
+\end{equation}
+\begin{equation}
+    m^2 \partial^\alpha B_\alpha = 0
+\end{equation}
+And so for $m^2 \ne 0$, we get
+\begin{equation}
+\label{eq:b-gauge}
+    \partial^\alpha B_\alpha = 0
+\end{equation}
+Plugging this back into equation \ref{eq:b-eom}, we get:
+\begin{equation}
+    \left(
+        \eta^{\alpha\nu}\Box + m^2\eta^{\alpha\nu}
+    \right) B_\alpha = 0
+\end{equation}
+Raising back the indices will give:
+\begin{equation}
+    \left(
+        \Box + m^2
+    \right) B^\nu = 0
+\end{equation}
+Meaning that every component of $B^\mu$ satisfies the Klein-Gordon equations. In addition, these components must satisfy equation \ref{eq:b-gauge}, which replaces the gauge freedom and reduces the number of DOF to 3.
+\subsection{Canonical conjugate momenta}
+Using the definition of canonical conjugate momentum we get:
+\begin{equation}
+\begin{gathered}
+    \Pi^\mu = \frac{\partial \mathcal{L}}{\partial (\partial_0 B_\mu)} = -\frac{1}{4} \frac{\partial}{\partial (\partial_0 B_\mu)} \left(F^{\mu\nu}F_{\mu\nu}\right) =
+    \\
+    = -\left(\partial^0B^\mu - \partial^\mu B^0\right) = \partial^\mu B^0 - \partial^0B^\mu
+\end{gathered}
+\end{equation}
+Particularly, $\Pi^0 = 0$, while for the rest
+\begin{equation}
+    \Pi^i = F^{i0}
+\end{equation}
+As we expected, the momentum has only three DOF, same as the field itself.
+
+\section{A model for pions}
+In this section we will consider a model for pions represented by three scalar fields $\phi_1, \phi_2, \phi_3$ with the Lagrangian density
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_K + \mathcal{L}_M
+\end{equation}
+\begin{equation}
+    \mathcal{L}_K = \frac{f^2}{4}\tr\{\partial^\mu\Sigma\partial_\mu\Sigma^\dagger\}
+    \qquad
+    \mathcal{L}_M = \frac{f^2m^2}{4}\tr{\Sigma + \Sigma^\dagger}
+    \qquad
+    \Sigma = \exp\left(\frac{i\phi_i\sigma_i}{f}\right)
+\end{equation}
+\subsection{The kinetic term}
+Let us show that $\mathcal{L}_k$ is invariant under 
+\begin{equation}
+    \Sigma \rightarrow \Sigma' = V_L \Sigma V_R^\dagger
+\end{equation}
+Where $V_l, V_R \in SU(2)$. This can using the trace invariance to cyclic permutation and the hermiticity of $V_L$ and $V_R$:
+\begin{equation}
+\begin{gathered}
+    \tr\{\partial^\mu\Sigma\partial_\mu\Sigma^\dagger\} \rightarrow \tr\{\partial^\mu\Sigma'\partial_\mu\Sigma'^\dagger\}
+    = \\ =
+    \tr\{\partial^\mu V_L\Sigma V_R \partial_\mu V_R^\dagger \Sigma^\dagger V_L^\dagger\} = \\ =
+    \tr\{V_L \partial^\mu \Sigma V_R V_R^\dagger \partial_\mu \Sigma^\dagger V_L^\dagger\} = \\ =
+    \tr\{V_L \partial^\mu \Sigma \partial_\mu \Sigma^\dagger V_L^\dagger\} = \\ =
+    \tr\{\partial^\mu \Sigma \partial_\mu \Sigma^\dagger V_L^\dagger V_L\} = \\ =
+    \tr\{\partial^\mu \Sigma \partial_\mu \Sigma^\dagger\}
+\end{gathered}
+\end{equation}
+This means that the group $SU(2)_L \times SU(2)_R$ is a symmetry of the Lagrangian. Since $SU(2)$ has three generator, the total group should have nine generators. But, since the group external product is commutative, this is reduced to six generators: $\sigma_1 \times \sigma_1$, $\sigma_1 \times \sigma_2$, $\sigma_1 \times \sigma_3$, $\sigma_2 \times \sigma_2$, $\sigma_2 \times \sigma_3$, and $\sigma_3 \times \sigma_3$.
+\subsection{Noether currents}
+Let us now find the Noether currents associated with this symmetry. To do this, let us take $V_R$ and $V_L$ that are infenitesimaly different from the unit matrix:
+\begin{equation}
+    V_L = \mathbb{1} + i\epsilon^{(l)}_i \frac{1}{2}\sigma_i
+    \qquad
+    V_R = \mathbb{1} + i\epsilon^{(r)}_i \frac{1}{2}\sigma_i
+\end{equation}
+Applying this to $\Sigma$ from left and right and ignoring second order, we get:
+\begin{equation}
+    \delta \Sigma = \left(\mathbb{1} + i\epsilon^{(l)}_i \frac{1}{2}\sigma_i\right) \Sigma \left(\mathbb{1} + i\epsilon^{(r)}_i \frac{1}{2}\sigma_i\right) - \Sigma \approx \left(i\epsilon^{(l)}_i \frac{1}{2}\sigma_i + i\epsilon^{(r)}_i \frac{1}{2}\sigma_i\right) \Sigma
+\end{equation}
+Promoting the $\epsilon$-s into functions and putting this into the Lagrangian density we get that the partial derivatives work on $V_R$ and $V_L$ now as well. To simplify the procedure, let us look at $V_R = \mathbb{1}$ to find the current in $L$ and vice versa. Starting from $L$:
+\begin{equation}
+\begin{gathered}
+    \delta \mathcal{L} = \frac{f^2}{4}
+        \tr\left\{\partial^\mu\left[\left(\mathbb{1} + i\epsilon^{(l)}_i \frac{1}{2}\sigma_i\right) \Sigma\right] \partial_\mu\left[\Sigma^\dagger \left(\mathbb{1} - i\epsilon^{(l)}_i \frac{1}{2}\sigma_i\right)\right]\right\} - \frac{f^2}{4}\tr\{
+            \partial^\mu\Sigma\partial_\mu\Sigma^\dagger
+        \}
+    \approx \\ \approx \frac{f^2}{4}
+        \tr\left\{i\epsilon^{(l)}_i \frac{1}{2}\sigma_i  \partial^\mu \Sigma \partial_\mu\Sigma^\dagger - \partial^\mu \Sigma \partial_\mu\Sigma^\dagger i\epsilon^{(l)}_i \frac{1}{2}\sigma_i + i\partial^\mu \epsilon^{(l)}_i \frac{1}{2}\sigma_i \Sigma \partial_\mu\Sigma^\dagger - \partial_\mu \Sigma \Sigma^\dagger i\partial^\mu \epsilon^{(l)}_i \frac{1}{2}\sigma_i \right\}
+    = \\ = i \frac{f^2}{8}\tr\left\{\partial_\mu \epsilon^{(l)}_i \sigma_i \left[
+            \partial^\mu \Sigma \Sigma^\dagger -
+            \Sigma \partial^\mu \Sigma^\dagger
+        \right]\right\}
+\end{gathered}
+\end{equation}
+Using the fact that $\Sigma$ is unitary to change the first term in the brackets to
+\begin{equation}
+    \partial^\mu \Sigma \Sigma^\dagger = \partial^\mu(\Sigma \Sigma^\dagger) - \Sigma\partial^\mu \Sigma^\dagger = \partial^\mu(\mathbb{1}) - \Sigma\partial^\mu \Sigma^\dagger = -\Sigma\partial^\mu \Sigma^\dagger
+\end{equation}
+And so:
+\begin{equation}
+    \delta \mathcal{L} = -i \frac{f^2}{4}\tr\left\{\partial_\mu \epsilon^{(l)}_i \sigma_i \Sigma \partial^\mu \Sigma^\dagger\right\} = -i \partial_\mu \epsilon^{(l)}_i \frac{f^2}{4}\tr\left\{\sigma_i \Sigma \partial^\mu \Sigma^\dagger\right\}
+\end{equation}
+The variation in the action is then
+\begin{equation}
+    \delta S = \int d^4 x \delta \mathcal{L} = -\int d^4 x i \partial_\mu \epsilon^{(l)}_i \frac{f^2}{4}\tr\left\{\sigma_i \Sigma \partial^\mu \Sigma^\dagger\right\} = i \frac{f^2}{4} \int d^4 x \epsilon^{(l)}_i \partial_\mu\tr\left\{\sigma_i \Sigma \partial^\mu \Sigma^\dagger\right\} \equiv \int d^4 x \epsilon_n \partial_\mu J^\mu_n
+\end{equation}
+Therefore:
+\begin{equation}
+\label{eq:left-current}
+    J^\mu_{(l),i} = i\frac{f^2}{4} \tr\left\{\sigma_i \Sigma \partial^\mu \Sigma^\dagger\right\}
+\end{equation}
+Repeating the process for $R$, we get:
+\begin{equation}
+\begin{gathered}
+    \delta \mathcal{L} = \frac{f^2}{4}
+        \tr\left\{\partial^\mu\left[\Sigma\left(\mathbb{1} + i\epsilon^{(r)}_i \frac{1}{2}\sigma_i\right)\right] \partial_\mu\left[\left(\mathbb{1} - i\epsilon^{(r)}_i \frac{1}{2}\sigma_i\right)\Sigma^\dagger\right]\right\} - \frac{f^2}{4}\tr\{
+            \partial^\mu\Sigma\partial_\mu\Sigma^\dagger
+        \}
+    = \\ = i \frac{f^2}{8}\tr\left\{
+        \Sigma \partial_\mu \epsilon^{(r)}_i \sigma_i \partial_\mu \Sigma^\dagger - \partial_\mu \Sigma \partial_\mu \epsilon^{(r)}_i \sigma_i \Sigma^\dagger
+    \right\} = \\ = i \frac{f^2}{8}\partial_\mu \epsilon^{(r)}_i\tr\left\{\sigma_i\left[
+        \partial_\mu \Sigma^\dagger \Sigma -  \Sigma^\dagger \partial_\mu \Sigma\right]
+    \right\} = - i \frac{f^2}{4}\partial_\mu \epsilon^{(r)}_i\tr\left\{\sigma_i\left[\Sigma^\dagger \partial_\mu \Sigma\right]
+    \right\} = 
+\end{gathered}
+\end{equation}
+Which means, after doing the same process of variating the action, we get:
+\begin{equation}
+\label{eq:right-current}
+    J^\mu_{(r),i} = i\frac{f^2}{4}\tr\{\sigma_i\Sigma^\dagger\partial^\mu\Sigma\}
+\end{equation}
+\subsection{Adding mass}
+The addition of the mass Lagrangian density breaks the above symmetry in a clear way. The mass Lagrangian density transforms like:
+\begin{equation}
+    \mathcal{L}_M = \frac{f^2m^2}{4}\tr{\Sigma + \Sigma^\dagger} \rightarrow \frac{f^2m^2}{4}\tr{V_L \Sigma V_R^\dagger + V_R \Sigma^\dagger V_L^\dagger} = \frac{f^2m^2}{4}\tr{\Sigma V_R^\dagger V_L + \Sigma^\dagger V_L^\dagger V_R}
+\end{equation}
+Which means, for the transformation to be a symmetry $V_R$ and $V_L$ must satisfy:
+\begin{equation}
+    V_L V_R^\dagger = V_L^\dagger V_R = \mathbb{1}
+\end{equation}
+And so our symmetry group of $SU(2) \times SU(2)$ was mostly reduced, with only the pairs where $V_R = V_L^{-1}$ remain. These mean that the transformation becomes
+\begin{equation}
+    \Sigma \rightarrow U \Sigma U^{\dagger}
+\end{equation}
+Which is the regular $SU(2)$ symmetry. Let us now find the Noether currents of this symmetry. Under an infenitesimal transformation
+\begin{equation}
+    U = \mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i
+\end{equation}
+The variation in the field is
+\begin{equation}
+    \delta \Sigma = \left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right) \Sigma \left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right) - \Sigma \approx i\epsilon_i\sigma_i \Sigma
+\end{equation}
+And the variation in the Lagrangian comes from both the kinetic and mass parts of the Lagrangian:
+\begin{equation}
+\begin{gathered}
+    \delta \mathcal{L}_K = \frac{f^2}{4}
+        \tr\left\{\partial^\mu\left[\left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right)\Sigma\left(\mathbb{1} - i\epsilon_i \frac{1}{2}\sigma_i\right)\right] \partial_\mu\left[\left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right)\Sigma^\dagger\left(\mathbb{1} - i\epsilon_i \frac{1}{2}\sigma_i\right)\right]\right\} - \frac{f^2}{4}\tr\{
+            \partial^\mu\Sigma\partial_\mu\Sigma^\dagger
+        \}
+    = \\ = i \frac{f^2}{8}\tr\left\{
+        \partial_\mu \epsilon_i \sigma_i \Sigma \partial^\mu \Sigma^\dagger - \Sigma \partial_\mu \epsilon_i \sigma_i \partial^\mu \Sigma^\dagger + \partial^\mu \Sigma \partial_\mu \epsilon_i \sigma_i \Sigma^\dagger - \partial^\mu \Sigma \Sigma^\dagger \partial_\mu \epsilon_i \sigma_i
+    \right\} = \\ = - i \frac{f^2}{8}\partial_\mu \epsilon_i\tr\left\{\sigma_i\left[
+        \Sigma \partial^\mu \Sigma^\dagger
+        - \partial^\mu \Sigma^\dagger \Sigma
+        + \Sigma^\dagger \partial^\mu \Sigma
+        - \partial^\mu \Sigma \Sigma^\dagger
+    \right]
+    \right\} = \\ = - i \frac{f^2}{4}\partial_\mu \epsilon_i\tr\left\{\sigma_i\left[
+        \Sigma \partial^\mu \Sigma^\dagger
+        + \Sigma^\dagger \partial^\mu \Sigma
+    \right]
+    \right\}
+\end{gathered}
+\end{equation}
+And from the mass term:
+\begin{equation}
+\begin{gathered}
+    \delta \mathcal{L}_M = \frac{f^2m^2}{4}\tr\left\{
+        \left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right)\Sigma\left(\mathbb{1} - i\epsilon_i \frac{1}{2}\sigma_i\right) + \left(\mathbb{1} + i\epsilon_i \frac{1}{2}\sigma_i\right)\Sigma^\dagger\left(\mathbb{1} - i\epsilon_i \frac{1}{2}\sigma_i\right)
+    \right\} \approx \\ \approx i\frac{f^2m^2}{8}\tr\left\{
+        \epsilon_i \sigma_i \Sigma - \Sigma \epsilon_i \sigma_i +
+        \epsilon_i \sigma_i \Sigma^\dagger - \Sigma^\dagger \epsilon_i \sigma_i
+    \right\} = 0
+\end{gathered}
+\end{equation}
+This means the Noether current comes from the kinetic term alone. Using the same method of variating the action as before, we get:
+\begin{equation}
+    J^\mu_i = i\frac{f^2}{4}\tr\left\{\Sigma\partial^\mu\Sigma^\dagger + \sigma^\dagger\partial^\mu\Sigma\right\}
+\end{equation}
+And, comparing to the currents before the symmetry breaking in equations \ref{eq:left-current} and \ref{eq:right-current}:
+\begin{equation}
+    J^\mu_i = J^\mu_{(l),i} + J^\mu_{(r),i}
+\end{equation}
+\end{document}
