@@ -1,10 +1,11 @@
 import math
 import numpy as np
-from scipy.stats import truncnorm
+from scipy.stats import truncnorm, norm
 from datetime import datetime
 import logging
 import matplotlib.pyplot as plt
 from tqdm import trange
+from itertools import product
 
 logging.basicConfig(format='[%(asctime)s] %(levelname)s: %(message)s', datefmt='%d/%m/%Y %H:%M:%S', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -55,6 +56,14 @@ def hamiltonian(state, J, m0, k = 0, boundary_condition='open'):
     return -J * sum(spins[i] * spins[i + 1] for i in range(len(spins) - 1)) + (1/2) * k * (m - m0) ** 2
   else:
     raise ValueError("Unknown boundary condition: {}".format(boundary_condition))
+
+def exact_pm(N, J, T):
+  beta = 1 / T
+  chi = beta * (1 + np.exp(-2*beta*J)) / (1 - np.exp(-2*beta*J))
+  m_vals = np.linspace(-1, 1, N + 1)
+  P_m = np.exp(- (N * m_vals**2) / (2 * chi))
+  P_m /= P_m.sum()
+  return m_vals, P_m
 
 def random_initial_state(N):
   return State([1 if random.fraction() < 0.5 else -1 for _ in range(N)])
@@ -317,17 +326,18 @@ def question3(N, J, T):
   direct_histogram = direct_histogram / np.sum(direct_histogram)
   unbiased_histogram = unbiased_histogram / np.sum(unbiased_histogram)
   # fit the unbiased histogram to a truncated normal distribution for better comparison
-  # step 1 - find the fit parameters
-  mu, std = truncnorm.fit(unbiased_histogram, floc=-1, fscale=2)[2:]
-  # step 2 - find the fit maximum - the value at the mu
-  unbiased_max = pow(math.e, -0.5 * ((mu - mu) / std) ** 2) / (std * math.sqrt(2 * math.pi))
-  # step 3 - scale the unbiased histogram to match the direct histogram at the peak
-  scale_factor = np.max(direct_histogram) / unbiased_max
+  a, b, mu, std = truncnorm.fit(unbiased_histogram, floc=-1, fscale=2)
+  remaining_fraction = 1 / (norm.cdf((b - mu) / std) - norm.cdf((a - mu) / std))
+  unbiased_max = 1 / (std * math.sqrt(2 * math.pi))
+  scale_factor = np.max(direct_histogram) / (remaining_fraction / (std * math.sqrt(2 * math.pi)))
   unbiased_histogram = unbiased_histogram * scale_factor
+  # calcualte exact solution
+  exact_x, exact_y = exact_pm(N, J, T)
   # plot both histograms on the same graph
   plt.clf()
   plt.bar(bin_centers, direct_histogram, width=h, align='center', label='Direct Sampling')
   plt.bar(bin_centers, unbiased_histogram, width=h, align='center', label='Umbrella Sampling Unbiased')
+  plt.plot(exact_x, exact_y, color='black')
   plt.xlabel('Magnetization m')
   plt.ylabel('Normalized Count')
   plt.title('Comparison of Direct Sampling and Umbrella Sampling (Unbiased)')

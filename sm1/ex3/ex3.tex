@@ -127,17 +127,16 @@ Let us consider the 1D Ising model with periodic boundary conditions:
     H(\{\sigma_i\}) = -J \sum_{i=1}^N \sigma_i \sigma_{i+1}
 \end{equation}
 with $J = 1$ and $N = 128$. At a temperature of $T = 2.5$ the magnetization distribution $P(m)$ is sharplu peaked around $m = 0$. In this section we exmaine numeric evaluation methods for the distribution using Umbrella sampling.
-
 \subsection{Direct sampling}
 First, let us look at a direct sample. To do this, we ran a standard Monte-Carlo simulation with single-spin Metropolis dynamics. We ran the simulation with twnety samples running simultaniously. The system was first allowed to reach convergence. Convergence is defined by two criteria, and is considered reached only when both are met. The first is for the standard diviation of the averages of the twenty samples along the last ten repetitions to be under a threshold, defined to be 1. The second condition is for the slope of the average of the twenty samples along the last ten repetitions to be below a threshold defined to be 0.001. These two conditions measure convergence and stability, respectivly.
 \newline
-% After reaching convergence, the simultion ran over the twenty samples for an additional 1000 sweeps, using these 20,000 samples (20 samples over 1000 sweeps) as the population for the distribution. This distribution can be seen in figure \ref{fig:direct-sampling}.
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{monte_carlo_histogram_20260104_021317.png}
-%     \caption{Histogram of magnetization values from direct sampling of the 1D Ising model at $T = 2.5$.}
-%     \label{fig:direct-sampling}
-% \end{figure}
+After reaching convergence, the simultion ran over the twenty samples for an additional 1000 sweeps, using these 20,000 samples (20 samples over 1000 sweeps) as the population for the distribution. This distribution can be seen in figure \ref{fig:direct-sampling}\footnote{The code for this section can be found in \url{https://raw.githubusercontent.com/idanstark42/masters-homework/refs/heads/master/sm1/ex3/umbrella_sampling_1D_Ising.py}}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{monte_carlo_histogram_20260104_230724.png}
+    \caption{Histogram of magnetization values from direct sampling of the 1D Ising model at $T = 2.5$.}
+    \label{fig:direct-sampling}
+\end{figure}
 The system reached convergence after twelve sweeps. It can be seen in the figure that the distribution is sharply peaked around $m = 0$, and that the tails of the distribution are very poorly sampled, with only a few samples in the ranges $|m| > 0.5$. In reality, only one sample was found in the range $|m| > 0.5$, and so the histogram bar is not visible in the figure.
 \newline
 This was expceted, since at high temperatures the spins are disordered, leading to a magnetization probability peak around zero.
@@ -146,25 +145,37 @@ Now let us add the umbrella potential:
 \begin{equation}
     H_U = H + W(m) \qquad W(m) = \frac{k}{2}(m-m_0)^2
 \end{equation}
-% with $k = 2000$\footnote{The question required $k = 200$, but after a trial it did not move the center to $0.6$, only to $0.4$. This is due to the bias not being strong enough against the original hamiltonian, the entropy and the high temperatuer pushing the magnetization to the center a non-negligble amount. To bypass this and see the full effect of the Umbrella potential, we used a bias one order of magnitude higher.} and $m_0$ = 0.6. The new distribution can be seen in figure \ref{fig:umbrella-potential}. It can be seen that the new center of the distribution is $m = 0.6$.
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{monte_carlo_histogram_20260104_021839.png}
-%     \caption{Histogram of magnetization values from Umbrella sampling of the 1D Ising model at $T = 2.5$ with umbrella potential centered at $m_0 = 0.6$.}
-%     \label{fig:umbrella-potential}
-% \end{figure}
+with $k = 2000$\footnote{The question required $k = 200$, but after a trial it did not move the center to $0.6$, only to $0.4$. This is due to the bias not being strong enough against the original hamiltonian, the entropy and the high temperature pushing the magnetization to the center a non-negligble amount. To bypass this and see the full effect of the Umbrella potential, I used a bias one order of magnitude higher.} and $m_0$ = 0.6. The new distribution can be seen in figure \ref{fig:umbrella-potential}. It can be seen that the new center of the distribution is $m = 0.6$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{monte_carlo_histogram_20260104_231207.png}
+    \caption{Histogram of magnetization values from Umbrella sampling of the 1D Ising model at $T = 2.5$ with umbrella potential centered at $m_0 = 0.6$.}
+    \label{fig:umbrella-potential}
+\end{figure}
 \subsection{The umbrella sampling identity}
 As we saw in class, the actual probability $P(m)$ of a variable over a hamiltonian $H$ can be related to a new hamiltonian $H_U = H + W$ using:
 \begin{equation}
     P(m) = e^{-\beta H(m)} = e^{-\beta H_U(m)}e^{\beta W(m)} = P_U(m)e^{\beta W(m)}
 \end{equation}
-% This allows us to evaluate $P(m)$ using a modified hamiltonian, not having the same numerical sampling biases as the original hamiltonian. In our case, we can remove the bias we gained in the previous subsection. The new distribution after removing the bias can be found in figure \ref{fig:umbrella-potential-after-correction}. It can be seen that this time the distribution is not a full gaussian, but rather only the right tail. To see that it matches figure \ref{fig:direct-sampling}, let us normalize both distributions and plot them together, as can be seen in figure \ref{fig:direct-vs-umbrella}. 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.7\textwidth]{unbiased_magnetization_histogram_20260104_023051.png}
-%     \caption{Histogram of magnetization values from Umbrella sampling of the 1D Ising model at $T = 2.5$ with umbrella potential centered at $m_0 = 0.6$, after removing the bias using the umbrella sampling identity.}
-%     \label{fig:umbrella-potential-after-correction}
-% \end{figure}
+This allows us to evaluate $P(m)$ using a modified hamiltonian, not having the same numerical sampling biases as the original hamiltonian. In our case, we can remove the bias we gained in the previous subsection. The new distribution after removing the bias can be found in figure \ref{fig:umbrella-potential-after-correction}. It can be seen that this time the distribution is not a full gaussian, but rather only the right tail. In order to compare it to \ref{fig:direct-sampling}, let us normalize both distributions and plot them together, as can be seen in figure \ref{fig:direct-vs-umbrella}.
+The unbiased umbrella distribution was thus renormalized to have the same maximum. This was achieved using a truncated gaussian fit on the biased umbrella distribution, finding the theoretical maximum of the gaussian, and then dividing the distribution by the ratio between the maxima. In addition, the exact solution has been added and normalized in the same way. Notice that it was done for comparison, and that the gaussian is not meant to be a fit for any of the distributions.
+\newline
+The main difference, it seems, is that in in the unbiased umbrella distribution $P_{US}(m)$, there are much more samples in the $|m| > 0.5$ region, even after removing the bias. While both of them are, unsurprisingly, gaussians, and thus fitting to the theoretical exact solution, it is clear from the exact solution in the graph that they are both unpercise in their distribution.
+\subsection{Discussion}
+It seems that the umbrella simultion is a useful tool to investigate parts of the distribution that are usually noisy. The potential acts as a harmoic potential, changing the center of the distribution and the region it samples. This helps remove noises that may occour from low volume of samples. In our case, the umbrella simultion sampled $m \approx 0.6$ because the potential was the lowest there. Later mulplying the distribution by the factor $e^{\beta W(m)}$ removed the bias, since as we saw, it is the bridging potential between the direct and biased potentials, and so it is mathematically equivilant while computationally it helps reduce the noises stemming from the small number of samples in the region when preforming direct sampling. In total, we get a process that moves the center of the distribution to an area that was previously mostly noise, getting enough samples in that are to have statistically significant results, and then using the physical relation between the direct and biased distributions to go back to the original distribution center, now with the larger number of samples in the previously unsampled region.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{monte_carlo_histogram_20260104_231732.png}
+    \caption{Histogram of magnetization values from Umbrella sampling of the 1D Ising model at $T = 2.5$ with umbrella potential centered at $m_0 = 0.6$, after removing the bias using the umbrella sampling identity.}
+    \label{fig:umbrella-potential-after-correction}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{direct_vs_umbrella_20260105_042624.png}
+    \caption{Histogram of magnetization values from the unbiased Umbrella sampling and the direct sampling, after normalization to a simialr maximum.}
+    \label{fig:direct-vs-umbrella}
+\end{figure}
 
 \section{Yang-Lee zeros of the 1D Ising model}
 \subsection{Rewriting the partition function}
@@ -261,7 +272,7 @@ And so, we get:
     \rho^2 + \frac{4\tau^2 - 2 + 2\alpha_k^2}{1 + \alpha_k}\rho + 1
      = 0
 \end{equation}
-And so we got a quadratic equation for $\rho$. Solving it will give the values of $\rho$ for which $Z = 0$. Figure \ref{fig:zeros-of-z-different-n} shows the zeros on the complex plain for $N = 10, 50, 500$ and $\tau = 0.5$.
+And so we got a quadratic equation for $\rho$. Solving it will give the values of $\rho$ for which $Z = 0$. Figure \ref{fig:zeros-of-z-different-n} shows the zeros on the complex plain for $N = 10, 50, 500$ and $\tau = 0.5$\footnote{The code for this calculation can be found in \url{https://raw.githubusercontent.com/idanstark42/masters-homework/refs/heads/master/sm1/ex3/yang_lee_zeros_1D_ising.py}}.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.3\textwidth]{rho_scatter_N10.png} \hspace{0.02\textwidth}

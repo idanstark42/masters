@@ -17,7 +17,6 @@ def plot_for_n (N, TAU):
   rhos = np.concatenate((rhos_plus, rhos_minus))
   plt.scatter(rhos.real, rhos.imag, s=10)
 
-  # axis lines: black and thin
   plt.axhline(0, color="black", linewidth=0.5)
   plt.axvline(0, color="black", linewidth=0.5)
 
@@ -33,9 +32,9 @@ def plot_for_n (N, TAU):
   plt.title(rf"Zeros of Z for $N={N}$")
   plt.gca().set_aspect("equal", adjustable="box")
   plt.savefig(f"rho_scatter_N{N}_tau_{TAU}.png", dpi=300, bbox_inches="tight")
+  plt.show()
 
 if __name__ == "__main__":
   N = int(sys.argv[1]) if len(sys.argv) > 1 else 10
   TAU = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
   plot_for_n(N, TAU)
-  plt.show()

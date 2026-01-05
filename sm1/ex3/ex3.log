@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  5 JAN 2026 02:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  5 JAN 2026 04:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -345,62 +345,95 @@ LaTeX Font Info:    Font shape `OT1/pxr/b/n' in size <12> not available
 {c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc}]
 
 [2]
+LaTeX Font Info:    Trying to load font information for OT1+pxtt on input line 133.
+ (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/ot1pxtt.fd
+File: ot1pxtt.fd 2000/12/14 v1.0
+)
+<monte_carlo_histogram_20260104_230724.png, id=16, 462.528pt x 346.896pt>
+File: monte_carlo_histogram_20260104_230724.png Graphic file (type png)
+<use monte_carlo_histogram_20260104_230724.png>
+Package pdftex.def Info: monte_carlo_histogram_20260104_230724.png  used on input line 136.
+(pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
+
 
 [3]
+<monte_carlo_histogram_20260104_231207.png, id=22, 462.528pt x 346.896pt>
+File: monte_carlo_histogram_20260104_231207.png Graphic file (type png)
+<use monte_carlo_histogram_20260104_231207.png>
+Package pdftex.def Info: monte_carlo_histogram_20260104_231207.png  used on input line 151.
+(pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
 
-[4]
-<rho_scatter_N10.png, id=22, 338.2236pt x 328.8285pt>
+
+[4 <./monte_carlo_histogram_20260104_230724.png>]
+
+[5 <./monte_carlo_histogram_20260104_231207.png>]
+<monte_carlo_histogram_20260104_231732.png, id=31, 462.528pt x 346.896pt>
+File: monte_carlo_histogram_20260104_231732.png Graphic file (type png)
+<use monte_carlo_histogram_20260104_231732.png>
+Package pdftex.def Info: monte_carlo_histogram_20260104_231732.png  used on input line 169.
+(pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
+<direct_vs_umbrella_20260105_042624.png, id=32, 462.528pt x 346.896pt>
+File: direct_vs_umbrella_20260105_042624.png Graphic file (type png)
+<use direct_vs_umbrella_20260105_042624.png>
+Package pdftex.def Info: direct_vs_umbrella_20260105_042624.png  used on input line 175.
+(pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
+
+
+[6 <./monte_carlo_histogram_20260104_231732.png>]
+
+[7 <./direct_vs_umbrella_20260105_042624.png>]
+<rho_scatter_N10.png, id=42, 338.2236pt x 328.8285pt>
 File: rho_scatter_N10.png Graphic file (type png)
 <use rho_scatter_N10.png>
-Package pdftex.def Info: rho_scatter_N10.png  used on input line 267.
+Package pdftex.def Info: rho_scatter_N10.png  used on input line 278.
 (pdftex.def)             Requested size: 140.92793pt x 137.0132pt.
-<rho_scatter_N50.png, id=24, 336.0555pt x 328.8285pt>
+<rho_scatter_N50.png, id=43, 336.0555pt x 328.8285pt>
 File: rho_scatter_N50.png Graphic file (type png)
 <use rho_scatter_N50.png>
-Package pdftex.def Info: rho_scatter_N50.png  used on input line 268.
+Package pdftex.def Info: rho_scatter_N50.png  used on input line 279.
 (pdftex.def)             Requested size: 140.92793pt x 137.89629pt.
-<rho_scatter_N500.png, id=25, 335.8146pt x 328.8285pt>
+<rho_scatter_N500.png, id=44, 335.8146pt x 328.8285pt>
 File: rho_scatter_N500.png Graphic file (type png)
 <use rho_scatter_N500.png>
-Package pdftex.def Info: rho_scatter_N500.png  used on input line 269.
+Package pdftex.def Info: rho_scatter_N500.png  used on input line 280.
 (pdftex.def)             Requested size: 140.92793pt x 137.99664pt.
 File: rho_scatter_N500.png Graphic file (type png)
 <use rho_scatter_N500.png>
-Package pdftex.def Info: rho_scatter_N500.png  used on input line 275.
+Package pdftex.def Info: rho_scatter_N500.png  used on input line 286.
 (pdftex.def)             Requested size: 140.92793pt x 137.99664pt.
-<rho_scatter_N500_tau_0.05.png, id=26, 335.8146pt x 328.8285pt>
+<rho_scatter_N500_tau_0.05.png, id=45, 335.8146pt x 328.8285pt>
 File: rho_scatter_N500_tau_0.05.png Graphic file (type png)
 <use rho_scatter_N500_tau_0.05.png>
-Package pdftex.def Info: rho_scatter_N500_tau_0.05.png  used on input line 276.
+Package pdftex.def Info: rho_scatter_N500_tau_0.05.png  used on input line 287.
 (pdftex.def)             Requested size: 140.92793pt x 137.99664pt.
-<rho_scatter_N500_tau_0.005.png, id=27, 335.8146pt x 328.8285pt>
+<rho_scatter_N500_tau_0.005.png, id=46, 335.8146pt x 328.8285pt>
 File: rho_scatter_N500_tau_0.005.png Graphic file (type png)
 <use rho_scatter_N500_tau_0.005.png>
-Package pdftex.def Info: rho_scatter_N500_tau_0.005.png  used on input line 277.
+Package pdftex.def Info: rho_scatter_N500_tau_0.005.png  used on input line 288.
 (pdftex.def)             Requested size: 140.92793pt x 137.99664pt.
 
 
-[5]
+[8]
 
-[6 <./rho_scatter_N10.png> <./rho_scatter_N50.png> <./rho_scatter_N500.png> <./rho_scatter_N500_tau_0.05.png> <./rho_scatter_N500_tau_0.005.png>] (./ex3.aux)
+[9 <./rho_scatter_N10.png> <./rho_scatter_N50.png> <./rho_scatter_N500.png> <./rho_scatter_N500_tau_0.05.png> <./rho_scatter_N500_tau_0.005.png>] (./ex3.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 6099 strings out of 467746
- 94901 string characters out of 5431099
- 501310 words of memory out of 5000000
- 34717 multiletter control sequences out of 15000+600000
- 656601 words of font info for 124 fonts, out of 8000000 for 9000
+ 6173 strings out of 467746
+ 96907 string characters out of 5431099
+ 504398 words of memory out of 5000000
+ 34781 multiletter control sequences out of 15000+600000
+ 659590 words of font info for 131 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,13n,77p,1010b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ex3.pdf (6 pages, 366217 bytes).
+ 73i,13n,77p,1235b,342s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxex.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsy.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxmi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/rpxr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/txfonts/txtt.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on ex3.pdf (9 pages, 449388 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
