@@ -1,0 +1,381 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Mechanics I Excercise 5}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Commutators of the Angular Momentum}
+The Orbital angular momentum field, orbital part of the generators of rotations, can be written as
+\begin{equation}
+    \hat{\boldsymbol{L}}_{field} = \epsilon_0 \int d^3 r \sum_i \hat{E}_i \left(r \times \nabla\right)\hat{A}_i
+\end{equation}
+Where $\hat{A}_i$ is the vector potential operator and
+\begin{equation}
+    \hat{E}_i = \frac{i\hbar}{\epsilon_0}\frac{\delta}{\delta A_i}
+\end{equation}
+is the electric field operator, which is conjugate to the momentum. In other words, the commutation relations of $A_i$ and $E_i$ are
+\begin{equation}
+\label{eq:commutation-relations-l-e}
+    \left[\hat{E}_i(\boldsymbol{r}), \hat{A}_j(\boldsymbol{r'})\right] = \frac{i\hbar}{\epsilon_0}\delta_{ij}\delta^3(\boldsymbol{r} - \boldsymbol{r'})
+    \qquad
+    \left[\hat{E}_i(\boldsymbol{r}), \hat{E}_j(\boldsymbol{r'})\right] =
+    \left[\hat{A}_i(\boldsymbol{r}), \hat{A}_j(\boldsymbol{r'})\right] = 0
+\end{equation}
+Using this, we can find the commutation relations of $\hat{\boldsymbol{L}}_{field}$ and these two operators.
+\subsection{$\left[\hat{L}_{field, i}, \hat{A}_j(\boldsymbol{r})\right]$}
+To avoid double index, let us note $\hat{L}_i$ as the $i$-th component of $\hat{\boldsymbol{L}}_{field}$. We can then write
+\begin{equation}
+    \hat{L}_{i} = \epsilon_0 \int d^3 r \hat{E}_n \epsilon_{ijk}r_j \partial_k\hat{A}_n = \epsilon_0 \epsilon_{ijk} \int d^3 r r_j \hat{E}_n \partial_k\hat{A}_n
+\end{equation}
+So the commutator is
+\begin{equation}
+    \left[\hat{L}_{i}, \hat{A}_j(\boldsymbol{r})\right] = \epsilon_0 \epsilon_{ikl} \int d^3 r' r'_k \left[\hat{E}_n(\boldsymbol{r'}) \partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right]
+\end{equation}
+Using $[AB,C] = A[B,C] + [A,C]B$ to open the commutation relations in the integrand, we get:
+\begin{equation}
+    \left[\hat{E}_n(\boldsymbol{r'}) \partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] = 
+    \hat{E}_n(\boldsymbol{r'}) \left[\partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] + 
+    \left[\hat{E}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right]\partial_{l'}\hat{A}_n(\boldsymbol{r'})
+\end{equation}
+Now let us notice that for every two operators $A$ and $B$ that might depend on a variable $x$, the derivative of their commutator is:
+\begin{equation}
+    \partial_x\left[A,B\right] = \partial_x\left(AB\right) - \partial_x\left(BA\right) = \frac{\partial A}{\partial x}B + A\frac{\partial B}{\partial x} - \frac{\partial B}{\partial x}A + B\frac{\partial B}{\partial x} = \left[\frac{\partial A}{\partial x},B\right] + \left[A,\frac{\partial B}{\partial x}\right]
+\end{equation}
+So:
+\begin{equation}
+    \left[\partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] = 
+    \partial_{l'}\left[\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] - \left[\hat{A}_n(\boldsymbol{r'}), \partial_{l'}\hat{A}_j(\boldsymbol{r})\right] = 0
+\end{equation}
+Where the left term cancels out because of equation \ref{eq:commutation-relations-l-e} and the right term cancels out because $\hat{A}_j(\boldsymbol{r})$ doesn't depend on $\boldsymbol{r'}$ and thus $\partial_{l'}\hat{A}_j(\boldsymbol{r}) = 0$. This leaves:
+\begin{equation}
+    \left[\hat{E}_n(\boldsymbol{r'}) \partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] = 
+    \left[\hat{E}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right]\partial_{l'}\hat{A}_n(\boldsymbol{r'})
+\end{equation}
+Using equation \ref{eq:commutation-relations-l-e}:
+\begin{equation}
+    \left[\hat{E}_n(\boldsymbol{r'}), \hat{A}_j(\boldsymbol{r})\right] = \frac{i\hbar}{\epsilon_0}\delta_{nj}\delta^3(\boldsymbol{r'} - \boldsymbol{r})
+\end{equation}
+And so:
+\begin{equation}
+    \left[\hat{L}_{i}, \hat{A}_j(\boldsymbol{r})\right] = \epsilon_0 \epsilon_{ikl} \int d^3 r' r'_k \frac{i\hbar}{\epsilon_0}\delta_{nj}\delta^3(\boldsymbol{r'} - \boldsymbol{r})\partial_{l'}\hat{A}_n(\boldsymbol{r'}) = i\hbar \epsilon_{ijk} r_k\hat{A}_j(\boldsymbol{r})
+\end{equation}
+Or, in vector form:
+\begin{equation}
+    \left[\hat{\boldsymbol{L}}_{field}, \hat{\boldsymbol{A}}(\boldsymbol{r})\right] = i\hbar \boldsymbol{r} \times \hat{\boldsymbol{A}}(\boldsymbol{r})
+\end{equation}
+\subsection{$\left[\hat{L}_{i}, \hat{E}_j(\boldsymbol{r})\right]$}
+Like in the last section:
+\begin{equation}
+    \left[\hat{L}_{i}, \hat{E}_j(\boldsymbol{r})\right] = \epsilon_0 \epsilon_{ikl} \int d^3 r' r'_k \left[\hat{E}_n(\boldsymbol{r'}) \partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right]
+\end{equation}
+Again, openning the commutator, the term that includes the commutator of the electric field with itself vanishes, and we get:
+\begin{equation}
+\begin{gathered}
+    \left[\hat{E}_n(\boldsymbol{r'}) \partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right] = 
+    \hat{E}_n(\boldsymbol{r'}) \left[\partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right] +
+    \left[\hat{E}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right] \partial_{l'}\hat{A}_n(\boldsymbol{r'}) = \\ = 
+    \hat{E}_n(\boldsymbol{r'}) \left[\partial_{l'}\hat{A}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right] = \\ =
+    \hat{E}_n(\boldsymbol{r'}) \left(
+        \partial_{l'}\left[\hat{A}_n(\boldsymbol{r'}), \hat{E}_j(\boldsymbol{r})\right] -
+        \left[\hat{A}_n(\boldsymbol{r'}), \partial_{l'}\hat{E}_j(\boldsymbol{r})\right]
+    \right) = \frac{i\hbar}{\epsilon_0} \hat{E}_n(\boldsymbol{r'}) \partial_{l'}\delta_{nj}\delta^3(\boldsymbol{r} - \boldsymbol{r'})
+\end{gathered}
+\end{equation}
+Plugging this back into the integral gives:
+\begin{equation}
+    \left[\hat{L}_{i}, \hat{E}_j(\boldsymbol{r})\right] = i\hbar \epsilon_{ikl} \int d^3 r' r'_k \hat{E}_n(\boldsymbol{r'}) \partial_{l'}\delta_{nj}\delta^3(\boldsymbol{r} - \boldsymbol{r'}) = i\hbar \epsilon_{ikl} \partial_l \left(r_k \hat{E}_j(\boldsymbol{r})\right)
+\end{equation}
+Openning the derivative, we get:
+\begin{equation}
+    \partial_l \left(r_k \hat{E}_j(\boldsymbol{r})\right) = \delta_{kl} \hat{E}_j(\boldsymbol{r}) + r_k \partial_l \hat{E}_j(\boldsymbol{r})
+\end{equation}
+But since $\epsilon_{ikl}\delta_{kl} = 0$, the first term cancels out in the integral and we get:
+\begin{equation}
+    \left[\hat{L}_{i}, \hat{E}_j(\boldsymbol{r})\right] = i\hbar \epsilon_{ikl} r_k \partial_l \hat{E}_j(\boldsymbol{r})
+\end{equation}
+
+\section{The Vaccum Electric Field}
+The wave function of the vacuum can be written in the number basis as a product of the ground state of every mode:
+\begin{equation}
+    \ket{0} = \prod_{\boldsymbol{k}_\alpha} \ket{N_{\boldsymbol{k}_\alpha} = 0}
+\end{equation}
+Using these variables and the gague for which $\hat{E}_L(\boldsymbol{r}) = \nabla \cdot \phi = 0$, the electric field operator can be written as its transverse component only:
+\begin{equation}
+    \hat{E}_T(\boldsymbol{r}) = \sum_{\boldsymbol{k}_\alpha} i \left(\frac{\hbar \omega_k}{2\epsilon_0\Omega}\right)^{1/2}\left[
+        \hat{a}_{\boldsymbol{k}_\alpha}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{i\boldsymbol{k}\cdot\boldsymbol{r}}
+        -
+        \hat{a}_{\boldsymbol{k}_\alpha}^\dagger\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{-i\boldsymbol{k}\cdot\boldsymbol{r}}
+    \right]
+\end{equation}
+Where $\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha}$ are the polarization vectors and $\hat{a}_{\boldsymbol{k}_\alpha}, \hat{a}_{\boldsymbol{k}_\alpha}^\dagger$ are the annihilation and creation operators. The expectation value of the electric field in the vacuum state is:
+\begin{equation}
+    \bra{0} \hat{E}_T(\boldsymbol{r}) \ket{0} = 
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} i \left(\frac{\hbar \omega_k}{2\epsilon_0\Omega}\right)^{1/2}\left[
+        \hat{a}_{\boldsymbol{k}_\alpha}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{i\boldsymbol{k}\cdot\boldsymbol{r}}
+        -
+        \hat{a}_{\boldsymbol{k}_\alpha}^\dagger\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{-i\boldsymbol{k}\cdot\boldsymbol{r}}
+    \right] \prod_{\boldsymbol{q}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0}
+\end{equation}
+Acting with the first term in the brackets, that includes one annihilation operator, on the state on the right, gives zero for every term in the sum. This is because for every $\boldsymbol{k}_\alpha$ there is some $\boldsymbol{q}_\alpha$ in the product that is equal to it, for which $\hat{a}_{\boldsymbol{k}_\alpha}\ket{N_{\boldsymbol{q}_\alpha}=0}=0$. This happens for every $\boldsymbol{k}_\alpha$, and so the first term is zero for the entire sum.
+\newline
+The second term, on the other hand, creates a photon with momentum $\boldsymbol{k}_\alpha$, taking again the $\boldsymbol{q}_\alpha$ that matches it from the product. However, because of the product on the left is again a product of vacuum states, each product of two staes will become 1 for the matching $\boldsymbol{p}_\alpha$ and $\boldsymbol{q}_\alpha$, except for the one photon that was created, moving the state from $\ket{N_{\boldsymbol{q}_\alpha}=0}$ to $\ket{N_{\boldsymbol{q}_\alpha}=1}$, and the product then becomes zero, eliminating the entire product. In other words (ignoring the c-numbers for readability, but the principle is the same):
+\begin{equation}
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} \hat{a}_{\boldsymbol{k}_\alpha}
+    \prod_{\boldsymbol{q}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0} =
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} 
+    0 \cdot
+    \prod_{\boldsymbol{q}_\alpha \ne \boldsymbol{k}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0} = 0
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} \hat{a}_{\boldsymbol{k}_\alpha}^\dagger
+    \prod_{\boldsymbol{q}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0} =
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} 
+    \ket{N_{\boldsymbol{q}_\alpha} = 1}
+    \prod_{\boldsymbol{q}_\alpha \ne \boldsymbol{k}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0} = \\ =
+    \sum_{\boldsymbol{k}_\alpha}
+    \braket{N_{\boldsymbol{q}_\alpha} = 0}{N_{\boldsymbol{q}_\alpha} = 1}
+    \prod_{\boldsymbol{p}_\alpha \ne \boldsymbol{k}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \prod_{\boldsymbol{q}_\alpha \ne \boldsymbol{k}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0} = 0
+\end{gathered}
+\end{equation}
+And so, as expected, we got that the expectation value of the electric field of the vacuum is zero. Let us now look at the variance of the field:
+\begin{equation}
+    \Delta E_T(\boldsymbol{r}) = \bra{0}\hat{E}_T(\boldsymbol{r})^2\ket{0} - \bra{0}\hat{E}_T(\boldsymbol{r})\ket{0}^2 = \bra{0}\hat{E}_T(\boldsymbol{r})^2\ket{0}
+\end{equation}
+This time, we act with the electric field on the vacuum state twice. This allows for a mix of creation and annihilation operators the will not cancel out. In general, for every pair of creation and annihilation operator in a given state $\ket{n}$ in their Fock space:
+\begin{equation}
+    \bra{n}\left[A\hat{a}^\dagger + B\hat{a}\right]\ket{n} = \sqrt{n+1}A \braket{n}{n+1} + \sqrt{n}B \braket{n-1}{n} = 0
+\end{equation}
+While, for $n > 0$:
+\begin{equation}
+\begin{gathered}
+    \bra{n}\left[A\hat{a}^\dagger + B\hat{a}\right]^2\ket{n} = \\ = \sqrt{(n+1)(n+2)}A^2\braket{n}{n+2} + \sqrt{n(n-1)}B^2\braket{n+2}{n} + (n+1)AB\braket{n}{n} + n AB\braket{n}{n} = \\ = (2n+1)AB
+\end{gathered}
+\end{equation}
+For $n = 0$, this gives:
+\begin{equation}
+    \bra{0}\left[A\hat{a}^\dagger + B\hat{a}\right]^2\ket{0} = AB
+\end{equation}
+Let us now see it in our case. We simply have a large sum of this operations:
+\begin{equation}
+    \bra{0}\hat{E}_T(\boldsymbol{r})^2\ket{0} = \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \left(
+        \sum_{\boldsymbol{k}_\alpha} i \left(\frac{\hbar \omega_k}{2\epsilon_0\Omega}\right)^{1/2}\left[
+        \hat{a}_{\boldsymbol{k}_\alpha}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{i\boldsymbol{k}\cdot\boldsymbol{r}}
+        -
+        \hat{a}_{\boldsymbol{k}_\alpha}^\dagger\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{-i\boldsymbol{k}\cdot\boldsymbol{r}}
+    \right]
+    \right)^2 \prod_{\boldsymbol{q}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0}
+\end{equation}
+Every cross term in the sum gives either annihilation of annihilation of at least one particle or creation of two particles then again in the projection on the vacuum space, they cancel out. So we are left with the "diagonal" terms in the square sum, which are the simply the sum of squares:
+\begin{equation}
+    \bra{0}\hat{E}_T(\boldsymbol{r})^2\ket{0} = \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \sum_{\boldsymbol{k}_\alpha} - \frac{\hbar \omega_k}{2\epsilon_0\Omega}\left[
+        \hat{a}_{\boldsymbol{k}_\alpha}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{i\boldsymbol{k}\cdot\boldsymbol{r}}
+        -
+        \hat{a}_{\boldsymbol{k}_\alpha}^\dagger\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha} e^{-i\boldsymbol{k}\cdot\boldsymbol{r}}
+    \right]^2
+     \prod_{\boldsymbol{q}_\alpha} \ket{N_{\boldsymbol{q}_\alpha} = 0}
+\end{equation}
+Now, as we saw with the singular creaiton and annihilation operators pair, every $\boldsymbol{k}_\alpha$ acts on the state matching it, and all other states in that term give 1, leaving us with the sum of the cross products of the creation and annihilation prefactors:
+\begin{equation}
+\begin{gathered}
+    \bra{0}\hat{E}_T(\boldsymbol{r})^2\ket{0} = -
+    \sum_{\boldsymbol{k}_\alpha} \frac{\hbar \omega_k}{2\epsilon_0\Omega}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha}^2
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \left[
+        \hat{a}_{\boldsymbol{k}_\alpha} e^{i\boldsymbol{k}\cdot\boldsymbol{r}}
+        -
+        \hat{a}_{\boldsymbol{k}_\alpha}^\dagger e^{-i\boldsymbol{k}\cdot\boldsymbol{r}}
+    \right]^2
+    \ket{N_{\boldsymbol{p}_\alpha} = 0} = \\ =
+    -\sum_{\boldsymbol{k}_\alpha} \frac{\hbar \omega_k}{2\epsilon_0\Omega}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha}^2
+    \prod_{\boldsymbol{p}_\alpha} \bra{N_{\boldsymbol{p}_\alpha} = 0}
+    \hat{a}_{\boldsymbol{k}_\alpha}^2 e^{2i\boldsymbol{k}\cdot\boldsymbol{r}}
+    +
+    \left(\hat{a}_{\boldsymbol{k}_\alpha}^\dagger\right)^2 e^{-2i\boldsymbol{k}\cdot\boldsymbol{r}}
+    -
+    \hat{a}_{\boldsymbol{k}_\alpha}^\dagger \hat{a}_{\boldsymbol{k}_\alpha} - \hat{a}_{\boldsymbol{k}_\alpha} \hat{a}_{\boldsymbol{k}_\alpha}^\dagger
+    \ket{N_{\boldsymbol{p}_\alpha} = 0} = \\ =
+    -\sum_{\boldsymbol{k}_\alpha} \frac{\hbar \omega_k}{2\epsilon_0\Omega}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha}^2
+    \prod_{\boldsymbol{p}_\alpha \ne \boldsymbol{k}_\alpha} \braket{0}{0}_{N_{\boldsymbol{p}_\alpha}}\left[\sqrt{(N_{\boldsymbol{k}_\alpha} + 1)(N_{\boldsymbol{k}_\alpha} + 2)}e^{2i\boldsymbol{k}\cdot\boldsymbol{r}}\braket{0}{2}_{N_{\boldsymbol{k}_\alpha}} - \braket{0}{0}_{N_{\boldsymbol{k}_\alpha}}\right] = \\ = 
+    \sum_{\boldsymbol{k}_\alpha} \frac{\hbar \omega_k}{2\epsilon_0\Omega}\boldsymbol{\lambda}_{\boldsymbol{k}_\alpha}^2
+\end{gathered}
+\end{equation}
+We got none-zero uncertainty in the field, matching the Casimir effect.
+\newpage
+\section{State norms}
+In this section we calcualte the norm of the following states $\ket{\psi}$ and $\ket{\xi}$:
+\begin{equation}
+    \ket{\psi} = \sum_{ij}C_{ij}a^{\dagger}_ia^{\dagger}_j\ket{0}
+    \qquad
+    \ket{\xi} = a^\dagger_i a^\dagger_j a^\dagger_k \ket{0}
+\end{equation}
+For both bosons and fermions.
+\subsection{Useful commutation trick}
+Before we actually solve the problem, let us look at a useful commutation trick by looking at
+\begin{equation}
+    \bra{0}a_i a^\dagger_j \ket{0}
+\end{equation}
+This state is not zero, but it is very similar to another state that is zero:
+\begin{equation}
+    \bra{0}a^\dagger_j a_i \ket{0} = 0
+\end{equation}
+So, to solve the original state, we can use the commutation relations of the ladder operators to move to this new state, and see what is left after it disapears:
+\begin{equation}
+    \bra{0}a_i a^\dagger_j \ket{0} =
+    \bra{0}\left[\delta_{ij} + a^\dagger_j a_i\right]\ket{0} =
+    \delta_{ij} + \bra{0}a^\dagger_j a_i\ket{0} = \delta_{ij}
+\end{equation}
+Our analysis will depend on repeated usage of this trick. Notice that we used it now with bosons, but for fermions the sign in the center cahnges:
+\begin{equation}
+    \bra{0}a_i a^\dagger_j \ket{0} =
+    \bra{0}\left[\delta_{ij} - a^\dagger_j a_i\right]\ket{0} =
+    \delta_{ij} - \bra{0}a^\dagger_j a_i\ket{0} = \delta_{ij}
+\end{equation}
+In this case the result is uncahnged, but it will not be so in more complex cases we will see in out actual task.
+\subsection{$\psi$}
+The norm is:
+\begin{equation}
+    \left|\braket{\psi}{\psi}\right| = \sum_{ijkl}
+        C_{ij}^* C_{kl} \bra{0}a_i a_j
+        a^{\dagger}_k a^{\dagger}_l\ket{0}
+\end{equation}
+And so we can use our trick for the two center operators
+\begin{equation}
+\begin{gathered}
+    \sum_{ijkl}
+        C_{ij}^* C_{kl} 
+        \bra{0}a_i a_j
+        a^{\dagger}_k a^{\dagger}_l\ket{0}
+    = \sum_{ijkl}
+        C_{ij}^* C_{kl} 
+        \bra{0}a_i\left[\delta_{jk} \pm 
+        a^{\dagger}_ka_j\right]a^{\dagger}_l\ket{0}
+    = \\ = \sum_{ijl}
+        C_{ij}^* C_{jl}
+        \bra{0}a_ia^{\dagger}_l\ket{0}
+    \pm \sum_{ijkl}
+        C_{ij}^* C_{kl}
+        \bra{0}a_ia^{\dagger}_ka_ja^{\dagger}_l\ket{0}
+\end{gathered}
+\end{equation}
+Where the $\pm$ give $+$ for bosons and $-$ for fermions. For the second term, we must enact the trick once again, switching the places of the third and fourth index, to finally reach a state where the annihilation operator acts on the ground state and thus cancels the expression:
+\begin{equation}
+    \sum_{ijkl}
+        C_{ij}^* C_{kl}
+        \bra{0}a_ia^{\dagger}_ka_ja^{\dagger}_l\ket{0} =
+    \sum_{ijkl}
+        C_{ij}^* C_{kl}
+        \bra{0}a_ia^{\dagger}_k\left[\delta_{jl} \pm a^{\dagger}_la_j\right]\ket{0} =
+    \sum_{ijk}
+        C_{ij}^* C_{kj}
+        \bra{0}a_ia^{\dagger}_k\ket{0}
+\end{equation}
+Which means it's identical to the first term:
+\begin{equation}
+    \braket{\psi}{\psi} = \begin{cases}
+        2\sum_{ijk}
+        C_{ij}^* C_{kj}
+        \bra{0}a_ia^{\dagger}_k\ket{0} & bosons \\ 0 & fermions
+    \end{cases}
+\end{equation}
+But this just includes the expression we saw in the explanation above, so it becomes:
+\begin{equation}
+    \sum_{ijk}
+        C_{ij}^* C_{jk}
+        \bra{0}a_ia^{\dagger}_k\ket{0} =
+    \sum_{ijk}
+        C_{ij}^* C_{jk}
+        \delta_{jk} =
+    \sum_{ij}
+        C_{ij}^* C_{ji} = \tr(C^* C)
+\end{equation}
+Where $C^* = (C^\dagger)^T$.
+Therefore
+\begin{equation}
+    \braket{\psi}{\psi} = \begin{cases}
+        2\tr(C^* C) & bosons \\ 0 & fermions
+    \end{cases}
+\end{equation}
+\subsection{$\xi$}
+In this case:
+\begin{equation}
+    \braket{\xi}{\xi} =
+        \sum_{lmn} \bra{0} a_l a_m a_n a^\dagger_i a^\dagger_j a^\dagger_k \ket{0}
+\end{equation}
+The process here is similar to the one in the previous section only here we repeat the trick four times instead of three:
+\begin{equation}
+\begin{gathered}
+        \sum_{lmn} \bra{0} a_l a_m a_n a^\dagger_i a^\dagger_j a^\dagger_k \ket{0} = 
+        \sum_{lmn} \bra{0} a_l a_m \left[\delta_{in} \pm a^\dagger_i a_n\right] a^\dagger_j a^\dagger_k \ket{0} = \\ =
+        \sum_{lm} \bra{0} a_l a_m a^\dagger_j a^\dagger_k \ket{0} \pm
+        \sum_{lmn} \bra{0} a_l a_m a^\dagger_i a_n a^\dagger_j a^\dagger_k \ket{0}
+\end{gathered}
+\end{equation}
+Using the trick again on the second term, we get:
+\begin{equation}
+\begin{gathered}
+        \sum_{lmn} \bra{0} a_l a_m a^\dagger_i a_n a^\dagger_j a^\dagger_k \ket{0} =
+        \sum_{lmn} \bra{0} a_l a_m a^\dagger_i \left[\delta_{jn} \pm a^\dagger_j a_n\right] a^\dagger_k \ket{0} = \\ =
+        \sum_{lm} \bra{0} a_l a_m a^\dagger_i a^\dagger_k \ket{0} \pm
+        \sum_{lmn} \bra{0} a_l a_m a^\dagger_i  a^\dagger_j a_n a^\dagger_k \ket{0}
+\end{gathered}
+\end{equation}
+And one last time on the second term in this expression:
+\begin{equation}
+\begin{gathered}
+    \sum_{lmn} \bra{0} a_l a_m a^\dagger_i  a^\dagger_j a_n a^\dagger_k \ket{0} =
+    \sum_{lmn} \bra{0} a_l a_m a^\dagger_i a^\dagger_j \left[\delta_{kn} \pm a^\dagger_k a_n\right] \ket{0} = \\ =
+    \sum_{lm} \bra{0} a_l a_m a^\dagger_i a^\dagger_j \ket{0}
+\end{gathered}
+\end{equation}
+Notice for a brief moment what we did. Every move we did was to push the annihilation operator to the right using commutation relation, and each such operation split the expression into two: the delta function between the indices of the two flipped operators, and an expression where the operators are flipped. At the end, the term we got included the annihilation operator acting on the ground state, and so we could discard it, leaving us with only delta functions, each reducing our sum from three indices to two indices. We got three terms with delta functions, because we performed the menouver three times (we had three creation operators in the way). We could say (and it's easy to prove) that the number of creation operators is the number of delta function we get, and we get the delta functions of the index of the last annihilation operator (in this case the index was $n$) with each of the indices of the creation operators. And really, in our case we get:
+\begin{equation}
+    \braket{\xi}{\xi} = \sum_{lm}\bra{0}a_la_m \left[
+        a_j^\dagger a_k^\dagger \pm a_i^\dagger a_k^\dagger + a_i^\dagger a_j^\dagger
+    \right] \ket{0}
+\end{equation}
+Using this logic, and the result of the previous section showing the same thing, each of these terms can be reduced down to one index sum and then to remove the sum alltogether and remain with a delta function between the pre-existing indices:
+\begin{equation}
+\begin{gathered}
+    \sum_{lm}\bra{0}a_la_m a_j^\dagger a_k^\dagger\ket{0} = 
+    \sum_{lm}\bra{0}a_l\left[\delta_{mj} \pm a_j^\dagger a_m\right] a_k^\dagger\ket{0} = 
+    \sum_{l}\bra{0}a_l a_k^\dagger\ket{0} \pm
+    \sum_{lm}\bra{0}a_la_j^\dagger a_m a_k^\dagger\ket{0} = \\ =
+    \sum_{l}\bra{0}a_l a_k^\dagger\ket{0} \pm
+    \sum_{lm}\bra{0}a_la_j^\dagger \left[\delta_{mk} \pm a_k^\dagger a_m\right]\ket{0} = 
+    \sum_{l}\bra{0}a_l a_k^\dagger\ket{0} \pm
+    \sum_{l}\bra{0}a_la_j^\dagger \ket{0} = \\ =
+    \sum_{l}\delta_{lk} \pm \sum_{l}\delta_{lj} = \begin{cases}
+        2 & bosons \\ 0 & fermions
+    \end{cases}
+\end{gathered}
+\end{equation}
+And so the total norm is:
+\begin{equation}
+    \braket{\xi}{\xi} = \begin{cases}
+        6 & bosons \\ 0 & fermions
+    \end{cases}
+\end{equation}
+\end{document}
