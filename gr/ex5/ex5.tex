@@ -1,0 +1,668 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{General Realtivity Excercise 5}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Warmup}
+Considering the KHB metric:
+\begin{equation}
+    ds^2 = \left(1 - \frac{rr_s}{r^2}\right)dt^2
+    + \frac{2r_sar\sin^2(\theta)}{r^2}dtd\varphi
+    - \frac{r^2}{\Delta}dr^2
+    - r^2 d\theta^2
+    - \left(r^2 + a^2 + \frac{r_sa^2r\sin^2(\theta)}{r^2}\right)\sin^2\theta d\varphi^2
+\end{equation}
+With $r_s = \frac{2GM}{c^2}$, $a = \frac{J}{Mc}$, $r = r^2 + a^2\cos^2\theta$ and $\Delta = r^2 + a^2 - rr_s$.
+\newline
+This is the metric of the vacuum around the BH, therefore in that region $T_{\mu\nu} = 0$. We saw that the Einstein equation in a vacuum is
+\begin{equation}
+    R_{\mu\nu} = 0
+\end{equation}
+Taking the trace, we get $R = 0$.
+\newline
+This is true, of course, only in the vacuum, which is everywhere except the center of the BH. This means that, similar to the SBH, the singularities outside the origin are removable singularities. This means that the $\Delta = 0$ singularity is not a physical singularities and can be removed by a coordinates transformation. However, there is a singularity when $r = 0, \theta = \pi/2$, which falls under the $r = 0$ case, which is physical.
+
+\section{Gravitational Waves of a Rotating Rod}
+A uniform, unbreakable, rod of mass $M$ and length $L$ (which is much longer than its width) is connected to an engine which makes it rotate about an axis through its center of mass perpendicular to its length with
+an angular frequency $\Omega_0$.
+\subsection{Conditions}
+There are three conditions for the formula of the total gravitational luminosity of the rod.
+\begin{itemize}
+    \item In general, for GW, we must assume take the weak field approximation. This means we expand the metric around the Minkowski metric and assume the perturbation is small $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$, $|h_{\mu\nu}| \ll 1$.
+    \item Secondly, we must assume the source is isolated. Meaning that the distance $R$ from the source to the observer is much larger then the dimensions of the source, $R \gg \delta R$.
+    \item Lastly, we must assume the source is slow-moving. This means that the velocity of the farmost parts of the object is much smaller then the speed of light $\omega \ll c/\delta R$.
+\end{itemize}
+\subsection{The luminosity}
+We can use cylindrical coordinates and take the origin of our frame to the center of the rod and the z-axis to collide with its roation axis, and the density $T^{00}(t, \boldsymbol{x})$ becomes:
+\begin{equation}
+    T^{00}(t, \boldsymbol{x}) = \frac{Mc^2}{L}\delta(z)\frac{1}{r}H\left(\frac{L}{2} - r\right)\left[\delta(\theta - \Omega_0 t) + \delta(\theta + \pi - \Omega_0 t)\right]
+\end{equation}
+Where $H(x)$ is the Heaviside step function and $\delta(x)$ is the dirac delta. The factor $1/r$ is there for the delta function in cylindrical coordinates. Now let us calculate the quadrupole moment including trace:
+\begin{equation}
+    q_{ij} = \frac{1}{c^2}\int d^3x T^{00}(t, \boldsymbol{x})x^ix^j
+\end{equation}
+Since $x^3 = z = 0$ along the entire distribution:
+\begin{equation}
+    q_{i3} = q_{3i} = 0 \quad \forall \ i \in \{1,2,3\}
+\end{equation}
+Let us look at the non-zero elements:
+\begin{equation}
+\begin{gathered}
+    q_{11} = \frac{M}{L}\int \left(x^1\right)^2 drd\theta H\left(\frac{L}{2} - r\right)\left[\delta(\theta - \Omega_0 t) + \delta(\theta + \pi - \Omega_0 t)\right] = \\
+    = \frac{2M}{L} \int_0^{L/2} r^2\cos^2(\Omega_0 t) dr = \frac{M L^3 \cos^2(\Omega_0 t)}{32} = \frac{2M}{L} \int_0^{L/2} r^2\cos^2(\Omega_0 t) dr = \frac{M L^2}{24}\left(1 + \cos(2\Omega_0 t)\right)
+\end{gathered}
+\end{equation}
+\begin{equation}
+    q_{22} = \frac{M L^2}{24}\left(1 - \cos(2\Omega_0 t)\right)
+\end{equation}
+\begin{equation}
+    q_{12} = q_{21} = \frac{M L^2}{24}\sin(2\Omega_0 t)
+\end{equation}
+Now we can compute the traceless quadrupole moment:
+\begin{equation}
+    Q_{ij} = q_{ij} - \frac{1}{3}\delta_{ij} \tr(q)
+\end{equation}
+It's clear that
+\begin{equation}
+    \tr(q) = q_{kk} = \frac{ML^2}{12}
+\end{equation}
+And so:
+\begin{equation}
+    Q_{ij} = \frac{M L^2}{72}\begin{pmatrix}
+        1 + 3\cos(2\Omega_0 t) & 3\sin(2\Omega_0 t) & 0 \\
+        3\sin(2\Omega_0 t) & 1 - 3\cos(2\Omega_0 t) & 0 \\
+        0 & 0 & -2
+    \end{pmatrix}
+\end{equation}
+The third time derivative is:
+\begin{equation}
+    \dddot{Q}_{ij} = \frac{M L^2\Omega_0^3}{3}\begin{pmatrix}
+        \sin(2\Omega_0 t) & - \cos(2\Omega_0 t) & 0 \\
+        - \cos(2\Omega_0 t) & - \sin(2\Omega_0 t) & 0 \\
+        0 & 0 & 0
+    \end{pmatrix}
+\end{equation}
+Thus:
+\begin{equation}
+\label{eq:total-luminosity}
+    L_{GW} = \frac{G}{5c^5} \dddot{Q}_{ij} \dddot{Q}^{ij} =
+    \frac{2G M^2 L^4\Omega_0^6}{45c^5}
+\end{equation}
+\subsection{Detectability}
+Let us assign the values:
+\begin{equation}
+    M = 10^6 g \qquad L = 10^6 cm \qquad \Omega_0 = 10 Hz \qquad R = 10 cm
+\end{equation}
+And see if the LIGO detector can detect them. As we saw in tutorial, the measured parameter in the LIGO experiment is the strain, and its sensitivity to strain is strongly related to the frequency. The strain in our case is:
+\begin{equation}
+    \frac{G}{Rc^4}\ddot{q}_{ij} = \frac{GM L^2\Omega_0^2}{6Rc^4} =
+    \frac{6.67\cdot10^{-8}\times10^6\times10^{12}\times10^2}{6\times10\times3^4\cdot10^{40}} \approx 10^{-21} \ erg/s
+\end{equation}
+The sensitivity of LIGO at $10 Hz$ is approximately $10^{-19}-10^{-20}$, and so the rod will not be detected.\footnote{https://faculty.wcas.northwestern.edu/cpb2759/GWPlotter/}
+\subsection{Losing energy}
+After the rod is released from the engine, it will start losing energy. This energy will be lost in the form of radiating GW outwards, at a rate equal the total luminosity, as seen in equation \ref{eq:total-luminosity}. Using the slow speed approximation, the energy is:
+\begin{equation}
+    E(t) \approx Mc^2 + \frac{1}{2}I\Omega^2(t)
+\end{equation}
+So:
+\begin{equation}
+    \Delta E = E(t) - T(0) = \frac{1}{2}I(\Omega^2(t) - \Omega_0^2) = \frac{1}{2}I(\frac{\Omega_0}{4} - \Omega_0) = -\frac{3}{8}I\Omega_0^2 = -\frac{3}{4}E_0
+\end{equation}
+This is not surprising, since $E \sim \Omega^2$, so a ending with half the angular frequency means ending with a quarter of the energy. The moment of inertia is $I = \frac{1}{12}ML^2$. Pluggin the luminosity, we get:
+\begin{equation}
+    L_{GW}t_{1/2} = \frac{3}{4}E_0 = \frac{1}{16}ML^2\Omega_0^2
+\end{equation}
+\begin{equation}
+    t_{1/2} = \frac{ML^2\Omega_0^2}{16L_{GW}} = 
+    \frac{ML^2\Omega_0^2\cdot 45c^5}{16 \cdot 2G M^2 L^4\Omega_0^6} =
+    \frac{45c^5}{32 G M L^2\Omega_0^4}
+\end{equation}
+
+\section{Falling into a BH}
+Consider some astronaut hovering (stationary) outside a Schwarzschild black hole at radius $r_0 = 3r_s$, whose jet-packet suddenly stops working. In this section we will calcualte the time it would take the astronaut to reach the event horizon at $r_s$.
+\subsection{In the astronaut's frame}
+In the astronaut's point of view, the time they have is exactly the proper time, which can is related to the metric by a constant:
+\begin{equation}
+    c^2d\tau^2 = ds^2
+\end{equation}
+In Schwarzschild metric:
+\begin{equation}
+    ds^2 = \left(1 - \frac{r_s}{r}\right)c^2dt^2 - \left(1 - \frac{r_s}{r}\right)^{-1}dr^2 - r^2d\Omega^2
+\end{equation}
+Since the motion is in a plain, let us set $\theta = \pi/2$:
+\begin{equation}
+    ds^2 = \left(1 - \frac{r_s}{r}\right)c^2dt^2 - \left(1 - \frac{r_s}{r}\right)^{-1}dr^2 - r^2d\varphi^2
+\end{equation}
+And since the astronaut starts at rest and there is spherical symmetry, three cannot be motion in the angualr direction, and so:
+\begin{equation}
+    ds^2 = \left(1 - \frac{r_s}{r}\right)c^2dt^2 - \left(1 - \frac{r_s}{r}\right)^{-1}dr^2
+\end{equation}
+And in proper time:
+\begin{equation}
+    c^2d\tau^2 = \left(1 - \frac{r_s}{r}\right)c^2dt^2 - \left(1 - \frac{r_s}{r}\right)^{-1}dr^2
+\end{equation}
+Dividing by $d\tau^2$:
+\begin{equation}
+\label{eq:divided-metric}
+    c^2 = \left(1 - \frac{r_s}{r}\right)c^2\left(\frac{dt}{d\tau}\right)^2 - \left(1 - \frac{r_s}{r}\right)^{-1}\left(\frac{dr}{d\tau}\right)^2
+\end{equation}
+Let us now find the geodesic so that we can calcualte $dr/dr\tau$ and $dt/d\tau$. Since $\partial_t$ is a Killing vector, the energy is conserved along the geodesic:
+\begin{equation}
+    E = v^t = g^{tt}v_t = \left(1 - \frac{r_s}{r}\right)c^2\frac{dt}{d\tau}
+\end{equation}
+Assigning this back into the equation \ref{eq:divided-metric} gives:
+\begin{equation}
+    c^2 = \left(1 - \frac{r_s}{r}\right)^{-1}\frac{1}{c^2}E^2 - \left(1 - \frac{r_s}{r}\right)^{-1}\left(\frac{dr}{d\tau}\right)^2
+\end{equation}
+Solving for $dr/d\tau$ we get:
+\begin{equation}
+    \frac{dr}{d\tau} = -\sqrt{\frac{E^2}{c^2} - \left(1 - \frac{r_s}{r}\right)c^2}
+\end{equation}
+Where we chose the negative root for the direction of movement to be inwards. And so:
+\begin{equation}
+    \Delta \tau = -\int_{r_0}^{r_s} \frac{dr}{\sqrt{\frac{E^2}{c^2} - \left(1 - \frac{r_s}{r}\right)c^2}}
+\end{equation}
+We can write the energy in terms of starting conditions. Since at that time the astronaut is stationary:
+\begin{equation}
+    E = \left(1 - \frac{r_s}{r_0}\right)c^2
+\end{equation}
+And so:
+\begin{equation}
+    \Delta \tau = -\frac{1}{c}\int_{r_0}^{r_s} \frac{dr}{\sqrt{\frac{r_s}{r} - \frac{r_s}{r_0}}} = -\frac{1}{c}\int_{r_0}^{r_s} \sqrt{\frac{r_0r}{r_s(r_0 - r)}}dr = 
+    -\sqrt{\frac{r_0}{c^2r_s}}\int_{r_0}^{r_s} \sqrt{\frac{r}{r_0 - r}}dr
+\end{equation}
+Since $0 \le r \le r_0$, we can assign
+\begin{equation}
+    r = r_0 \cos^2 \eta
+    \qquad
+    dr = -2 r_0\cos\eta\sin\eta d\eta
+    \qquad
+    \eta(r_0) = 0
+    \qquad
+    \eta(r_s) = \arccos{\sqrt{\frac{r_s}{r_0}}}
+\end{equation}
+With this, the integral becomes:
+\begin{equation}
+\begin{gathered}
+    \Delta \tau = 2\sqrt{\frac{r_0^3}{c^2r_s}}\int_{\eta(r_0)}^{\eta(r_s)} \sqrt{\frac{r_0\cos^2\eta}{r_0 - r_0\cos^2\eta}}\cos\eta\sin\eta d\eta
+    = 2\sqrt{\frac{r_0^3}{c^2r_s}}\int_{\eta(r_0)}^{\eta(r_s)} \cos^2\eta d\eta = \\ =
+    \sqrt{\frac{r_0^3}{c^2r_s}}\int_{\eta(r_0)}^{\eta(r_s)} \left(1 + \cos(2\eta)\right) d\eta =
+    \sqrt{\frac{r_0^3}{c^2r_s}} \left[\eta + \frac{1}{2}\sin(2\eta)\right]_{\eta(r_0)}^{\eta(r_s)} = \\ = \sqrt{\frac{r_0^3}{c^2r_s}} \left[\eta + \sin(\eta)\cos(\eta)\right]_{\eta(r_0)}^{\eta(r_s)} =
+    \sqrt{\frac{r_0^3}{c^2r_s}} \left[\arccos{\sqrt{\frac{r_s}{r_0}}} + \sqrt{\frac{r_s}{r_0}}\sqrt{1 - \frac{r_s}{r_0}}\right]
+\end{gathered}
+\end{equation}
+Assigning $r_0 = 3r_s$, we get:
+\begin{equation}
+    \Delta \tau = \sqrt{3} \left[\arccos{\frac{1}{\sqrt{3}}} + \frac{\sqrt{2}}{3}\right]\frac{r_0}{c} \approx 2.47 \frac{r_0}{c}
+\end{equation}
+\subsection{In an external frame}
+This time we are interested in the coordinate $t$ instead of the proper time. We can find it using the chain rule:
+\begin{equation}
+    \Delta t = \int_{r_0}^{r_s}\frac{dt}{d\tau}\frac{d\tau}{dr}dr = 
+    \frac{E}{c^2}\int_{r_0}^{r_s}
+    \frac{dr}{\left(1 - \frac{r_s}{r}\right)\sqrt{\frac{E^2}{c^2} - \left(1 - \frac{r_s}{r}\right)c^2}}
+\end{equation}
+As $r \rightarrow r_s$ the integrand diverges with effective power greater then one, meaning the the integral itself diverges. In other words, to an external observer the astronaut will fall into the black hole forever, never reaching $r_s$.
+
+\section{Reissner-Nordstrom BH}
+\subsection{Deriving the Metric}
+In this section we derive the metric for a charged, non-rotating, spherically symmetric BH of charge Q
+(a Reissner-Nordstrom BH, or RNBH). Since the BH is charged, we need to solve Maxwell's equations in
+addition to Einstein's equations.
+\subsubsection{Possible metrices}
+Our metric is, by definition, spherically symmetric and and stationary.  
+In spherical coordinates $(t, r, \theta, \varphi)$, this means all prefactors can only depend on the radial coordinate $r$. Additionally, since the metric must be symmetric under each of the transformations $t \rightarrow -t$, $\theta \rightarrow -\theta$, and $\varphi \rightarrow -\varphi$ independently, it loses all non-diagonal elements, since in each of them the terms appear only once This leaves:
+\begin{equation}
+    ds^2 = g_{tt}dt^2 + g_{rr}dr^2 + g_{\theta\theta}d\theta^2 + g_{\varphi\varphi}d\varphi^2
+\end{equation}
+Now, in order to be invariant under $SO(3)$ rotations, the angular terms must follow the well known formula $d\Omega^2 = d\theta^2 + \sin(\theta)d\varphi^2$. Adding this and doing a simple renaming for convinience:
+\begin{equation}
+\label{eq:generic-spherical-metric}
+    ds^2 = A(r)dt^2 - B(r)dr^2 - r^2 d\Omega^2
+    \qquad
+    d\Omega^2 = d\theta^2 + \sin(\theta)d\varphi^2
+\end{equation}
+\subsubsection{Possible EM fields}
+The EM fields of a spherical stationary object follow similar rules, but instead of applying the symmetries to the field, it is more useful to apply them to the four-potential $A^\mu = (\phi, \boldsymbol{A})$. This potential, again, can only rely on $r$, but an additional limit here is that it cannot have component in the $\hat{\theta}$ and $\hat{\varphi}$ directions, since these will differentiate one direction as special (the axis from which the coordinate is defined). Therefore:
+\begin{equation}
+    \phi = \phi(r)
+    \qquad
+    \boldsymbol{A} = A_r(r)\hat{r}
+\end{equation}
+Using the relation EM fields with the potential, we get:
+\begin{equation}
+    \boldsymbol{E} = \boldsymbol{\nabla} \phi - \partial_t \boldsymbol{A} = \partial_r \phi \hat{r}
+    \qquad
+    \boldsymbol{B} = \boldsymbol{\nabla} \times \boldsymbol{A} = 0
+\end{equation}
+And so, we got that the electric fields is radial and the magnetic field vanishes identically.
+\newline
+To solve Maxwell's equations, let us write the EM tensor $F^{\mu\nu}$. In reality, only two elements don't vanish:
+\begin{equation}
+    F_{rt} = -F_{tr} = \partial_r \phi
+\end{equation}
+Now let us look at the 4D Maxwell equations:
+\begin{equation}
+    \epsilon_0 D_\mu F^{\mu\nu} = j^\nu
+\end{equation}
+Which can be simplified to:
+\begin{equation}
+    \frac{\epsilon_0}{\sqrt{-g}} \partial_\mu \left(\sqrt{-g} F^{\mu\nu}\right) = j^\nu
+\end{equation}
+In our case:
+\begin{equation}
+    \sqrt{-g} = \sqrt{-\det(g_{\mu\nu})} = \sqrt{AB}r^2\sin(\theta)
+\end{equation}
+Which means:
+\begin{equation}
+    \frac{\epsilon_0}{\sqrt{AB}r^2\sin(\theta)} \partial_\mu \left(\sqrt{AB}r^2\sin(\theta) F^{\mu\nu}\right) = j^\nu
+\end{equation}
+Since the only non-vanishing derivative is $\partial_r$, this forces $\mu = r$. The only $F^{r\nu}$ that doesn't vanish is $F^{rt} = \partial_r \phi$, which forces $\nu = t$, and the only non-vanishing Maxwell equation we get is:
+\begin{equation}
+    \frac{\epsilon_0}{\sqrt{AB}r^2} \partial_r \left(\sqrt{AB}r^2 \partial_r \phi\right) = \rho
+\end{equation}
+Opnening the derivative, we get:
+\begin{equation}
+    \epsilon_0\left(
+        \partial_r^2 \phi +
+        \left[\frac{2}{r} + \frac{BA' + AB'}{2AB}\right] \partial_r \phi
+    \right) = \rho
+\end{equation}
+We can also write this in terms of the electric field $E = E_r = \partial_r \phi$:
+\begin{equation}
+    \left(
+        \partial_r +
+        \frac{2}{r} + \frac{BA' + AB'}{2AB}
+    \right)E = \frac{\rho}{\epsilon_0}
+\end{equation}
+Let us now solve this equation outside the BH. In that region, $\rho = 0$, and so:
+\begin{equation}
+    \left(
+        \partial_r +
+        \frac{2}{r} + \frac{BA' + AB'}{2AB}
+    \right)E = 0
+\end{equation}
+Which gives:
+\begin{equation}
+    E = \exp[
+        - \int \frac{2}{r} + \frac{BA' + AB'}{2AB} dr
+    ] = C\exp[
+        - 2\ln(r) - \frac{1}{2}\ln(AB)
+    ] = \frac{C}{r^2\sqrt{AB}}
+\end{equation}
+Going to infinity, $A, B \rightarrow 1$, and we get the classical field of a point source, with $C = Q$. So, we get and expression for the EM fields based on the metric:
+\begin{equation}
+    \boldsymbol{E} = \frac{Q}{r^2\sqrt{AB}}\hat{r}
+    \qquad
+    \boldsymbol{B} = 0
+\end{equation}
+\subsubsection{Solving the Einstein equation}
+The Energy-Momentum Tensor for the EM field is:
+\begin{equation}
+    T_{\mu\nu} = -\frac{1}{4\pi}\left(g^{\alpha\beta}F_{\mu\alpha}F_{\nu\beta} - \frac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right)
+\end{equation}
+Since it is in vacuum and so traceless. This means $R = 0$, and the EFE can be written as:
+\begin{equation}
+    R_{\mu\nu} = \kappa T_{\mu\nu}
+\end{equation}
+Now let us take:
+\begin{equation}
+\label{eq:linear-combination}
+    BT_{tt} + AT_{rr} = \frac{1}{\kappa}\left[BR_{tt} + AR_{rr}\right]
+\end{equation}
+To find an expression for the LHS, let us find $T_{tt}$ and $T_{rr}$. First, let's notice that:
+\begin{equation}
+    F_{\alpha\beta}F^{\alpha\beta} = g^{\alpha\mu}g^{\beta\nu}F_{\alpha\beta}F_{\mu\nu} = 2g^{rr}g^{tt}F_{rt}F_{rt} = -\frac{2}{AB}E^2
+\end{equation}
+\begin{equation}
+    T_{tt} = -\frac{1}{4\pi}\left(g^{\alpha\beta}F_{t\alpha}F_{t\beta} - 
+    \frac{1}{4}AF_{\alpha\beta}F^{\alpha\beta}\right) = 
+    \frac{1}{4\pi}\left(\frac{1}{B} - \frac{1}{2B}\right)E^2 = \frac{1}{8\pi B}E^2
+\end{equation}
+\begin{equation}
+    T_{rr} = -\frac{1}{4\pi}\left(g^{\alpha\beta}F_{r\alpha}F_{r\beta} - 
+    \frac{1}{4}BF_{\alpha\beta}F^{\alpha\beta}\right) = 
+    -\frac{1}{4\pi}\left(\frac{1}{A} - \frac{1}{2A}\right)E^2 = -\frac{1}{8\pi A}E^2
+\end{equation}
+While in the RHS, we need to find the Ricci tensor. For this, let us find the Christoffel symbols. Using the shortcut for diagonal metric that says that the only non-vanishing symbols are:
+\begin{equation}
+    \Gamma^\mu_{\mu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\mu\mu}
+    \qquad
+    \Gamma^\mu_{\nu\nu} = -\frac{1}{2}g^{\mu\mu}\partial_{\mu}g_{\nu\nu}
+    \qquad
+    \Gamma^\mu_{\mu\nu} = \Gamma^\mu_{\nu\mu} = \frac{1}{2}g^{\mu\mu}\partial_{\nu}g_{\mu\mu}
+\end{equation}
+And the fact that the only non-vanishing derivatives are with respect to r, we get the only non-vanishing symbols are:
+\begin{equation}
+\begin{gathered}
+    \Gamma^{r}_{rr} = \frac{B'}{2B}
+    \qquad
+    \Gamma^{r}_{tt} = \frac{A'}{2B}
+    \qquad
+    \Gamma^{r}_{\theta\theta} = -\frac{r}{B}
+    \qquad
+    \Gamma^{r}_{\varphi\varphi} = -\frac{r\sin^2\theta}{B}
+    \\
+    \Gamma^{t}_{rt} = \Gamma^{t}_{tr} = \frac{A'}{2A}
+    \qquad
+    \Gamma^{\theta}_{r\theta} = \Gamma^{\theta}_{\theta r} = 
+    \Gamma^{\varphi}_{r\varphi} = \Gamma^{\varphi}_{\varphi r} = \frac{1}{r}
+    \\
+    \Gamma^{\theta}_{\varphi\varphi} = -\sin\theta\cos\theta
+    \qquad
+    \Gamma^{\varphi}_{\theta\varphi} = \Gamma^{\varphi}_{\varphi\theta} = \cot\theta
+\end{gathered}
+\end{equation}
+Now we can find the relevant components of the Ricci tensor:
+\begin{equation}
+\begin{gathered}
+    R_{tt} =
+    \partial_\mu \Gamma^\mu_{tt} - \partial_t \Gamma^{\mu}_{t\mu} + \Gamma^{\mu}_{\mu\nu}\Gamma^{\nu}_{tt} - \Gamma^{\mu}_{t\nu}\Gamma^{\nu}_{t\mu} = \\ =
+    \partial_r \Gamma^{r}_{tt} + \left[\Gamma^{r}_{rr} + \Gamma^{t}_{tr} + \Gamma^{\theta}_{\theta r} + \Gamma^{\varphi}_{\varphi r}\right]\Gamma^{r}_{tt} - 2\Gamma^{t}_{tr}\Gamma^{r}_{tt} = \\ =
+    \partial_r \left(\frac{A'}{2B}\right) + \left[\frac{B'}{2B} + \frac{A'}{2A} + \frac{2}{r}\right]\frac{A'}{2B} - 2\frac{A'}{2A}\frac{A'}{2B} = \\ =
+    \frac{A''}{2B} - \frac{A'B'}{2B^2} + \frac{A'B'}{4B^2} + \frac{A'^2}{4AB} - \frac{A'^2}{2AB} + \frac{A'}{Br} = \\ =
+    \frac{A''}{2B} - \frac{A'}{4B}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{A'}{Br}
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    R_{rr} = \partial_\mu \Gamma^\mu_{rr} - \partial_r \Gamma^{\mu}_{r\mu} + \Gamma^{\mu}_{\mu\nu}\Gamma^{\nu}_{rr} - \Gamma^{\mu}_{r\nu}\Gamma^{\nu}_{r\mu} = \\ =
+    - \partial_r \Gamma^{t}_{rt}
+    - \partial_r \Gamma^{\theta}_{r\theta}
+    - \partial_r \Gamma^{\varphi}_{r\varphi}
+    + \left[\Gamma^{t}_{tr} 
+    + \Gamma^{r}_{rr}
+    + \Gamma^{\theta}_{\theta r}
+    + \Gamma^{\varphi}_{\varphi r}\right]\Gamma^{r}_{rr} 
+    - (\Gamma^{r}_{rr})^2
+    - (\Gamma^{t}_{tr})^2
+    - (\Gamma^{\theta}_{\theta r})^2
+    - (\Gamma^{\varphi}_{\varphi r})^2
+    = \\ =
+    -\partial_r\left(\frac{A'}{2A} + \frac{2}{r}\right) + \left[
+        \frac{A'}{2A} + \frac{2}{r}
+    \right]\frac{B'}{2B} - \left(\frac{A'}{2A}\right)^2 - 2\left(\frac{1}{r}\right)^2
+    = \\ =
+    -\frac{A''}{2A} + \frac{A'}{4A}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{B'}{Br}
+\end{gathered}
+\end{equation}
+Putting these values back into equation \ref{eq:linear-combination}, we get the LHS:
+\begin{equation}
+    +B\frac{1}{8\pi B}E^2 - A \frac{1}{8\pi A}E^2 = 0
+\end{equation}
+The brackets in the RHS give:
+\begin{equation}
+\begin{gathered}
+    B\left[
+        \frac{A''}{2B} - \frac{A'}{4B}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{A'}{Br}
+    \right] + A\left[
+        -\frac{A''}{2A} + \frac{A'}{4A}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{B'}{Br}
+    \right] = \\ = 
+        \frac{A''}{2} - \frac{A'}{4}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{A'}{r}- \frac{A''}{2} + \frac{A'}{4}\left[\frac{A'}{A} + \frac{B'}{B}\right] + \frac{AB'}{Br} = \\ =
+        \frac{A'}{r} + \frac{AB'}{Br}
+\end{gathered}
+\end{equation}
+And the equation becomes:
+\begin{equation}
+    \kappa A\left[\frac{A'}{A} + \frac{B'}{B}\right] = 0
+\end{equation}
+Or:
+\begin{equation}
+    AB' + BA' = 0
+\end{equation}
+Integrating, we get:
+\begin{equation}
+    AB = C
+\end{equation}
+Where $C$ is a constant that becomes 1 at infinity and thus $C = 1$:
+\begin{equation}
+    B = A^{-1}
+\end{equation}
+Using this, we can rewrite our matrix:
+\begin{equation}
+    ds^2 = A dt^2 - A^{-1}dr^2 - r^2d\Omega^2
+\end{equation}
+Now let us solve the $\theta\theta$ EFE. Since $F_{\theta\mu} = F_{\mu\theta} = 0$, the energy-momentum tensor simplifies to:
+\begin{equation}
+    T_{\theta\theta} = -\frac{1}{8\pi AB}rE^2
+\end{equation}
+Using $AB = 1$:
+\begin{equation}
+    T_{\theta\theta} = -\frac{1}{8\pi}rE^2
+\end{equation}
+On the other hand, $R_{\theta\theta}$:
+\begin{equation}
+\begin{gathered}
+    R_{\theta\theta} =
+    \partial_\mu \Gamma^\mu_{\theta\theta} - \partial_\theta \Gamma^{\mu}_{\theta\mu} + \Gamma^{\mu}_{\mu\nu}\Gamma^{\nu}_{\theta\theta} - \Gamma^{\mu}_{\theta\nu}\Gamma^{\nu}_{\theta\mu} = \\ =
+    \partial_r \Gamma^r_{\theta\theta} - \partial_\theta \Gamma^{\varphi}_{\theta\varphi} + \Gamma^\mu_{\mu r}\Gamma^{r}_{\theta\theta}
+    - \Gamma^\mu_{\theta \nu}\Gamma^{\nu}_{\theta\mu} = \\ =
+    \partial_r \Gamma^r_{\theta\theta} - \partial_\theta \Gamma^{\varphi}_{\theta\varphi} + \left[
+        \Gamma^t_{t r} +
+        \Gamma^r_{r r} +
+        \Gamma^\theta_{\theta r} +
+        \Gamma^\varphi_{\varphi r}
+    \right]\Gamma^{r}_{\theta\theta}
+    - 2\Gamma^r_{\theta \theta}\Gamma^{\theta}_{\theta r}
+    - \Gamma^\varphi_{\theta\varphi}\Gamma^\varphi_{\theta\varphi} = \\ =
+    \partial_r \left(-\frac{r}{B}\right) - \partial_\theta(\cot\theta) - \left[
+        \frac{A'}{2A} +
+        \frac{B'}{2B} +
+        \frac{2}{r}
+    \right]\frac{r}{B}
+    + 2\frac{r}{B}\frac{1}{r}
+    -\cot^2\theta = \\ =
+    -\frac{1}{B} + \frac{rB'}{B^2} + \frac{1}{\sin^2\theta} -
+        \frac{rA'}{2AB} -
+        \frac{rB'}{2B^2} -
+        \frac{2}{B}
+    + \frac{2}{B} - \cot^2\theta = \\ =
+    \frac{r}{2B}\left[\frac{B'}{B} - \frac{A'}{A}\right] - \frac{1}{B} - 1
+\end{gathered}
+\end{equation}
+Using $B = A^{-1}$, $B' = -A^{-2}A'$:
+\begin{equation}
+    R_{\theta\theta} =
+    \frac{Ar}{2}\left(-\frac{A'}{A} - \frac{A'}{A}\right) - A - 1 = - rA' - A - 1 = \partial_r(rA) - 1 
+\end{equation}
+And so we get:
+\begin{equation}
+    \partial_r(rA) - 1 = -\frac{\kappa}{8\pi}rE^2 = -\frac{\kappa}{16\pi}\frac{Q^2}{r^3}
+\end{equation}
+Moving the 1 to the other side and integrating, we get:
+\begin{equation}
+    Ar + C = r + \frac{\kappa}{8\pi}\frac{Q^2}{r^2}
+\end{equation}
+Moving the constant to the other side, dividing by $r$ and replacing $\kappa = 8\pi G / c^4$:
+\begin{equation}
+    A = 1 - \frac{C}{r} + \frac{G Q^2}{c^4r^2}
+\end{equation}
+To find $C$, let us take the limit of $Q = 0$. In that limit, we get the SBH, and $A$ is supposed to have the shape $A - \frac{r_s}{r}$. This will happen if $C = r_s$:
+\begin{equation}
+    A = 1 - \frac{2GM}{c^2r} + \frac{G Q^2}{c^4r^2}
+\end{equation}
+We can now finally write the metric:
+\begin{equation}
+\label{eq:final-metric}
+    ds^2 = \left(1 - \frac{2GM}{c^2r} + \frac{G Q^2}{c^4r^2}\right)dt^2 + \left(1 - \frac{2GM}{c^2r} + \frac{G Q^2}{c^4r^2}\right)^{-1}dr^2 + r^2d\Omega^2
+\end{equation}
+\subsubsection{Singularities and Horizons}
+Let us name
+\begin{equation}
+    r_s = \frac{2GM}{c^2}
+    \qquad
+    r_Q = \frac{\sqrt{G}Q}{c^2}
+\end{equation}
+Such that:
+\begin{equation}
+    A = 1 - \frac{r_s}{r} + \frac{r_Q^2}{r^2}
+\end{equation}
+We have now two types of singularities. The first type is when the radius is zero, in which case both fractions diverge. The second type is when $A$ is zero, making the radial prefactor diverge.
+\begin{itemize}
+    \item The regular $r = 0$ singularity matches in the SBH limit $Q \rightarrow 0$ to the same $r = 0$ singularity there, which is the physical singularity. There is no coordinate change that can remove it.
+    \item For $A = 0$ we get
+    \begin{equation}
+        r^2 - r_s r + r_Q^2 = 0 \rightarrow r_{\pm} = \frac{r_s}{2} \pm \frac{\sqrt{r_s^2 - 4r_Q^2}}{2}
+    \end{equation}
+    These two singularities are in the vacuum region, meaning that $R = 0$ in those areas and they are not physical singularities. They match the single singularity $r = r_s$ in the SBH limit. We note that those singularities exist only when $r_Q < \frac{1}{2}r_s$. In the case where $r_Q = \frac{1}{2}r_s$, they merge to a single sphere with radius $r_s/2$. In the case where $r_q > \frac{1}{2}r_s$, there are no singularities.
+    \newline
+    The fact that the mass-dependent term and the charge-dependent term have opposite signs give us a clue that they act on spacetime in opposite direction.\footnote{This is true for both positive and negative charge, since $Q$ appears only as $Q^2$.} For this reason, when the EM field is strong enough, it removes the singularity made by the mass.
+    \newline
+    While crossing these spheres, the prefactor in the metric of both the time and the radial component changes sign, making those spheres into event horizons. This means that the time coordinate is timelike for $r > r_{+}$, spacelike for $r_{-} < r < r_{+}$, and timelike again for $r < r_{-}$. Again we see how the EM field acts against the effects we saw in SBH.
+\end{itemize}
+\subsection{Thermodynamics of a Reissner-Nordstrom BH}
+\subsubsection{Temperature of a generic spherical-symmetric stationary BH}
+Let us look now at a generic BH with the metric
+\begin{equation}
+    ds^2 = V(r)c^2dt^2 - V(r)^{-1}dr^2 - r^2d\Omega^2
+\end{equation}
+And just like we did in the tutorial, let us consider a stationary observer close to the horizon $r_s$ for which $V(r_s) = 0$, with radius $r = r_s + \frac{1}{4}V'(r_s)\rho^2$. Close to the horizon, we can expand:
+\begin{equation}
+    V(r) = V(r_s) + V'(r_s)(r - r_s) + \cdots \approx V'^2(r_s) \frac{\rho^2}{4}
+\end{equation}
+Ignoring the angular part of the metric, the local metric to the lowest order in $\rho$ is given by
+\begin{equation}
+    ds^2 = V'^2(r_s) \frac{\rho^2}{4}c^2dt^2 - d\rho^2
+\end{equation}
+This is again the Rindler coordinates for an accelerating observer with $\alpha = \frac{V'(r_s)c^2}{2}$. Taking the Unruh effect temperature:
+\begin{equation}
+    T = \frac{\hbar \alpha}{2\pi k_B c} = \frac{\hbar c V'(r_s)}{4\pi k_B}
+\end{equation}
+In our case, for the RNBH, we want to take the outer horizon $r_s \rightarrow r_{+}$:
+\begin{equation}
+    V(r) = 1 - \frac{r_s}{r} + \frac{r_Q^2}{r^2}
+    \rightarrow
+    V'(r) = \frac{r_s}{r^2} - \frac{2r_Q^2}{r^3}
+    \rightarrow
+    V'(r_{+}) = \frac{r_sr_{+} - 2r_Q^2}{r_{+}^3}
+\end{equation}
+So:
+\begin{equation}
+    T = \frac{\hbar c}{4\pi k_B}\frac{r_sr_{+} - 2r_Q^2}{r_{+}^3}
+\end{equation}
+\subsubsection{Horizon area}
+Let us now look on the horizons $r = r_{\pm}$. Setting $dt = 0$ and $r = r_{\pm}$, the metric is simply the angular metric:
+\begin{equation}
+    ds^2 = - r^2d\Omega^2
+\end{equation}
+And the area is:
+\begin{equation}
+    A = \int \sqrt{-g}d\theta d\varphi = \int r^2 \sin\theta d\theta d\varphi = 4\pi r^2
+\end{equation}
+Taking the outer horizon $r = r_{+}$, we get:
+\begin{equation}
+    A = 4\pi r_{+}^2 = \pi \left(r_s + \sqrt{r_s^2 - 4r_Q^2}\right)^2 = \pi r_s^2 \left(
+        1 + \sqrt{1 - \frac{4r_Q^2}{r_s^2}}
+    \right)^2 = \frac{4\pi G^2M^2}{c^4} \left(
+        1 + \sqrt{1 - \frac{Q^2}{GM^2}}
+    \right)^2
+\end{equation}
+Now, let us differentiate $A(M, Q, J)$:
+\begin{equation}
+    \frac{\partial A}{\partial M} = 
+    \frac{8\pi G^2M}{c^4}
+    \left(
+        2 +
+        \frac{2 - \frac{Q^2}{GM^2}}{\sqrt{1 - \frac{Q^2}{GM^2}}}
+    \right)
+    \qquad
+    \frac{\partial A}{\partial Q} = -\frac{8\pi GQ}{c^4}\left(
+        1 + \frac{1}{\sqrt{1 - \frac{Q^2}{GM^2}}}
+    \right)
+\end{equation}
+And in total
+\begin{equation}
+    dA = \frac{8\pi G^2M}{c^6}
+    \left(
+        2 + \frac{2 - \frac{Q^2}{GM^2}}{\sqrt{1 - \frac{Q^2}{GM^2}}}
+    \right)dMc^2 - \frac{8\pi GQ}{c^4}\left(
+        1 + \frac{1}{\sqrt{1 - \frac{Q^2}{GM^2}}}
+    \right) dQ
+\end{equation}
+So we can write the first law as:
+\begin{equation}
+    dMc^2 = \frac{c^6\sqrt{1 - \frac{Q^2}{GM^2}}}{8\pi G^2M
+    \left(
+        2\sqrt{1 - \frac{Q^2}{GM^2}} + 2 - \frac{Q^2}{GM^2}
+    \right)}dA +
+    \frac{Qc^2\left(
+        \sqrt{1 - \frac{Q^2}{GM^2}} + 1
+    \right)}{GM
+    \left(
+        2\sqrt{1 - \frac{Q^2}{GM^2}} + 2 - \frac{Q^2}{GM^2}
+    \right)} dQ 
+\end{equation}
+And we can see that
+\begin{equation}
+    \kappa = \frac{c^4\sqrt{1 - \frac{Q^2}{GM^2}}}{GM
+    \left(
+        2\sqrt{1 - \frac{Q^2}{GM^2}} + 2 - \frac{Q^2}{GM^2}
+    \right)}
+\end{equation}
+Using
+\begin{equation}
+    r_{+} - r_{-} = \sqrt{r_s^2 - 4r_Q^2}
+    \rightarrow
+    \sqrt{1 - \frac{Q^2}{GM^2}} = \frac{r_{+} - r_{-}}{r_s}
+\end{equation}
+And
+\begin{equation}
+    r_{+}^2 = \frac{1}{4}\left[r_s^2 + r_s^2 - 4r_Q^2 + 2r_s\sqrt{r_s^2 - 4r_Q^2}\right] = 
+    \frac{1}{4}\left[2r_s^2 - 4r_Q^2 + 2r_s\sqrt{r_s^2 - 4r_Q^2}\right] = \frac{r_s^2}{4}\left[
+        2 - \frac{Q^2}{GM^2} + 2\sqrt{1 - \frac{Q^2}{GM^2}}
+    \right]
+\end{equation}
+we get:
+\begin{equation}
+    \kappa = \frac{\left(r_{+} - r_{-}\right)}{r_s GM 4
+    r_{+}^2/r_s^2} = \frac{c^2\left(r_{+} - r_{-}\right)}{
+    2r_{+}^2}
+\end{equation}
+Which fits the general form of a KNBH that we saw in the tutorial.
+Following the same for $\phi$, the prefactor of $dQ$, we get:
+\begin{equation}
+    \phi = \frac{Qc^2(1 + \frac{r_{+} - r_{-}}{r_s})}{GM 4
+    r_{+}^2/r_s^2} = \frac{Q\left(r_s + r_{+} - r_{-}\right)}{2r_{+}^2}
+\end{equation}
+This has the units of an electric potential, and takes the place in the first law of the energy per unit charge, which is the definition of the electirc potential. So, the most likely interpertation is that this is the electric potential.
+\subsection{Entropy}
+Using the temperature we found:
+\begin{equation}
+    T = \frac{\hbar c}{4\pi k_B}\frac{r_sr_{+} - 2r_Q^2}{r_{+}^3}
+\end{equation}
+But, as we saw:
+\begin{equation}
+    r_s = r_{+} + r_{-}
+    \qquad
+    -4r_Q^2 = (r_s = r_{+} - r_{-})^2 - r_s^2 = -4r_{+}r_{-} \rightarrow r_Q^2 = r_{+}r_{-}
+\end{equation}
+So we get
+\begin{equation}
+    T = \frac{\hbar c}{4\pi k_B}\frac{(r_{+} + r_{-})r_{+} - 2r_{+}r_{-}}{r_{+}^3} = 
+    \frac{\hbar c}{4\pi k_B}\frac{r_{+} - r_{-}}{r_{+}^2}
+\end{equation}
+Which means
+\begin{equation}
+    \frac{\partial Mc^2}{\partial A} = \frac{\kappa c^2}{8 \pi G} = \frac{c^4(r_{+} - r_{-})}{16 \pi G r_{+}^2} = \frac{c^3}{4 G \hbar}k_B T
+\end{equation}
+So the entropy could be written as:
+\begin{equation}
+    S = \frac{c^3 k_B}{4 G \hbar}A
+\end{equation}
+Exactly as expected.
+\end{document}
