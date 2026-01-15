@@ -1,0 +1,706 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+\usepackage{slashed}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Mechanics II Excercise 5}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Charge Conjugation}
+The transformation called ”charge conjugation” (often called C) can be defined on the
+states of the Hilbert space as the operation of swapping a particle state to an anti-particle
+state, and vice-verse. Here we construct UC for the free Dirac theory:
+\begin{equation}
+    \mathcal{L} = \bar{\psi}(i\slashed{\partial} - m)\psi
+\end{equation}
+We will work with the mode expansion convention we saw in class:
+\begin{equation}
+\label{eq:dirac-field}
+    \psi(x) = \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}u_s(k)e^{-ikx} + b_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right)
+\end{equation}
+Where
+\begin{equation}
+    u_s(k) = \begin{pmatrix} \sqrt{\sigma k} \xi_s \\ \sqrt{\bar{\sigma} k} \xi_s \end{pmatrix}
+    \qquad
+    v_s(k) = \begin{pmatrix} \sqrt{\sigma k} \xi_{-s} \\ -\sqrt{\bar{\sigma} k} \xi_{-s} \end{pmatrix}
+    \qquad
+    \xi_{-s} = -i\sigma_2\xi_s^*
+\end{equation}
+\subsection{Useful identities}
+Taking $-i\gamma^2u_s(k)$, we get:
+\begin{equation}
+    -i\gamma^2u_s(k) = -i
+    \begin{pmatrix}
+        0 & \sigma_2 \\ -\sigma_2 & 0
+    \end{pmatrix}
+    \begin{pmatrix} \sqrt{\sigma k} \xi_s \\ \sqrt{\bar{\sigma} k} \xi_s \end{pmatrix} =
+    \begin{pmatrix} -i \sigma_2 \sqrt{\bar{\sigma} k} \xi_s \\ i \sigma_2 \sqrt{\sigma k} \xi_s \end{pmatrix}
+\end{equation}
+But since $\sigma_2\sigma_i = -\sigma_i^T\sigma_2$ and since for any vector $A_\mu$ the roots $\sqrt{\sigma A} = \sqrt{\sigma^\mu A_\mu}$ and $\sqrt{\bar{\sigma} A} = \sqrt{\bar{\sigma}^\mu A_\mu}$ are just sums of Pauli matrices (and the identity matrix), we can move the $\sigma_2$ to the right side of the root if we transpose the Pauli matrices in it and change $\sigma$ to $\bar{\sigma}$ and vice versa. This gives:
+\begin{equation}
+    \begin{pmatrix} -i \sigma_2 \sqrt{\bar{\sigma} k} \xi_s \\ i \sigma_2 \sqrt{\sigma k} \xi_s \end{pmatrix} =
+    \begin{pmatrix} - \sqrt{\sigma^T k} i \sigma_2 \xi_s \\ \sqrt{\bar{\sigma}^T k} i \sigma_2 \xi_s \end{pmatrix} = 
+    \begin{pmatrix} \sqrt{\sigma^T k} \xi_{-s}^* \\ -\sqrt{\bar{\sigma}^T k} \xi_{-s}^* \end{pmatrix}
+\end{equation}
+Where we used the conjugate version of the definition of $\xi_{-s}$ and noticed that the sign doesn change because $\sigma_2$ is purely imaginary. But, if we follow the definition that for a matrix $A^* = (A^\dagger)^T$, then for the Paulit matrices, which are hermitian, $\sigma_\mu^* = (\sigma_\mu^\dagger)^T = \sigma^T$:
+\begin{equation}
+    \begin{pmatrix} \sqrt{\sigma^T k} \xi_{-s}^* \\ -\sqrt{\bar{\sigma}^T k} \xi_{-s}^* \end{pmatrix} = 
+    \begin{pmatrix} \sqrt{\sigma^* k} \xi_{-s}^* \\ -\sqrt{\bar{\sigma}^* k} \xi_{-s}^* \end{pmatrix} = 
+    \begin{pmatrix} \sqrt{\sigma k} \xi_{-s} \\ -\sqrt{\bar{\sigma} k} \xi_{-s} \end{pmatrix}^* = (v_s(k))^*
+\end{equation}
+We can perform the same process in the other direction:
+\begin{equation}
+    -i\gamma^2v_s(k) = -i
+    \begin{pmatrix}
+        0 & \sigma_2 \\ -\sigma_2 & 0
+    \end{pmatrix}
+    \begin{pmatrix} \sqrt{\sigma k} \xi_{-s} \\ -\sqrt{\bar{\sigma} k} \xi_{-s} \end{pmatrix} =
+    \begin{pmatrix} i\sigma_2\sqrt{\bar{\sigma} k} \xi_{-s} \\ i\sigma_2\sqrt{\sigma k} \xi_{-s} \end{pmatrix} = 
+    \begin{pmatrix} i\sqrt{\sigma^* k} \sigma_2\xi_{-s} \\ i\sqrt{\bar{\sigma}^* k} \sigma_2\xi_{-s} \end{pmatrix} = \begin{pmatrix} \sqrt{\sigma^* k} \xi_{s}^* \\ \sqrt{\bar{\sigma}^* k} \xi_{s}^* \end{pmatrix} = (u_s(k))^*
+\end{equation}
+Which gives us two useful identities:
+\begin{equation}
+\label{eq:useful-identities}
+    (u_s(k))^* = -i\gamma^2v_s(k)
+    \qquad
+    (v_s(k))^* = -i\gamma^2u_s(k)
+\end{equation}
+\subsection{Charge conjugation operator}
+Let us define the charge conjugation operator $U_C$ via its action on ladder operators:
+\begin{equation}
+    U_C^\dagger a_{\vec{k},s}U_C = b_{\vec{k},s}
+    \qquad
+    U_C^\dagger b_{\vec{k},s}U_C = a_{\vec{k},s}
+\end{equation}
+Then, for the field $\psi$, we can use the mode expansion to find how it transforms under the operator:
+\begin{equation}
+\begin{gathered}
+    U_C^\dagger \psi(x)U_C = U_C^\dagger \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}u_s(k)e^{-ikx} + b_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) U_C = \\ =\int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+         U_C^\dagger a_{\vec{k}, s} U_Cu_s(k)e^{-ikx} + U_C^\dagger b_{\vec{k}, s}^\dagger U_C v_s(k)e^{ikx}
+    \right) = \\ =\int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+         b_{\vec{k}, s} u_s(k)e^{-ikx} + a_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right)
+\end{gathered}
+\end{equation}
+On the other hand:
+\begin{equation}
+\begin{gathered}
+    -i\gamma^2\psi^*(x) = -i\gamma^2 \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}^\dagger u_s^*(k)e^{ikx} + b_{\vec{k}, s} v_s^*(k)e^{-ikx}
+    \right) = \\ = \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}^\dagger v_s(k)e^{ikx} + b_{\vec{k}, s} u_s(k)e^{-ikx}
+    \right)
+\end{gathered}
+\end{equation}
+Where again we used the conjugate version of equation \ref{eq:useful-identities}, and noticed that the sign doesn't change because $\gamma^2$ is purely imaginary. This is exactly the same result as before:
+\begin{equation}
+\label{eq:c-for-psi}
+    U_C^\dagger \psi(x)U_C = -i\gamma^2\psi^*(x)
+\end{equation}
+\subsection{Charge conjugation symmetry}
+We can now prove that charge conjugation is a symmetry of the Dirac theory:
+\begin{equation}
+    \mathcal{L} \rightarrow \mathcal{L}' = U_C^\dagger \mathcal{L} U_C =
+    U_C^\dagger \bar{\psi}(i\slashed{\partial} - m)\psi U_C
+\end{equation}
+Let us first look at $\bar{\psi}(x)$. Defining
+\begin{equation}
+    \bar{u}_s(k) = u_s^\dagger(k)\gamma^0 = \begin{pmatrix} \sqrt{\bar{\sigma} k} \xi_s^\dagger & \sqrt{\sigma k} \xi_s^\dagger \end{pmatrix}
+    \qquad
+    \bar{v}_s(k) = v_s^\dagger(k)\gamma^0 = \begin{pmatrix} -\sqrt{\bar{\sigma} k} \xi_{-s}^\dagger & \sqrt{\sigma k} \xi_{-s}^\dagger \end{pmatrix}
+\end{equation}
+And using the mode expansion of $\psi(x)$, we get:
+\begin{equation}
+\label{eq:dirac-field-bar}
+    \bar{\psi}(x) = \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}^\dagger\bar{u}_s(k)e^{ikx} + b_{\vec{k}, s} \bar{v}_s(k)e^{-ikx}
+    \right)
+\end{equation}
+Therefore:
+\begin{equation}
+    U_C^\dagger \bar{\psi}(x) U_C = \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        b_{\vec{k}, s}^\dagger\bar{u}_s(k)e^{ikx} + a_{\vec{k}, s} \bar{v}_s(k)e^{-ikx}
+    \right)
+\end{equation}
+On the other hand:
+\begin{equation}
+\begin{gathered}
+    \bar{u}_s(k) = u_s^\dagger(k)\gamma^0 =
+    \left(\gamma^0 u_s^*(k)\right)^T = 
+    -i\left(\gamma^0\gamma^2 v_s(k)\right)^T = 
+    -i v_s(k)^T\gamma^2\gamma^0
+    \\
+    \bar{v}_s(k) = -i u_s(k)^T\gamma^2\gamma^0
+\end{gathered}
+\end{equation}
+So we get:
+\begin{equation}
+    U_C^\dagger \bar{\psi}(x) U_C = -i\int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        b_{\vec{k}, s}^\dagger v_s^T(k)e^{ikx} + a_{\vec{k}, s} u^T_s(k)e^{-ikx}
+    \right)\gamma^2\gamma^0 = -i\psi^T(x)\gamma^2\gamma^0
+\end{equation}
+So now, going over the terms in the Lagrangian, starting from the mass term (because it's simpler):
+\begin{equation}
+    U_C^\dagger \bar{\psi}m\psi U_C = 
+    m U_C^\dagger \bar{\psi}U_C U_C^\dagger \psi U_C = 
+    m (-i\psi^T \gamma^2\gamma^0) (-i\gamma^2\psi^*) =
+    -m\psi^T \gamma^2\gamma^0\gamma^2\psi^*
+\end{equation}
+Let us now use the identity
+\begin{equation}
+    \gamma^2 \gamma^0 \gamma^2 =
+    \begin{pmatrix} 0 & \sigma_2 \\ -\sigma_2 & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \mathbb{1} \\ \mathbb{1} & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \sigma_2 \\ -\sigma_2 & 0 \end{pmatrix} = 
+    \begin{pmatrix} 0 & \sigma_2 \\ -\sigma_2 & 0 \end{pmatrix}
+    \begin{pmatrix} -\sigma_2 & 0 \\ 0 & \sigma_2 \end{pmatrix} =
+    \begin{pmatrix} 0 & \mathbb{1} \\ \mathbb{1} & 0 \end{pmatrix} = \gamma^0
+\end{equation}
+Which means:
+\begin{equation}
+    -m\psi^T \gamma^0\psi^* = -m\left(\psi^\dagger\gamma^0\psi\right)^T = -m(\bar{\psi}\psi)^T
+\end{equation}
+And using the anticomutation of Grassman numbers:
+\begin{equation}
+    -m(\bar{\psi}\psi)^T = m\bar{\psi}\psi
+\end{equation}
+So this term is invariant under $U_C$. Now let us look at the kinetic term $\bar{\psi}\slashed{\partial}\psi$. For this, let us notice that in the mode expansion, we can write:
+\begin{equation}
+\begin{gathered}
+    U_C \partial_\mu \psi(x) = 
+    U_C \partial_\mu \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}u_s(k)e^{-ikx} + b_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) = \\ = 
+    U_C \int \frac{dk^3}{(2\pi)^3}\frac{ik^\mu}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        -a_{\vec{k}, s}u_s(k)e^{-ikx} + b_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) = \\ = 
+    \int \frac{dk^3}{(2\pi)^3}\frac{ik^\mu}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        -b_{\vec{k}, s}u_s(k)e^{-ikx} + a_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) = \\ = 
+    \partial_\mu \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        b_{\vec{k}, s}u_s(k)e^{-ikx} + a_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) = \\ = 
+    \partial_\mu U_C \int \frac{dk^3}{(2\pi)^3}\frac{1}{\sqrt{2\omega_k}}\sum_{s=\pm\frac{1}{2}} \left(
+        a_{\vec{k}, s}u_s(k)e^{-ikx} + b_{\vec{k}, s}^\dagger v_s(k)e^{ikx}
+    \right) = \\ = \partial_\mu U_C \psi(x)
+\end{gathered}
+\end{equation}
+So, similar to what we did before, but this time using the commutation of $U_C$ with $\gamma^\mu$, we get:
+\begin{equation}
+\begin{gathered}
+    U_C^\dagger \bar{\psi}\slashed{\partial}\psi U_C =
+    U_C^\dagger \bar{\psi}\gamma^\mu\partial_\mu\psi U_C =
+    U_C^\dagger \bar{\psi} U_C U_C^\dagger \gamma^\mu\partial_\mu \psi U_C =
+    \left(U_C^\dagger \bar{\psi} U_C\right) \gamma^\mu\partial_\mu \left(U_C^\dagger \psi U_C\right) = \\ =
+     (-i\psi^T \gamma^2\gamma^0) \gamma^\mu\partial_\mu (-i\gamma^2\psi^*) = -\psi^T \gamma^2\gamma^0\gamma^\mu\gamma^2\partial_\mu\psi^*
+\end{gathered}
+\end{equation}
+Now since:
+\begin{equation}
+\begin{gathered}
+    \gamma^2\gamma^0\gamma^\mu\gamma^2 = 
+    \begin{pmatrix} 0 & \sigma_2 \\ -\sigma_2 & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \mathbb{1} \\ \mathbb{1} & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \sigma_\mu \\ \bar{\sigma}_\mu & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \sigma_2 \\ -\sigma_2 & 0 \end{pmatrix} 
+    = \\ =
+    \begin{pmatrix} -\sigma_2\sigma_\mu\sigma_2 & 0 \\ 0 & -\sigma_2\bar{\sigma}_\mu\sigma_2 \end{pmatrix} =
+    -\begin{pmatrix} \left(\bar{\sigma}_\mu\right)^T & 0 \\ 0 & \left(\sigma_\mu\right)^T \end{pmatrix} = 
+    -\begin{pmatrix} 0 & \left(\sigma_\mu\right)^T \\ \left(\bar{\sigma}_\mu\right)^T & 0 \end{pmatrix}
+    \begin{pmatrix} 0 & \mathbb{1} \\ \mathbb{1} & 0 \end{pmatrix}
+    = -\left(\gamma^\mu\right)^T\gamma^0
+\end{gathered}
+\end{equation}
+And so we get:
+\begin{equation}
+\begin{gathered}
+    -\psi^T \gamma^2\gamma^0\gamma^\mu\gamma^2 \partial_\mu\psi^* =
+    \psi^T \left(\gamma^\mu\right)^T\gamma^0 \partial_\mu\psi^* = 
+    -\left(
+        \partial_\mu\bar{\psi}\gamma^\mu\psi
+    \right)^T
+    = \\ =
+    -\partial_\mu\left(\bar{\psi} \gamma^\mu \psi\right)^T +
+    \left(
+        \bar{\psi} \gamma^\mu \partial_\mu \psi
+    \right)^T =
+    -\partial_\mu\left(\bar{\psi} \gamma^\mu \psi\right)^T +
+    \left(
+        \bar{\psi} \slashed{\partial}_\mu \psi
+    \right)^T
+\end{gathered}
+\end{equation}
+The first term in the last expression is a total derivative, and so it can be ignored in the Lagrangian, while the second term is our original kinetic term, only transposed. But out kinetic term is a scalar, so it's equal to its transposition:
+\begin{equation}
+    \left(
+        \bar{\psi} \slashed{\partial}_\mu \psi
+    \right)^T = \bar{\psi} \slashed{\partial}_\mu \psi
+\end{equation}
+Which is what we needed to show that the Lagrangian is invariant to charge conjugation.
+\subsection{The Noether current $J^\mu = \bar{\psi} \gamma^\mu \psi$}
+We saw the total derivative of the term $\bar{\psi} \gamma^\mu \psi$ in the last section. We will now show that it's a Noether current, associated with the internal $U(1)$ symmetry
+\begin{equation}
+    \psi(x) \rightarrow \psi'(x) = e^{i\alpha}\psi(x)
+    \qquad
+    \bar{\psi}(x) \rightarrow \bar{\psi}'(x) = e^{-i\alpha}\bar{\psi}(x)
+\end{equation}
+For this, let us take the infinitisimal transformation of the field:
+\begin{equation}
+    \delta \psi = i\alpha\psi(x)
+    \qquad
+    \delta \bar{\psi} = -i\alpha \bar{\psi}(x)
+\end{equation}
+Now, promoting $\alpha$ to a function of spacetime:
+\begin{equation}
+\begin{gathered}
+    \delta \mathcal{L} = (1 - i\alpha)\bar{\psi}(i\slashed{\partial} - m)(1 + i\alpha)\psi - \bar{\psi}(i\slashed{\partial} - m)\psi = \\ =
+    -\bar{\psi}\slashed{\partial}(\alpha)\psi =
+    - \partial_\mu(\alpha\bar{\psi}\gamma^\mu\psi) + \alpha\partial_\mu(\bar{\psi}\gamma^\mu\psi)
+\end{gathered}
+\end{equation}
+The first term is again a total derivative while the second term is the Noether current we were looking for. In that case, the conserved charge is
+\begin{equation}
+    Q = -\int d^3x J^0 = -\int d^3x \bar{\psi} \gamma^0 \psi
+\end{equation}
+And thus, under charge conjugation $U_C$, we get:
+\begin{equation}
+\begin{gathered}
+    U_C^\dagger Q U_C = -\int d^3x U_C^\dagger \bar{\psi} U_C \gamma^0 U_C^\dagger \psi U_C = -\int d^3x \left(-i\psi^T \gamma^2\gamma^0\right) \gamma^0 \left(
+        -i\gamma^2\psi^*
+    \right) = \\ = \int d^3x \psi^T \gamma^2\gamma^0\gamma^0\gamma^2\psi^*
+\end{gathered}
+\end{equation}
+And since:
+\begin{equation}
+    \gamma^2\gamma^0\gamma^0\gamma^2 = \gamma^2\gamma^2 = -\mathbb{1}
+\end{equation}
+We get:
+\begin{equation}
+\begin{gathered}
+    \int d^3x \psi^T \gamma^2\gamma^0\gamma^0\gamma^2\psi^* =
+    -\int d^3x \psi^T\psi^* =
+    \int d^3x \left(\psi^\dagger\psi\right)^T =
+    \int d^3x \bar{\psi}\gamma^0\psi = -Q
+\end{gathered}
+\end{equation}
+And so we got:
+\begin{equation}
+    U_C^\dagger Q U_C = -Q
+\end{equation}
+Which is exactly as expected.
+\section{P, C, T}
+\subsection{The Yukawa theory}
+Let us consider the Yukawa theory:
+\begin{equation}
+    \mathcal{L} = \bar{\psi}\left(i\slashed{\partial} - m\right)\psi +
+    \frac{1}{2}\left(\partial^\mu\phi\right)^2 -
+    \frac{1}{2}M^2\phi^2 -
+    y\phi\bar{\psi}\psi
+\end{equation}
+This theory has two fields: a Dirac spinor field and a scalar (or pseudoscalar) field. We know how the spinor field transforms under each of the three transformation C, P and T:
+\begin{equation}
+    U_C^\dagger \psi(x) U_C = -i\gamma^2\psi^*(x)
+    \qquad
+    U_P^\dagger \psi(x) U_P = \gamma^0 \psi(\tilde{x})
+    \qquad
+    \Omega_T^\dagger \psi(x) \Omega_T = \gamma^1\gamma^3 \psi(-\tilde{x})
+\end{equation}
+Where $\tilde{x} = (t, -\vec{x})$. Additionaly:
+\begin{equation}
+    U_C^\dagger \bar{\psi}(x) U_C = -i\psi^T(x)\gamma^2\gamma^0
+    \qquad
+    U_P^\dagger \bar{\psi}(x) U_P = \bar{\psi}(\tilde{x}) \gamma^0
+    \qquad
+    \Omega_T^\dagger \bar{\psi}(x) \Omega_T = \psi^\dagger(-\tilde{x})\gamma^3\gamma^1\gamma^0
+\end{equation}
+Let us now see how $\phi$ transforms under each of these transformations, and whether it needs to be a scalar or pseudoscalar for C, P, and T to be symmetries of the theory. For this, let us look at how the entire theory transforms under each transformation. Before we do that, we notice that we already showed that each of these transformations is a symmetry of the free Dirac theory and the free scalar theory separately, and thus only the interaction term remains. This is true whether the scalar is actually a scalar or a pseudoscalar.\footnote{We saw the P symmetry for both theories in class, the T symmetry for both theories in tutorial, and the C theory for the scalar field in class and for the Dirac spinor in the previous section}
+\subsubsection{Parity}
+Under partity, the Yukawa interaction term
+\begin{equation}
+    \mathcal{L}_Y = y\phi\bar{\psi}\psi
+\end{equation}
+Transforms like
+\begin{equation}
+    y\phi\bar{\psi}\psi \rightarrow U_P^\dagger y\phi\bar{\psi}\psi U_P = y \left(U_P^\dagger \phi U_P\right) \left(U_P^\dagger \bar{\psi} \psi U_P\right)
+\end{equation}
+The second term acts like the Dirac mass term, and so doesn't change under the transformation. This means that for parity to be a symmetry, $\phi$ must be a scalar:
+\begin{equation}
+    U_P^\dagger \phi U_P = \phi
+\end{equation}
+\subsubsection{Time reversal \& Charge conjugation}
+The same logic can be applied in the other two cases. Since $\bar{\psi}\psi$ is invariant to both Time reversal and Charge conjugation, this forces $\phi$ to be invariant to them as well, or they would not be a symmetry.
+\begin{equation}
+    U_C^\dagger \phi(x) U_C = \phi(x)
+    \qquad
+    U_P^\dagger \phi(x) U_P = \phi(\tilde{x})
+    \qquad
+    \Omega_T^\dagger \phi(x) \Omega_T = \phi(-\tilde{x})
+\end{equation}
+\subsection{Yukawa variant}
+Now let us look at the Yukawa variant
+\begin{equation}
+    \mathcal{L} = \bar{\psi}\left(i\slashed{\partial} - m\right)\psi +
+    \frac{1}{2}\left(\partial^\mu\phi\right)^2 -
+    \frac{1}{2}M^2\phi^2 -
+    ig\phi\bar{\psi}\gamma^5\psi
+\end{equation}
+Where $g$ is a parameter and $\gamma^5 = \begin{pmatrix}
+    -\mathbb{1}_{2\times2} & 0 \\ 0 & \mathbb{1}_{2\times2}
+\end{pmatrix}$
+Let us use the property $\gamma^5\gamma^\mu = -\gamma^\mu\gamma^5$ to find the new requirements on $\phi$ for C, P and T to be symmetries of the theory.
+For this, let us look at how these transformations act on $\bar{\psi}\gamma^5\psi$.
+\newline
+Under parity, we get:
+\begin{equation}
+    U_P^\dagger \bar{\psi}\gamma^5\psi U_P = 
+    U_P^\dagger \bar{\psi} U_P \gamma^5 U_P^\dagger \psi U_P = 
+    \bar{\psi}\gamma^0\gamma^5\gamma^0\psi = -\bar{\psi}\gamma^0\gamma^0\gamma^5\psi = -\bar{\psi}\gamma^5\psi
+\end{equation}
+So for parity to be a symmetry, $\phi$ must be a pseudoscalar:
+\begin{equation}
+    U_P^\dagger \phi \bar{\psi}\gamma^5\psi U_P =
+    U_P^\dagger \phi U_P U_P^\dagger \bar{\psi}\gamma^5\psi U_P =
+    (-\phi) \left(-\bar{\psi}\gamma^5\psi\right) =
+    \phi \bar{\psi}\gamma^5\psi
+\end{equation}
+Under charge conjugation, we get:
+\begin{equation}
+\begin{gathered}
+    U_C^\dagger \bar{\psi}\gamma^5\psi U_C = 
+    U_C^\dagger \bar{\psi} U_C \gamma^5 U_C^\dagger \psi U_C = 
+    \left(-i\psi^T\gamma^2\gamma^0\right) \gamma^5 \left(-i\gamma^2\psi^*\right) = 
+    - \psi^T\gamma^2\gamma^0\gamma^5\gamma^2\psi^* = \\ =
+    \psi^T\gamma^2\gamma^0\gamma^2\gamma^5\psi^* = 
+    \psi^T\gamma^0\gamma^5\psi^* =
+    \psi^T\gamma^5\gamma^0\psi^* = 
+    \left(\psi^\dagger\gamma^0\gamma^5\psi\right)^T =
+    \bar{\psi}\gamma^5\psi
+\end{gathered}
+\end{equation}
+Which means $\phi$ must be invariant under charge conjugation:
+\begin{equation}
+    U_C^\dagger \phi U_C = \phi
+\end{equation}
+Finally, let us look at time reversal:
+\begin{equation}
+\begin{gathered}
+    \Omega_T^\dagger \bar{\psi}\gamma^5\psi \Omega_T = 
+    \Omega_T^\dagger \bar{\psi} \Omega_T \gamma^5 \Omega_T^\dagger \psi \Omega_T = 
+    \left(\psi^\dagger\gamma^3\gamma^1\gamma^0\right) \gamma^5 \left(\gamma^1\gamma^3 \psi\right) =
+    \psi^\dagger\gamma^3\gamma^1\gamma^0\gamma^1\gamma^3\gamma^5 \psi
+\end{gathered}
+\end{equation}
+Now let us calcualte the $\gamma$ matrices product:
+\begin{equation}
+    \gamma^1\gamma^3 = \begin{pmatrix}
+        0 & \sigma_1 \\ -\sigma_1 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        0 & \sigma_3 \\ -\sigma_3 & 0
+    \end{pmatrix} =
+    \begin{pmatrix}
+        -\sigma_1\sigma_3 & 0 \\ 0 & -\sigma_1\sigma_3
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        i\sigma_2 & 0 \\ 0 & i\sigma_2
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \gamma^3\gamma^1 = 
+    \begin{pmatrix}
+        0 & \sigma_3 \\ -\sigma_3 & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        0 & \sigma_1 \\ -\sigma_1 & 0
+    \end{pmatrix} =
+    \begin{pmatrix}
+        -\sigma_3\sigma_1 & 0 \\ 0 & -\sigma_3\sigma_1
+    \end{pmatrix} = 
+    \begin{pmatrix}
+        -i\sigma_2 & 0 \\ 0 & -i\sigma_2
+    \end{pmatrix}
+\end{equation}
+\begin{equation}
+    \gamma^1\gamma^3\gamma^0\gamma^1\gamma^3 =
+    \begin{pmatrix}
+        -i\sigma_2 & 0 \\ 0 & -i\sigma_2
+    \end{pmatrix}
+    \begin{pmatrix}
+        0 & \mathbb{1} \\ \mathbb{1} & 0
+    \end{pmatrix}
+    \begin{pmatrix}
+        i\sigma_2 & 0 \\ 0 & i\sigma_2
+    \end{pmatrix} =
+    \begin{pmatrix}
+        0 & -\mathbb{1} \\ -\mathbb{1} & 0
+    \end{pmatrix} = \gamma^0
+\end{equation}
+So we get:
+\begin{equation}
+    \Omega_T^\dagger \bar{\psi}\gamma^5\psi \Omega_T = 
+    \psi^\dagger\gamma^3\gamma^1\gamma^0\gamma^1\gamma^3\gamma^5 \psi =
+    \psi^\dagger\gamma^0\gamma^5 \psi = \bar{\psi} \gamma^5 \psi
+\end{equation}
+Unsurprisingly, since $\gamma^5$ "moved two steps", by which changing the sign twice, the overall sign did not change. Now we must remember that $\Omega_T$ is antiunitary, which means that when we passed it from the left of $ig$ to the right, we switched the sign of $ig$. So in overall we got a sign cahnge, and for time reversal to be a symmetry of the Lagrangian, $\phi$ must be a pseudoscalar under it:
+\begin{equation}
+    \Omega_T^\dagger ig \phi \bar{\psi}\gamma^5\psi \Omega_T =
+    -ig \Omega_T^\dagger  \phi  \Omega_T \Omega_T^\dagger  \bar{\psi}\gamma^5\psi \Omega_T = -ig \left(-\phi\right) \bar{\psi}\gamma^5\psi = ig\phi \bar{\psi}\gamma^5\psi
+\end{equation}
+\subsection{The mixed theory}
+Let us now look at the mixed theory
+\begin{equation}
+    \mathcal{L} = \bar{\psi}\left(i\slashed{\partial} - m\right)\psi +
+    \frac{1}{2}\left(\partial^\mu\phi\right)^2 -
+    \frac{1}{2}M^2\phi^2 -
+    y\phi\bar{\psi}\psi -
+    ig\phi\bar{\psi}\gamma^5\psi
+\end{equation}
+To see if it has any of the above symmetries, let us summarise the requirements for $\phi$ in order for the different interaction terms to be invariant under each transformation:
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Interaction term & P & C & T \\
+        \hline
+        $y\phi\bar{\psi}\psi$ & Scalar & Scalar & Scalar \\
+        \hline
+        $ig\phi\bar{\psi}\gamma^5\psi$ & Pseudoscalar & Scalar & Pseudoscalar \\
+        \hline
+    \end{tabular}
+    \caption{Requirements on $\phi$ for each interaction term to be invariant under P, C and T}
+    \label{tab:symmetries-yukawa}
+\end{table}
+As we can see, under C, the two terms agree: if $\phi$ is a scalar, they are both invariant and the transformation is a symmetry. However, under the P and T transformations, each term requires something different, and thus the theory can never be invariant. We get from this that C is a symmetry of the theory while P and T are not.
+\subsection{CP}
+Let us define CP as the transformation of acting with C and P at the same time. We can see that since C and P are both symmetries of the Yukawa theory and the Yukawa variant theory, then acting with both of them one after the other will still be a symmetry. On the other hand, acting on the mixed theory is still not a symmetry, since while C is a symmetry of the mixed theory, P is not, and thus the Lagrangian will change. Let us show that.
+\newline
+CP acts on fermions like:\footnote{The calculation for $\bar{\psi}$:
+\begin{equation}
+    U_{CP}^\dagger \bar{\psi}(x) U_{CP} =
+    \left(-i\gamma^2\gamma^0\psi^*(\tilde{x})\right)^\dagger\gamma^0 =
+    i\psi^T(\tilde{x})(\gamma^0)^\dagger(\gamma^2)^\dagger\gamma^0 =
+    -i\psi^T(\tilde{x})\gamma^0\gamma^2\gamma^0 =
+    i\psi^T(\tilde{x})\gamma^2
+\end{equation}
+Where we used $(\gamma^0)^\dagger = \gamma^0$, $(\gamma^2)^\dagger = -\gamma^2$, and $\gamma^0\gamma^2\gamma^0 = -\gamma^2\gamma^0\gamma^0 = -\gamma^2$.
+}
+\begin{equation}
+    U_{CP}^\dagger \psi(x) U_{CP} = -i\gamma^2\gamma^0\psi^*(\tilde{x})
+    \qquad
+    U_{CP}^\dagger \bar{\psi}(x) U_{CP} = i\psi^T(\tilde{x})\gamma^2
+\end{equation}
+Therefore:
+\begin{equation}
+\begin{gathered}
+    U_{CP}^\dagger \bar{\psi}\psi U_{CP} = 
+    U_{CP}^\dagger \bar{\psi} U_{CP} U_{CP}^\dagger \psi U_{CP} = 
+    \left(i\psi^T\gamma^2\right) \left(-i\gamma^2\gamma^0\psi^*\right) = 
+    \psi^T\gamma^2\gamma^2\gamma^0\psi^* = \\ =
+    \psi^T\gamma^0\psi^* = 
+    \left(\psi^\dagger\gamma^0\psi\right)^T = \bar{\psi}\psi
+\end{gathered}
+\end{equation}
+And:
+\begin{equation}
+\begin{gathered}
+    U_{CP}^\dagger \bar{\psi} \gamma^5 \psi U_{CP} = 
+    U_{CP}^\dagger \bar{\psi} U_{CP} \gamma^5 U_{CP}^\dagger \psi U_{CP} = 
+    \left(i\psi^T\gamma^2\right)\gamma^5\left(-i\gamma^2\gamma^0\psi^*\right) = 
+    \psi^T\gamma^2\gamma^5\gamma^2\gamma^0\psi^* = \\ =
+    -\psi^T\gamma^5\gamma^0\psi^* = 
+    -\left(\psi^\dagger\gamma^0\gamma^5\psi\right)^T = -\bar{\psi}\gamma^5\psi
+\end{gathered}
+\end{equation}
+So we got, as expected, that for the Yukawa interaction term we need $\phi$ to be a scalar, while for the Yukawa variant interaction term we need it to be a pseudoscalar. For each theory seperately, that's okay, and the theory can have CP as a symmetry, but the mixed theory cannot.
+\subsection{CPT}
+Now let us defined CPT as acting with C, P and finally T. It is clear that since C, P and T are symmetries of the Yukawa and Yuka variant theories, that their joint transformation will also be a symmetry of those theories, similar to the CP case. However, it is not obvious that this will also be the case for the mixed theory. In that case, the phase that $\bar{\psi}\gamma^5\psi$ gets that requires $\phi$ to be a pseudoscalar for the Yukawa variant term to be invariant cancels out by applying both C and T at the same time. Let us show that.
+\newline
+CPT acts on fermions like:\footnote{Calculation for $\bar{\psi}$:
+\begin{equation}
+    U_{CPT}^\dagger \bar{\psi}(x) U_{CPT} = \left(
+        -i\gamma^2\gamma^0\gamma^1\gamma^3\psi^*(-x)
+    \right)^\dagger\gamma^0 =
+    i\psi^T(-x)\gamma^3\gamma^1\gamma^0\gamma^2\gamma^0 =
+    -i\psi^T(-x)\gamma^3\gamma^1\gamma^2\gamma^0\gamma^0 =
+    -i\psi^T(-x)\gamma^3\gamma^1\gamma^2
+\end{equation}}
+\begin{equation}
+    U_{CPT}^\dagger \psi(x) U_{CPT} = -i\gamma^2\gamma^0\gamma^1\gamma^3\psi^*(-x)
+    \qquad
+    U_{CPT}^\dagger \bar{\psi}(x) U_{CPT} = -i\psi^T(-x)\gamma^3\gamma^1\gamma^2
+\end{equation}
+Tehrefore:
+\begin{equation}
+\begin{gathered}
+    U_{CPT}^\dagger \bar{\psi}\psi U_{CPT} = 
+    U_{CPT}^\dagger \bar{\psi} U_{CPT} U_{CPT}^\dagger \psi U_{CPT} = 
+    \left(-i\psi^T\gamma^3\gamma^1\gamma^2\right) \left(-i\gamma^2\gamma^0\gamma^1\gamma^3\psi^*\right) = \\ =
+    -\psi^T\gamma^3\gamma^1\gamma^2\gamma^2\gamma^0\gamma^1\gamma^3\psi^* =
+    \psi^T\gamma^3\gamma^1\gamma^0\gamma^1\gamma^3\psi^* =
+    \psi^T\gamma^0\gamma^3\gamma^1\gamma^1\gamma^3\psi^* = \\ =
+    -\psi^T\gamma^0\gamma^3\gamma^3\psi^* =
+    \psi^T\gamma^0\psi^* =\bar{\psi}\psi
+\end{gathered}
+\end{equation}
+Where we repeatedly used $\gamma^i\gamma^i = \mathbb{1}$ and used the anticomutation relations $\gamma^\mu\gamma^\nu = -\gamma^\nu\gamma^\mu$ for every $\mu \ne \nu$ to move $\gamma^1$ to the left. Additionaly:
+\begin{equation}
+\begin{gathered}
+    U_{CPT}^\dagger \bar{\psi}\gamma^5\psi U_{CPT} = 
+    U_{CPT}^\dagger \bar{\psi} U_{CPT} \gamma^5 U_{CPT}^\dagger \psi U_{CPT} = 
+    \left(-i\psi^T\gamma^3\gamma^1\gamma^2\right) \gamma^5 \left(-i\gamma^2\gamma^0\gamma^1\gamma^3\psi^*\right) = \\ =
+    -\psi^T\gamma^3\gamma^1\gamma^2\gamma^5\gamma^2\gamma^0\gamma^1\gamma^3\psi^* =
+    \psi^T\gamma^5\gamma^3\gamma^1\gamma^2\gamma^2\gamma^0\gamma^1\gamma^3\psi^* =
+    \psi^T\gamma^5\gamma^0\gamma^3\gamma^1\gamma^1\gamma^3\psi^* = \\ =
+    \psi^T\gamma^5\gamma^0\gamma^3\gamma^3\psi^* =
+    \psi^T\gamma^5\gamma^0\psi^* = \bar{\psi}\left(\gamma^5\right)^T\psi = \bar{\psi}\gamma^5\psi
+\end{gathered}
+\end{equation}
+And so we got that for both terms, the requirement for $\phi$ is to be a scalar, which means that in addition to being a symmetry of the first two theories, CPT is a symmetry of the mixed theory as well, since both terms impose the same condition on $\phi$.
+\section{The Feynman propagator: Dirac fermions}
+For fermion fields, time-ordering is defined with an extra minus sign:
+\begin{equation}
+    T\left(\psi_a(x)\bar{\psi}_b(y)\right) \equiv
+    \psi_a(x)\bar{\psi}_b(y)\theta\left(x^0 - y^0\right) -
+    \bar{\psi}_b(y)\psi_a(x)\theta\left(y^0 - x^0\right)
+\end{equation}
+In this section we develop the Feynman propegator for the Dirac Theory:
+\begin{equation}
+    S_F(x-y) = \bra{0} T\left(\psi(x)\bar{\psi}(y)\right) \ket{0}
+\end{equation}
+\begin{equation}
+    \mathcal{L} = \bar{\psi}(i\slashed{\partial} - m)\psi
+\end{equation}
+We will start by developing the terms in the definition using the definition of the fields in equation \ref{eq:dirac-field} and \ref{eq:dirac-field-bar}. Starting from the first term, and removing all ladder operator combinations that change the state $\ket{0}$ such that it cancels when multiplied by $\bra{0}$:
+\begin{equation}
+\begin{gathered}
+    \bra{0}\psi(x)\bar{\psi}(y)\theta\left(x^0 - y^0\right)\ket{0} = \\ =
+    \bra{0}
+    \int \frac{d^3k}{(2\pi)^3} \frac{d^3p}{(2\pi)^3} \frac{1}{2\sqrt{\omega_k\omega_p}}\sum_{s_1, s_2=\pm\frac{1}{2}}
+        a_{\vec{k}, s_1}a_{\vec{p}, s_2}^\dagger u_{s_1}(k) \bar{u}_{s_2}(p)e^{i(py - kx)}
+    \theta\left(x^0 - y^0\right)\ket{0}
+\end{gathered}
+\end{equation}
+But this will also be zero unless $\vec{p} = \vec{k}$ and $s_1 = s_2$:
+\begin{equation}
+\begin{gathered}
+    \bra{0}
+    \int \frac{d^3k}{(2\pi)^3} \frac{d^3p}{(2\pi)^3} \frac{1}{2\sqrt{\omega_k\omega_p}}\sum_{s_1, s_2=\pm\frac{1}{2}}
+        a_{\vec{k}, s_1}a_{\vec{p}, s_2}^\dagger u_{s_1}(k) \bar{u}_{s_2}(p)e^{i(py - kx)}
+    \theta\left(x^0 - y^0\right)\ket{0}
+    = \\ =
+    \int \frac{d^3k}{(2\pi)^3} \frac{1}{2\omega_k}\sum_{s=\pm\frac{1}{2}}
+        u_s(k) \bar{u}_s(k)e^{-ik(x - y)}
+    \theta\left(x^0 - y^0\right)
+\end{gathered}
+\end{equation}
+But since $\sum_s u_s(k)\bar{u}_s(k) = \slashed{k} + m$, we get:
+\begin{equation}
+    \int \frac{d^3k}{(2\pi)^3} \frac{1}{2\omega_k}\sum_{s=\pm\frac{1}{2}}
+        u_s(k) \bar{u}_s(k)e^{-ik(x - y)}
+    \theta\left(x^0 - y^0\right) = 
+    \theta\left(x^0 - y^0\right)
+    \int \frac{d^3k}{(2\pi)^32\omega_k}
+        e^{-ik(x - y)} (\slashed{k} + m)
+\end{equation}
+Following the same path for the second term we get:
+\begin{equation}
+    \bra{0}\bar{\psi}(y)\psi(x)\theta\left(y^0 - x^0\right)\ket{0} =
+    - \theta\left(y^0 - x^0\right)
+    \int \frac{d^3k}{(2\pi)^32\omega_k}
+        e^{ik(x - y)} (\slashed{k} - m)
+\end{equation}
+With the minus sign coming from the Grassman property of $v_s(k), \bar{v}_s(k)$:
+\begin{equation}
+    \sum_s \bar{v}_s(k) v_s(k) = - \sum_s v_s(k) \bar{v}_s(k) = - (\slashed{k} - m)
+\end{equation}
+So the total propegator is:
+\begin{equation}
+\label{eq:feynman-propagator}
+    S_F(x-y) = \int \frac{d^3k}{(2\pi)^32\omega_k}
+    \left[
+        e^{-ik(x - y)}(\slashed{k} + m)\theta\left(x^0 - y^0\right) +
+        e^{ik(x - y)}(\slashed{k} - m)\theta\left(y^0 - x^0\right)
+    \right]
+\end{equation}
+Let us now look at the expression
+\begin{equation}
+    \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4} e^{-ik(x-y)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon}
+\end{equation}
+And show that when reducing it to a 3d integral, it becomes the propegator we got above. For this, we will perform the $k^0$ integral using the Residue theorem. First let us seperate the spatial integral:
+\begin{equation}
+    \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4} e^{-ik(x-y)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon} = 
+    \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \lim_{\epsilon\rightarrow0^{+}} \int \frac{dk^0}{(2\pi)} e^{-ik^0(x^0-y^0)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon}
+\end{equation}
+And now let us look at the $k^0$ integral. The denominator becomes:
+\begin{equation}
+    k^2 - m^2 + i\epsilon = \left(k^0\right)^2 - \vec{k}^2 - m^2 + i\epsilon = \left(k^0\right)^2 - \omega_k^2 + i\epsilon \rightarrow \left(k^0 - (\omega_k - i\epsilon)\right)\left(k^0 + (\omega_k - i\epsilon)\right)
+\end{equation}
+Where in the last step we renamed $\epsilon$ and added a $\epsilon^2$ term that vanishes in the limit. This means the integrand has two poles $k^0 = \pm \left(\omega_k - i\epsilon\right)$. Since one of them is above the real axis and one of them is below, when we want to integrate $k^0$ in $(-\infty, \infty)$, we need to take the semi circle contour below or above the axis, depedning on which of them doesn't diverge. Looking at the exponent $e^{-ik^0(x^0 - y^0)}$, we get that for $x^0 > y^0$, the integral diverges when $\Im(k^0) > 0$ and vise versa. So, we take the below contour if $x^0 > y^0$ and the above contour if $x^0 < y^0$. The below contour contains the pole $k^0 = \omega_k - i\epsilon$ while the above contour contains the pole $k^0 = - \omega_k + i\epsilon$. Let us calcualte the residue in each pole:
+\begin{equation}
+\begin{gathered}
+    \lim_{\epsilon\rightarrow0^{+}} Res\left\{e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon}, k^0 = \omega_k - i\epsilon\right\} =
+    \lim_{\epsilon\rightarrow0^{+}} \lim_{k^0 \rightarrow \omega_k - i\epsilon}
+    \left(e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} + m)}{k^0 + \omega_k - i\epsilon}\right) = \\ =
+    \lim_{\epsilon\rightarrow0^{+}} \frac{1}{2}e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} + m)}{\omega_k - i\epsilon} = \frac{i}{2\omega_k}e^{-i\omega_k(x^0 - y^0)}(\gamma^0 \omega_k - \gamma^ik^i + m)
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    \lim_{\epsilon\rightarrow0^{+}} Res\left\{e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon}, k^0 = - \left(\omega_k - i\epsilon\right)\right\} =
+    \lim_{\epsilon\rightarrow0^{+}} \lim_{k^0 \rightarrow - \left(\omega_k - i\epsilon\right)}
+    \left(e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} + m)}{k^0 - \omega_k + i\epsilon}\right) = \\ =
+    \lim_{\epsilon\rightarrow0^{+}} -\frac{1}{2}e^{-ik^0(x^0 - y^0)}\frac{i(\slashed{k} + m)}{\omega_k - i\epsilon} = -\frac{i}{2\omega_k}e^{i\omega_k(x^0 - y^0)}(-\gamma^0\omega_k - \gamma^ik^i + m) = \\ = \frac{i}{2\omega_k}e^{i\omega_k(x^0 - y^0)}(\gamma^0\omega_k + \gamma^ik^i - m)
+\end{gathered}
+\end{equation}
+So for $x^0 > y^0$, we take the below pole and add $-2\pi i$ factor for the residue theorem:
+\begin{equation}
+\begin{gathered}
+    \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \lim_{\epsilon\rightarrow0^{+}} \int \frac{dk^0}{(2\pi)} e^{-ik^0(x^0-y^0)}\frac{i(\slashed{k} + m)}{k^2 - m^2 + i\epsilon} = \\ =
+    -i \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \frac{i}{2\omega_k}e^{-i\omega_k(x^0 - y^0)}(\gamma^0 \omega_k - \gamma^ik^i + m) = \\ =
+    \int \frac{d^3k}{(2\pi)^32\omega_k} e^{-i\omega_k(x^0 - y^0)+i\vec{k}\cdot(\vec{x} - \vec{y})}(\gamma^0\omega_k - \gamma^ik^i + m) = \\ =
+    \int \frac{d^3k}{(2\pi)^32\omega_k} e^{-ik(x - y)}(\slashed{k} + m)
+\end{gathered}
+\end{equation}
+While for $x^0 < y^0$ we take the above pole, and add $2\pi i$ for the CW residue theorem:
+\begin{equation}
+\begin{gathered}
+    \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \lim_{\epsilon\rightarrow0^{+}} \int \frac{dk^0}{(2\pi)} e^{-ik^0(x^0-y^0)}\frac{i(\slashed{k} + m)}{k^2 - m^2 + i\epsilon} = \\ =
+    i \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \frac{i}{2\omega_k}e^{i\omega_k(x^0 - y^0)}(\gamma^0\omega_k + \gamma^ik^i - m) = \\ =
+    -\int \frac{d^3k}{(2\pi)^32\omega_k} e^{i\omega_k(x^0 - y^0)+i\vec{k}\cdot(\vec{x} - \vec{y})}(\gamma^0\omega_k + \gamma^ik^i - m) = \\ =
+    \int \frac{d^3k}{(2\pi)^32\omega_k} e^{i\omega_k(x^0 - y^0)-i\vec{k}\cdot(\vec{x} - \vec{y})}(\gamma^0\omega_k - \gamma^ik^i - m) = \\ =
+    \int \frac{d^3k}{(2\pi)^32\omega_k} e^{ik(x - y)}(\slashed{k} - m)
+\end{gathered}
+\end{equation}
+Adding the two options with the relevant Heaviside functions, we get exactly the expression we got in equation \ref{eq:feynman-propagator}:
+\begin{equation}
+    S_F(x-y) = \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4} e^{-ik(x-y)}\frac{i(\slashed{k} +m )}{k^2 - m^2 + i\epsilon}
+\end{equation}
+Applying the Dirac formula to the expression and using $\slashed{k}\slashed{k} = k^2\mathbb{1}$ and remembering that in the formula so far we wrote in the nominator $m$ and meant $m\mathbb{1}$:
+\begin{equation}
+\begin{gathered}
+    (i\slashed{\partial}_x - m\mathbb{1})\lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4} e^{-ik(x-y)}\frac{i(\slashed{k} + m\mathbb{1})}{k^2 - m^2 + i\epsilon} = \\ =
+    \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4} (\slashed{k} - m\mathbb{1}) e^{-ik(x-y)}\frac{i(\slashed{k} + m\mathbb{1})}{k^2 - m^2 + i\epsilon} = \\ =
+    \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4}e^{-ik(x-y)}\frac{i(\slashed{k} - m\mathbb{1})(\slashed{k} + m\mathbb{1})}{k^2 - m^2 + i\epsilon} = \\ =
+    i\lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4}e^{-ik(x-y)}\frac{k^2\mathbb{1} - m^2\mathbb{1}}{k^2 - m^2 + i\epsilon} = \\ =
+    i\int \frac{d^4k}{(2\pi)^4}e^{-ik(x-y)} = i\delta^4(x - y) \mathbb{1}
+\end{gathered}
+\end{equation}
+This means that the Dirac theory Feynman propagator is the Green's function of the Dirac equation.
+\end{document}
