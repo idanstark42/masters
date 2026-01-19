@@ -1,0 +1,311 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Differential Geometry Excercise 3}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Let $X, Y$ be vector fields and let $\omega$ be a 1-form. This means that at each point $p \in M$:
+\begin{equation}
+    X = \sum_i X^i \frac{\partial}{\partial x^i}
+    \qquad
+    Y = \sum_i Y^i \frac{\partial}{\partial x^i}
+    \qquad
+    \omega = \sum_i \omega_i dx^i
+\end{equation}
+Where $x_1, ..., x_n$ is the local coordinates system at $p$. The exterior derivative of $\omega$ is then
+\begin{equation}
+    d\omega = \sum_{i} d\omega_i \wedge dx^i = \sum_{i, j} \frac{\partial \omega_i}{\partial x^j} dx^j \wedge dx^i = \sum_{i, j} \frac{\partial \omega_i}{\partial x^j} \left(dx^j \otimes dx^i - dx^i \otimes dx^j\right)
+\end{equation}
+where the last equality was derived from the definition of the wedge product. This form is a 2-form, i.e. a map $d\omega_p: T_p M \times T_p M \rightarrow \R$. Evaluating it for $X$ and $Y$ at point $p$ gives
+\begin{equation}
+\begin{gathered}
+    d\omega(X, Y)_p = \sum_{i, j} \frac{\partial \omega_i}{\partial x^j} \left(X^jY^i - X^iY^j\right) = \\ =
+    \sum_{i, j}\left(\frac{\partial \omega_i}{\partial x^j} Y^i X^j - \frac{\partial \omega_i}{\partial x^j} X^iY^j \right)
+\end{gathered}
+\end{equation}
+On the other hand:
+\begin{equation}
+\begin{gathered}
+    X(\omega(Y)) = \sum_{i, j}\frac{\partial }{\partial x^j} (\omega_iY^i) X^j = \sum_{i, j}\left(\frac{\partial \omega_i}{\partial x^j} Y^i X^j + \omega_i\frac{\partial Y^i}{\partial x^j} X^j \right)
+    \\
+    Y(\omega(X)) = \sum_{i, j}\frac{\partial}{\partial x^j} (\omega_iX^i) Y^j = \sum_{i, j} \left(\frac{\partial \omega_i}{\partial x^j} X^i Y^j + \omega_i\frac{\partial X^i}{\partial x^j} Y^j\right)
+\end{gathered}
+\end{equation}
+And substracting them will give:
+\begin{equation}
+\begin{gathered}
+    X(\omega(Y)) - Y(\omega(X)) = \sum_{i, j} \left(\frac{\partial \omega_i}{\partial x^j} Y^i X^j + \omega_i\frac{\partial Y^i}{\partial x^j} X^j - \frac{\partial \omega_i}{\partial x^j} X^i Y^j - \omega_i\frac{\partial X^i}{\partial x^j} Y^j\right) = \\ =
+    \sum_{i, j} \left(\frac{\partial \omega_i}{\partial x^j} Y^i X^j - \frac{\partial \omega_i}{\partial x^j} X^i Y^j\right) +
+    \sum_{i, j} \left(\omega_i\frac{\partial Y^i}{\partial x^j} X^j - \omega_i\frac{\partial X^i}{\partial x^j} Y^j\right)
+\end{gathered}
+\end{equation}
+But as we saw before the first sum is $d\omega(X, Y)_p$ and it's easy to see that
+\begin{equation}
+\begin{gathered}
+    \sum_{i, j} \left(\omega_i\frac{\partial Y^i}{\partial x^j} X^j - \omega_i\frac{\partial X^i}{\partial x^j} Y^j\right) =
+    \sum_{i, j} \omega_i\left(\frac{\partial Y^i}{\partial x^j} X^j - \frac{\partial X^i}{\partial x^j} Y^j\right) = \omega([X, Y])
+\end{gathered}
+\end{equation}
+And so:
+\begin{equation}
+\begin{gathered}
+    X(\omega(Y)) - Y(\omega(X)) = d\omega(X, Y)_p + \omega([X, Y])
+    \\
+    d\omega(X, Y)_p = X(\omega(Y)) - Y(\omega(X)) - \omega([X, Y])
+\end{gathered}
+\end{equation}
+
+\section*{Question 2}
+Let $X$ be a vector field on a manifold $M$, and let $\left(\varphi_t\right)_{t\in\R}$ be the associated one-parameter group of transformations. Let $\omega$ be a k-form, the Lie derivative is the k-form defined as
+\begin{equation}
+    \mathcal{L}_X \omega := \frac{d}{dt} \varphi_t^* \omega |_{t = 0}
+\end{equation}
+Cartan's formula states that
+\begin{equation}
+\label{eq:cartans}
+    \mathcal{L}_X \omega = i_X(d\omega) + d(i_X \omega)
+\end{equation}
+Where $i_X \omega(-,\dots,-) := \omega(X, -,\dots,-)$ is the contraction of $\omega$ with $X$. Let us prove it first for 1-forms. Let $\omega$ be a 1-form, and let $p \in M$ and $x_1, \dots, x_n$ be a local coordinate system at $p$. Then $\omega$ and $X$ can be written as:
+\begin{equation}
+    \omega = \sum_i \omega_i dx^i
+    \qquad
+    X = \sum_i X^i \frac{\partial}{\partial x^i}
+\end{equation}
+The derivative of $\omega$ is then:
+\begin{equation}
+    d\omega = d \sum_i \omega_i dx^i =
+    \sum_i d\omega^i \wedge dx^i + d^2 x^i =
+    \sum_i d\omega^i \wedge dx^i =
+    \sum_{i,j}\frac{\partial \omega^i}{\partial x^j}dx^j \wedge dx^i
+\end{equation}
+The contraction of $\omega$ with $X$, $i_X \omega$ can be written as
+\begin{equation}
+    i_X \omega = \sum_i \omega_i X^i
+\end{equation}
+And so the derivative of the contraction is
+\begin{equation}
+    d(i_X \omega) = \sum_j \frac{\partial}{\partial x^j}\left(\sum_i \omega_i X^i\right) dx^j = \sum_{i,j}\left(\frac{\partial \omega_i}{\partial x^j}X^i + \frac{\partial X^i}{\partial x^j}\omega_i\right)dx^j
+\end{equation}
+Finally, the contraction of $d\omega$ with $X$ is defined using the definition of contraction:
+\begin{equation}
+    i_X(\alpha \wedge \beta) = i_X(\alpha)\wedge\beta + (-1)^p\alpha\wedge i_X(\beta)
+\end{equation}
+Where $\alpha$ is a p-form. This gives:
+\begin{equation}
+\begin{gathered}
+    i_X(d\omega) = \sum_{i,j}\frac{\partial \omega^i}{\partial x^j}i_X \left(dx^j \wedge dx^i
+    \right) = \sum_{i,j}\frac{\partial \omega^i}{\partial x^j}\left(i_X(dx^j) \wedge dx^i
+    - i_X(dx^i) \wedge dx^j\right) = \\ =
+    \sum_{i,j}\frac{\partial \omega^i}{\partial x^j}\left(X^j dx^i
+    - X^i dx^j\right) =
+    \sum_{i,j}X^j\left(\frac{\partial \omega^i}{\partial x^j}
+    - \frac{\partial \omega^j}{\partial x^i} \right)dx^i
+\end{gathered}
+\end{equation}
+Adding the last two expressions gives:
+\begin{equation}
+    i_X(d\omega) + d(i_X \omega) = \sum_{i,j}\left(X^j\frac{\partial \omega^i}{\partial x^j}
+    - X^j\frac{\partial \omega^j}{\partial x^i} + \frac{\partial \omega_j}{\partial x^i}X^j + \frac{\partial X^j}{\partial x^i}\omega_i\right)dx^i = \sum_{i,j}\left(X^j\frac{\partial \omega^i}{\partial x^j}
+    + \frac{\partial X^j}{\partial x^i}\omega_i\right)dx^i
+\end{equation}
+On the other hand, the pull-back of $\omega$ by a smooth function $\varphi_t$ is:
+\begin{equation}
+    \varphi_t^* \omega = \sum_i (\omega_i \circ \varphi_t) (\varphi^* dx^i) = 
+    \sum_i (\omega_i \circ \varphi_t) d(x^i \circ \varphi_t) = 
+    \sum_{i,j} (\omega_i \circ \varphi_t) \frac{\partial (x^i \circ \varphi_t)}{\partial x^j} dx^j
+\end{equation}
+Differentiating with respect to $t$, we get:
+\begin{equation}
+    \mathcal{L}_X \omega = \sum_{i,j} \left(
+        X(\omega_i) \frac{\partial x^i}{\partial x^j}
+        +
+        \omega_i\frac{\partial X^i}{\partial x^j}
+    \right) dx^j
+\end{equation}
+Since
+\begin{equation}
+    \frac{\partial x^i}{\partial x^j} = \delta_{ij}
+\end{equation}
+the first term becomes a single sum:
+\begin{equation}
+    \sum_{i,j} X(\omega_i) \frac{\partial x^i}{\partial x^j} dx^j = 
+    \sum_{i} X(\omega_i) dx^i =
+    \sum_{i,j} X^j \frac{\partial \omega_i}{\partial x^j} dx^i
+\end{equation}
+Renaming the indices in the second sum, we get the expression we got for the RHS, which means the formula is correct for 1-forms. Now let us see how it would act for sums and wedge proucts of forms. Since all the actions in the formula; pull-back, $i_X$, and exterior derivative, are all ditributive over addition and wedge produts, and since any k-form can be represented as a sum of wedge products of k 1-forms, and since the formula is correct for 1-forms, it is correct for all forms.
+
+\section*{Question 3}
+\subsection*{part 1}
+Given the manifold $\R P^n$, let us show when it is orientable using the local diffeomorphism $\pi: S^n \rightarrow \R P^n$ that maps every vector in $S^n$ to the line it spans in $\R P^n$. Also note $\pi(x) = \pi(-x)$.
+Remembering the $S^n$ is orientable, there exists an everywhere non-vanishing n-form $\alpha \in \Omega^n(S^n)$. This chart is induced by $\R^{n+1}$. For every point where $x^1 \ne 0$:
+\begin{equation}
+    \alpha = \frac{1}{x^1} dx^2 \wedge \cdots \wedge dx^{n+1}
+\end{equation}
+Now let $\varphi: S^n \rightarrow S^n$ be the diffeomorphism $\varphi(x) = -x$. Then:
+\begin{equation}
+    \varphi^* \alpha = \frac{1}{-x^1} d(-x^1) \wedge \cdots \wedge d(-x^n) = (-1)^{n+1} \alpha
+\end{equation}
+Now let us assume that $\R P^n$ is orientable. Then by definition exists an everywhere non-vanishing n-form $\omega \in \Omega^n(\R P^n)$. In local coordinates $y = y_1, \dots, y_n$, it can be written as:
+\begin{equation}
+    \omega = g(y)dy^1 \wedge \cdots \wedge dy^n
+\end{equation}
+For some function $g$. The pull-back of $\omega$ to $S^n$ by $\pi$, $\pi^* \omega$ is an n-form and thus is related to $\alpha$ by some non-vanishing function $h$:
+\begin{equation}
+    \pi^*\omega = h\alpha
+\end{equation}
+Pulling back with $\varphi$, we get:
+\begin{equation}
+    \varphi^*\pi^*\omega = (-1)^{n+1} h(-x)\alpha
+\end{equation}
+But since $\pi(x) = \pi(-x)$, this should equal $\pi^*\omega$, and thus:
+\begin{equation}
+    h(x) = (-1)^{n+1} h(-x)
+\end{equation}
+This means that the non vanishing map $h(x)$ has parity $n+1$, but since it is not vanishing, it cannot be odd and so $n+1$ must be even, meaning that $n$ is odd.
+\subsection*{part 2}
+Let $M$ be a smooth manifold. First let us assume it is orientable, and so there exists an everywhere non-vanishing n-form $\omega$. Let $x_1, \dots, x_n$ and $y_1, \dots, y_n$ be two sets of local coordinates and let $p \in U_x \cap U_y$ be a point in their intersection. $\omega$ at point $p$ can be written as:
+\begin{equation}
+    \omega = f(x_1, \dots, x_n) dx^1 \wedge \cdots \wedge dx^n
+    \qquad
+    \omega = g(y_1, \dots, y_n) dy^1 \wedge \cdots \wedge dy^n
+\end{equation}
+This gives the relation between the functions $f$ and $g$:
+\begin{equation}
+\label{eq:f-g-det}
+    f = \det(\frac{\partial y^i}{\partial x^j})g
+\end{equation}
+Using a coordinate transformations that flips the sign of $f$ and $g$, we can find coordinate systems $x'$ and $y'$ for which $f$ and $g$ are always positive. In these coordinate systems:
+\begin{equation}
+    f = \det(\frac{\partial y'^i}{\partial x'^j})g
+\end{equation}
+And since $f, g > 0$ then $\det(\frac{\partial y'^i}{\partial x'^j}) > 0$. On the other side, assuming that there is an atals such that for every two sets of coordinats $x_1, \dots, x_n$ and $y_1, \dots, y_n$ and $p \in U_x \cap U_y$ be a point in their intersection
+\begin{equation}
+    \det(\frac{\partial y^i}{\partial x^j}) > 0
+\end{equation}
+Then one can define n-form at point $p$ using both charts:
+\begin{equation}
+    \omega = f(x_1, \dots, x_n) dx^1 \wedge \cdots \wedge dx^n
+    \qquad
+    \omega = g(y_1, \dots, y_n) dy^1 \wedge \cdots \wedge dy^n
+\end{equation}
+And using relation \ref{eq:f-g-det}, it can be seen that if $\omega$ is non-vanishing in $U_x$ then it is not vanishing in $g_x$, which means that there is an everywhere non-vanishing n-form, and so $M$ is orientable.
+
+\section*{Question 5}
+Let $N$ be a manifold, $f: N \rightarrow R$ a smooth function and $t \in R$ a regular value of $f$. And let $M = \left\{x \in N : f(x) \le t\right\}$. Since $t$ is a regular value, its preimage $f^{-1}(t)$ is a submanifold.
+\newline
+Then, for every $p \in f^{-1}(t)$ there is a chart $(\varphi_i, U_i)$ such that $p \in U_i$ and for which $f(x) = t - x_n$ where $x_n$ is one of the coordinates. Let then $\left\{(U_i, \varphi_i)\right\}$ be an atlas on $N$ such that in every chart containing $f^{-1}(t)$ one of the coordintes is $x_n = t - f(x)$, and for all other charts within $M$, $x_n > 0$.
+\newline
+Those charts are a subset of the atlas such that $U_i \in M$ and $M = \cup_i U_i$ and for every $x \in M$, $x_n \ge 0$. Then, according to the definition, $M$ is a manifold with a boundary $\partial M = f^{-1}(t)$.
+
+\section*{Question 6}
+Let $\omega$ be a k-form over the n-torus $T^n = (S^1)^n$. Since $H^0 S^1 = H^1 S^1 \cong \R$. In other words, for $S^1$, the 1-form $d\theta$ is closed but not exact. There are $n$ such 1-forms, meaning that for $k=1$, $\dim H^1(T^n) = n = \binom{n}{1}$. For $k > 1$, there are there are $\binom{n}{k}$ wedge products of those 1-forms, which are linearly independent and in $H^k(T^n)$. Therefore
+\begin{equation}
+    \dim H^k (T^n) \ge \binom{n}{k}
+\end{equation}
+
+\section*{Question 7}
+Let $\omega$ be a compactly supported top form on $\R^n$ with $\int_{\R^n}\omega = 0$. From Poincare Lemma, $\omega$ is exact, so there is an $n-1$ form $\alpha$ such that $\omega = d\alpha$. Let us now find an $\alpha$ that is compactly supported. Let $B$ be a ball such that $supp \ \omega \subseteq B$. According to Stokes theorem:
+\begin{equation}
+    \int_{\R^n}\omega = \int_{B}\omega = \int_{B}d\alpha = \int_{\partial B}\alpha = 0
+\end{equation}
+So, from 17.24 in Lee's book, $\alpha$ is exact in $\R^n \backslash \bar{B}$. Let $\beta$ be a $n-2$ form such that $\alpha = d\beta$ and $\psi$ be a bump function that is zero inside $B$ and 1 outside some ball $B'$ that wraps $B$, then $\beta' = \alpha - \psi d\beta$ is supported only on $B'$ and follows $\alpha = d\beta'$.
+
+\section*{Question 8}
+Let $f: S^n \rightarrow S^n$ be a smooth, odd function. Let us show that it must have an odd degree, starting from $n=1$. Let us look at the 1-form $d\theta$, its pull-back by $f$ is
+\begin{equation}
+    f^* d\theta = d(\theta \circ f)
+\end{equation}
+And the integral is:
+\begin{equation}
+    \int_{S_1} f^* \omega = \int_{0}^{2\pi} d(\theta \circ f) = f(2\pi) - f(0)
+\end{equation}
+But, since $f$ is odd:
+\begin{equation}
+    f(-x) = -f(x)
+\end{equation}
+And on the 1-sphere:
+\begin{equation}
+    f(\theta + \pi) = f(\theta) + \pi
+\end{equation}
+And specifically:
+\begin{equation}
+    f(2\pi) = f(\pi) + \pi = f(0) + 2\pi
+\end{equation}
+So we get:
+\begin{equation}
+    \int_{S_1} f^* \omega = f(2\pi) - f(0) = 2\pi
+\end{equation}
+While:
+\begin{equation}
+    \int_{S_1} d\theta = 2\pi
+\end{equation}
+So we get:
+\begin{equation}
+    \deg f = \frac{\int_{S_1} f^* \omega}{\int_{S_1} d\theta} = \frac{2\pi}{2\pi} = 1
+\end{equation}
+Which is an odd degree. Now, let us assume that it is true for the n-sphere, and prove for $n+1$. Let $x_1, \dots, x_{n+2}$ be the natural coordinates of $\R^{n+2}$. Then everywhere $x^{n+2} \ne 0$ there is a local coordinates $x_1, \dots, x_{n+1}$. Let us divide the sphere into three section:
+\begin{equation}
+\begin{gathered}
+    S^{n+1}_{+} = \left\{x \in S^{n+1} : x^{n+2} > 0\right\}
+    \qquad
+    S^{n+1}_{-} = \left\{x \in S^{n+1} : x^{n+2} < 0\right\}
+    \\
+    S^{n+1}_0 = \left\{x \in S^{n+1} : x^{n+2} = 0\right\}
+\end{gathered}
+\end{equation}
+Where $S^{n+1}_{+}$ and $S^{n+1}_{-}$ are bounded manifolds with the boundary $S^{n+1}_0$ which is $S^{n}$.
+Let us now look at the integral of an exact (n+1)-form $\omega = f^* d\varphi$. Integrating:
+\begin{equation}
+    \int_{S^{n+1}} \omega = 
+    \int_{S^{n+1}_{+}} \omega +
+    \int_{S^{n+1}_{-}} \omega
+\end{equation}
+Since $f$ is odd, for every point $x_{+} \in S^{n+1}_{+}$ there is a point $x_{-} \in S^{n+1}_{i}$ such that:
+\begin{equation}
+    f(x_{+}) = (-1)^{n+1}f(x_{-})
+\end{equation}
+And so, using Stoke's theorem, the integral is
+\begin{equation}
+    \int_{S^{n+1}} \omega = \begin{cases}
+        0 & n odd
+        \\
+        2\int_{S^{n}} f^* \varphi & n even
+    \end{cases}
+\end{equation}
+Then:
+\begin{equation}
+    \int_{S^{n+1}} f^* d\varphi = 
+    2\int_{S^{n}} f^* \varphi = 
+    2deg(f)\int_{S^{n}} \varphi = 
+    deg(f)\int_{S^{n+1}} d\varphi
+\end{equation}
+Which means the degree in $f$ is the same for $S_{n+1}$ as for $S_n$.
+
+\section*{Question 9}
+Let $f: S^n \rightarrow \R^n$ be a smooth, odd map. Let us assume that for every $x \in S^n$, $f(x) \ne 0$. The normalized version has its image in $S^{n-1}$:
+\begin{equation}
+    F = \frac{f}{\left|f\right|}: S^n \rightarrow S^{n-1}
+\end{equation}
+And is odd as well
+\begin{equation}
+    F(-x) = -F(x)
+\end{equation}
+The upper hemisphere $S^{n}_{+}$ as it is described at the previous question, is a compact, oriented, smooth n-manifold with a connected boundary $\partial S^{n}_{+} \cong S^{n-1}$. Restricting $F$ to the boundary of upper hemisphere, it is then a map from $S^{n-1}$ to itself that extends smoothly to $S^{n}_{+}$, then by the degree theorem its degree is zero.
+However, based on question 8, its degree must be odd, which is a contradication and therefore the assumption that $f(x) \ne 0 \forall x \in S^n$ is false.
+\end{document}
