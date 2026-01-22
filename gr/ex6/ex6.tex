@@ -1,0 +1,39 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{General Realtivity Excercise 6}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Warmpup}
+Starting from the Einstein equation
+\begin{equation}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = T_{\mu\nu}
+\end{equation}
+Taking the trace
+\begin{equation}
+    R - \frac{1}{2}Rg = T
+\end{equation}
+Solving for $R$:
+\begin{equation}
+    R = \frac{2}{1-g}T
+\end{equation}
+Assigning this back into the original Einstein's equation and solving for $R_{\mu\nu}$ we get
+\begin{equation}
+    R_{\mu\nu} = T_{\mu\nu} + \frac{g_{\mu\nu}}{1 - g}T
+\end{equation}
+\end{document}
