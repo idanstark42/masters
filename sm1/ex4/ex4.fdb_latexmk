@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769339235.03401 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex4/ex4.tex" "ex4.pdf" "ex4" 1769339238.02506 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex4/ex4.tex" 1769339230 10625 3bdcf189f8f18249773217025c1674ce ""
+["pdflatex"] 1769520399.34765 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex4/ex4.tex" "ex4.pdf" "ex4" 1769520404.17466 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/sm1/ex4/ex4.tex" 1769520392 23122 b629a8871011027c2e09d694f6894498 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1761857233 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1761858593 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -35,6 +35,7 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1761854989 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1761854989 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1761854989 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1761854989 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1761854989 32716 08e384dc442464e7285e891af9f45947 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb" 1761854989 33366 60462f3d16c3d0f024f1f856e64b09cd ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb" 1761857233 138258 6525c253f16cededa14c7fd0da7f67b2 ""
@@ -72,8 +73,10 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex4.aux" 1769339237 1915 ddb5e26ab9626de1698437b9f1d936c0 "pdflatex"
-  "ex4.tex" 1769339230 10625 3bdcf189f8f18249773217025c1674ce ""
+  "ex4.aux" 1769520403 3028 bfeaf5095c55e117c68153d5732152e3 "pdflatex"
+  "ex4.tex" 1769520392 23122 b629a8871011027c2e09d694f6894498 ""
+  "graphs/order_parameter_q_2_20260127_152517.png" 1769520318 29635 922188cd5fa08982f923fbccbef54f63 ""
+  "graphs/order_parameter_q_3_20260127_152445.png" 1769520285 32302 0ce790581f7eda6ec90e8797609bbf08 ""
   "phase-diagram-kt.png" 1769336525 67488 5c7a69610f19c8dccd151baa11750e64 ""
   "phi-1.png" 1769338872 23405 14b3ab3eb324d5449268cc3103f706d3 ""
   "phi-3-stable.png" 1769338875 33282 a971ad765913397cb81620ee5d79c399 ""

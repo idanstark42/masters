@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  25 JAN 2026 13:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  27 JAN 2026 15:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -257,25 +257,44 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [4]
 
-[5] (./ex4.aux)
+[5]
+
+[6]
+
+[7]
+<graphs/order_parameter_q_2_20260127_152517.png, id=55, 462.528pt x 346.896pt>
+File: graphs/order_parameter_q_2_20260127_152517.png Graphic file (type png)
+<use graphs/order_parameter_q_2_20260127_152517.png>
+Package pdftex.def Info: graphs/order_parameter_q_2_20260127_152517.png  used on input line 398.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+<graphs/order_parameter_q_3_20260127_152445.png, id=56, 462.528pt x 346.896pt>
+File: graphs/order_parameter_q_3_20260127_152445.png Graphic file (type png)
+<use graphs/order_parameter_q_3_20260127_152445.png>
+Package pdftex.def Info: graphs/order_parameter_q_3_20260127_152445.png  used on input line 399.
+(pdftex.def)             Requested size: 187.89914pt x 140.92615pt.
+
+
+[8]
+
+[9 <./graphs/order_parameter_q_2_20260127_152517.png> <./graphs/order_parameter_q_3_20260127_152445.png>] (./ex4.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3958 strings out of 467746
- 58688 string characters out of 5431099
- 473287 words of memory out of 5000000
- 32619 multiletter control sequences out of 15000+600000
+ 3977 strings out of 467746
+ 59568 string characters out of 5431099
+ 474309 words of memory out of 5000000
+ 32638 multiletter control sequences out of 15000+600000
  635611 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 73i,7n,77p,607b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on ex4.pdf (5 pages, 342381 bytes).
+ 73i,9n,77p,906b,245s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on ex4.pdf (9 pages, 432353 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 129 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

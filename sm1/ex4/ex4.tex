@@ -188,4 +188,216 @@ Which is solved by:
     \delta \bar{S} = \frac{1}{8bS_0^2}\vec{B} = \frac{1}{4a_0}\vec{B}
 \end{equation}
 And so we get $A_{+} = \frac{1}{2a_0}$ and $A_{-} = \frac{1}{4a_0}$ so the ratio $A_{+} / A_{-} = 2$ matches the ratio we found for the Ising model.
+
+\section{Critical exponents from real space RG}
+In this section we used the Migdal-Kadanoff real space RG that we saw in class to find the critical exponents. The starting point for this are the recursion relations
+\begin{equation}
+\begin{gathered}
+    e^{2K_1'} = \cosh 4K_1
+    \\
+    e^{2K_0'} = 4\cosh 4K_1
+\end{gathered}
+\end{equation}
+Which gives an unstable fixed point, and thus a cirtical point, at $K_C = 0.305$. We notice that this is not really a point since there is a degeneracy for $K_0$. This will come into play shortly.
+\newline
+Around this point we can linearize the recuration relation to get a matrix that shows the local flow in the model space. This flow then describes the change of values around this point, and thus the critical exponents. So, using the first order taylor expansion around $K_C$: 
+\begin{equation}
+\begin{gathered}
+    \delta K_1' = \frac{d K_1'}{d K_1} \delta K_1 = 2\tanh(K_C) \delta K_1
+    \\
+    k_0' \approx 8\tanh(K_C) \delta K_1
+\end{gathered}
+\end{equation}
+And the linear version of the system is:
+\begin{equation}
+    \begin{pmatrix}
+        \delta K_1' \\ \delta K_0'
+    \end{pmatrix} = \begin{pmatrix}
+        2\tanh(K_C) & 0 \\ 8\tanh(K_C) & 0
+    \end{pmatrix} \begin{pmatrix}
+        \delta K_1 \\ \delta K_0
+    \end{pmatrix}
+\end{equation}
+The eigenvalues of this transformation are $\lambda = 0, 2\tanh(K_C)$, of which of course only $\lambda = 2\tanh(K_C)$ is of interest to us (The $\lambda = 0$ is a result of the degeneracy we talked about before). Its eigenvector is:
+\begin{equation}
+    v = \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}
+\end{equation}
+Which leads us away from the critical point, as expected. We now remember that upon decimation:
+\begin{equation}
+    t' = \lambda t
+\end{equation}
+From which we can derive all of the critical exponents that are independent of the magnetic field.
+For a start the correlation length changes by a factor of $\sqrt{2}$:
+\begin{equation}
+    \xi(t) = \sqrt{2}\xi(\lambda t)
+\end{equation}
+So, using the definition of $\xi \propto t^{-\nu}$, we get:
+\begin{equation}
+    1 = \sqrt{2}\lambda^{-\nu}
+\end{equation}
+\begin{equation}
+    \nu = \frac{\ln 2}{2\ln \lambda} \approx 0.67
+\end{equation}
+The other critical exponent we can calculate is $\alpha$, since it relates to the energy directly. Since it is the second derivative of the energy with respect to the temperature, it scales as the energy scales but with inverse square to the temperature, giving
+\begin{equation}
+    C(t) \propto \lambda^2\left(\sqrt{2}\right)^{-d} C(\lambda t)
+\end{equation}
+Using $C(t) = t^{-\alpha}$:
+\begin{equation}
+    \lambda^{-\alpha + 2} =  2^{-d/2}
+\end{equation}
+\begin{equation}
+    \alpha = 2 - \frac{d\ln 2}{2\ln \lambda} = 2 - d\nu \approx 0.66
+\end{equation}
+The result we got are not exact. The real values are $\nu = 1$ and $\alpha = 0$, same as calculated using the mean field approximation.
+
+\section{The Potts model}
+In this section we consider the Potts model
+\begin{equation}
+    H = \frac{-J}{N} \sum_{i < j} \delta(\sigma_i, \sigma_j)
+    \qquad
+    \delta(x, y) = \begin{cases}1
+        1 & x = y \\ 0 & x \ne y
+    \end{cases}
+\end{equation}
+\subsection{The Potts model as a MF model}
+Since the Hamiltonian is symmetric to $i \leftrightarrow j$, we can add to it the same sum just with $j < i$ instead of $i < j$ and divide by $2$. Remembering that $\delta(\sigma_i, \sigma_i) = 1$, adding the $i = j$ cases will just add a constant to the Hamiltonian. So, up to a constant, the Potts model can be written as:
+\begin{equation}
+    H = \frac{-J}{2N} \sum_{i, j} \delta(\sigma_i, \sigma_j)
+\end{equation}
+Defining a $q$ dimensional vector space such that each spin is a basis vector in that space:
+\begin{equation}
+    \ket{1} = \begin{pmatrix}
+        1 \\ 0 \\ \vdots
+    \end{pmatrix}
+    \qquad
+    \ket{2} = \begin{pmatrix}
+        0 \\ 1 \\ \vdots
+    \end{pmatrix}
+    \qquad
+    \cdots
+    \qquad
+    \ket{q} = \begin{pmatrix}
+        0 \\ \vdots \\ 1
+    \end{pmatrix}
+\end{equation}
+We can identify the operator $\delta(\sigma_i, \sigma_j) = \braket{\sigma_i}{\sigma_j}$. Thus we can write:
+\begin{equation}
+    H = \frac{-J}{2N}\sum_i \bra{\sigma_i}\sum_j \ket{\sigma_j} \equiv -\frac{J}{2}\sum_i \braket{\sigma_i}{\bar{\sigma}}
+    \qquad
+    \ket{\bar{\sigma}} = \frac{1}{N}\sum_j \ket{\sigma_j}
+\end{equation}
+Wher we defined $\ket{\bar{\sigma}}$ as the mean magnetization vector. This means that each spin interacts with an average over the entire space, which qualifies this model as a mean field model.
+\newline
+We can thus see why the division by $N$ is required, since without it the energy would not be extensive. For example, if $\sigma_i = 1$ for every spin, we get, from the double sum (in the original Hamiltonian):
+\begin{equation}
+    H = \frac{-J}{2N}N(N-1) = -\frac{J}{2}(N-1)
+\end{equation}
+Without the $N$ in the denominator it would not have been linear with respect to $N$.
+\subsection{Flavour magnetization}
+Let us define the k-flavour magnetization
+\begin{equation}
+    m_k = \frac{1}{N} \sum_i \delta(k, \sigma_i) = \bra{k} \ket{\bar{\sigma}}, \qquad k = 1,2,\dots,q
+\end{equation}
+This is just the number of spins of a certain $k$ divided by $N$. Therefore, the number of spins with magnetization $k$ is $N_k = Nm_k$. The energy is then:
+\begin{equation}
+    E(\{m_k\}) = -\frac{J}{2}\sum_i \braket{\sigma_i}{\bar{\sigma}}
+     = -\frac{J}{2}\sum_k N_k \braket{k}{\bar{\sigma}}
+     = -\frac{J}{2}N\sum_k m_k^2
+\end{equation}
+Then, the multiplicity of every configuration $\{m_k\}$ is:
+\begin{equation}
+\begin{gathered}
+    \mu(\{m_k\}) =
+    \binom{N}{N_1}
+    \binom{N - N_1}{N_2}
+    \cdots
+    \binom{N - N_1 - \cdots - N_{q-2}}{N_{q-1}}
+    = \\ =
+    \frac{N!}{(N-N_1)!N_1!}
+    \frac{(N-N_1)!}{(N-N_1-N_2)!N_2!}
+    \cdots
+    \frac{(N - N_1 - \cdots - N_{q-2})!}{(N-N_1-N_2-\cdots-N_{q-1})!N_{q-1}!}
+    = \\ =
+    \frac{N!}{N_1!N_2!\cdots N_q!}
+\end{gathered}
+\end{equation}
+Using Stirling's approximation, we can find the entropy $S(\{m_k\}) = \ln \mu(\{m_k\})$:
+\begin{equation}
+\begin{gathered}
+    S(\{m_k\}) = N(\ln N - 1) - \sum_k N_k(\ln N_k - 1) =
+    N \ln N - \sum_k N_k \ln Nm_k = \\ =
+    N \ln N - \left(\sum_k N_k\right) \ln N - \sum_k N_k \ln m_k = \\ =
+    - \sum_k N_k \ln m_k = - N\sum_k m_k \ln m_k
+\end{gathered}
+\end{equation}
+So, the total free energy is
+\begin{equation}
+    F(\{m_k\}) = -N \left(\frac{J}{2} \sum_k m_k^2 - T m_k \ln m_k\right)
+\end{equation}
+\subsection{First order phase transition}
+Let us now look for first order phase transitions. For this, let us assume that all k-flavour magnetizations are the same except for one which is slightly different:
+\begin{equation}
+    m_k = \begin{cases}
+        \bar{m} - \frac{\Delta m}{q - 1} & k \ne d \\ \bar{m} + \Delta m & k = d
+    \end{cases}
+\end{equation}
+Where $\Delta m \ll \bar{m}$. The free energy is then:
+\begin{equation}
+\begin{gathered}
+    \frac{1}{N}F(\{m_k\}) =
+    \left(q - 1\right)\left(-\frac{J}{2}\left(\bar{m} - \frac{\Delta m}{q - 1}\right)^2 + T\left(\bar{m} - \frac{\Delta m}{q - 1}\right) \ln\left(\bar{m} - \frac{\Delta m}{q - 1}\right)\right) + \\ +
+    \left(-\frac{J}{2}\left(\bar{m} + \Delta m\right)^2 + T\left(\bar{m} + \Delta m\right) \ln\left(\bar{m} + \Delta m\right)\right)
+\end{gathered}
+\end{equation}
+For a first order phase transition we look for when the prefactor of $\Delta m^3$ is non-zero. Expanding the $ln$ expressions:
+\begin{equation}
+    \ln\left(\bar{m} - \frac{\Delta m}{q - 1}\right) \approx \ln \bar{m} - \frac{\Delta m}{\bar{m}(q - 1)} - \frac{1}{2}\frac{\Delta m^2}{\bar{m}^2(q - 1)^2} - \frac{1}{3}\frac{\Delta m^3}{\bar{m}^3(q - 1)^3} + O(\Delta m^4)
+\end{equation}
+\begin{equation}
+    ln(\bar{m} + \Delta m) = \ln \bar{m} + \ln(1 + \frac{\Delta m}{\bar{m}}) \approx \ln \bar{m} + \frac{\Delta m}{\bar{m}} - \frac{1}{2}\frac{\Delta m^2}{\bar{m}^2} + \frac{1}{3}\frac{\Delta m^3}{\bar{m}^3} + O(\Delta m^4)
+\end{equation}
+We get the $\Delta m^3$ term:
+\begin{equation}
+    c\Delta m^3 = T\left(-\bar{m}\frac{1}{3}\frac{\Delta m^3}{\bar{m}^3(q - 1)^3} + \frac{\Delta m}{q - 1}\frac{1}{2}\frac{\Delta m^2}{\bar{m}^2(q - 1)^2} + \bar{m}\frac{1}{3}\frac{\Delta m^3}{\bar{m}^3} - \Delta m \frac{1}{2}\frac{\Delta m^2}{\bar{m}^2}\right)
+\end{equation}
+And so the prefactor is:
+\begin{equation}
+    c = \frac{5T}{6\bar{m}^2}\left(1 - \frac{1}{(q-1)^3}\right) \ne 0
+    \rightarrow q > 2
+\end{equation}
+So the for $q = 2$ there is only a second order phase transition, while for $q > 2$ there is also a first order phase transition.
+\subsection{Landau theory with a complex order parameter}
+Conversly, we can describe the Potts model using a single complex order parameter $m$. To understand how to do this, let us notice that the system is invariant to permutation of the basis vectors $\ket{k}$. In other words, for every $i, j$, switching all spins $\ket{i}$ to state $\ket{k}$ and vice versa, the energy will not change. Part of this symmetry is the symmetry of rotation - moving every index one position up or down. This rotational symmetry gives us the option to describe each magnetization as a complex q-root of $1$. Then, a complex order parameter $m$ will be the linear combination of those roots:
+\begin{equation}
+    m = \sum_k m_k e^{i2\pi k/q}
+\end{equation}
+And it obeys the symmetry
+\begin{equation}
+    m \rightarrow e^{i\theta}m
+    \qquad
+    \theta = \frac{2\pi k}{q}
+    \qquad
+    k = 0,\dots,q-1
+\end{equation}
+The Landau free energy then includes phase invariant terms in the polynomial, while also including terms that have powers multiples of $q$. For small $m$, taking the lowest order, we get:
+\begin{equation}
+    \Phi(m) = |m|^2 + |m|^4 + m^q + m^{*q}
+\end{equation}
+This will give first order transition only for $q = 3$. This is different from what we recieved in the previous section, because this model reduces the index permutation symmetry to an index rotation symmetry.
+\subsection{Monte-Carlo simulation}
+To cap off this section, we preform a Monte Carlo simulation to view the actual results of the mean field Potts model. We simulated a 1d model with $N=180$ periodic boundary conditions. The selected order parameter was $\sigma$, the standard diviation of the different $m_k$. This was selected as in the ordered phase it is maximal while in the disordered phase it is zero, and it related to $\Delta M$ that was saw here was a valid order parameter, but is also simpler to calcualte.
+\newline
+The simulations used Single Spin Metropolis dynamics, where instead of flipping the spin the dynamics changes it to a random spin of a different value. We ran 5 parallel simulations for 500 iterations after convergence. Convergence was defined by a threshold of the diviation between the five states and their average change during the last ten iterations. The simulation was ran repeatedly with starting from $T = 0.02$ in jumps of $\Delta T = 0.02$ up to $T = 2.0$. For each simulation, the different $m_k$ were recorded, then the total states after convergence were plotted in a histogram and fit to a gaussian. The mean and standard diviation of the gaussian were taken to be the order parameter and its measurement error. The final graphs of $\sigma / T$ can be found in figure \ref{fig:potts_simulation}.
+\newline
+It can be seens that for $q = 2$ there is a clean second order phase transition, while for $q = 3$ there is a first order phase transition, but it is not as clear. While there is a visible critical and a jump in the order parameter, there are severl jumps before. These are results of the metastable states in the finite system. Since the $q = 3$ has a metastable state at $\sigma = 0$, and because the system has a finite number of spins, it might, in lower temperature, be stuck in that state. This results in the three anomalies that can be seen in the graph. All in all the results of the measurements agree with our predictions.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{graphs/order_parameter_q_2_20260127_152517.png}
+    \includegraphics[width=0.4\textwidth]{graphs/order_parameter_q_3_20260127_152445.png}
+    \caption{The order parameter $\sigma$ as a function of temperature for the Potts model with $q = 2$ (left) and $q = 3$ (right).}
+    \label{fig:potts_simulation}
+\end{figure}
 \end{document}
