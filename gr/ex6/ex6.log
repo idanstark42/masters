@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  28 JAN 2026 05:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  29 JAN 2026 01:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -308,76 +308,79 @@ Package hyperref Info: Link coloring ON on input line 27.
 [2]
 
 [3]
-Overfull \hbox (107.73994pt too wide) in paragraph at lines 248--248
+
+[4]
+Overfull \hbox (107.73994pt too wide) in paragraph at lines 272--272
 []        \OT1/cmtt/m/n/10 equations = [[G_comps[i][j] - 8 * pi * NEWTON_G / c**4 * T[i][j] for j in range(4)] for i in range(4)][] 
  []
 
 
-Overfull \hbox (18.49072pt too wide) in paragraph at lines 248--248
+Overfull \hbox (18.49072pt too wide) in paragraph at lines 272--272
 []        \OT1/cmtt/m/n/10 # isolate H^2 and \dot{H}. Start by replacing \dot{a} and \ddot{a} with H and \dot{H}[] 
  []
 
 
 
-[4]
-
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 339--344
-
- []
-
-
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 346--351
+Underfull \hbox (badness 10000) in paragraph at lines 363--368
 
  []
 
-LaTeX Font Info:    Trying to load font information for U+bbold on input line 376.
-(c:/texlive/2025/texmf-dist/tex/latex/bbold/Ubbold.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 370--377
+
+Underfull \hbox (badness 10000) in paragraph at lines 370--375
 
  []
 
 
 
 [7]
-Overfull \hbox (35.0361pt too wide) detected at line 501
-[][][][][]
+LaTeX Font Info:    Trying to load font information for U+bbold on input line 400.
+ (c:/texlive/2025/texmf-dist/tex/latex/bbold/Ubbold.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 394--401
+
  []
 
 
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 553--557
-
+Overfull \hbox (35.0361pt too wide) detected at line 525
+[][][][][]
  []
 
 
 
 [9]
+Underfull \hbox (badness 10000) in paragraph at lines 577--581
 
-[10] (./ex6.aux)
+ []
+
+
+
+[10]
+
+[11] (./ex6.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
 Package rerunfilecheck Info: File `ex6.out' has not changed.
-(rerunfilecheck)             Checksum: 8E567FCA6267C83D666CD01B79C83B0A;1230.
+(rerunfilecheck)             Checksum: 241033B60882933E830BF8EFAC8FDB33;1533.
  ) 
 Here is how much of TeX's memory you used:
- 10538 strings out of 467746
- 160905 string characters out of 5431099
- 598115 words of memory out of 5000000
+ 10560 strings out of 467746
+ 161146 string characters out of 5431099
+ 601071 words of memory out of 5000000
  39034 multiletter control sequences out of 15000+600000
  633525 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,79p,588b,632s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/bbold-type1/bbold10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ex6.pdf (10 pages, 208930 bytes).
+Output written on ex6.pdf (11 pages, 213037 bytes).
 PDF statistics:
- 236 PDF objects out of 1000 (max. 8388607)
- 192 compressed objects within 2 object streams
- 78 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

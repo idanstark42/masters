@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769569427.52321 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex6/ex6.tex" "ex6.pdf" "ex6" 1769569430.16359 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex6/ex6.tex" 1769569426 29576 aaa6f12c2d55129d016e4585e2ad1af4 ""
+["pdflatex"] 1769642243.67056 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex6/ex6.tex" "ex6.pdf" "ex6" 1769642246.39703 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/gr/ex6/ex6.tex" 1769642241 30359 3c0fd4d88d42a7a69b2376db92126663 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1761854989 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1761854989 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -92,9 +92,9 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex6.aux" 1769569429 1207 63c8801f04ebc7f731f6832ac7fd721a "pdflatex"
-  "ex6.out" 1769569429 1230 8e567fca6267c83d666cd01b79c83b0a "pdflatex"
-  "ex6.tex" 1769569426 29576 aaa6f12c2d55129d016e4585e2ad1af4 ""
+  "ex6.aux" 1769642246 1289 3dc14f5b5d67cbc7a0349b39aae58bea "pdflatex"
+  "ex6.out" 1769642246 1533 241033b60882933e830bf8efac8fdb33 "pdflatex"
+  "ex6.tex" 1769642241 30359 3c0fd4d88d42a7a69b2376db92126663 ""
   (generated)
   "ex6.aux"
   "ex6.log"
