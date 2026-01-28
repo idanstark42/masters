@@ -7,6 +7,14 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{bbold}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 
 \DeclareMathOperator{\erfi}{erfi}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
@@ -22,19 +30,19 @@
 \section{Warmpup}
 Starting from the Einstein equation
 \begin{equation}
-    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = T_{\mu\nu}
+    R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \kappa T_{\mu\nu}
 \end{equation}
 Taking the trace
 \begin{equation}
-    R - \frac{1}{2}Rg = T
+    R - \frac{1}{2}Rd = \kappa T
 \end{equation}
-Solving for $R$:
+Where $d = g^{\mu\nu}g_{\mu\nu}$ is the dimension. Solving for $R$:
 \begin{equation}
-    R = \frac{2}{1-g}T
+    R = \frac{2}{2 - d}\kappa T
 \end{equation}
 Assigning this back into the original Einstein's equation and solving for $R_{\mu\nu}$ we get
 \begin{equation}
-    R_{\mu\nu} = T_{\mu\nu} + \frac{g_{\mu\nu}}{1 - g}T
+    R_{\mu\nu} = \kappa T_{\mu\nu} + \frac{\kappa T}{2 - d}g_{\mu\nu}
 \end{equation}
 
 \section{Newtonian Approximation in Lensing}
@@ -85,7 +93,7 @@ Then, the geodesic equation
 \end{equation}
 where $\dot{x}$ is the derivatve by a parameter $\lambda$, becomes:
 \begin{equation}
-\begin{cases}
+\begin{gathered}
     c\ddot{t} + \frac{2\partial_r \Phi}{c^2 + 2\Phi}\dot{r}c\dot{t} = 0
     \\
     \ddot{r} + \frac{\partial_r \Phi}{c^2 - 2\Phi} c^2\dot{t}^2 - \frac{\partial_r \Phi}{c^2 - 2\Phi} \dot{r}^2 + \left(r - \frac{\partial_r \Phi}{c^2 - 2\Phi}r^2\right)\left(\dot{\theta}^2 + \sin^2\theta\dot{\varphi}^2\right) = 0
@@ -93,17 +101,17 @@ where $\dot{x}$ is the derivatve by a parameter $\lambda$, becomes:
     \ddot{\theta} - \frac{1}{2}\sin 2\theta \dot{\varphi}^2 + 2\left(\frac{1}{r} - \frac{\partial_r \Phi}{c^2 - 2\Phi}\right)\dot{r}\dot{\theta} = 0
     \\
     \ddot{\varphi} + 2\left(\frac{1}{r} - \frac{\partial_r \Phi}{c^2 - 2\Phi}\right)\dot{r}\dot{\varphi} + 2\cot\theta\dot{\theta}\dot{\varphi} = 0
-\end{cases}
+\end{gathered}
 \end{equation}
 Since the motion is in a plain, we can set $\theta = \pi/2$ and so $\dot{\theta} = 0$. The third equation vanishes and we are left with:
 \begin{equation}
-\begin{cases}
+\begin{gathered}
     c\ddot{t} + \frac{2\partial_r \Phi}{c^2 + 2\Phi}\dot{r}c\dot{t} = 0
     \\
     \ddot{r} + \frac{\partial_r \Phi}{c^2 - 2\Phi} c^2\dot{t}^2 - \frac{\partial_r \Phi}{c^2 - 2\Phi} \dot{r}^2 + \left(r - \frac{\partial_r \Phi}{c^2 - 2\Phi}r^2\right)\dot{\varphi}^2 = 0
     \\
     \ddot{\varphi} + 2\left(\frac{1}{r} - \frac{\partial_r \Phi}{c^2 - 2\Phi}\right)\dot{r}\dot{\varphi} = 0
-\end{cases}
+\end{gathered}
 \end{equation}
 From the first equation, defining $v_t = c\dot{t}$:
 \begin{equation}
@@ -119,11 +127,11 @@ From the first equation, defining $v_t = c\dot{t}$:
 \end{equation}
 This gives:
 \begin{equation}
-\begin{cases}
+\begin{gathered}
     \ddot{r} + \frac{\partial_r \Phi}{c^2 - 2\Phi} \alpha^2 \frac{1}{\left(c^2 + 2\Phi\right)^2} - \frac{\partial_r \Phi}{c^2 - 2\Phi} \dot{r}^2 + \left(r - \frac{\partial_r \Phi}{c^2 - 2\Phi}r^2\right)\dot{\varphi}^2 = 0
     \\
     \ddot{\varphi} + 2\left(\frac{1}{r} - \frac{\partial_r \Phi}{c^2 - 2\Phi}\right)\dot{r}\dot{\varphi} = 0
-\end{cases}
+\end{gathered}
 \end{equation}
 Performing the same manouver for the $\varphi$ equation, we can write $\omega = \dot{\varphi}$ and get:
 \begin{equation}
@@ -137,4 +145,448 @@ Performing the same manouver for the $\varphi$ equation, we can write $\omega = 
 \end{equation}
 % TODO now put those into the null geodesic framework, find b using \dot{r} = 0, and integrate from 
 % Or - use Fermat's principle in integral form to find the refractive index.
+
+\section{Friedmann's equations}
+In this section we use python and \href{https://docs.einsteinpy.org/}{einsteinpy} Friedmann's equations from the metric using EFE. To do this we use the following code:
+\begin{verbatim}
+    from einsteinpy.symbolic import EinsteinTensor, MetricTensor
+    from sympy import symbols, sin, Function, solve
+    from sympy.printing.latex import LatexPrinter
+
+    # Constants
+    c, NEWTON_G, pi = symbols('c G \\pi')
+
+    # a printer that uses \dot and \ddot for time derivatives
+    class CustomLatexPrinter(LatexPrinter):
+        def _print_Derivative(self, expr):
+            if len(expr.args) == 2:
+                func, der = expr.args
+                var, order = der
+                if var.is_Symbol and var.name == 't':
+                    if order == 1:
+                        return r'\dot{' + func.name + '}(t)'
+                    elif order == 2:
+                        return r'\ddot{' + func.name + '}(t)'
+            return super()._print_Derivative(expr)
+
+    # Latex conversion function
+    def latex(expr):
+        return CustomLatexPrinter().doprint(expr)
+
+    # Helper function to create diagonal matrices
+    def diag(*args):
+        size = len(args)
+        return [[args[i] if i == j else 0 for j in range(size)] for i in range(size)]
+
+    # Define the Friedmann metric class
+    class FriedmannMetric(MetricTensor):
+        def __init__(self, coords, a, k, signature_sign=1):
+            (t, r, theta, phi) = coords
+            g = diag(c**2,
+                -a**2/(1 - k*r**2),
+                -a**2 * r**2,
+                -a**2 * r**2 * sin(theta)**2)
+            super().__init__(g, coords, name="Friedmann Metric")
+
+    def main():
+        t, r, theta, phi, k = symbols('t r theta phi k')
+        a = Function('a')(t)
+        
+        # The metric
+        metric = FriedmannMetric((t, r, theta, phi), a, k)
+        g = metric.tensor()
+        print(latex(g))
+        
+        # The Einstein tensor
+        G = EinsteinTensor.from_metric(metric)
+        G_comps = G.tensor()
+        print(latex(G_comps))
+        
+        # The energy-momentum tensor
+        p, rho = symbols('p \\rho')
+        T = diag(rho * c**4, -p * g[1][1], -p * g[2][2], -p * g[3][3])
+        print(latex(T))
+
+        # The Einstein equations
+        equations = [[G_comps[i][j] - 8 * pi * NEWTON_G / c**4 * T[i][j] for j in range(4)] for i in range(4)]
+        none_vanishing_equations = [eq for row in equations for eq in row if eq != 0]
+        for eq in none_vanishing_equations:
+            print(latex(eq) + " = 0")
+
+        # simplify and print the two independent equations
+        eq1 = none_vanishing_equations[0].simplify(rational=True)
+        eq2 = none_vanishing_equations[1].simplify(rational=True)
+        for eq in [eq1, eq2]:
+            print(latex(eq) + " = 0")
+
+        # isolate H^2 and \dot{H}. Start by replacing \dot{a} and \ddot{a} with H and \dot{H}
+        H = Function('H')(t)
+        a_dot = H * a
+        a_ddot = a * H**2 + a * H.diff(t)
+        eq1_H = eq1.subs({a.diff(t): a_dot, a.diff(t, 2): a_ddot}).simplify()
+        eq2_H = eq2.subs({a.diff(t): a_dot, a.diff(t, 2): a_ddot}).simplify()
+        for eq in [eq1_H, eq2_H]:
+            print(latex(eq) + " = 0")
+
+        # isolate H^2 and \dot{H}
+        sol = solve([eq1_H, eq2_H], (H**2, H.diff(t)))
+        H_squared_eq = sol[H**2].simplify(rational=True)
+        H_dot_eq = sol[H.diff(t)].simplify(rational=True)
+        print("H^2 = " + latex(H_squared_eq))
+        print("\\\\")
+        print("dot{H} = " + latex(H_dot_eq))
+
+        # Now use \dot{H} = \ddot{a}/a - H^2 to express \ddot{a}/a
+        acceleration_eq = (H_dot_eq + H_squared_eq).factor()
+
+        print("H^2 = " + latex(H_squared_eq))
+        print("\\\\")
+        print("\\frac{\\ddot{a}}{a} = " + latex(acceleration_eq))
+
+    if __name__ == "__main__":
+        main()
+\end{verbatim}
+Its output gives the following steps (notice that since the library works with lower indices tensor, so are we). First, the metric tensor:
+\begin{equation}
+    g_{\mu \nu} = \left[\begin{matrix}c^{2} & 0 & 0 & 0\\0 & - \frac{a^{2}{\left(t \right)}}{- k r^{2} + 1} & 0 & 0\\0 & 0 & - r^{2} a^{2}{\left(t \right)} & 0\\0 & 0 & 0 & - r^{2} a^{2}{\left(t \right)} \sin^{2}{\left(\theta \right)}\end{matrix}\right]
+\end{equation}
+Then, the Einstein tensor (the matrix itself is quite big, so we just show the diagonal elements, which are the only non-zero ones):
+\begin{equation}
+\begin{gathered}
+    G_{00} = - \frac{3.0 \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{a^{2}{\left(t \right)}} - \frac{3 \ddot{a}(t)}{a{\left(t \right)}}
+    \\
+    G_{11} = \frac{- 2 c^{2} k - a{\left(t \right)} \ddot{a}(t) - 2 \dot{a}(t)^{2}}{c^{2} \left(k r^{2} - 1\right)} + \frac{3.0 \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{c^{2} \left(- k r^{2} + 1\right)}
+    \\
+    G_{22} = \frac{3.0 r^{2} \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{c^{2}} + \frac{r^{2} \left(2 c^{2} k + a{\left(t \right)} \ddot{a}(t) + 2 \dot{a}(t)^{2}\right)}{c^{2}}
+    \\
+    G_{33} = \frac{3.0 r^{2} \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right) \sin^{2}{\left(\theta \right)}}{c^{2}} + \frac{r^{2} \left(2 c^{2} k + a{\left(t \right)} \ddot{a}(t) + 2 \dot{a}(t)^{2}\right) \sin^{2}{\left(\theta \right)}}{c^{2}}
+\end{gathered}
+\end{equation}
+Then the energy-momentum tensor:
+\begin{equation}
+    T_{\mu \nu} = \left[ \left[ \rho c^{4}, \  0, \  0, \  0\right], \  \left[ 0, \  \frac{p a^{2}{\left(t \right)}}{- k r^{2} + 1}, \  0, \  0\right], \  \left[ 0, \ 
+ 0, \  p r^{2} a^{2}{\left(t \right)}, \  0\right], \  \left[ 0, \  0, \  0, \  p r^{2} a^{2}{\left(t \right)} \sin^{2}{\left(\theta \right)}\right]\right]
+\end{equation}
+The non-vanishing Einstein equations:
+\begin{equation}
+\begin{gathered}
+    - 8 G \pi \rho - \frac{3.0 \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{a^{2}{\left(t \right)}} - \frac{3 \ddot{a}(t)}{a{\left(t \right)}} = 0
+    \\
+    - \frac{8 G \pi p a^{2}{\left(t \right)}}{c^{4} \left(- k r^{2} + 1\right)} + \frac{- 2 c^{2} k - a{\left(t \right)} \ddot{a}(t) - 2 \dot{a}(t)^{2}}{c^{2} \left(k r^{2} - 1\right)} + \frac{3.0 \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{c^{2} \left(- k r^{2} + 1\right)} = 0
+    \\
+    - \frac{8 G \pi p r^{2} a^{2}{\left(t \right)}}{c^{4}} + \frac{3.0 r^{2} \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right)}{c^{2}} + \frac{r^{2} \left(2 c^{2} k + a{\left(t \right)} \ddot{a}(t) + 2 \dot{a}(t)^{2}\right)}{c^{2}} = 0
+    \\
+    - \frac{8 G \pi p r^{2} a^{2}{\left(t \right)} \sin^{2}{\left(\theta \right)}}{c^{4}} + \frac{3.0 r^{2} \left(- c^{2} k - a{\left(t \right)} \ddot{a}(t) - \dot{a}(t)^{2}\right) \sin^{2}{\left(\theta \right)}}{c^{2}} + \frac{r^{2} \left(2 c^{2} k + a{\left(t \right)} \ddot{a}(t) + 2 \dot{a}(t)^{2}\right) \sin^{2}{\left(\theta \right)}}{c^{2}} = 0
+\end{gathered}
+\end{equation}
+Taking the two independent equations (the first and second):
+\begin{equation}
+\begin{gathered}
+    \frac{- 8 G \pi \rho a^{2}{\left(t \right)} + 3 c^{2} k + 3 \dot{a}(t)^{2}}{a^{2}{\left(t \right)}} = 0
+    \\
+    \frac{8 G \pi p a^{2}{\left(t \right)} + c^{2} \left(c^{2} k + 2 a{\left(t \right)} \ddot{a}(t) + \dot{a}(t)^{2}\right)}{c^{4} \left(k r^{2} - 1\right)} = 0       
+\end{gathered}
+\end{equation}
+Replacing $\dot{a}$ and $\ddot{a}$ with H and $\dot{H}$:
+\begin{equation}
+\begin{gathered} 
+    - 8 G \pi \rho + \frac{3 c^{2} k}{a^{2}{\left(t \right)}} + 3 H^{2}{\left(t \right)} = 0
+    \\
+    \frac{8 G \pi p a^{2}{\left(t \right)} + c^{2} \left(c^{2} k + 2 \left(H^{2}{\left(t \right)} + \dot{H}(t)\right) a^{2}{\left(t \right)} + H^{2}{\left(t \right)} a^{2}{\left(t \right)}\right)}{c^{4} \left(k r^{2} - 1\right)} = 0
+\end{gathered}
+\end{equation}
+Solving for $H^2$ and $\dot{H}$ we get:
+\begin{equation}
+\begin{gathered}
+    H^2 = \frac{8 G \pi \rho}{3} - \frac{c^{2} k}{a^{2}{\left(t \right)}}
+    \\
+    \dot{H} = - 4 G \pi \rho - \frac{4 G \pi p}{c^{2}} + \frac{c^{2} k}{a^{2}{\left(t \right)}}
+\end{gathered}
+\end{equation}
+And finally, expressing $\ddot{a}/a$ using $\dot{H} = \ddot{a}/a - H^2$:
+\begin{equation}
+\begin{gathered}
+    H^2 = \frac{8 G \pi \rho}{3} - \frac{c^{2} k}{a^{2}{\left(t \right)}}
+    \\
+    \frac{\ddot{a}}{a} = - \frac{4 G \pi \left(\rho c^{2} + 3 p\right)}{3 c^{2}}
+\end{gathered}
+\end{equation}
+Gives the Friedmann equations.
+
+\section{Gravity in Lower dimensions}
+\subsection{Gravity in 2D}
+Let us look at the Einstein Hilbert action in a vaccum:
+\begin{equation}
+    S_{EH} = \frac{1}{4\pi}\int d^2x\sqrt{-g}R
+\end{equation}
+This result, as we've seen, in the Einstein equation. On the other hand, the dimension of the space implies limitations on the curvature. This comes from the degrees of freedom of the Riemann tensor. From the symmetries of the Riemann tensor, we saw in class that it has
+\begin{equation}
+    \# Riemann \ DOF = \frac{d^2\left(d^2-1\right)}{12}
+\end{equation}
+For $d = 2$, this gives only one degree of freedom. We can thus write the Riemann tensor as some scalar function times the antisymmetric form of the metric:
+\begin{equation}
+    R_{\alpha\beta\gamma\delta} = \phi \left(g_{\alpha\gamma}g_{\beta\delta} - g_{\alpha\beta}g_{\gamma\delta}\right)
+\end{equation}
+Contracting it twice, first to get the Ricci tensor and then to get the scalar curvture, gives:
+\begin{equation}
+    R = g^{\beta\delta}g^{\alpha\gamma}R_{\alpha\beta\gamma\delta} = \phi g^{\beta\delta}g^{\alpha\gamma}\left(g_{\alpha\gamma}g_{\beta\delta} - g_{\alpha\beta}g_{\gamma\delta}\right) = \phi g^{\beta\delta}\left(2g_{\beta\delta} - g_{\gamma\delta}\right) = \phi g^{\beta\delta}g_{\gamma\delta} = 2\phi
+\end{equation}
+So we get $\phi = \frac{1}{2}R$, whice means:
+\begin{equation}
+    R^{\alpha\beta\gamma\delta} = \frac{1}{2}R\left(g^{\alpha\gamma}g^{\beta\delta} - g^{\alpha\beta}g^{\gamma\delta}\right)
+    \qquad
+    R^{\alpha\beta} = \frac{R}{2}g^{\alpha\beta}
+\end{equation}
+And so the Einstein tensor vanishes identically. This means that matter doesn't actually affect the curvature of spacetime in 2D.
+\newline
+\newline
+Let us now see two example metrics and and their corresponding EH actions. First, let us start with a 2-sphere $S^2$ with a radius $a$. As we saw, this means it has a curvature $R = 2a^{-2}$. We can dscribe the metric using angles $\theta$ and $\varphi$ in the usual way, giving the deteminant of the metric $g = -\sin^2\theta$. So, the action is
+\begin{equation}
+    S_{S^2} = \frac{1}{4\pi}\int \sin\theta \frac{2}{a^2} a^2 d\theta d\varphi = \int_{0}^{\pi} \sin\theta d\theta = 2
+\end{equation}
+The second example we will do is the flat torus. This Torus can be described as flat space with preiodic boundary conditions. Since it is a flat space, $R = 0$, and so the action is zero.
+\newline
+\newline
+Since matter doesn't affect the curvature, we can conclude that it is only affected by the space itself. Since the only intrinsic properties of the space besides the curvature is the topology, we must conclude that the curvature is a result of the topology and nothing else. So, assuming a linear relation between the action and the genus, we get:
+\begin{equation}
+    S_{EH} = 2(g - 1)
+\end{equation}
+Where $g$ is the genus of the space, which in our examples is 0 for the sphere and 1 for the torus. This conincides with another important invariant in topology is the Euler characteristics $\chi$, which is related to the genus via the exact same relation:
+\begin{equation}
+    \chi = 2(g - 1)
+\end{equation}
+Which gives the generic relation
+\begin{equation}
+    S_{EH} = \chi
+\end{equation}
+\subsection{Gravity in 3D}
+In $3D$, the action can be described using:
+\begin{equation}
+    S_{EH} = \frac{1}{\kappa}\int d^3x\sqrt{-g}R
+\end{equation}
+This again gives the Einstein equations, but since this time $d \ne 2$, the Einstein tensor doesn't vanish identically, and so cotracting it (as seen in section 1):
+\begin{equation}
+    g^{\mu\nu}G_{\mu\nu} = g^{\mu\nu}R_{\mu\nu} - \frac{d}{2}R = \frac{2 - d}{2}R = 0
+\end{equation}
+Where the last step was taken from the Einstein field equation in a vaccum, for which this action now fits, since there is no $\mathcal{L}_M$. The result is that the scalar curvature must vanish, and putting it back into the Einstein equations, we get that the Ricci tensor must vanish.
+\newline
+Additonally, in $3D$ the Riemann tensor has only six DOF. This means that all information about the curvature is described by the Ricci tensor. In other words, since the Ricci tensor is zero, so is the Riemann tensor, and so the space must flat. We conclude that the only solution to the EOM are metrics for which $R^{\alpha\beta\gamma\delta} = 0$.
+\newline
+\newline
+Let us now look at a vaccum solution with a single point mass. Placing the point mass in the origin and assuming a stationary solution, the metric must have time invariance and rotational symmetry. Writing it in terms of $t, r, \theta$, we get a diagonal metric that is only dependent on $r$, and with the natural $\R^2$ metric for the spatial terms:
+\begin{equation}
+    ds^2 = g(r)dt^2 - f(r)\left(dr^2 + r^2d\theta^2\right)
+\end{equation}
+Or as a tensor:
+\begin{equation}
+    g_{\mu\nu} = \begin{pmatrix}
+        g(r) & & \\ & -f(r) & \\ & & -f(r)r^2
+    \end{pmatrix}
+    \qquad
+    g^{\mu\nu} = \begin{pmatrix}
+        1/g(r) & & \\ & -1/f(r) & \\ & & -1/f(r)r^2
+    \end{pmatrix}
+\end{equation}
+As for the energy-momentum tensor, since we assume a stationary solution with a single point mass $m$, all terms vanish except the energy density term. We can write it as
+\begin{equation}
+    T^{00} = \frac{m}{f(r)}\delta^2(\vec{r})
+\end{equation}
+This allows us to solve the Einstein equations. Using the form we saw in section 1:
+\begin{equation}
+    R^{\mu\nu} = \kappa T^{\mu\nu} + \frac{\kappa T}{2 - d}g^{\mu\nu}
+\end{equation}
+Pluggin in $d = 3$:
+\begin{equation}
+    R^{\mu\nu} = \kappa T^{\mu\nu} - \kappa Tg^{\mu\nu}
+\end{equation}
+Now, let us calcualte $T$:
+\begin{equation}
+    T = g_{\mu\nu}T^{\mu\nu} = g_{00}T^{00} = \frac{mg(r)}{f(r)}\delta^2(\vec{r})
+\end{equation}
+Which gives:
+\begin{equation}
+    R^{\mu\nu} = \kappa T^{\mu\nu} - \frac{\kappa mg(r)}{f(r)}\delta^2(\vec{r})g^{\mu\nu}
+\end{equation}
+The thee non-vanishing Einstein equations are along the diagonal:
+\begin{equation}
+\begin{cases}
+    R^{00} = \frac{\kappa m}{f(r)}\delta^2(\vec{r}) - \frac{\kappa mg(r)}{f(r)}\delta^2(\vec{r})\frac{1}{g(r)} = 0
+    \\
+    R^{11} = \frac{\kappa mg(r)}{f^2(r)}\delta^2(\vec{r})
+    \\
+    R^{22} = \frac{\kappa mg(r)}{r^2f^2(r)}\delta^2(\vec{r})
+\end{cases}
+\end{equation}
+Now let us calcualte the Ricci tensor from the metric. The non-vanishing Christoffel symbols are:
+\begin{equation}
+\begin{gathered}
+    \Gamma^1_{00} = \frac{\partial_{r}g(r)}{2f(r)}
+    \qquad
+    \Gamma^1_{11} = \frac{\partial_r f(r)}{2f(r)}
+    \qquad
+    \Gamma^1_{22} = -\left(r + r^2\frac{\partial_{r}f(r)}{2f(r)}\right)
+    \\
+    \Gamma^0_{01} = \Gamma^0_{10} = \frac{\partial_{r}g(r)}{2g(r)}
+    \qquad
+    \Gamma^2_{21} = \Gamma^2_{12} = \frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}
+\end{gathered}
+\end{equation}
+Which gives:
+\begin{equation}
+\begin{gathered}
+    R_{00} =
+    \partial_\alpha \Gamma^\alpha_{00}
+    - \partial_0 \Gamma^\alpha_{\alpha 0}
+    + \Gamma^{\sigma}_{00}\Gamma^{\alpha}_{\sigma\alpha} 
+    - \Gamma^{\sigma}_{0\alpha}\Gamma^{\alpha}_{0 \sigma} = \\ =
+    \partial_r \Gamma^1_{00}
+    + \Gamma^{1}_{00}\left(\Gamma^{0}_{10} + \Gamma^{1}_{11} + \Gamma^{2}_{12}\right)
+    - 2\Gamma^{0}_{01}\Gamma^{1}_{00}
+    = \\ =
+    \partial_r \frac{\partial_{r}g(r)}{2f(r)}
+    + \frac{\partial_{r}g(r)}{2f(r)}\left(\frac{\partial_{r}g(r)}{2g(r)} + \frac{\partial_r f(r)}{2f(r)} + \frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right)
+    - 2\frac{\partial_{r}g(r)}{2g(r)}\frac{\partial_{r}g(r)}{2f(r)}
+    = \\ =
+    \partial_r \frac{\partial_{r}g(r)}{2f(r)}
+    + \frac{\partial_{r}g(r)}{2f(r)}\left(\frac{\partial_r f(r)}{f(r)} - \frac{\partial_{r}g(r)}{2g(r)} + \frac{1}{r}\right)
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    R_{11} =
+    \partial_\alpha \Gamma^\alpha_{11}
+    - \partial_2 \Gamma^\alpha_{\alpha 1}
+    + \Gamma^{\sigma}_{11}\Gamma^{\alpha}_{\sigma\alpha} 
+    - \Gamma^{\sigma}_{1\alpha}\Gamma^{\alpha}_{1 \sigma} = \\ =
+    \partial_r \Gamma^1_{11}
+    - \partial_r \Gamma^0_{01}
+    - \partial_r \Gamma^1_{11}
+    - \partial_r \Gamma^2_{21}
+    + \Gamma^{1}_{11}\left(\Gamma^{0}_{10} + \Gamma^{1}_{11} + \Gamma^{2}_{12}\right)
+    - \Gamma^{0}_{10}\Gamma^{0}_{10}
+    - \Gamma^{1}_{11}\Gamma^{1}_{11}
+    - \Gamma^{2}_{12}\Gamma^{2}_{12} = \\ =
+    - \partial_r \frac{\partial_{r}g(r)}{2g(r)}
+    - \partial_r \left(\frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right)
+    + \frac{\partial_r f(r)}{2f(r)}\left(\frac{\partial_{r}g(r)}{2g(r)} + \frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right)
+    - \left(\frac{\partial_{r}g(r)}{2g(r)}\right)^2
+    - \left(\frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right)^2 = \\ =
+    - \partial_r \frac{\partial_{r}g(r)}{2g(r)}
+    - \partial_r \frac{\partial_r f(r)}{2f(r)}
+    + \frac{\partial_r f(r)}{2f(r)}\left(\frac{\partial_{r}g(r)}{2g(r)} - \frac{1}{r}\right)
+    - \left(\frac{\partial_{r}g(r)}{2g(r)}\right)^2
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    R_{22} =
+    \partial_\alpha \Gamma^\alpha_{22}
+    - \partial_2 \Gamma^\alpha_{\alpha 2}
+    + \Gamma^{\sigma}_{22}\Gamma^{\alpha}_{\sigma\alpha} 
+    - \Gamma^{\sigma}_{2\alpha}\Gamma^{\alpha}_{2 \sigma} = \\ =
+    \partial_r \Gamma^1_{22}
+    + \Gamma^{1}_{22}\left(\Gamma^{0}_{10} + \Gamma^{1}_{11} + \Gamma^{2}_{12}\right) 
+    - 2\Gamma^{1}_{22}\Gamma^{2}_{21}
+    - \Gamma^{2}_22
+    = \\ =
+    - \partial_r \left(r + r^2\frac{\partial_{r}f(r)}{2f(r)}\right)
+    - \left(r + r^2\frac{\partial_{r}f(r)}{2f(r)}\right)\left(\frac{\partial_{r}g(r)}{2g(r)} + \frac{\partial_r f(r)}{2f(r)} + \frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right) 
+    + 2\left(r + r^2\frac{\partial_{r}f(r)}{2f(r)}\right)\left(\frac{1}{r} + \frac{\partial_r f(r)}{2f(r)}\right)
+    = \\ =
+    - r\frac{\partial_r f(r)}{2f(r)}
+    - r^2 \partial_r \frac{\partial_{r}f(r)}{2f(r)}
+    - r\frac{\partial_{r}g(r)}{2g(r)}
+    - r^2\frac{\partial_{r}f(r)}{2f(r)}\frac{\partial_{r}g(r)}{2g(r)}
+\end{gathered}
+\end{equation}
+Now let us solve the Einstein equations. First, let us look at the time component. Since we saw it vanishes identically, we get:
+\begin{equation}
+    \partial_r \frac{\partial_{r}g(r)}{2f(r)}
+    + \frac{\partial_{r}g(r)}{2f(r)}\left(\frac{\partial_r f(r)}{f(r)} - \frac{\partial_{r}g(r)}{2g(r)} + \frac{1}{r}\right) = 0
+\end{equation}
+\begin{equation}
+    \partial_{r}^2 g(r)
+    + \partial_{r}g(r)\left(\frac{\partial_r f(r)}{f(r)} - \frac{\partial_{r}g(r)}{2g(r)} + \frac{1}{r}\right) = 0
+\end{equation}
+This can bee seen as an ODE for $g(r)$, with a set of non-trivial solutions. But, at $r \rightarrow \infty$ the metric should approximate Minkowski metric, and thus $g(r)$ should be asymptotically constant. On the other hand, as $r \rightarrow 0$, the term in the paranthesses is dominated by the $1/r$ term, which means that for the entire expression to be zero at $r = 0$, $g(r)$ must be constant around zero as well:
+\begin{equation}
+    \partial_r g(r) = 0 \rightarrow g(r) = const
+\end{equation}
+Choosing the scale of $r$ to be such that $g(r) = 1$, we get:
+\begin{equation}
+    R_{11} =
+    - \partial_r \frac{\partial_r f(r)}{2f(r)}
+    - \frac{1}{r}\frac{\partial_r f(r)}{2f(r)}
+    \qquad
+    R_{22} =
+    - r\frac{\partial_r f(r)}{2f(r)}
+    - r^2 \partial_r \frac{\partial_{r}f(r)}{2f(r)}
+\end{equation}
+It's wasy to see that these two give the same equation when putting them into their respective Einstein equations
+Taking one of them:
+\begin{equation}
+\begin{gathered}
+    R^{11} = g^{11}R_{11} = 
+    \frac{1}{f(r)}\left(\partial_r \frac{\partial_r f(r)}{2f(r)}
+    + \frac{1}{r}\frac{\partial_r f(r)}{2f(r)}\right)
+\end{gathered}
+\end{equation}
+So the Einstein equations becomes:
+\begin{equation}
+    f(r)\left(\partial_r \frac{\partial_r f(r)}{2f(r)}
+    + \frac{1}{r}\frac{\partial_r f(r)}{2f(r)}\right) = \frac{\kappa m}{f(0)}\delta^2(\vec{r})
+\end{equation}
+\begin{equation}
+    \partial_r^2 \ln f(r)
+    + \frac{1}{r}\partial_r \ln f(r) = \frac{2\kappa m}{f(0)}\delta^2(\vec{r})
+\end{equation}
+But the LHS is a the $r$ component of a polar Laplacian:
+\begin{equation}
+    \nabla^2 \ln f(r) = \frac{2\kappa m}{f(0)}\delta^2(\vec{r})
+\end{equation}
+Using the identity $\nabla^2 \ln r = 2\pi \delta^2(r)$, we get:
+\begin{equation}
+    \nabla^2 \ln f(r) = \frac{\kappa m}{\pi f(0)}\nabla^2 \ln r
+\end{equation}
+\begin{equation}
+    f(r) = r^{\frac{\kappa m}{\pi f(0)}} \equiv r^\alpha
+\end{equation}
+\newline
+\newline
+Let us now move to cylindrical coordinates with the transformation
+\begin{equation}
+    \rho = \frac{1}{\beta}r^{\beta}
+    \qquad
+    \theta' = \beta \theta
+    \qquad
+    \beta = 1 + \frac{\alpha}{2}
+    \qquad
+    \rightarrow
+    \qquad
+    r = \beta^{1/\beta}\rho^{1/\beta}
+    \qquad
+    dr = \beta^{1/\beta}\rho^{\frac{1 - \beta}{\beta}}d\rho
+    \qquad
+    d\theta' = \beta d\theta
+\end{equation}
+This gives:
+\begin{equation}
+    f(\rho) = \beta^{\alpha/\beta}\rho^{\alpha/\beta} = \beta^{2\frac{\beta-1}{\beta}}\rho^{2\frac{\beta-1}{\beta}}
+\end{equation}
+So the metric becomes:
+\begin{equation}
+    ds^2 = dt^2 - \beta^{2\frac{\beta-1}{\beta}}\rho^{2\frac{\beta-1}{\beta}}\beta^{2/\beta}\rho^{2\frac{1 - \beta}{\beta}}d\rho^2 - \beta^{2\frac{\beta-1}{\beta}}\rho^{2\frac{\beta-1}{\beta}}\beta^{2/\beta}\rho^{2/\beta}\beta^{-2}d\theta^2
+\end{equation}
+\begin{equation}
+    ds^2 = dt^2 - \beta^2(d\rho^2 + \rho^2d\theta^2)
+\end{equation}
+Scaling $\beta$ out, we get a Minkowski space. This means the Riemann tensor is then, as expected, zero in every point in space including the origin, and particle will move along straight lines.
+\subsection{Summary and comparison}
+It is clear, then that there are major differences between models of general relativity in different dimensions.
+\newline
+In $2D$, we got a situation where there is no gravitational pull in any form. Matter has no effect on the curvature of spacetime. This is true even in the Newtonian limit, which means this theory would not agree with Newtonian mechanics.
+\newline
+In $3D$, we got that every rotationally symmetric metric is conformally flat, and thus there is no real effect of gravity, in the sense that an object in that space will move in straight lines in some coordiante system that is connected to the original metric in a transformation that does not mix coordinates. An object placed in the origina did effect the curvature, but only at that point, and the Riemann tensor was zero at every other point in space. This, again, does not agree with Newtonian mechanics at all.
+\newline
+In $4D$, of course, all of this changes, because the Riemann tensor has enough DOF to allow matter to curve spacetime. This freedom allows gravity in this model in a way that does agree with Newtonian mechanics.
 \end{document}
