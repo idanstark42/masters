@@ -7,6 +7,14 @@
 \usepackage{physics}
 \usepackage{mathtools}
 \usepackage{bbold}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 
 \DeclareMathOperator{\erfi}{erfi}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
@@ -325,5 +333,75 @@ Let us now look at the $\lambda_n > 1$ portion. This portion includes two eigena
 We can see that $f_0$ simply adds a consant perturbation in the same "direction" of the gaussian in the funciton space, and so we can think about it as "parallel" to it, it rescales the system. However, $f_1$ pushes in a direction perpendicular to the gaussian. Looking at the Gaussian again as a probability, this corresponds to the first moment of the distribution.
 
 \section{RG in percolation}
-In this section we ran a model for percolation on a $2048\times2048$ $2d$ square lattice. 
+In this section we ran a model for percolation on a $2048\times2048$ $2d$ square lattice. We generated each lattice with a prebuilt cite occupation probability $p$. The code for this section can be found \href{https://raw.githubusercontent.com/idanstark42/masters-homework/refs/heads/master/sm1/ex5/precolation.py}{here}.
+\subsection{Precolation probability as a function of $p$}
+First, we wanted to plot the probability of percolation as a function of the cite occupation probability. To do this, we started from $p = 0$ and increased in steps of $0.05$. For each cite occupation probability, we generated 100 random lattices using LCG, and counted then number of lattices for which there was a precolation.
+\newline
+To check for percolation, we used a Breadth-First Search algorithm: starting from the top row, it collects occupied cites, making sure not to go over the same cite twice, then each iteration going over a visited cite to search for other occupied cites neighbooring it. It continues collecting occupied cites until one of them is at the bottom row. The graph of percolation probability as a function of cite occupation probability can be seen in figure \ref{fig:q1}. As can be seen, the precolation probability jumps sharply around $p = p_c = 0.618$, as expected for such a large lattice.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/q1.png}
+    \caption{The graph of percolation probability as a function of cite occupation probability can be seen in figure \ref{fig:q1}. As can be seen, the precolation probability jumps sharply around $p = p_c = 0.618$, as expected for such a large lattice.}
+    \label{fig:q1}
+\end{figure}
+\subsection{The critical cite occupation probability}
+Around the critical cite occupation probability $p = p_c = 0.618$, we wanted to see how the lattice changes with coarse graining. To do this, we generated one lattice at $p = p_c$, one lattice at $p = 0.55$ and one lattice at $p = 0.65$. For each of these lattices, we repeatedly apploied coarse graining by a factor of 2, plotting the lattice itself and finally plotting the lattice occupation density as a function of the coarse graining iteration. The lattices can be seen in figures \ref{fig:lattices_55}, figure \ref{fig:lattices_pc}, and \ref{fig:lattices_65}, and the densitiy functions can be seen in figure \ref{fig:densities}.
+\newline
+As expected, the coarse graining operation for $p < p_c$ slowly decreases the lattice occupation density, while for $p > p_c$ is slowly increases it. for $p = p_c$, the density remains roughly the same. To see that it is actually constant, we generated four additional lattices at $p = p_c$, and plotted their average density for each coarse graining iteration. The result can be seen in figure \ref{fig:average_densities}. It is clear that the density at $p = p_c$ is invariant under the coarse graining operation.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/Lattice density as a function of deimations for p=0.55.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice density as a function of deimations for p=p_c.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice density as a function of deimations for p=0.65.png}
+    \caption{Lattice densities as a function of coarse graining iteration, for cite occupation probabilities $p = 0.55$ (left), $p_c = 0.618$ (center), and $p = 0.65$ (right).}
+    \label{fig:densities}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/Average lattice density as a function of deimations for p=p_c.png}
+    \caption{Average lattice densities of five randomally generated lattices as a function of coarse graining iteration, for cite occupation probabilities $p = p_c$.}
+    \label{fig:average_densities}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/Original lattice with p=0.55.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 1 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 2 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 3 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 4 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 5 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 6 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 7 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.55 after 8 decimations.png}
+    \caption{A lattice with $p=0.55$ in different stages of the coarse graining. Occupied cites are white.}
+    \label{fig:lattices_55}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/Original lattice with p=p_c.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 1 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 2 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 3 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 4 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 5 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 6 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 7 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=p_c after 8 decimations.png}
+    \caption{A lattice with $p=p_c$ in different stages of the coarse graining. Occupied cites are white.}
+    \label{fig:lattices_pc}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{images/Original lattice with p=0.65.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 1 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 2 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 3 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 4 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 5 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 6 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 7 decimations.png}
+    \includegraphics[width=0.3\textwidth]{images/Lattice with p=0.65 after 8 decimations.png}
+    \caption{A lattice with $p=0.65$ in different stages of the coarse graining. Occupied cites are white.}
+    \label{fig:lattices_65}
+\end{figure}
 \end{document}

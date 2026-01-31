@@ -155,7 +155,7 @@ def question1():
 
 def plot_lattice(lattice, title=""):
   plt.figure(figsize=(4, 4))
-  plt.imshow(lattice.matrix, cmap="gray", interpolation="nearest")
+  plt.imshow(lattice.matrix, cmap="gray", interpolation="nearest", vmin=0, vmax=1)
   plt.xticks([])
   plt.yticks([])
   plt.title(title)
