@@ -1,0 +1,798 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+\usepackage{slashed}
+\usepackage{pxfonts}
+\usepackage{multicol}
+\usepackage{mathptmx}
+\usepackage{simplewick}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Mechanics II Formulas \& Methods}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Natrual Units}
+\begin{equation*}
+    \hbar = c = 1
+\end{equation*}
+Mass Dimension - The power of the mass unit needed to represent the unit of the given quantity. For basic quantities:
+\begin{equation*}
+    [m] = [E] = [p] = 1
+    \qquad
+    [x] = [t] = -1
+\end{equation*}
+Derivatives and integrals (vectors and covectors):
+\begin{equation*}
+    [\partial_\mu] = 1
+    \qquad
+    [dx^\mu] = -1
+\end{equation*}
+Action, Lagrangian and Hamiltonian:
+\begin{equation*}
+    [S] = 0
+    \qquad
+    [L] = [H] = 1
+    \qquad
+    [\mathcal{L}] = [\mathcal{H}] = 4
+\end{equation*}
+
+\section{Special Relativity}
+The Minkowski metric:
+\begin{equation*}
+    \eta_{\mu\nu} = \eta^{\mu\nu} = \begin{pmatrix} -1 & & & \\ & 1 & & \\ & & 1 & \\ & & & 1 \end{pmatrix}
+\end{equation*}
+\begin{equation*}
+    ds^2 = -dt^2 + d\vec{x}^2
+\end{equation*}
+\begin{equation*}
+    x^\mu = \eta^{\mu\nu}x_\nu
+\end{equation*}
+\subsection{Lorentz transformations}
+Boosts:
+\begin{equation*}
+    \Lambda_{\mu\nu} = \begin{pmatrix} \cosh a_x & \sinh a_x & & \\ \sinh a_x & \cosh a_x & & \\ & & 1 & \\ & & & 1 \end{pmatrix}
+\end{equation*}
+Rotations:
+\begin{equation*}
+    \Lambda_{\mu\nu} = \begin{pmatrix} 1 & 0 & & \\ 0 & 1 & & \\ & & \cos \theta_x & \sin \theta_x \\ & & -\sin \theta_x & \cos \theta_x \end{pmatrix}
+\end{equation*}
+\subsection{Electromagnetics}
+The EM potential:
+\begin{equation*}
+    A^\mu = (\phi, -\vec{A})
+\end{equation*}
+The EM Free Lagrangian:
+\begin{equation*}
+    \mathcal{L} = \frac{1}{4}F^{\mu\nu}F_{\mu\nu}
+    \qquad
+    F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu
+\end{equation*}
+Which gives the classica EOM:
+\begin{equation*}
+    \Box A^\mu - \partial^\mu \partial_\nu A^\nu = 0
+\end{equation*}
+
+\section{Quantizing a theory}
+\begin{itemize}
+    \item Starting from a Lagrangian density $\mathcal{L}$ (with allowed terms)
+    \item Find Conjugate Momentum $\pi$ to the field
+    \item Derive EOM from E-L equations
+    \item Solve the EOM to find the propating solutions
+    \item Promote the fields and momenta to quantum operators by defining commutation relations
+    \item Expand the fields in EOM solutions (mode expansion), promote their coefficient to quantum operators - the ladder operators.
+    \item Check the $H$ is non-negative and all states have a positive norm
+\end{itemize}
+\section{Free theories}
+\subsection{Real Scalar Field}
+Lagrangian and Hamiltonian:
+\begin{equation*}
+    \mathcal{L} = \frac{1}{2}\left(\partial_\mu\phi\right)^2 - \frac{1}{2}m^2\phi^2
+    \qquad
+    \mathcal{H} = \frac{1}{2} \pi^2 + \frac{1}{2}\left(\nabla \phi\right)^2 + \frac{1}{2}m^2\phi^2
+    \qquad
+    \pi = \partial_0 \phi
+\end{equation*}
+Equation of Motion - The Klein Gordron equation
+\begin{equation*}
+    \left(\Box - m^2\right)\phi = 0
+    \qquad
+    \Box = \partial_\mu \partial^\mu = - \partial_t^2 + \nabla^2
+\end{equation*}
+Solutions:
+\begin{equation*}
+    \phi(x) = \int \frac{d^4p}{(2\pi)^4}e^{-ipx}
+    \qquad
+    \begin{matrix}
+        px = p^\mu x_\mu = p^0t - \vec{p}\cdot\vec{x}
+        \\
+        p^0 = \omega_{\vec{p}} = \sqrt{m^2 + \vec{p}^2}
+    \end{matrix}
+\end{equation*}
+Commutation Relations (Bosonic):
+\begin{equation*}
+\begin{gathered}
+    \left[\phi_x, \pi_y\right] = \delta^3(\vec{x} - \vec{y})
+    \qquad
+    \left[\phi_x, \phi_y\right] =
+    \left[\pi_x, \pi_y\right] = 0
+    \\
+    \left[a_{\vec{k}}, a^\dagger_{\vec{p}}\right] = \left(2\pi\right)^3\delta^3(\vec{k} - \vec{p})
+    \qquad
+    \left[a_{\vec{k}}, a_{\vec{p}}\right] =
+    \left[a^\dagger_{\vec{k}}, a^\dagger_{\vec{p}}\right] = 0
+    \\
+    \left[H, a_{\vec{k}}\right] = -\omega_{\vec{k}}a_{\vec{k}}
+    \qquad
+    \left[H, a^\dagger_{\vec{k}}\right] = \omega_{\vec{k}}a^\dagger_{\vec{k}}
+\end{gathered}
+\end{equation*}
+Mode Expansion
+\begin{equation*}
+\begin{gathered}
+    \phi(t, \vec{x}) = \int \frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}\left(
+        a_{\vec{p}}e^{-ipx} + a^\dagger_{\vec{p}}e^{ipx}
+    \right)
+    \\
+    \pi(t, \vec{x}) = \partial_0 \phi(t, \vec{x}) = i\int \frac{d^3p}{(2\pi)^3}\sqrt{\frac{\omega_p}{2}}\left(
+        -a_{\vec{p}}e^{-ipx} + a^\dagger_{\vec{p}}e^{ipx}
+    \right)
+    \\
+    H = \int \frac{d^3p}{(2\pi)^3}\omega_p\left(
+        a^\dagger_{\vec{p}}a_{\vec{p}}
+        + \frac{1}{2} \left(2\pi\right)^3 \delta^3(\vec{p} - \vec{p})
+    \right)
+\end{gathered}
+\end{equation*}
+\subsection{Complex Scalar Field}
+Lagrangian:
+\begin{equation*}
+    \mathcal{L} = \partial_\mu\phi^*\partial^\mu\phi  - m^2\phi^*\Phi
+\end{equation*}
+Two ways to analyse: consider $\phi$ and $\phi^*$ as two scalar fields or consider $\Re{\phi}$ and $\Im{\phi}$ as two scalar fields. Usully we follow the former.
+\newline
+Hamiltonian:
+\begin{equation*}
+\begin{gathered}
+    \mathcal{H} = \pi^*\pi + \left(\nabla \phi^*\right)\left(\nabla \phi\right) + m\phi^*\phi
+    \\
+    \pi = \partial\phi^*
+    \qquad
+    \pi^* = \partial\phi
+\end{gathered}
+\end{equation*}
+Equation of Motion - The Klein Gordron equation
+\begin{equation*}
+    \left(\Box - m^2\right)\phi = 0
+    \qquad
+    \left(\Box - m^2\right)\phi^* = 0
+\end{equation*}
+Solutions:
+\begin{equation*}
+    \phi(x) = \int \frac{d^4p}{(2\pi)^4}e^{-ipx}
+    \qquad
+    \phi^*(x) = \int \frac{d^4p}{(2\pi)^4}e^{ipx}
+\end{equation*}
+Commutation Relations (Bosonic):
+\begin{equation*}
+\begin{gathered}
+    \left[\phi_x, \pi_y\right] = i\delta^3(\vec{x} - \vec{y})
+    \qquad
+    \left[\phi_x, \phi_y\right] =
+    \left[\pi_x, \pi_y\right] = 0
+    \\
+    \left[a_{\vec{k}}, a^\dagger_{\vec{p}}\right] =
+    \left[b_{\vec{k}}, b^\dagger_{\vec{p}}\right] =
+    i\left(2\pi\right)^3\delta^3(\vec{k} - \vec{p})
+    \\
+    \left[a_{\vec{k}}, a_{\vec{p}}\right] =
+    \left[a^\dagger_{\vec{k}}, a^\dagger_{\vec{p}}\right] = 
+    \left[b_{\vec{k}}, b_{\vec{p}}\right] =
+    \left[b^\dagger_{\vec{k}}, b^\dagger_{\vec{p}}\right] = 0
+    \\
+    \left[H, a_{\vec{k}}\right] = -\omega_{\vec{k}}a_{\vec{k}}
+    \qquad
+    \left[H, a^\dagger_{\vec{k}}\right] = \omega_{\vec{k}}a^\dagger_{\vec{k}}
+    \qquad \qquad
+    \left[H, b_{\vec{k}}\right] = -\omega_{\vec{k}}b_{\vec{k}}
+    \qquad
+    \left[H, b^\dagger_{\vec{k}}\right] = \omega_{\vec{k}}b^\dagger_{\vec{k}}
+\end{gathered}
+\end{equation*}
+Mode Expansion
+\begin{equation*}
+\begin{gathered}
+    \phi = \int \frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}\left(
+        a_{\vec{p}}e^{ipx} + b^\dagger_{\vec{p}}e^{-ipx}
+    \right)
+    \qquad
+    \phi^* = \int \frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}\left(
+        b_{\vec{p}}e^{ipx} + a^\dagger_{\vec{p}}e^{-ipx}
+    \right)
+    \\
+    \pi = i\int \frac{d^3p}{(2\pi)^3}\sqrt{\frac{\omega_p}{2}}\left(
+        -b_{\vec{p}}e^{ipx} + a^\dagger_{\vec{p}}e^{-ipx}
+    \right)
+    \qquad
+    \pi^* = i\int \frac{d^3p}{(2\pi)^3}\sqrt{\frac{\omega_p}{2}}\left(
+        -a_{\vec{p}}e^{ipx} + b^\dagger_{\vec{p}}e^{-ipx}
+    \right)
+    \\
+    H = \int \frac{d^3p}{(2\pi)^3}\omega_p\left(
+        a^\dagger_{\vec{p}}a_{\vec{p}}
+        + b^\dagger_{\vec{p}}b_{\vec{p}}
+        + \frac{1}{2} \left(2\pi\right)^3 \delta^3(\vec{p} - \vec{p})
+    \right)
+\end{gathered}
+\end{equation*}
+Bonus - ladder operator as a function of $\phi$ and $\pi$:
+\begin{equation*}
+\begin{gathered}
+    a_k = \int \left(\sqrt{\frac{\omega_k}{2}}\phi + \frac{i}{\sqrt{2\omega_k}}\pi^*\right)e^{-kx}
+    \qquad
+    b_k = \int \left(\sqrt{\frac{\omega_k}{2}}\phi^* + \frac{i}{\sqrt{2\omega_k}}\pi\right)e^{-kx}
+\end{gathered}
+\end{equation*}
+\subsection{Weyl Spinor Field}
+This section treats \b{Left Handed} Weyl Spinors. To change to Right Handed spinors, replace $\bar{\sigma} \leftrightarrow \sigma$.
+\newline
+Lagrangian:
+\begin{equation*}
+    \mathcal{L} = i\psi^\dagger \bar{\sigma}^\mu \partial_\mu \psi
+    \qquad
+    \psi \in \C^2
+    \qquad
+    \bar{\sigma} = \left(\mathbbm{1}, -\vec{\sigma}\right)
+\end{equation*}
+Momentum and Hamiltonian:
+\begin{equation*}
+    \mathcal{H} = i\psi^\dagger\vec{\sigma}\cdot\nabla\psi
+    \qquad
+    \pi = i \psi^\dagger
+\end{equation*}
+Equation of Motion - Weyl equation
+\begin{equation*}
+    \bar{\sigma}^\mu\partial_\mu \psi = 0
+\end{equation*}
+Applying $\sigma_\nu\partial^\nu$ to both sides gives the massless KG equation $\Box \psi = 0$.
+\newline
+Solutions:
+\begin{equation*}
+    \psi(x) = \xi_p e^{\pm px}
+    \qquad
+    \xi_p = \sqrt{2\omega_p} U\begin{pmatrix} 0 \\ 1 \end{pmatrix} = \sqrt{\sigma p} U\begin{pmatrix} 0 \\ 1 \end{pmatrix}
+    \qquad
+    \sqrt{\sigma p} = \frac{\sigma p}{\sqrt{2\omega_p}}
+\end{equation*}
+Where $U \in SU(2)$ and $\xi$ are the helicity eigenfunctions:
+\begin{equation*}
+    \sigma_i \hat{p}^i \xi_p = -p \xi_p
+\end{equation*}
+For RH Weyl Spinor, the eigenvalue is positive.
+\newline 
+Commutation Relations (Fermionic):
+\begin{equation*}
+\begin{gathered}
+    \left\{\psi_a(\vec{x}), \psi_b^\dagger(\vec{y})\right\} = \delta^3(\vec{x} - \vec{y})\delta_{ab}
+    \qquad
+    \left\{\psi_a(\vec{x}), \psi_b(\vec{y})\right\} =
+    \left\{\psi_a^\dagger(\vec{x}), \psi_b^\dagger(\vec{y})\right\} =
+    0
+    \\
+    \left\{b_k, b_p^\dagger\right\} = \left\{c_k, c_p^\dagger\right\} = (2\pi)^3\delta(\vec{k} - \vec{p})
+    \qquad
+    \left\{b_k, b_p\right\} = \left\{b_k^\dagger, b_p^\dagger\right\} = \left\{c_k, c_p\right\} = \left\{c_k^\dagger, c_p^\dagger\right\} = \left\{b_k, c_p\right\} = \left\{b_k^\dagger, c_p^\dagger\right\} = 0
+\end{gathered}
+\end{equation*}
+Mode expansion:
+\begin{equation*}
+\begin{gathered}
+    \psi = \int \frac{d^3k}{(2\pi)^3\sqrt{2\omega_k}}
+    \left(
+        \xi(\vec{k}) b_{\vec{k}} + \xi(-\vec{k}) c_{\vec{k}}^\dagger
+    \right)e^{i\vec{k}\cdot\vec{x}}
+    \qquad
+    \\
+    H = \int \frac{d^3k}{(2\pi)^3} \omega_k \left(
+        b_{\vec{k}}^\dagger b_{k} + c_{k}^\dagger c_{\vec{k}}
+    \right)
+\end{gathered}
+\end{equation*}
+\subsection{Dirac Spinor}
+The Dirac Spinor:
+\begin{equation*}
+    \psi = \begin{pmatrix}
+        \psi_L \\ \psi_R
+    \end{pmatrix}
+    \qquad
+    \bar{\psi} = \psi^\dagger \gamma^0 = \begin{pmatrix}
+        \psi_L^\dagger & \psi_R^\dagger
+    \end{pmatrix}
+\end{equation*}
+Lagrangian:
+\begin{equation*}
+    \mathcal{L} = \bar{\psi}\left(i\slashed{\partial} - m\right)\psi
+\end{equation*}
+Momentum and Hamiltonian:
+\begin{equation*}
+    \mathcal{H} = \bar{\psi}\left(-i\gamma^i \partial_i + m\right)\psi
+    \qquad
+    \pi = i \psi^\dagger
+\end{equation*}
+Equation of Motion - Dirac equation
+\begin{equation*}
+    \left(i\slashed{\partial} - m\right)\psi = 0
+\end{equation*}
+Applying $\left(i\slashed{\partial} + m\right)$ to both sides gives the massive KG equation $\left(\Box + m^2\right)\psi = 0$.
+\newline
+Solutions:
+\begin{equation*}
+    \psi(x) = u_s(p) e^{-px}
+    \qquad
+    u_s(p) = \begin{pmatrix}
+        \sqrt{\sigma p} \xi_s \\ \sqrt{\bar{\sigma} p} \xi_s
+    \end{pmatrix}
+    \qquad
+    \sqrt{\sigma p} = \frac{\mathbbm{1}\left(p^0 + m\right) - \sigma_i p^i}{\sqrt{p^0 + m}}
+    \qquad
+    \sqrt{\sigma p} = \frac{\mathbbm{1}\left(p^0 + m\right) + \sigma_i p^i}{\sqrt{p^0 + m}}
+    \qquad
+    s = \pm\frac{1}{2}
+\end{equation*}
+For the opposite equation:
+\begin{equation*}
+    \left(i\slashed{\partial} + m\right)\psi = 0
+\end{equation*}
+The solutions are:
+\begin{equation*}
+    \psi(x) = v_s(p) e^{-px}
+    \qquad
+    v_s(p) = \begin{pmatrix}
+        \sqrt{\sigma p} \xi_{-s} \\ -\sqrt{\bar{\sigma} p} \xi_{-s}
+    \end{pmatrix}
+    \qquad
+    \xi_{-s} = -i\sigma_2\xi_s^*
+\end{equation*}
+Identities:
+\begin{equation*}
+\begin{gathered}
+    \bar{u}_s u_r = 2m\delta_{sr}
+    \qquad
+    u_s^\dagger u_r = 2p^0\delta_{sr}
+    \qquad
+    \sum_s u_s \bar{u}_s = \slashed{p} + m
+    \\
+    \bar{v}_s v_r = -2m\delta_{sr}
+    \qquad
+    v_s^\dagger v_r = 2p^0\delta_{sr}
+    \qquad
+    \sum_s v_s \bar{v}_s = \slashed{p} - m
+    \\
+    \bar{u}_s v_r = \bar{v}_s u_s = 0
+\end{gathered}
+\end{equation*}
+Commutation Relations (Fermionic):
+\begin{equation*}
+\begin{gathered}
+    \left\{\psi_a(\vec{x}), \psi_b^\dagger(\vec{y})\right\} = \delta^3(\vec{x} - \vec{y})\delta_{ab}
+    \qquad
+    \left\{\psi_a(\vec{x}), \psi_b(\vec{y})\right\} =
+    \left\{\psi_a^\dagger(\vec{x}), \psi_b^\dagger(\vec{y})\right\} =
+    0
+    \\
+    \left\{a_{\vec{p}, s}, a_{\vec{k}, r}^\dagger\right\} = \left\{b_{\vec{p}, s}, b_{\vec{k}, r}^\dagger\right\} = (2\pi)^3\delta(\vec{k} - \vec{p})\delta_{sr}
+    \\
+    \left\{a_k, a_p\right\} = \left\{a_k^\dagger, a_p^\dagger\right\} = \left\{b_k, b_p\right\} = \left\{b_k^\dagger, b_p^\dagger\right\} = \left\{a_k, b_p\right\} = \left\{a_k^\dagger, b_p^\dagger\right\} = 0
+\end{gathered}
+\end{equation*}
+Mode expansion:
+\begin{equation*}
+\begin{gathered}
+    \psi = \int \frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}
+    \sum_s
+    \left(
+        a_{\vec{p}, s} u_s(p) e^{-ipx} + b_{\vec{p}, s}^\dagger v_s(p) e^{ipx}
+    \right)
+    \qquad
+    \bar{\psi} = \int \frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}
+    \sum_s
+    \left(
+        a_{\vec{p}, s}^\dagger \bar{u}_s(p) e^{ipx} + b_{\vec{p}, s} \bar{v}_s(p) e^{-ipx}
+    \right)
+    \qquad
+    \\
+    H = \int \frac{d^3k}{(2\pi)^3} \omega_k \left(
+        a_{\vec{k}}^\dagger a_{k} + b_{k}^\dagger b_{\vec{k}}
+    \right)
+\end{gathered}
+\end{equation*}
+
+\section{Interacting theories}
+\subsection{Quantum Electrodynamics}
+Lagrangian:
+\begin{equation*}
+    \mathcal{L} = \bar{\psi}\left(i\slashed{D} - m\right)\psi = \bar{\psi}\left(i\slashed{\partial} - m  - e\slashed{A}\right)\psi
+    \qquad
+    D_\mu = \partial_\mu +ieA_\mu
+\end{equation*}
+Gauge redundancy:
+\begin{equation*}
+    \left\{\begin{matrix}
+        A_\mu \rightarrow A_\mu - \frac{1}{e}\partial_\mu \alpha(x)
+    \\
+    \psi \rightarrow e^{i\alpha(x)}\psi
+    \end{matrix}\right\} \Rightarrow \bar{\psi}\slashed{D}\psi \rightarrow \bar{\psi}\slashed{D}\psi
+\end{equation*}
+The Interaction terms:
+\begin{equation*}
+    \mathcal{L}_I = - e \bar{\psi}\slashed{A}\psi
+    \qquad
+    H_I = e\int d^3x \bar{\psi}\slashed{A}\psi
+\end{equation*}
+First order (non-reletavistic):
+\begin{equation*}
+    H_{I} \ket{ps}	\supset e \tilde{A}_0 \ket{ps}
+\end{equation*}
+Second order (First order Magentic Interaction) splits into spin-diagonal term:
+\begin{equation*}
+    H_I \ket{ps} \supset e \int \frac{d^3k}{(2\pi)^3 \sqrt{2\omega_k}}(p+k)^j\delta_{rs} a_{\vec{k}, r}^\dagger \ket{0}\tilde{A}_j(\vec{k} - \vec{p})
+\end{equation*}
+And spin dependent term:
+\begin{equation*}
+    H_I \ket{ps} \supset -\frac{e}{m}\vec{B}\cdot\vec{S}_{rs} \ket{ps}
+\end{equation*}
+\subsection{Interactions \& Feynman Diagrams}
+Note (out of material): The limit on interactions comed from the coupling being allowed only non-negative dimension.
+\newline
+The Interaction picture:
+\begin{equation*}
+    H(\phi(t)) = H_0(\phi(t)) + H_I(\phi(t))
+\end{equation*}
+The full field is then:
+\begin{equation*}
+    \phi(t) = U^\dagger(t,t_0) \phi_I(t) U(t,t_0)
+    \qquad
+    \begin{matrix}
+        \phi_I(t) = e^{iH_0(\phi(t_0))(t - t_0)}\phi(t_0)e^{-iH_0(\phi(t_0))(t - t_0)}
+        \\
+        U(t,t_0) = e^{iH_0H(\phi(t_0))(t - t_0)}e^{-iH(\phi(t))(t - t_0)}
+    \end{matrix}
+\end{equation*}
+The propeagtor $U(t,t_0)$ follows:
+\begin{equation*}
+    i\partial_t U(t,t_0) = H_I(\phi_I(t))U(t,t_0)
+\end{equation*}
+Solution - Dyson's Formula ($H_I(t) = H_I(\phi_I(t))$):
+\begin{equation*}
+    U(t,t_0) = 1 + \int_{t_0}^t dt'(-i)H_I(t')
+     + \int_{t_0}^t dt'(-i)H_I(t') \int_{t_0}^{t'} dt''(-i)H_I(t'') + \cdots = T\left\{\exp[-i\int_{t_0}^t d\tilde{t}H_I(\tilde{t})]\right\}
+\end{equation*}
+Generally:
+\begin{equation*}
+    U_I(t,t') = T\left\{\exp[-i\int_{t'}^t d\tilde{t}H_I(\tilde{t})]\right\} =
+    e^{iH_0(\phi(t_0))(t - t_0)}
+    e^{-iH(\phi(t))(t - t')}
+    e^{-iH_0(\phi(t_0))(t' - t_0)}
+\end{equation*}
+Decomposition:
+\begin{equation*}
+    U_I(t_3, t_2)U_I(t_2, t_1) = U_I(t_3, t_1)
+\end{equation*}
+Hermitian Conjugate is backwards propegator:
+\begin{equation*}
+    U_I^\dagger(t_2, t_1) = U_I^{-1}(t_2, t_1) = U_I(t_1, t_2)
+\end{equation*}
+Ground state:
+\begin{equation*}
+\begin{gathered}
+    \ket{\Omega} = \lim_{T \rightarrow \infty(1 - i\epsilon)}\left[
+        e^{-\epsilon_0(t_0 - (-T))}\braket{\Omega}{0}
+    \right]^{-1}
+    U_I(t_0, -T)\ket{0}
+    \\
+    \bra{\Omega} = \lim_{T \rightarrow \infty(1 - i\epsilon)}\left[
+        e^{-\epsilon_0(T - t_0)}\braket{0}{\Omega}
+    \right]^{-1}
+    \bra{0}U_I(T, t_0)
+\end{gathered}
+\end{equation*}
+\begin{equation*}
+    H \ket{\Omega} = \epsilon_0 \ket{\Omega}
+\end{equation*}
+Where $\epsilon_0$ is the vacuum energy:
+\begin{equation*}
+    e^{-iHt}\ket{0} = e^{-i\epsilon_0t}\braket{\Omega}{0} + \sum_n e^{-i\epsilon_nt}\braket{n}{0}
+\end{equation*}
+Correlation Function:
+\begin{equation*}
+    \bra{\Omega}T\left\{\phi_1 \phi_2 \cdots \phi_N\right\}\ket{\Omega} = \lim_{T \rightarrow \infty(1 - i\epsilon)} \frac{\bra{0}T\left\{\phi_{I,1}\phi_{I,2}\cdots\phi_{I,N}U(T, -T)\right\}\ket{0}}{\bra{0}U(T, -T)\ket{0}}
+\end{equation*}
+Wick's theorem: for $N$ fields $\phi_1,\dots,\phi_N$:
+\begin{equation*}
+\begin{gathered}
+    T\left\{\phi_1,\dots,\phi_N\right\} =
+    N\left\{\phi_1,\dots,\phi_N\right\} + \\ +
+    N\left\{\contraction{}{\phi_1}{}{\phi_2}\phi_1\phi_2\phi_3\cdots\phi_N + \contraction{}{\phi_1}{\phi_2}{\phi_3}\phi_1\phi_2\phi_3\cdots\phi_N + \cdots + \contraction{}{\phi_1}{\phi_2\phi_3\cdots}{\phi_N}\phi_1\phi_2\phi_3\cdots\phi_N\right\} + \\ +
+    N\left\{\contraction{}{\phi_1}{}{\phi_2}\contraction{\phi_1\phi_2}{\phi_3}{}{\phi_4}\phi_1\phi_2\phi_3\phi_4\cdots\phi_N + \contraction{}{\phi_1}{\phi_2}{\phi_3}\contraction[2ex]{\phi_1}{\phi_2}{\phi_3}{\phi_4}\phi_1\phi_2\phi_3\phi_4\cdots\phi_N + \cdots\right\}
+\end{gathered}
+\end{equation*}
+Drawing Feynman Diagrams:
+\begin{itemize}
+    \item Start from the interacting term $\mathcal{L}_I$
+    \item Decide on $N$ the amount of external points (particles you start with)
+    \item Expand the correlation function using Dyson's formula up to the desired order in the coupling variable.
+    \item For each term: 
+    \begin{itemize}
+        \item Go over all possible contraction perturbations, and count the amount of each type.
+        \item To draw the diagrams, draw points for each external fields at the start and end of the interaction, then connect them by the contractions. If tehre are additional internal fields (interactions), draw them as a point in the middle and add their interactions.
+        \item Discard all diagrams that have vacuum loops.
+        \item To write in integral form, for each perturbation topology, write the amount as a prefactor and a Feynman propegator for each contraction. If the propegator has an internal field, it retains the integral over all possible points.
+    \end{itemize}
+\end{itemize}
+\subsection{2-point correlation function}
+These are the simplest building blocks.
+The free propeagtor
+\begin{equation*}
+    D(x - y) = \int \frac{d^3k}{(2\pi)^3 2\omega_k}e^{-ik(x - y)}
+\end{equation*}
+The Feynman propeagtor:
+\begin{equation*}
+    D_F(x - y) = \bra{0}T\phi(x)\phi(y)\ket{0} = 
+    \Theta(x_0 - y_0)D(x - y) + \Theta(y_0 - x_0)D(y - x) =
+    \lim_{\epsilon \rightarrow 0^{+}} \int \frac{d^4k}{(2\pi)^4}\frac{i}{k^2 - m^2 + i\epsilon}e^{-ik(x - y)}
+\end{equation*}
+With interaction $H_I$:
+\begin{equation*}
+    T\left\{\phi(x)\phi(y)\right\} = N\left\{\phi(x)\phi(y)\right\} + \contraction{}{\phi(x)}{}{\phi(y)}\phi(x)\phi(y)
+\end{equation*}
+Where $\contraction{}{\phi(x)}{}{\phi(y)}\phi(x)\phi(y)$ is the contraction:
+\begin{equation*}
+    \contraction{}{\phi(x)}{}{\phi(y)}\phi(x)\phi(y) = D_F(x - y) = \begin{cases}
+        \left[\phi_{+}(x), \phi_{-}(y)\right] & x_0 > y_0
+        \\
+        \left[\phi_{+}(y), \phi_{-}(x)\right] & y_0 > x_0
+    \end{cases}
+\end{equation*}
+Example - if the interaction term is:
+\begin{equation*}
+    \mathcal{L}_I = \frac{\lambda}{4!}\phi^4
+\end{equation*}
+The Correlation function up to first order:
+\begin{equation*}
+\begin{gathered}
+    \bra{\Omega}T\phi_x\phi_y\ket{\Omega} =
+    \bra{0}T\phi_x\phi_y\ket{0} + \int d^4z \left(\frac{-i\lambda}{4!}\right)\bra{0}T\phi_x\phi_y\phi_z^4\ket{0} = \\ =
+    D_F(x - y) - \frac{\lambda}{4!} \left(
+        3D_F(x-y)\int d^4z D_F^2(z-z) +
+        3\cdot4\int d^4z D_F(x - z)D_F(y - z)D_F(z-z)
+    \right)
+\end{gathered}
+\end{equation*}
+
+\subsection{Scattering Matrix and Observables}
+The scattering matrix connects asymptotic free states:
+\begin{equation*}
+    \ket{\text{out}} = S \ket{\text{in}}
+\end{equation*}
+Defined as:
+\begin{equation*}
+    S = \lim_{T\to\infty} U_I(T,-T)
+\end{equation*}
+with:
+\begin{equation*}
+    S = \mathbbm{1} + iT
+\end{equation*}
+LSZ Reduction Formula: Scattering amplitudes are obtained from time-ordered correlators:
+\begin{equation*}
+    \bra{p_1\cdots p_n} S \ket{k_1\cdots k_m}
+    \propto
+    \prod_i (\Box_{x_i}+m^2)
+    \bra{\Omega} T\phi(x_1)\cdots\phi(x_N) \ket{\Omega}
+\end{equation*}
+External legs are amputated propagators.
+\newline
+The Matrix elements are
+\begin{equation*}
+    \bra{f} S \ket{i} = i(2\pi)^4\delta^{(4)}(p_f-p_i)M
+\end{equation*}
+$M$ is computed from Feynman diagrams.
+\newline
+Cross section of $2\rightarrow n$ scattering:
+\begin{equation*}
+    d\sigma = \frac{1}{4E_aE_b|\vec{v}_1-\vec{v}_2|}
+    \prod_f \frac{d^3p_f}{(2\pi)^3}\frac{1}{2E_f}\left|M(\rightarrow \{p_f\})\right|^2(2\pi)^4\delta^4\left(p_a + p_b - \sum p_f\right)
+\end{equation*}
+Decay rate of a particle:
+\begin{equation*}
+    d\Gamma = \frac{1}{2m_i}\frac{d^3p_f}{(2\pi)^3}\frac{1}{2E_f}\left|M(\rightarrow\{p_f\})\right|^2(2\pi)^4\delta^4\left(p_a + p_b - \sum p_f\right)
+\end{equation*}
+
+\section{Continous Symmetries \& Noether's theorem}
+\subsection{Finding currents}
+To use Neother's theorem:
+\begin{itemize}
+    \item Parameterize the symmetry transformation's action on the fields.
+    \item Derive $\delta \phi$ - the infinitesimal change in the field.
+    \item Promote the transformation parameter to a function of spacetime.
+    \item Insert into $\delta S$ or $\delta \mathcal{L}$.
+    \item The result should give:
+    \begin{equation*}
+        \delta S = \int d^4x \delta \mathcal{L}
+        \qquad
+        \delta \mathcal{L} = \epsilon \partial_\mu J^\mu
+    \end{equation*}
+    \item Might need to use integration by parts on the action integral to get there.
+    \item $J^\mu$ are the currents.
+\end{itemize}
+Another way to do it is to derive $\phi'$, which is the field after the transformation with parameter $\epsilon$, and
+\begin{equation*}
+    \delta \mathcal{L} = L(\phi') - L(\phi) = \epsilon \partial_\mu F^\mu
+\end{equation*}
+For some $F^\mu$. Then, the current is:
+\begin{equation*}
+    J_\mu = \frac{\partial \mathcal{L}}{\partial\left(\partial^\mu \phi\right)}\frac{\partial\phi'}{\partial \epsilon} - F_\mu
+\end{equation*}
+
+\section{Discrete Symmetries}
+\subsection{Parity $P$}
+Parity acts as a spatial inversion:
+\begin{equation*}
+    P:\quad x^\mu = (t,\vec{x}) \rightarrow (t,-\vec{x})
+\end{equation*}
+For fields:
+\begin{equation*}
+    \phi(t,\vec{x}) \rightarrow \eta_P \phi(t,-\vec{x})
+\end{equation*}
+\begin{equation*}
+    \psi(t,\vec{x}) \rightarrow \eta_P \gamma^0 \psi(t,-\vec{x})
+\end{equation*}
+\subsection{Charge Conjugation $C$}
+Charge conjugation exchanges particles and antiparticles.
+\begin{equation*}
+    C:\quad \psi \rightarrow \psi^C = C \bar{\psi}^T
+\end{equation*}
+with
+\begin{equation*}
+    C\gamma^\mu C^{-1} = -(\gamma^\mu)^T
+\end{equation*}
+For gauge fields:
+\begin{equation*}
+    A_\mu \rightarrow -A_\mu
+\end{equation*}
+\subsection{Time Reversal $T$}
+Time reversal reverses time evolution:
+\begin{equation*}
+    T:\quad (t,\vec{x}) \rightarrow (-t,\vec{x})
+\end{equation*}
+It is anti-unitary:
+\begin{equation*}
+    T i T^{-1} = -i
+\end{equation*}
+\subsection{$CPT$ Theorem}
+Any local, Lorentz-invariant, unitary quantum field theory satisfies:
+\begin{equation*}
+    \mathcal{L}(x) \xrightarrow{CPT} \mathcal{L}(-x)
+\end{equation*}
+Consequences:
+\begin{itemize}
+    \item Particles and antiparticles have equal masses and lifetimes
+    \item Spin–statistics consistency
+    \item Violation of $C$, $P$, or $T$ individually does not imply $CPT$ violation
+\end{itemize}
+
+
+\section{Groups and Representations}
+\subsection{The Lorentz group}
+The Energy Momentum Tensor:
+\begin{equation*}
+    T_{\mu\nu} = \eta_{\mu\nu}\mathcal{L} - \partial_\mu\phi\partial_\nu\phi
+\end{equation*}
+From the spacetime translation symmetry, the conserved currents are:
+\begin{equation*}
+    J_{(\alpha\beta)\mu} = x_\alpha T_{\beta\mu} - x_\beta T_{\alpha\mu}
+\end{equation*}
+This gives six currents corrsponding to three rotations and three boosts. The charges (and currents) follow the commutation relations:
+\begin{equation}
+    \left[Q_{\mu\nu}, Q_{\alpha\beta}\right] = i\left(
+        \eta_{\alpha\nu}Q_{\mu\beta} +
+        \eta_{\alpha\mu}Q_{\beta\nu} +
+        \eta_{\beta\nu}Q_{\alpha\mu} +
+        \eta_{\beta\mu}Q_{\nu\alpha}
+    \right)
+\end{equation}
+And they are named:
+\begin{equation*}
+    L_1 = Q_{23}
+    \qquad
+    L_2 = Q_{31}
+    \qquad
+    L_3 = Q_{12}
+    \qquad
+    M_i = Q_{0i}
+\end{equation*}
+The four-vector representation:
+\begin{equation*}
+    \left[J^{\mu\nu}\right]^\lambda_\sigma = i\left(
+        \delta^{\mu k}\delta^\nu_\sigma - \delta^\mu_\sigma \delta^{\nu k}
+    \right)\eta^{\lambda k}
+\end{equation*}
+The two-vector representations:
+\begin{equation*}
+    J_i^{\pm} = \frac{1}{2}\left(L_i \pm iM_i\right)
+\end{equation*}
+Weyl spinnor transformation $a_\alpha$ is responsible for rotation and $b_\alpha$ is responsible for boosts:
+\begin{equation*}
+\begin{gathered}
+    \psi_L(x) \rightarrow \psi'_L(x) = e^{-i\left(a_\alpha - i b_\alpha\right)\sigma_\alpha / 2} \psi_L(\Lambda^{-1}x)
+    \\
+    \psi_L(x) \rightarrow \psi'_L(x) = e^{-i\left(a_\alpha + i b_\alpha\right)\sigma_\alpha / 2} \psi_L(\Lambda^{-1}x)
+\end{gathered}
+\end{equation*}
+\subsection{Pauli matrices}
+\begin{equation*}
+    \sigma_0 = \mathbbm{1}
+    \qquad
+    \sigma_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}
+    \qquad
+    \sigma_2 = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}
+    \qquad
+    \sigma_3 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+\end{equation*}
+Identities:
+\begin{equation*}
+    \sigma_i \sigma_j = \delta_{ij} \mathbbm{1} + i\varepsilon_{ijk} \sigma_k
+    \qquad
+    \sigma_i^\dagger = \sigma_i
+    \qquad
+    \left[\sigma_i, \sigma_j\right] = 2i\sigma_l
+    \qquad
+    \left\{\sigma_i, \sigma_j\right\} = 2\delta_{ij} \mathbbm{1}
+\end{equation*}
+\begin{equation*}
+    e^{i\vec{\theta}\cdot\vec{\sigma}} = \cos\theta \mathbbm{1} + i\sin\theta \hat{\theta}\cdot\vec{\sigma}
+    \qquad
+    \vec{\sigma} = (\sigma_1, \sigma_2, \sigma_3)
+\end{equation*}
+\begin{equation*}
+    \sigma^\mu\bar{\sigma}^\nu + \sigma^\nu\bar{\sigma}^\mu = 2\eta^{\mu\nu}
+    \qquad
+    \sigma^\mu = (\sigma_0, \vec{\sigma})
+    \qquad
+    \bar{\sigma}^\mu = (\sigma_0, -\vec{\sigma})
+\end{equation*}
+\begin{equation*}
+    \sigma_i^T\sigma_2 = -\sigma_2\sigma_i
+    \qquad
+    \sigma_2 \bar{\sigma}^\mu\sigma_2 = \left(\sigma^\mu\right)^T
+\end{equation*}
+
+\subsection{Gamma Matrices}
+\begin{equation*}
+    \gamma^\mu = \begin{pmatrix}
+        0 & \sigma^\mu \\ \bar{\sigma}^\mu & 0
+    \end{pmatrix}
+    \qquad
+    \slashed{A} = \gamma^\mu A_\mu
+\end{equation*}
+Identities:
+\begin{equation*}
+    \left\{\gamma^\mu, \gamma^\nu\right\} = 2\eta^{\mu\nu}\mathbbm{1}_4
+    \qquad
+    \slashed{a}\slashed{b} + \slashed{b}\slashed{a} = 2ab\mathbbm{1}
+    \qquad
+    \slashed{a}\slashed{a} = a^2\mathbbm{1}
+\end{equation*}
+\end{document}
