@@ -1,0 +1,293 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+\usepackage{slashed}
+\usepackage{pxfonts}
+\usepackage{multicol}
+\usepackage{mathptmx}
+\usepackage{simplewick}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Mechanics II Excercise 6}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{The Proca field: part II}
+The Proca theory describes a massive 4-vector field:
+\begin{equation}
+    \mathcal{L} = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu} + \frac{1}{2}m^2B^{\mu}B_{\mu}
+    \qquad
+    F_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu
+\end{equation}
+With the conjugate momenta:
+\begin{equation}
+    \Pi^\mu = \frac{\partial \mathcal{L}}{\partial \dot{B}_\mu} \rightarrow \begin{matrix}
+        \Pi^0 = 0 \\ \Pi^i = \dot{B}_i - \partial_i B_0
+    \end{matrix}
+\end{equation}
+In this section we quantize the theory.
+\subsection{The Hamiltonian density}
+So, using a Legendre transformation, the Hamiltonian density is:
+\begin{equation}
+    \mathcal{H} = \Pi^\mu \dot{B}_\mu - \mathcal{L} =
+    \Pi^\mu \dot{B}_\mu + \frac{1}{4}F^{\mu\nu}F_{\mu\nu} - \frac{1}{2}m^2B^{\mu}B_{\mu}
+\end{equation}
+The first term follows:
+\begin{equation}
+    \Pi^\mu \dot{B}_\mu = \Pi^i \dot{B} _i = \Pi^i \left(\Pi^i + \partial_i B_0\right) = 
+    \Pi^i \Pi^i + \Pi^i \partial_i B_0
+\end{equation}
+While, noticing that
+\begin{equation}
+    \Pi^i = F^{i0} = -F_{i0} = -F^{0i} = F_{0i}
+\end{equation} 
+we get:
+\begin{equation}
+    \frac{1}{4}F^{\mu\nu}F_{\mu\nu} = \frac{1}{4}F^{i0}F_{i0} + \frac{1}{4}F^{0i}F_{0i} + \frac{1}{4}F^{ij}F_{ij} = -\frac{1}{2}\Pi^i\Pi^i - \frac{1}{4}F_{ij}F_{ij}
+\end{equation}
+And the last term:
+\begin{equation}
+    \frac{1}{2}m^2 B^\mu B_\mu = \frac{1}{2}m^2 B_0^2 - \frac{1}{2}m^2 B_i B_i
+\end{equation}
+Thus, we get:
+\begin{equation}
+    \mathcal{H} = \Pi^i \Pi^i + \Pi^i\partial_iB_0 - \frac{1}{2}\Pi^i\Pi^i + \frac{1}{4}F_{ij}F_{ij} + \frac{1}{2}m^2 B_i B_i - \frac{1}{2}m^2 B_0^2
+\end{equation}
+Remembering that $\mathcal{H}$ fits in a spatial integral, we can integrate the second term by parts and ignore the total derivative term:
+\begin{equation}
+    \Pi^i\partial_iB_0 = \partial_i \left(B_0\Pi^i\right) - B_0 \partial_i \Pi_i \rightarrow - B_0 \partial_i \Pi_i
+\end{equation}
+Giving:
+\begin{equation}
+    \mathcal{H} = \frac{1}{2}\Pi^i \Pi^i + \frac{1}{4}F_{ij}F_{ij} + \frac{1}{2}m^2 B_i B_i - \frac{1}{2}m^2 B_0^2 - B_0 \partial_i \Pi_i
+\end{equation}
+\subsection{Equation of Motion for $B_0$}
+We can use E-L to find the EOM for $B_0$, but this will require openning up the Lagrangian. Let us intstead use Hamiltonian mechanics, since we got a comfortable Hamiltonian here. For the field $B_0$, the conjugate momentum is zero, and so, using one of Hamilton's equations:
+\begin{equation}
+    \dot{\Pi^0} = \frac{\partial \mathcal{H}}{\partial B_0}
+\end{equation}
+But since $\Pi^0 = 0$ we get the LHS of the equation is $\dot{\Pi}^0 = 0$. the RHS gives:
+\begin{equation}
+    \frac{\partial \mathcal{H}}{\partial B_0} = -m^2 B_0 - \partial_i \Pi^i = 0
+\end{equation}
+This gives:
+\begin{equation}
+    B_0 = -\frac{1}{m^2}\partial_i \Pi^i
+\end{equation}
+Pluggin this back into $\mathcal{H}$:
+\begin{equation}
+\begin{gathered}
+    \mathcal{H} = \frac{1}{2}\Pi^i \Pi^i + \frac{1}{4}F_{ij}F_{ij} + \frac{1}{2}m^2 B_i B_i - \frac{1}{2}m^2 \left(\frac{1}{m^2}\partial_i \Pi^i\right)^2 + \frac{1}{m^2}\partial_j \Pi^j \partial_i \Pi_i = \\ =
+    \frac{1}{2}\Pi^i \Pi^i + \frac{1}{4}F_{ij}F_{ij} + \frac{1}{2}m^2 B_i B_i + \frac{1}{2m^2} \left(\partial_i \Pi^i\right)^2
+\end{gathered}
+\end{equation}
+\subsection{Quantizing the theory}
+Using the equal-time commutation relations:
+\begin{equation}
+\begin{gathered}
+    \left[B_i(t, \vec{x}), \Pi_j(t, \vec{y})\right] =
+    i\delta_{ij}^3(\vec{x} - \vec{y})
+    \\
+    \left[B_i(t, \vec{x}), B_j(t, \vec{y})\right] = 
+    \left[\Pi_i(t, \vec{x}), \Pi_j(t, \vec{y})\right] = 
+    0
+\end{gathered}
+\end{equation}
+Remembering that the EOMs are:
+\begin{equation}
+    \partial_\mu B^\mu = 0
+    \qquad
+    \left(\Box + m^2\right)B^\mu = 0
+\end{equation}
+This is solved by the mode expansion:
+\begin{equation}
+    B^\mu(x) = \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}} \left(
+        \epsilon_\lambda^\mu(p)e^{-ipx} a_{\lambda, \vec{p}} +
+        \epsilon_\lambda^\mu(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right)
+\end{equation}
+Where $\epsilon_\lambda^\mu(p)$ are the polarization vectors for $\lambda = 1,2,3$ satisfy:
+\begin{itemize}
+    \item Transveraslity: $p_\mu e^\mu_\lambda(p)$ = 0
+    \item Orthonormality: $\epsilon^\mu_\lambda(p)\epsilon_{\lambda', \mu}(p) = -\delta_{\lambda\lambda'}$
+    \item Completeness: $\sum_{\lambda=1}^3 \epsilon^\mu_\lambda(p)\epsilon^\nu_\lambda(p) = -\eta^{\mu\nu} + \frac{p^\mu p^\nu}{m^2}$
+\end{itemize}
+To see this works, we plug it into the EOMs:
+\begin{equation}
+\begin{gathered}
+    \partial_\mu B^\mu =
+    \partial_\mu \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}} \left(
+        \epsilon_\lambda^\mu(p)e^{-ipx} a_{\lambda, \vec{p}} +
+        \epsilon_\lambda^\mu(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right) = \\ =
+    \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}} \left(
+        -ip_\mu \epsilon_\lambda^\mu(p)e^{-ipx} a_{\lambda, \vec{p}} +
+        ip_\mu \epsilon_\lambda^\mu(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right) = 0
+\end{gathered}
+\end{equation}
+Where in the last step we used the transveraslity of the polarization vectors. For the KG equation:
+\begin{equation}
+\begin{gathered}
+    \left(\Box + m^2\right)B^\mu =
+    \left(\partial_\nu \partial^\nu + m^2\right) \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}} \left(
+        \epsilon_\lambda^\mu(p)e^{-ipx} a_{\lambda, \vec{p}} +
+        \epsilon_\lambda^\mu(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right) = \\ =
+    \left(-p_\nu p^\nu + m^2\right) \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}} \left(
+        \epsilon_\lambda^\mu(p)e^{-ipx} a_{\lambda, \vec{p}} +
+        \epsilon_\lambda^\mu(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right) = 0
+\end{gathered}
+\end{equation}
+Where we used $m^2 = p_\nu p^\nu$. To prove the commutation relations, let us find the conjugate momenta:
+\begin{equation}
+\begin{gathered}
+    \Pi^i = \partial_0 B_i - \partial_i B_0 = \\ =
+    \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}}
+    \left[
+        ip^0\left(
+            - \epsilon_\lambda^i(p)e^{-ipx} a_{\lambda, \vec{p}} +
+            \epsilon_\lambda^i(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+        \right) -
+        ip^i\left(
+            - \epsilon_\lambda^0(p)e^{-ipx} a_{\lambda, \vec{p}} +
+            \epsilon_\lambda^0(p)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+        \right)
+    \right] = \\ =
+    i\sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}}
+    \left[
+        -\left(p^0\epsilon_\lambda^i(p) - p^i \epsilon_\lambda^0(p)\right)e^{-ipx} a_{\lambda, \vec{p}}
+        +
+        \left(p^0\epsilon_\lambda^i(p) - p^i \epsilon_\lambda^0(p)\right)e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right] = \\ =
+    i\sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}}
+    \left(p^0\epsilon_\lambda^i(p) - p^i \epsilon_\lambda^0(p)\right)
+    \left(
+        - e^{-ipx} a_{\lambda, \vec{p}}
+        + e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right)
+\end{gathered}
+\end{equation}
+Using the commutation relations:
+\begin{equation}
+    \left[a_{\lambda, \vec{p}}, a_{\lambda', \vec{k}}^\dagger\right] = \delta_{\lambda \lambda'}(2\pi)^3\delta^3(\vec{p} - \vec{k})
+    \qquad
+    \left[a_{\lambda, \vec{p}}, a_{\lambda', \vec{k}}\right] =
+    \left[a_{\lambda, \vec{p}}^\dagger, a_{\lambda', \vec{k}}^\dagger\right] =
+    0
+\end{equation}
+We get:
+\begin{equation}
+\begin{gathered}
+    \left[B_i, B_j\right] = \sum_{\lambda, \lambda'=1}^3 \int\frac{d^3p d^3k}{(2\pi)^62\sqrt{\omega_{\vec{p}}\omega_{\vec{k}}}} \left(
+        \epsilon_\lambda^i(p) \epsilon_{\lambda'}^j(\vec{k}) e^{-i(px - ky)} \left[a_{\lambda, \vec{p}}, a^\dagger_{\lambda', \vec{k}}\right] +
+        \epsilon_\lambda^i(p) \epsilon_{\lambda'}^j(\vec{k}) e^{-i(ky - px)} \left[a^\dagger_{\lambda, \vec{p}}, a_{\lambda', \vec{k}}\right]
+    \right) = \\ = \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3 2\omega_{\vec{p}}} \left(
+        \epsilon_\lambda^i(p) \epsilon_\lambda^j(p) e^{-ip(x - y)} +
+        \epsilon_\lambda^i(p) \epsilon_\lambda^j(p) e^{-ip(y - x)}
+    \right) = 0
+\end{gathered}
+\end{equation}
+Where we concluded it's zero since the first and second terms are opposite. The same will happen for $\left[\Pi_i, \Pi_j\right]$. Let us define the shorthand notation $\alpha^i_\lambda(p) = p^0\epsilon_\lambda^i(p) - p^i \epsilon_\lambda^0(p)$ to get:
+\begin{equation*}
+    \Pi^i = i\sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_{\vec{p}}}}
+    \left(
+        - \alpha^i_{\lambda}(p) e^{-ipx} a_{\lambda, \vec{p}}
+        + \alpha^i_{\lambda}(p) e^{ipx} a^\dagger_{\lambda, \vec{p}}
+    \right)
+\end{equation*}
+And so:
+\begin{equation*}
+\begin{gathered}
+    [\Pi^i, \Pi^j] = -\sum_{\lambda, \lambda'=1}^3 \int\frac{d^3p d^3k}{(2\pi)^62\sqrt{\omega_{\vec{p}}\omega_{\vec{k}}}} \left(
+        \alpha_\lambda^i(p) \alpha_{\lambda'}^j(\vec{k}) e^{-i(px - ky)} \left[a_{\lambda, \vec{p}}, a^\dagger_{\lambda', \vec{k}}\right] +
+        \alpha_\lambda^i(p) \alpha_{\lambda'}^j(\vec{k}) e^{-i(ky - px)} \left[a^\dagger_{\lambda, \vec{p}}, a_{\lambda', \vec{k}}\right]
+    \right) = \\ = \sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3 2\omega_{\vec{p}}} \left(
+        \alpha_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(x - y)} +
+        \alpha_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(y - x)}
+    \right) = 0
+\end{gathered}
+\end{equation*}
+And finally:
+\begin{equation*}
+\begin{gathered}
+    [B^i, \Pi^i] = i\sum_{\lambda, \lambda'=1}^3 \int\frac{d^3p d^3k}{(2\pi)^62\sqrt{\omega_{\vec{p}}\omega_{\vec{k}}}} \left(
+        \epsilon_\lambda^i(p) \alpha_{\lambda'}^j(\vec{k}) e^{-i(px - ky)} \left[a_{\lambda, \vec{p}}, a^\dagger_{\lambda', \vec{k}}\right] -
+        \epsilon_\lambda^i(p) \alpha_{\lambda'}^j(\vec{k}) e^{-i(ky - px)} \left[a^\dagger_{\lambda, \vec{p}}, a_{\lambda', \vec{k}}\right]
+    \right) = \\ = i\sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3 2\omega_{\vec{p}}} \left(
+        \epsilon_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(x - y)} -
+        \epsilon_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(y - x)}
+    \right) = \\ = i\sum_{\lambda=1}^3 \int\frac{d^3p}{(2\pi)^3 2\omega_{\vec{p}}} \left(
+        \epsilon_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(x - y)} +
+        \epsilon_\lambda^i(p) \alpha_\lambda^j(p) e^{-ip(x - y)}
+    \right)
+\end{gathered}
+\end{equation*}
+But, from the completeness relation of $\epsilon_\lambda^i(p)$ we get:
+\begin{equation*}
+\begin{gathered}
+    \sum_{\lambda=1}^3 \epsilon^i_\lambda(p)\alpha^j_\lambda(p) = 
+    \sum_{\lambda=1}^3 \epsilon^i_\lambda(p) \left[p^0\epsilon_\lambda^j(p) - p^j \epsilon_\lambda^0(p) \right] = \\ =
+    p^0 \sum_{\lambda=1}^3 \epsilon^i_\lambda(p) \epsilon_\lambda^j(p) - p^j \sum_{\lambda=1}^3 \epsilon^i_\lambda(p) \epsilon_\lambda^0(p) = \\ =
+    p^0 \left[\eta^{ij} - \frac{p^i p^j}{m^2}\right] -
+    p^j \left[\eta^{i0} - \frac{p^i p^0}{m^2}\right] = \\ =
+    p^0 \eta^{ij} - p^j \eta^{i0} = \omega_{\vec{p}}\delta^{ij}
+\end{gathered}
+\end{equation*}
+Pluggin that back into the integral gives:
+\begin{equation*}
+    [B^i, \Pi^i] = i\int\frac{d^3p}{(2\pi)^3 2\omega_{\vec{p}}}
+        2\omega_{\vec{p}}\delta^{ij}e^{-ip(x - y)} = i\delta_{ij}\delta(\vec{x} - \vec{y})
+\end{equation*}
+
+\subsection{Correlation function}
+Let us now derive the time-ordered 2-points correlation function:
+\begin{equation*}
+    D^{\mu\nu}_F(x - y) = \bra{0} T B^\mu(x) B^\nu(y) \ket{0}
+\end{equation*}
+The time-ordering says that we assume once that $x^0 > y^0$ and order the fields accordingly, and then do the opposite, and add the results with Heaviside functions:
+\begin{equation*}
+    T B^\mu(x) B^\nu(y) = \Theta(x^0 - y^0) B^\mu(x) B^\nu(y) + \Theta(y^0 - x^0) B^\mu(x) B^\nu(y)
+\end{equation*}
+Now, let us evaluate each of the cases. In the $x^0 > y^0$ case:
+\begin{equation*}
+\begin{gathered}
+    \bra{0}T B^\mu(x) B^\nu(y) \ket{0} = 
+    \bra{0} B^\mu(x) B^\nu(y) \ket{0} = 
+    \sum_{\lambda, \lambda'=1}^3 \int \frac{d^3p d^3k}{(2\pi)^6 2\sqrt{\omega_p\omega_k}} \epsilon^\mu_\lambda(p)\epsilon^\nu_{\lambda'}(k) e^{i(ky - px)} \bra{0} a_{\lambda, p}a^\dagger_{\lambda', k} \ket{0} = \\ =
+    \sum_{\lambda, \lambda'=1}^3 \int \frac{d^3p d^3k}{(2\pi)^6 2\sqrt{\omega_p\omega_k}} \epsilon^\mu_\lambda(p)\epsilon^\nu_{\lambda'}(k) e^{i(ky - px)} \bra{0} \left[a_{\lambda, p}, a^\dagger_{\lambda', k}\right] \ket{0} = \\ =
+    \sum_{\lambda, \lambda'=1}^3 \int \frac{d^3p d^3k}{(2\pi)^6 2\sqrt{\omega_p\omega_k}} \epsilon^\mu_\lambda(p)\epsilon^\nu_{\lambda'}(k) e^{i(ky - px)} \delta_{\lambda \lambda'}(2\pi)^3\delta(\vec{p} - \vec{k}) = \\ =
+    \sum_{\lambda=1}^3 \int \frac{d^3k}{(2\pi)^3 2\omega_k} \epsilon^\mu_\lambda(k)\epsilon^\nu_{\lambda}(k) e^{ik(y - x)}
+    = \\ =
+    \int \frac{d^3k}{(2\pi)^3 2\omega_k} e^{-ik(x - y)} \left(-\eta^{\mu\nu} + \frac{k^\mu k^\nu}{m^2}\right)
+\end{gathered}
+\end{equation*}
+And of course, for the case $y^0 > x^0$ we get the same just with $x \leftrightarrow y$. Let us now show that the four-integral form
+\begin{equation*}
+    D^{\mu\nu}_F(x-y) = \lim_{\epsilon \rightarrow 0} \int \frac{d^4k}{(2\pi)^4}\frac{-ie^{-ik(x-y)}}{k^2 - m^2 + i\varepsilon}\left(\eta^{\mu\nu} - \frac{k^\mu k^\nu}{m^2}\right)
+\end{equation*}
+Is equivalent. To show that, we perform the $k^0$ integral using the residue theorem. First let us seperate the spatial integral:
+\begin{equation}
+    \lim_{\epsilon\rightarrow0^{+}} \int \frac{d^4k}{(2\pi)^4}\frac{-ie^{-ik(x-y)}}{k^2 - m^2 + i\varepsilon}\left(\eta^{\mu\nu} - \frac{k^\mu k^\nu}{m^2}\right) = 
+    \int \frac{d^3k}{(2\pi)^3} e^{i\vec{k}\cdot(\vec{x} - \vec{y})} \lim_{\epsilon\rightarrow0^{+}} \int \frac{-ie^{-ik^0(x^0-y^0)}}{k^2 - m^2 + i\varepsilon}\left(\eta^{\mu\nu} - \frac{k^\mu k^\nu}{m^2}\right)
+\end{equation}
+And let us now look at the $k^0$ integral. The denominator becomes:
+\begin{equation}
+    k^2 - m^2 + i\epsilon = \left(k^0\right)^2 - \vec{k}^2 - m^2 + i\epsilon = \left(k^0\right)^2 - \omega_k^2 + i\epsilon \rightarrow \left(k^0 - (\omega_k - i\epsilon)\right)\left(k^0 + (\omega_k - i\epsilon)\right)
+\end{equation}
+here in the last step we renamed $\epsilon$ and added a $\epsilon^2$ term that vanishes in the limit. This means the integrand has two poles $k^0 = \pm \left(\omega_k - i\epsilon\right)$. Since one of them is above the real axis and one of them is below, when we want to integrate $k^0$ in $(-\infty, \infty)$, we need to take the semi circle contour below or above the axis, depedning on which of them doesn't diverge. Looking at the exponent $e^{-ik^0(x^0 - y^0)}$, we get that for $x^0 > y^0$, the integral diverges when $\Im(k^0) > 0$ and vise versa. So, we take the below contour if $x^0 > y^0$ and the above contour if $x^0 < y^0$. The below contour contains the pole $k^0 = \omega_k - i\epsilon$ while the above contour contains the pole $k^0 = - \omega_k + i\epsilon$. Let us calcualte the residue in each pole:
+\end{document}

@@ -1,7 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769953429.20193 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" "formulas.pdf" "formulas" 1769953431.95768 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/.texlive2025/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1769872678 6964 5e25b6ea40b51c2417770e5e017f71e5 ""
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" 1769953427 29903 3d483dbf39d6d5cc960efe44b7bd9961 ""
+["pdflatex"] 1769960852.81433 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex6/ex6.tex" "ex6.pdf" "ex6" 1769960855.63448 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/ex6/ex6.tex" 1769960847 15675 d6bed429e2a045e3471fce47cc69ec4d ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1761867220 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -17,11 +16,6 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/zptmcm7t.tfm" 1761868085 2172 1d00c2a0d10f23031be62329457a870c ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/zptmcm7v.tfm" 1761868085 1032 20febbd0f0c9a48eb78616f897008286 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/zptmcm7y.tfm" 1761868085 1520 ad7b3c1a480a03b3e41b5fbb13d938f2 ""
-  "c:/texlive/2025/texmf-dist/fonts/tfm/public/bbm/bbm10.tfm" 1761855773 560 39fd35b5e4a6aca3672660cc548ba860 ""
-  "c:/texlive/2025/texmf-dist/fonts/tfm/public/bbm/bbm12.tfm" 1761855773 556 710091e9bfd7488f1b5667243215698b ""
-  "c:/texlive/2025/texmf-dist/fonts/tfm/public/bbm/bbm6.tfm" 1761855773 560 4c5ff0e6c23877f3f630ae9d8ef92c6e ""
-  "c:/texlive/2025/texmf-dist/fonts/tfm/public/bbm/bbm7.tfm" 1761855773 560 ab71d518408103034050efd8ebc8a16a ""
-  "c:/texlive/2025/texmf-dist/fonts/tfm/public/bbm/bbm9.tfm" 1761855773 564 538e51111886634ef38425dfff2e2694 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1761857211 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1761857211 1528 abec98dbc43e172678c11b3b9031252a ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm" 1761857211 1296 45809c5a464d5f32c8f98ba97c1bb47f ""
@@ -37,7 +31,6 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1761854989 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1761854989 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb" 1761865672 18977 d519a3bb9f65e0228905a11ced42d626 ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb" 1761865672 24771 eb123b1d6db1a8a40172a27eb12cf6d5 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb" 1761866161 16077 4737ac34f0fb5608550f3780a0202c22 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/symbol/usyr.pfb" 1761867220 33709 b09d2e140b7e807d3a97058263ab6693 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb" 1761868085 44729 fea0975e20ec51c992338362f05f1146 ""
@@ -59,7 +52,6 @@
   "c:/texlive/2025/texmf-dist/tex/latex/base/article.cls" 1761861742 20144 b966087dda3b194755eb460d32e2ef75 ""
   "c:/texlive/2025/texmf-dist/tex/latex/base/size10.clo" 1761861742 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
   "c:/texlive/2025/texmf-dist/tex/latex/bbm-macros/bbm.sty" 1761855775 1644 1e0d54b051369c3f457872824cac219f ""
-  "c:/texlive/2025/texmf-dist/tex/latex/bbm-macros/ubbm.fd" 1761855775 2132 62f898e14cad3357133b5cbf57b61c0a ""
   "c:/texlive/2025/texmf-dist/tex/latex/bbold/bbold.sty" 1761855780 1827 b8dfd92843f5ac03d85dbd86854854d5 ""
   "c:/texlive/2025/texmf-dist/tex/latex/carlisle/slashed.sty" 1761856743 5327 8b3c95b5f71136add36a4a0bb1507594 ""
   "c:/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1761858905 13886 d1306dcf79a944f6988e688c1785f9ce ""
@@ -101,10 +93,10 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "formulas.aux" 1769953431 3311 3648fb81c5472927cea47ead4fe7ceb2 "pdflatex"
-  "formulas.tex" 1769953427 29903 3d483dbf39d6d5cc960efe44b7bd9961 ""
+  "ex6.aux" 1769960855 608 1f68f376c885293e2d2b34e7614cdaca "pdflatex"
+  "ex6.tex" 1769960847 15675 d6bed429e2a045e3471fce47cc69ec4d ""
   (generated)
-  "formulas.aux"
-  "formulas.log"
-  "formulas.pdf"
+  "ex6.aux"
+  "ex6.log"
+  "ex6.pdf"
   (rewritten before read)

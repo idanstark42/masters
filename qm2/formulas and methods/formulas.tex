@@ -85,6 +85,12 @@ Which gives the classica EOM:
 \begin{equation*}
     \Box A^\mu - \partial^\mu \partial_\nu A^\nu = 0
 \end{equation*}
+Identities:
+\begin{equation*}
+    F^{0i} = F_{i0} = -F_{0i} = -F^{i0}
+    \qquad
+    F^{ij} = -F^{ji} = F_{ij} = -F_{ji}
+\end{equation*}
 
 \section{Quantizing a theory}
 \begin{itemize}
@@ -794,5 +800,57 @@ Identities:
     \slashed{a}\slashed{b} + \slashed{b}\slashed{a} = 2ab\mathbbm{1}
     \qquad
     \slashed{a}\slashed{a} = a^2\mathbbm{1}
+\end{equation*}
+
+\section{Lagrangian and Hamiltonian mechanics}
+
+\subsection{Lagrangian formulation (fields)}
+Classical fields \(\phi_a(x)\), \(x^\mu = (t,\vec{x})\).
+
+\begin{equation*}
+    \mathcal{L} = \mathcal{L}\!\left(\phi_a,\partial_\mu\phi_a\right)
+\end{equation*}
+
+Action:
+\begin{equation*}
+    S[\phi] = \int d^4x\,\mathcal{L}
+\end{equation*}
+
+Euler--Lagrange equations:
+\begin{equation*}
+    \partial_\mu\frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi_a)}
+    - \frac{\partial\mathcal{L}}{\partial\phi_a} = 0
+\end{equation*}
+
+Example (real scalar field):
+\begin{equation*}
+    \mathcal{L} = \frac{1}{2}\partial_\mu\phi\,\partial^\mu\phi
+    - \frac{1}{2}m^2\phi^2
+\end{equation*}
+\begin{equation*}
+    (\Box + m^2)\phi = 0
+\end{equation*}
+
+\subsection{Canonical momenta and Hamiltonian density}
+Canonical momentum:
+\begin{equation*}
+    \pi_a(x) = \frac{\partial\mathcal{L}}{\partial(\partial_0\phi_a)}
+\end{equation*}
+
+Hamiltonian density:
+\begin{equation*}
+    \mathcal{H} = \pi_a\dot\phi_a - \mathcal{L}
+\end{equation*}
+
+Hamiltonian:
+\begin{equation*}
+    H = \int d^3x\,\mathcal{H}
+\end{equation*}
+
+Hamilton's equations:
+\begin{equation*}
+    \dot\phi_a = \frac{\delta H}{\delta \pi_a}
+    \qquad
+    \dot\pi_a = -\frac{\delta H}{\delta \phi_a}
 \end{equation*}
 \end{document}
