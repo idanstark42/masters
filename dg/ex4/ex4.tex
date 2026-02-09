@@ -1,0 +1,179 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Differential Geometry Excercise 4}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Question 1}
+Let $M \subset \R^3$ be a two-dimensional, embedded submanifold with the induced Riemannian metric.
+Let $U \subset \R^3$ be a neighborhood of $0$ and let $f: \R^2 \rightarrow \R$ be a smooth function with $f(0) = 0$ and $\nabla f(0) = 0$. Let us assume that
+\begin{equation}
+    M \cap U = \left\{(x,y,z) \in U : z = f(x,y)\right\}
+\end{equation}
+\subsection*{Local orthonormal coframe}
+The induced metric comes from $\R^3$ Eucledian metric:
+\begin{equation}
+    g_{\R^3} = dx^2 + dy^2 + dz^2
+\end{equation}
+Inside $M \cap U$, the induced metric takes the form:
+\begin{equation}
+    g_{M \cap U} = dx^2 + dy^2 + \left(f_x dx + f_y dy\right)^2 =
+    \left(1 + f_x^2\right)dx^2 + 2f_xf_ydxdy + \left(1+ f_y^2\right)dy^2
+\end{equation}
+Where
+\begin{equation}
+    f_x = \frac{\partial f}{\partial x}
+    \qquad
+    f_y = \frac{\partial f}{\partial y}
+\end{equation}
+To find a coframe, let us use Cholesky decomposition. Define the two one-forms:
+\begin{equation}
+    \omega_1 = a_x dx
+    \qquad
+    \omega_2 = b_x dx + b_y dy
+\end{equation}
+Such that:
+\begin{equation}
+    g = \omega_1^2 + \omega_2^2
+\end{equation}
+Openning this up gives:
+\begin{equation}
+    g = (a_x^2 + b_x^2) dx^2 + 2b_xb_ydxdy + b_y^2dy^2
+\end{equation}
+comparing this to the original metric gives:
+\begin{equation}
+\begin{gathered}
+    a_x = \sqrt{1 + \frac{f_x^2}{1 + f_y^2}}
+    \qquad
+    b_x = \frac{f_xf_y}{\sqrt{1 + f_y^2}}
+    \qquad
+    b_y = \sqrt{1 + f_y^2}
+\end{gathered}
+\end{equation}
+And so, and orthonotmal frame is:
+\begin{equation}
+    \omega_1 = \sqrt{1 + \frac{f_x^2}{1 + f_y^2}}dx
+    \qquad
+    \omega_2 = \frac{f_xf_y}{\sqrt{1 + f_y^2}}dx + \sqrt{1 + f_y^2}dy
+\end{equation}
+\subsection*{One form derivation}
+Let
+\begin{equation}
+    \omega = \omega_1 + i\omega_2
+\end{equation}
+And let us look for the 1-form $\varphi$ such that $d\omega = i\varphi \wedge \omega$. Plugging the defintion of $\omega$ into it gives:
+\begin{equation}
+    d\omega_1 + id\omega_2 = i \varphi \wedge (\omega_1 + i\omega_2) = -\varphi \wedge \omega_2 + i \varphi \wedge \omega_1
+\end{equation}
+Which requires:
+\begin{equation}
+\begin{cases}
+    d\omega_1 = -\varphi \wedge \omega_2
+    \\
+    d\omega_2 = \varphi \wedge \omega_1
+\end{cases}
+\end{equation}
+Since $\omega_1, \omega_2$ is a coframe, $\varphi$ can be written as its linear combination $\varphi = \varphi_1 \omega_1 + \varphi_2\omega_2$:
+\begin{equation}
+\begin{cases}
+    d\omega_1 = -\varphi_1 \omega_1 \wedge \omega_2
+    \\
+    d\omega_2 = - \varphi_2 \omega_1 \wedge \omega_2
+\end{cases}
+\end{equation}
+Let us now derive the values of these expressions in terms of $dx$ and $dy$:
+\begin{equation}
+    \omega_1 \wedge \omega_2 = \sqrt{\left(1 + \frac{f_x^2}{1 + f_y^2}\right)\left(1 + f_y^2\right)} dx \wedge dy = 
+    \sqrt{1 + f_x^2 + f_y^2} dx \wedge dy
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    d\omega_1 = -\frac{\partial a_x}{\partial y} dx \wedge dy =
+    -a_x^{-1}\left(\frac{(1 + f_y^2)f_xf_{xy} - f_x^2f_yf_{yy}}{\left(1 + f_y^2\right)^2}\right) dx \wedge dy = \\ =
+    -\frac{f_xf_{xy} + f_y^2f_xf_{xy} - f_x^2f_yf_{yy}}{\left(1 + f_y^2\right)^{3/2}\left(1 + f_x^2 + f_y^2\right)^{1/2}} dx \wedge dy = \\ =
+    -\frac{f_x(f_{xy} + f_y^2f_{xy} - f_xf_yf_{yy})}{\left(1 + f_y^2\right)^{3/2}\left(1 + f_x^2 + f_y^2\right)^{1/2}} dx \wedge dy
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    d\omega_2 = \left(\frac{\partial b_y}{\partial x} - \frac{\partial b_x}{\partial y}\right) dx \wedge dy = \\ =
+    \left(
+        \frac{f_yf_{xy}}{\sqrt{1 + f_y^2}} -
+        \frac{(f_{xy}f_y + f_xf_{yy})(1 + f_y^2) - f_xf_y^2f_{xy}}{(1 + f_y^2)^{3/2}}
+    \right) dx \wedge dy = \\ =
+    \left(
+        \frac{(f_{xy}f_y - f_xf_{yy} - f_yf_{xy})(1 + f_y^2) + f_xf_y^2f_{xy}}{(1 + f_y^2)^{3/2}}
+    \right) dx \wedge dy = \\ =
+    -\frac{f_x(f_{yy} + f_y^2f_{yy} + f_y^2f_{xy})}{(1 + f_y^2)^{3/2}}
+    dx \wedge dy
+\end{gathered}
+\end{equation}
+This gives:
+\begin{equation}
+    \varphi_1 = \frac{f_x(f_{xy} + f_y^2f_{xy} - f_xf_yf_{yy})}{\left(1 + f_y^2\right)^{3/2}\left(1 + f_x^2 + f_y^2\right)}
+    \qquad
+    \varphi_2 = \frac{f_x(f_{yy} + f_y^2f_{yy} + f_y^2f_{xy})}{(1 + f_y^2)^{3/2}\left(1 + f_x^2 + f_y^2\right)^{1/2}}
+\end{equation}
+
+\subsection*{Theorema Egregium}
+Let us now proove Theorema Egregium at the origin, i.e. show that:
+\begin{equation}
+    d\varphi = K \omega_1 \wedge \omega_2 \qquad s.t. \qquad K = \det \nabla^2 f(0)
+\end{equation}
+To show that, let us expand $f_x$ and $f_y$ around the origin (all second derivatives from this point on are calculated at the origin, i.e. $f_{xx} = f_{xx}(0)$ and so forth):
+\begin{equation}
+    f_x \approx f_{xx}x + f_{xy}y
+    \qquad
+    f_y \approx f_{xy}x + f_{yy}y
+\end{equation}
+Pluggin that into the formulas for $\varphi_1$ and $\varphi_2$ and keeping only linear terms:
+\begin{equation}
+    \varphi_1 = \frac{f_x(f_{xy} + f_y^2f_{xy} - f_xf_yf_{yy})}{\left(1 + f_y^2\right)^{3/2}\left(1 + f_x^2 + f_y^2\right)} \approx
+    f_{xy}(f_{xx}x + f_{xy}y)
+\end{equation} 
+\begin{equation}
+    \varphi_2 = \frac{f_x(f_{yy} + f_y^2f_{yy} + f_y^2f_{xy})}{(1 + f_y^2)^{3/2}\left(1 + f_x^2 + f_y^2\right)^{1/2}} \approx
+    f_{yy}(f_{xx}x + f_{xy}y)
+\end{equation}
+Which gives the form:
+\begin{equation}
+\begin{gathered}
+    \varphi = f_{xy}(f_{xx}x + f_{xy}y) \omega_1 + f_{yy}(f_{xx}x + f_{xy}y) \omega_2 = \\ =
+    (f_{xx}x + f_{xy}y)\left(f_{yy} \frac{f_xf_y}{\sqrt{1 + f_y^2}} + f_{xy} \sqrt{1 + \frac{f_x^2}{1 + f_y^2}}\right)dx + f_{yy}(f_{xx}x + f_{xy}y)\sqrt{1 + f_y^2}dy \approx \\ \approx
+    f_{xy}(f_{xx}x + f_{xy}y)dx + f_{yy}(f_{xx}x + f_{xy}y)dy
+\end{gathered}
+\end{equation}
+Deriving this, we get:
+\begin{equation}
+\begin{gathered}
+    d\varphi = \left(
+        \frac{\partial}{\partial x}\left(f_{yy}(f_{xx}x + f_{xy}y)\right) -
+        \frac{\partial}{\partial y}\left(f_{xy}(f_{xx}x + f_{xy}y)\right)
+    \right) dx \wedge dy = \\ =
+    \left(f_{xx}f_{yy} - f_{xy}^2\right) dx \wedge dy = \det \nabla^2 f(0) dx \wedge dy
+\end{gathered}
+\end{equation}
+But, in the origin:
+\begin{equation}
+    \omega_1 \wedge \omega_2 = \sqrt{1 + f_x^2 + f_y^2} dx \wedge dy = dx \wedge dy
+\end{equation}
+Thus:
+\begin{equation}
+    d\varphi = \det \nabla^2 f(0) \omega_1 \wedge \omega_2
+\end{equation}
+\end{document}

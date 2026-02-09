@@ -1,0 +1,177 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Statistical Mechanics I Excercise 6}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Landau Theory for Complex Valued Fields}
+Let us consider the following Landau free energy:
+\begin{equation}
+    \beta\mathcal{F}\left[\psi(x),\phi(x)\right] = \int d^dx\left(
+        \frac{K}{2}\left|\nabla\psi\right|^2 + t\left|\psi\right|^2 + u\left|\psi\right|^4 + v\left|\psi\right|^6 + \frac{\phi^2}{2\sigma} - \gamma\sigma\left|\psi\right|^2
+    \right)
+\end{equation}
+
+\subsection{Effective theory}
+Let us look at the partition function for that energy:
+\begin{equation}
+\begin{gathered}
+    Z = \int D[\psi(x), \phi(x)]\exp[-\beta\mathcal{F}] = \\ =
+    \int D[\psi(x), \phi(x)] \exp[-\int d^dx\left(
+        \frac{K}{2}\left|\nabla\psi\right|^2 + t\left|\psi\right|^2 + u\left|\psi\right|^4 + v\left|\psi\right|^6 + \frac{\phi^2}{2\sigma} - \gamma\phi\left|\psi\right|^2
+    \right)] = \\ =
+    \int D[\psi(x)] 
+    \Biggl(
+    \exp[-\int d^dx\left(
+        \frac{K}{2}\left|\nabla\psi\right|^2 + t\left|\psi\right|^2 + u\left|\psi\right|^4 + v\left|\psi\right|^6
+    \right)] \times \\
+    \int D[\phi(x)]
+    \exp[-\int d^dx\left(
+        \frac{\phi^2}{2\sigma} - \gamma\phi\left|\psi\right|^2
+    \right)]
+    \Biggr)
+\end{gathered}
+\end{equation}
+The inner integral is the path intergral equivilent of a gaussian, and can be calculated by writing it explicitly and pulling the product out of the integral:
+\begin{equation}
+\begin{gathered}
+    \int D[\phi(x)]
+    \exp[-\int d^dx\left(
+        \frac{\phi^2}{2\sigma} - \gamma\phi\left|\psi\right|^2
+    \right)] = \\ =
+    \int \prod_x d\phi(x) \exp[-\left(
+        \frac{\phi(x)^2}{2\sigma} - \gamma\phi(x)\left|\psi\right|^2
+    \right)] = \\ =
+     \prod_x \int d\phi(x) \exp[-\left(
+        \frac{\phi(x)^2}{2\sigma} - \gamma\phi(x)\left|\psi\right|^2
+    \right)] = \\ =
+    \prod_x e^{\frac{\gamma^2\sigma}{2}\left|\psi\right|^4}\int d\phi(x) \exp[-\left(
+        \frac{\phi(x)^2}{2\sigma} - \gamma\phi(x)\left|\psi\right|^2 + \frac{\gamma^2\sigma}{2}\left|\psi\right|^4
+    \right)] = \\ =
+    \prod_x e^{\frac{\gamma^2\sigma}{2}\left|\psi\right|^4}\int d\phi(x) \exp[-\frac{\left(\phi(x) - \gamma\sigma\left|\psi\right|^2\right)^2}{2\sigma}] = \\ =
+    e^{\int d^dx \frac{\gamma^2\sigma}{2}\left|\psi\right|^4}
+    \prod_x \left(\sigma \pi\right) = \\ =
+    \exp[\int d^dx \left(
+        \frac{\gamma^2\sigma}{2}\left|\psi\right|^4 + \ln(\sigma\pi)
+    \right)]
+\end{gathered}
+\end{equation}
+This means the integral over $\phi(x)$ added to the effective $u$ in the theory and a constant energy that can be ignored. The effective free energy is then:
+\begin{equation}
+    \beta \mathcal{F}[\psi(x)] = \int d^dx\left(
+        \frac{K}{2}\left|\nabla\psi\right|^2 + t\left|\psi\right|^2 + \left(u - \frac{\gamma^2\sigma}{2}\right)\left|\psi\right|^4 + v\left|\psi\right|^6
+    \right)
+\end{equation}
+\subsection{Phase Diagram}
+Let us now use the new energy to find the phase diagram of the effective theory around the minima of the free energy. At that area, using the saddle point approximation, the fluctuations in $\psi$ are much smaller then the field itself $\psi$. This means we can neglect the first term and focus on the other three. The three remaining terms give the same Landau free energy we saw in assignment 4, which gave a tricrticial point due to the $\psi^6$ term (there is was $m^6$).
+% TODO phase diagram
+
+\section{Non-Homogeneous Field Model}
+Some d dimensions system is described by an order parameter that has a special
+axis, $x_{||}$, namely $m(x_{||}, \vec{x}_{\perp})$. Its Landau-Ginzburg free energy is given by:
+\begin{equation}
+    \beta \mathcal{F}[m(x)] = \int dx_{||} \int dx^{d-1}_{\perp} \left[
+        \frac{t}{2}m^2 + \frac{K}{2}\left(\partial_{x_{||}} m\right)^2  + \frac{L}{2}\left(\nabla_{\perp}^2 m\right)^2 - hm
+    \right]
+\end{equation}
+where $\nabla_{\perp}^2 = \sum_{x_i \ne x_{||}}\partial_{x_i}^2$.
+\subsection{Symmetries}
+The first symmtery we notice wehn $h = 0$ is the $\mathbb{Z}_2$ symmetry $m \rightarrow -m$. The second group of symmetries is the Orthogonal group $O(d - 1)$ of rotation and mirroring symmetries for the $d - 1$ dimensions $x_i \ne x_{||}$. Lastly, there is a mirroring $\mathbb{Z}_2$ symmetry for the mirroring along $x_{||}$.
+\subsection{Fourier Space Free energy}
+Let us now transform the energy to Fourier space. Writing:
+\begin{equation}
+    m = \int \frac{d^dk}{(2\pi)^d} \tilde{m}(\vec{k})e^{i\vec{k}\cdot \vec{x}}
+\end{equation}
+The free energy functional becomes:
+\begin{equation}
+\begin{gathered}
+    \beta \mathcal{F}[\tilde{m}(\vec{k})] = \int dx_{||} \int dx^{d-1}_{\perp} \left[
+        \frac{t}{2}m^2 + \frac{K}{2}\left(\partial_{x_{||}} m\right)^2  + \frac{L}{2}\left(\nabla_{\perp}^2 m\right)^2 - hm
+    \right] = \\ = \int dx_{||} \int dx^{d-1}_{\perp} \int \frac{d^dk}{(2\pi)^d} \Biggr[
+        \int \frac{d^dk'}{(2\pi)^d} 
+        \Biggr(
+            \frac{t}{2}\tilde{m}(\vec{k})\tilde{m}(\vec{k}')e^{i(\vec{k} + \vec{k}')\cdot\vec{x}} + \\  + \frac{K}{2}\left(\partial_{x_{||}}\tilde{m}(\vec{k})e^{i\vec{k}\cdot\vec{x}}\right)\left(\partial_{x_{||}}\tilde{m}(\vec{k}')e^{i\vec{k}'\cdot\vec{x}}\right)+ \frac{L}{2}\left(\nabla_{\perp}^2 \tilde{m}(\vec{k})\tilde{m}(\vec{k})e^{i\vec{k}\cdot\vec{x}}\right)\left(\nabla_{\perp}^2 \tilde{m}(\vec{k})\tilde{m}(\vec{k}')e^{i\vec{k}'\cdot\vec{x}}\right)
+        \Biggr) - h\tilde{m}(\vec{k})e^{i\vec{k}\cdot \vec{x}}
+    \Biggr]
+\end{gathered}
+\end{equation}
+Each of the terms where there are two $\tilde{m}$, evaluating the space integral over the exponents gives a delta function $(2\pi)^d \delta(\vec{k} + \vec{k}')$, while last term that has only one exponent gives $(2\pi)^d\delta(\vec{k})$. So, using these delta functions to integrate over the relevant $k$ integrals gives:
+\begin{equation}
+    \beta \mathcal{F}[\tilde{m}(k_{||}, \vec{k}_{\perp})] = \int \frac{d^dk}{(2\pi)^d}
+    \tilde{m}(k_{||}, \vec{k}_{\perp})\tilde{m}(-k_{||}, -\vec{k}_{\perp})
+    \left(
+        \frac{t}{2} + \frac{K}{2}k_{||}^2 + \frac{L}{2}\vec{k}_{\perp}^4
+    \right) - h\tilde{m}(0, \vec{0})
+\end{equation}
+\subsection{RG Recursion relations}
+Let us now find the recursion relations for the constants in the theory. For this, let us rescale $k_{||}' = bk_{||}$ and $\vec{k}_{\perp}' = c\vec{k}_{\perp}$ and renormalize the field $\tilde{m}' = m/z$. This gives:
+\begin{equation}
+    \beta \mathcal{F}[\tilde{m}(k_{||}', \vec{k}_{\perp}')] = \int \frac{d^dk'}{(2\pi)^d}\frac{z^2}{bc^{d-1}}
+    \tilde{m}(k_{||}', \vec{k}_{\perp}')\tilde{m}(-k_{||}', -\vec{k}_{\perp}')
+    \left(
+        \frac{t}{2} + \frac{K}{2b^2}k_{||}'^2 + \frac{L}{2c^4}\vec{k}_{\perp}'^4
+    \right) - h\tilde{m}'(0, \vec{0})
+\end{equation}
+This gives the recursion relations:
+\begin{equation}
+\begin{gathered}
+    t'/t = z^2b^{-1}c^{1-d}
+    \\
+    K'/K = z^2b^{-3}c^{1-d}
+    \\
+    L'/L = z^2b^{-1}c^{-3-d}
+\end{gathered}
+\end{equation}
+\subsection{Requiring unchanged prefactors}
+Next, let us require that $K' = K$ and $L' = L$. This gives:
+\begin{equation}
+\begin{cases}
+    z^2b^{-3}c^{1-d} = 1
+    \\
+    z^2b^{-1}c^{-3-d} = 1
+\end{cases}
+\end{equation}
+Solving the equations for $c(b)$ and $z(b)$ gives:
+\begin{equation}
+    c(b) = b^{1/2}
+    \qquad
+    z = b^{(d + 5)/4}
+\end{equation}
+This means that:
+\begin{equation}
+    t' = b^2t
+\end{equation}
+\subsection{Critical Exponents}
+Let us finally find the critical exponent $\nu$, for the correlation length:
+\begin{equation}
+    \xi(t) \sim t^{-\nu}
+\end{equation}
+At ever RG space, the correlation length scales according to the constants $b$ and $c$:
+\begin{equation}
+    \xi_{||}'(t') = b^{-1}\xi_{||}(t)
+    \qquad
+    \xi_{\perp}'(t') = c^{-1}\xi(t) = b^{-1/2}\xi_{\perp}(t)
+\end{equation}
+So:
+\begin{equation}
+    t'^{-\nu_{||}} = b^{-2\nu_{||}}t^{-\nu_{||}} \sim \xi_{||}'(t') = b^{-1}\xi_{||}(t) \sim b^{-1}t^{-\nu_{||}} \rightarrow \nu_{||} = \frac{1}{2}
+\end{equation}
+\begin{equation}
+    t'^{-\nu_{\perp}} = b^{-2\nu_{\perp}}t^{-\nu_{\perp}} \sim \xi_{\perp}'(t') = b^{-1/2}\xi_{\perp}(t) \sim b^{-1/2}t^{-\nu_{\perp}} \rightarrow \nu_{\perp} = \frac{1}{4}
+\end{equation}
+\end{document}
