@@ -174,4 +174,171 @@ So:
 \begin{equation}
     t'^{-\nu_{\perp}} = b^{-2\nu_{\perp}}t^{-\nu_{\perp}} \sim \xi_{\perp}'(t') = b^{-1/2}\xi_{\perp}(t) \sim b^{-1/2}t^{-\nu_{\perp}} \rightarrow \nu_{\perp} = \frac{1}{4}
 \end{equation}
+
+\section{Upper critical dimension}
+Let us consider the Landua-Ginzburg free energy:
+\begin{equation}
+    \mathcal{F}[m(x)] = \frac{1}{2}\left(\nabla m\right)^2 + tm^2 + um^4
+\end{equation}
+In class, we saw that for every natural $n > 2$, the prefactor $g_n$ of $m^n$ changes under RG flow to be:
+\begin{equation}
+    g_n' = g_n l^{-dn/2 + n + d}
+\end{equation}
+Applying this rule for $u = g_4$, we get:
+\begin{equation}
+    u(l) \sim l^{4 - d} 
+\end{equation}
+Let us take $d = 5$, since it's the lowest dimension above the UCD. This gives:
+\begin{equation}
+    u(l) \sim l^{-1}
+\end{equation}
+Therefore, for $l_0 = 100$, we get a $u(l_0) \ll 1$. We can now solve the ODE for $t$, which is the regualr gaussian term:
+\begin{equation}
+    \frac{dt}{dl} = 2lt
+\end{equation}
+Which gives:
+\begin{equation}
+    t = t_0 e^{l^2}
+\end{equation}
+And, plussing $l_0 = 100$ we get:
+\begin{equation}
+    t = e^{10000}t_0
+\end{equation}
+Which is much larger then the $u(l_0)$ term. This demonstrates that under RG flow for $d > 4$, $u$ grows vanihsingly small with respect to the other terms. Since we took the lowest dimension, this wil also be true for any dimension above the UCD $d > 4$.
+\newline
+The last term, in k-space, becomes:
+\begin{equation}
+    \int d^dr u m^4(r) = \frac{u}{(2\pi)^{4d}}\int d^dk_1 \cdots d^dk_4 \tilde{m}(k_1)\cdots\tilde{m}(k_4)(2\pi)^d\delta(k_1 + k_2 + k_3 + k_4)
+\end{equation}
+This, unlike the $m^2$ term, couples the $k = 0$ terms with the $k \ne 0$ terms. When $u$ is small, this coupling can be neglected, and we can write a theory for $k = 0$ alone. It will include the two original terms for $k = 0$, and the term in the above integral, with all four momenta being zero. Thsi gives:
+\begin{equation}
+    \mathcal{F}[\tilde{m}(0)] = \frac{1}{2}t\tilde{m}^2(0) + u\tilde{m}^4(0)
+\end{equation}
+This theory for $k = 0$ takes the same structure as a Landau theory, and so would give the same cirtical exponents as the Landau theory.
+\newline
+Now let us consider the follwing Landau-Ginzburg free energy:
+\begin{equation}
+    \mathcal{F}[m(x)] = \frac{1}{2}\left(\nabla m\right)^2 + tm^2 + vm^6
+\end{equation}
+and find its UCD using the different approaches.
+\subsection{Ginzburg argument}
+Let us calcualte the Ginzburg ratio:
+\begin{equation}
+    R = \frac{\int_{|\boldsymbol{r}| < \xi} d^dr\langle m(\boldsymbol{r})^2 \rangle}{\xi^d m_0^2}
+\end{equation}
+First, we start by calculating the nominator, which is the fluctuations of $m$. We go above the transition where $m = 0$, allowing us to ignore the $m^6$ term, and get the same gaussian approximation we got for the $m^4$ power in class. This gives the same nominator:
+\begin{equation}
+    \int_{|\boldsymbol{r}| < \xi} d^dr\langle m(\boldsymbol{r})^2 \rangle \sim t^{-1}
+\end{equation}
+The denominator, however, is different. Let us minimize the free energy as a function of $m$ to find $m_0$:
+\begin{equation}
+    \frac{dF}{dm} = 2mt + 6vm^5 \rightarrow m \sim t^{1/4}
+\end{equation}
+So, the denominator is:
+\begin{equation}
+    \xi^d m_0^2 \sim t^{\frac{1 - d}{2}}
+\end{equation}
+\begin{equation}
+    R \sim \frac{t^{-1}}{t^{\frac{1 - d}{2}}} = t^{\frac{1}{2}(d - 6)}
+\end{equation}
+Which gives the UCD $d = 6$.
+\subsection{K-space RG}
+Let us now find the same from K-space RG to first order. The K-space free energy is:
+\begin{equation}
+    \mathcal{F}[\tilde{m}(k)] = \int^\Lambda \frac{d^dk}{(2\pi)^d}\frac{1}{2}(k^2 + t)\tilde{m}(k)\tilde{m}(-k) + \frac{v}{(2\pi)^{5d}}\int^\Lambda d^dk_1 \cdots d^dk_6 \tilde{m}(k_1) \cdots \tilde{m}(k_6) \delta(k_1 + \cdots + k_6)
+\end{equation}
+This gives the same partiaion function as the $m^4$ term we saw in class:
+\begin{equation}
+    Z = \int \mathcal{D}[\tilde{m}^{-}] \left[
+        e^{-\frac{1}{2}\int_0^{\Lambda/b}\frac{d^dk}{(2\pi)^d}(t+k^2)\tilde{m}^{-}(k)\tilde{m}^{+}(-k)}
+        \int \mathcal{D}[\tilde{m}^{+}]
+        e^{-\frac{1}{2}\int_{\Lambda/b}^\Lambda\frac{d^dk}{(2\pi)^d}(t+k^2)\tilde{m}^{-}(k)\tilde{m}^{+}(-k)}
+        e^{-F_I(\tilde{m}^{+}\tilde{m}^{-})}
+    \right]
+\end{equation}
+Only with the interaction:
+\begin{equation}
+    F_I(\tilde{m}^{+}, \tilde{m}^{-}) = \frac{v}{(2\pi)^{5d}}\int_0^\Lambda d^dk_1 \cdots d^dk_6 \tilde{m}(k_1) \cdots \tilde{m}(k_6) \delta(k_1 + \cdots + k_6)
+\end{equation}
+The inner integral is again the same as doing a distribution
+\begin{equation}
+    \int \mathcal{D}[\tilde{m}^{+}]
+        e^{-\frac{1}{2}\int_{\Lambda/b}^\Lambda\frac{d^dk}{(2\pi)^d}(t+k^2)\tilde{m}^{-}(k)\tilde{m}^{+}(-k)}
+        e^{-F_I(\tilde{m}^{+}\tilde{m}^{-})}
+         = Z_{m^{+}} \langle e^{-F_I} \rangle
+\end{equation}
+And to first order:
+\begin{equation}
+    \langle e^{-F_I} \rangle = 1 - \langle F_I \rangle
+\end{equation}
+So, evaluating $\langle F_I \rangle$, we get three surviving terms - the terms with two, four, and six $m^{+}$:
+\begin{equation}
+\begin{gathered}
+    \tilde{m}_1^{-}\tilde{m}_2^{-}\tilde{m}_3^{-}
+    \tilde{m}_4^{-}\langle\tilde{m}_5^{+}\tilde{m}_6^{+}\rangle
+    \qquad
+    \tilde{m}_1^{-}\tilde{m}_2^{-}\langle\tilde{m}_3^{+}
+    \tilde{m}_4^{+}\tilde{m}_5^{+}\tilde{m}_6^{+}\rangle
+    \qquad
+    \langle\tilde{m}_1^{+}\tilde{m}_2^{+}\tilde{m}_3^{+}
+    \tilde{m}_4^{+}\tilde{m}_5^{+}\tilde{m}_6^{+}\rangle
+\end{gathered}
+\end{equation}
+The last term is just a constant, and so we focus on the first two terms. The first term gives the gaussian integral:
+\begin{equation}
+    \langle\tilde{m}_5^{+}\tilde{m}_6^{+}\rangle = \frac{(2\pi)^d \delta(k_5 + k_6)}{t + k_5^2}
+\end{equation}
+The delta function gives $k_5 = -k_6$, which together with the original delta function also gives $k_1 = -k_2$. Pluggin this into the integral over $\tilde{m}_1^{-}\tilde{m}_2^{-}$, we get the first term contribution:
+\begin{equation}
+    6v\left(\int \frac{d^dk}{(2\pi)^d} \tilde{m}^{-}(k)\tilde{m}^{-}(-k)\right)
+    \left(
+        \int \frac{d^dq}{(2\pi)^d}\frac{1}{t + q^2}
+    \right)
+\end{equation}
+The second term, however, is a bit more complex, since it has an average over four $m^{+}$. This means we have to split it using Wick's theorem. We did it in class, and the result was the same as the two $m^{+}$, only with the denominator squared and the prefactor 36:
+\begin{equation}
+    36v\left(\int \frac{d^dk}{(2\pi)^d} \tilde{m}^{-}(k)\tilde{m}^{-}(-k)\right)
+    \left(
+        \int \frac{d^dq}{(2\pi)^d}\frac{1}{\left(t + q^2\right)^2}
+    \right)
+\end{equation}
+And so, up to a constant:
+\begin{equation}
+    \langle F_I \rangle = \left(
+        \int \frac{d^dk}{(2\pi)^d} \tilde{m}^{-}(k)\tilde{m}^{-}(-k)
+    \right)
+    \left(
+        6 \int \frac{d^dq}{(2\pi)^d}\frac{1}{t + q^2} + 36 \int \frac{d^dq}{(2\pi)^d}\frac{1}{\left(t + q^2\right)^2}
+    \right)
+\end{equation}
+And so, the flow of $t$ is now given by:
+\begin{equation}
+    \bar{t} = t + \int_{\Lambda/b}^\Lambda \frac{d^dq}{(2\pi)^d} \frac{ 12}{t + q^2} + \frac{72}{\left(t + q^2\right)^2}
+\end{equation}
+Let us perform the rescaling and renormalization steps:
+\begin{equation}
+    k' = bk
+    \qquad
+    \tilde{m}' = b^{\omega}\tilde{m}
+\end{equation}
+This gives the free energy:
+\begin{equation}
+\begin{gathered}
+    \mathcal{F}[\tilde{m}(k')] = \frac{1}{2}\int_{0}^{\Lambda/b} \frac{d^dk'}{(2\pi)^d}b^{-d}(\bar{t} + b^{-2}k'^2)b^{-2\omega}\tilde{m}'(k)\tilde{m}'(-k) + \\ +
+    v\int_{0}^{\Lambda/b} \frac{d^dk_1'\cdots d^dk_6'}{(2\pi)^{5d}}b^{-5d}b^{-6\omega}\tilde{m}'(k_1)\cdots\tilde{m}'(k_6)
+\end{gathered}
+\end{equation}
+Again the $k^2$ coefficiant must be 1:
+\begin{equation}
+    b^{-2d-2-2\omega} = 1 \rightarrow \omega = -\frac{d}{2} - 1
+\end{equation}
+Which gives the recursion relations:
+\begin{equation}
+\begin{gathered}
+    t' = b^2\left(t + \int_{\Lambda/b}^\Lambda \frac{d^dq}{(2\pi)^d} \frac{ 12}{t + q^2} + \frac{72}{\left(t + q^2\right)^2}\right)
+    \\
+    v' = b^{-5d - 6\omega}v = b^{6 - d}v
+\end{gathered}
+\end{equation}
+This gives the UCD $d = 6$.
 \end{document}
