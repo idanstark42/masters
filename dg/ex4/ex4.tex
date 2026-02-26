@@ -176,4 +176,378 @@ Thus:
 \begin{equation}
     d\varphi = \det \nabla^2 f(0) \omega_1 \wedge \omega_2
 \end{equation}
+
+\section*{Question 2}
+\subsection*{The gaussian curvature in $\mathbb{H}^2$}
+Let $\mathbb{H}^2$ be the upper half plane with the metric:
+\begin{equation}
+    g = \frac{dx^2 + dy^2}{y^2}
+\end{equation}
+Let us do Gram-Schmidt to find an orthonormal frame $E_1, E_2$. Starting from
+\begin{equation}
+    E_1 = \partial_x
+\end{equation}
+And then:
+\begin{equation}
+    E_2 = \partial_y - \frac{y^{-2}\left(0\cdot1 + 1\cdot0\right)}{y^{-2}}\partial_x = \partial_y
+\end{equation}
+So $\partial_x, \partial_y$ are already an orthogonal frame. Normalizing it gives:
+\begin{equation}
+    E_1 = y\partial_x \qquad E_2 = y\partial_y    
+\end{equation}
+and so and orthonormal coframe is:
+\begin{equation}
+    \omega_1 = y^{-1}dx \qquad \omega_2 = y^{-1}dy
+\end{equation}
+And so
+\begin{equation}
+    d\omega_1 = y^{-2}dx \wedge dy
+    \qquad
+    d\omega_2 = 0
+\end{equation}
+So we can concluate that:
+\begin{equation}
+    \varphi = -\omega_1
+\end{equation}
+Since then:
+\begin{equation}
+    d\omega_1 = -\varphi \wedge \omega_2 = \omega_1 \wedge \omega_2 = y^{-2}dx \wedge dy
+    \qquad
+    d\omega_2 = \varphi \wedge \omega_1 = -\omega_1 \wedge \omega_1 = 0
+\end{equation}
+Now, since
+\begin{equation}
+    \omega_1 \wedge \omega_2 = y^{-2} dx \wedge dy
+\end{equation}
+then:
+\begin{equation}
+    d\varphi = -d\omega_1 = -y^{-2}dx \wedge dy = -\omega_1 \wedge \omega_2
+\end{equation}
+And so:
+\begin{equation}
+    K = -1
+\end{equation}
+\subsection*{The Sphere $S^2$}
+For the sphere. Using the stereographic coordinate system, the metric is:
+\begin{equation}
+    g = \frac{4}{(1 + x^2 + y^2)^2}\left(dx^2 + dy^2\right)
+\end{equation}
+Similar to the half-plane, this gives the orthonormal frame:
+\begin{equation}
+    E_1 = \frac{1 + x^2 + y^2}{2}\partial_x
+    \qquad
+    E_2 = \frac{1 + x^2 + y^2}{2}\partial_y
+\end{equation}
+And the orthonormal coframe:
+\begin{equation}
+    \omega_1 = \frac{2}{1 + x^2 + y^2}dx
+    \qquad
+    \omega_2 = \frac{2}{1 + x^2 + y^2}dy
+\end{equation}
+the derivatives are then:
+\begin{equation}
+\begin{gathered}
+    d\omega_1 = -\frac{4ydy}{\left(1 + x^2 + y^2\right)^2}\wedge dx = \frac{4ydx}{\left(1 + x^2 + y^2\right)^2}\wedge dy = \frac{2y}{1 + x^2 + y^2} dx \wedge d\omega_2
+    \\
+    d\omega_2 = -\frac{4xdx}{\left(1 + x^2 + y^2\right)^2} \wedge dy = \frac{4xdy}{\left(1 + x^2 + y^2\right)^2}\wedge dx = \frac{2x}{1 + x^2 + y^2} dy \wedge d\omega_1
+\end{gathered}
+\end{equation}
+And the cannoincal connection form is:
+\begin{equation}
+    \varphi = \frac{2xdy - 2ydx}{1 + x^2 + y^2}
+\end{equation}
+Deriving it:
+\begin{equation}
+    d\varphi = \frac{4}{1 + x^2 + y^2} dx \wedge dy
+\end{equation}
+On the other hand
+\begin{equation}
+    \omega_1 \wedge \omega_2 = \frac{4}{1 + x^2 + y^2} dx \wedge dy
+\end{equation}
+So
+\begin{equation}
+    K = 1
+\end{equation}
+\subsection*{The Flat Torus}
+Let us look at the torus with the flat metric $T = \R^2 / \mathbb{Z}^2 $. This Torus has the same metric as $\R^2$, and is therefore flat. Let us show it. Starting from the metric:
+\begin{equation}
+    g = dx^2 + dy^2
+\end{equation}
+This gives:
+\begin{equation}
+    \omega_1 = dx \qquad \omega_2 = dy
+\end{equation}
+Then:
+\begin{equation}
+    d\omega_1 = d\omega_2 = 0
+\end{equation}
+And
+\begin{equation}
+    \varphi = 0
+\end{equation}
+Therefore:
+\begin{equation}
+    K = 0
+\end{equation}
+\section*{Question 3}
+Let $M$ be a smooth manifold. Let $\left\{U_i\right\}$ be a cover of $M$ and $\left\{\psi\right\}$ a partition of unity over $M$ subordinate to this cover. Then, for every subset $U_i$ define a smooth orthonormal coframe $\omega_1,\dots,\omega_n$ on $U_i$. This gives a locally defined (0,2)-tensor field:
+\begin{equation}
+    g_i = \sum_j^n \omega_j \otimes \omega_j
+\end{equation}
+that is symmetric and positive. The global (0,2)-tensor field
+\begin{equation}
+    g = \sum_i \psi_i g_i
+\end{equation}
+is smooth and thus a metric.
+\newline
+Now, let $(p, X) \in TM$ be a member of the tangent bundle over $M$ and define $E_1, \dots, E_n$ as the orthonormal frame dual to $\omega_i$:
+\begin{equation}
+    E_i\omega_j = \delta_{ij}
+\end{equation}
+Then, there exist $a_1, \dots, a_n$ such that
+\begin{equation}
+    X = \sum_i a_i E_i
+\end{equation}
+It's easy to see that
+\begin{equation}
+    g(X, E_i) = g(\sum a_i E_i, E_i) = \sum a_i g(E_i, E_i) = a_i
+\end{equation}
+And since $g$ and $E_i$ are smooth, that means $a_i$ are smooth as well. So, define the bijection $f: TM \rightarrow T^*M$ as the function the for each $(p, X)$ gives
+\begin{equation}
+    f(p, X) = \sum_i a_i \omega_i
+\end{equation}
+Since $a_i$ are smooth and $\omega_i$ are smooth, this is a smooth bijection with a smooth inverse (defined the same way), and therefore a diffeomorphism.
+
+\section*{Question 4}
+Let $M \subset \R^n$ be a $n-1$-dimensional smooth manifold and let $\omega = dx_1 \wedge \cdots \wedge dx_n$ be the standard volume form on $\R^n$. Let $N$ be the unit normal vector field. Then $\iota_N \omega$ is a $n-1$-form over $M$. Define an orthonormal frame $e_1, \dots, e_{n-1}$ over $M$. Since $\langle N, X \rangle = 0$ for every $X \in TM$, the set $N, e_1, \dots, e_{n-1}$ is orthonormal and thus a basis for $\R^n$.
+Then:
+\begin{equation}
+    \iota_N \omega(e_1, \dots, e_{n-1}) = \omega(N, e_1, \dots, e_{n-1}) = \pm 1
+\end{equation}
+Which means $\iota_N \omega$ is a Riemannian volume form on $M$.
+
+\section*{Question 5}
+Let $X, Y, X \in \Gamma(TM)$ be vector fields and let $\nabla$ be a torsion free metric compatible connection. Then, because it is metric compatible:
+\begin{equation}
+\begin{gathered}
+    X g(Y,Z) = g(\nabla_X Y, Z) + g(Y, \nabla_X Z)
+    \\
+    Y g(Z,X) = g(\nabla_Y Z, X) + g(Z, \nabla_Y X)
+    \\
+    Z g(X,Y) = g(\nabla_Z X, Y) + g(X, \nabla_Z Y)
+\end{gathered}
+\end{equation}
+Adding the first two equations and substracting the last one:
+\begin{equation}
+\begin{gathered}
+    X g(Y,Z) + Y g(Z,X) + Z g(X,Y) = \\ =
+    g(\nabla_X Y, Z) + g(Y, \nabla_X Z) + g(\nabla_Y Z, X) + g(Z, \nabla_Y X) - g(\nabla_Z X, Y) - g(X, \nabla_Z Y)
+\end{gathered}
+\end{equation}
+But since $\nabla$ is torsion free:
+\begin{equation}
+\begin{gathered}
+    g(Z, \nabla_Y X) = g(Z, \nabla_X Y) - g(Z, [X, Y])
+    \\
+    g(Y, \nabla_X Z) - g(\nabla_Z X, Y) = g(Y, [X, Z])
+    \\
+    g(\nabla_Y Z, X) - g(X, \nabla_Z Y) = g(X, [Y, Z])
+\end{gathered}
+\end{equation}
+This gives:
+\begin{equation}
+    X g(Y,Z) + Y g(Z,X) - Z g(X,Y) = 2g(Z, \nabla_X Y) - g(Z, [X, Y]) + g(Y, [X, Z]) + g(X, [Y, Z])
+\end{equation}
+Reogranizing:
+\begin{equation}
+    2g(Z, \nabla_X Y) = X g(Y,Z) + Y g(Z,X) - Z g(X,Y) + g(Z, [X, Y]) - g(Y, [X, Z]) - g(X, [Y, Z])
+\end{equation}\footnote{The worksheet has a wrong sign here, but I double checked and this is the formulation. I actually didn't notice it until I did Q11, where terms vanished with this formula wrong}
+
+\section*{Question 6}
+Let $V$ be a vector field along a curve $\gamma(t)$ and let $\tilde{V}_1$ and $\tilde{V}_2$ be two extensions of the vector field to a small neighborhood around the curve. Then, for every connection $\nabla$, using the linearity of the connection:
+\begin{equation}
+    \nabla_{\dot{\gamma}(t)} \left(\tilde{V}_1 - \tilde{V}_2\right) = 
+    \nabla_{\dot{\gamma}(t)} \tilde{V}_1 - \nabla_{\dot{\gamma}(t)} \tilde{V}_2
+\end{equation}
+But since along the curve $\tilde{V}_1 = \tilde{V}_2 = V$, then $\tilde{V}_1 - \tilde{V}_2 = 0$ which gives
+\begin{equation}
+    \nabla_{\dot{\gamma}(t)} \tilde{V}_1 - \nabla_{\dot{\gamma}(t)} \tilde{V}_2 = 0
+\end{equation}
+\begin{equation}
+    \nabla_{\dot{\gamma}(t)} \tilde{V}_1 = \nabla_{\dot{\gamma}(t)} \tilde{V}_2
+\end{equation}
+But since this is just the covariant derivative of $V$, it means the covariant derivation is independent of the extension.
+
+\section*{Question 7}
+Let $\nabla$ be the Levi Civita connection, i.e. the torsion free metric compatible connection. Then, define a local coordinate system $x_1, \dots, x_n$ for every point $p \in M$ and a local frame $\partial_{x_1},\dots, \partial_{x_n}$. Then, the Christoffel symbols are
+\begin{equation}
+    \nabla_{\partial_i} \partial_j = \sum_n \Gamma^{n}_{ij} \partial_n
+\end{equation}
+Applying the metric with $\partial_l$:
+\begin{equation}
+    g\left(\partial_l, \nabla_{\partial_i} \partial_j\right) = g\left(\partial_l, \sum_n \Gamma^{n}_{ij} \partial_n\right)
+\end{equation}
+The RHS gives:
+\begin{equation}
+    g\left(\partial_l, \sum_n \Gamma^{n}_{ij} \partial_n\right) = \sum_n \Gamma^{n}_{ij} g(\partial_l, \partial_n) = g_{ln}\Gamma^{n}_{ij}
+\end{equation}
+Where the last step is written in Einstein summation convention. Multiplying by the inverse metric $g^{lk}$ and summing over $l$ gives:
+\begin{equation}
+    g^{lk} g_{ln}\Gamma^{n}_{ij} = \delta_{kn}\Gamma^{n}_{ij} = \Gamma^{k}_{ij}
+\end{equation}
+And so:
+\begin{equation}
+    \Gamma^{k}_{ij} = g^{lk} g\left(\partial_l, \nabla_{\partial_i} \partial_j\right)
+\end{equation}
+Using Koszul formula that we proved in Question 5:
+\begin{equation}
+    \Gamma^{k}_{ij} = \frac{1}{2}g^{lk} \left[
+        \partial_i g(\partial_j,\partial_l) +
+        \partial_j g(\partial_l,\partial_i) -
+        \partial_l g(\partial_i,\partial_j) +
+        g(\partial_l, [\partial_i, \partial_j]) -
+        g(\partial_j, [\partial_i, \partial_l]) -
+        g(\partial_i, [\partial_j, \partial_l])
+    \right]
+\end{equation}
+But since $[\partial_i, \partial_j] = 0$ for every $i, j$:
+\begin{equation}
+    \Gamma^{k}_{ij} = \frac{1}{2}g^{lk} \left[
+        \partial_i g_{jl} +
+        \partial_j g_{il} -
+        \partial_l g_{ij}
+    \right]
+\end{equation}
+
+\section*{Question 8}
+Let $M = S^2$ be isometrically embedded in $\R^3$ and let $g$ be the Eucledian metric. Now, let $\gamma(t)$ be the equator. In $\R^3$ Eucledian coordinates:
+\begin{equation}
+    \gamma(t) = (\cos 2\pi t, \sin 2\pi t, 0)
+\end{equation}
+Now, let $X = \partial_x$ be a parallel vector field in $\R^3$ and let $Y$ be its orthogonal projection. Then on $\gamma(t)$ it can calculted by projecting on the tangent to the unit circle and then back to the Eucledian coordinates:
+\begin{equation}
+    Y|_{\gamma(t)} = -\sin 2\pi t (\sin 2\pi t, \cos 2\pi t, 0)
+\end{equation}
+So, for $t = 0$, $t = 0.125$ and $t = 0.25$ the projected vector field is:
+\begin{equation}
+    Y|_{\gamma(0)} = (0, 0, 0)
+    \qquad
+    Y|_{\gamma(0.125)} = (0.5, 0.5, 0)
+    \qquad
+    Y|_{\gamma(0.25)} = (1, 0, 0)
+\end{equation}
+So, this is an example of an orthogonal projection of a parall vector field that is not parallel in an isometrically embedded manifold in $\R^n$.
+
+\section*{Question 11}
+Let $(M, g)$ be an oriented Riemannian surface and $(e_1, e_2)$ a local oriented orthonormal frame. Let $X \in TM$ be a vector field and let $\nabla$ be the Levi Civita connection. writing $X$ in terms of $(e_1, e_2)$:
+\begin{equation}
+    X = x_1 e_1 + x_2 e_2
+\end{equation}
+Gives:
+\begin{equation}
+    \nabla_X e_1 = x_1 \nabla_{e_1} e_1 + x_2 \nabla_{e_2} e_1
+    \qquad
+    \nabla_X e_2 = x_1 \nabla_{e_1} e_2 + x_2 \nabla_{e_2} e_2
+\end{equation}
+The object $\nabla_{e_i} e_j$ can be calcualted by applying the metric with $e_k$ to it, and using Koszul formula:
+\begin{equation}
+    g(\nabla_{e_i} e_j, e_k) = \frac{1}{2}\left[
+        e_i g(e_j,e_k) + e_j g(e_k,e_i) - e_k g(e_i,e_j) + g(e_k, [e_i, e_j]) - g(e_j, [e_i, e_k]) - g(e_i, [e_j, e_k])
+    \right]
+\end{equation}
+And using $e_i g(e_j, e_k) = e_i g_{jk} = e_i \delta_{jk} = 0$:
+\begin{equation}
+    g(\nabla_{e_i} e_j, e_k) = \frac{1}{2}\left[g(e_k, [e_i, e_j]) - g(e_j, [e_i, e_k]) - g(e_i, [e_j, e_k])
+    \right]
+\end{equation}
+Writing:
+\begin{equation}
+    \nabla_{e_i} e_j = a_{ij} e_1 + b_{ij} e_2
+\end{equation}
+Gives:
+\begin{equation}
+    a_{ij} = g(\nabla_{e_i} e_j, e_1)
+    \qquad
+    b_{ij} = g(\nabla_{e_i} e_j, e_2)
+\end{equation}
+Specifically:
+\begin{equation}
+\begin{gathered}
+    a_{11} = g(\nabla_{e_1} e_1, e_1) = \frac{1}{2}\left[g(e_1, [e_1, e_1]) - g(e_1, [e_1, e_1]) - g(e_1, [e_1, e_1])
+    \right] = 0
+    \\
+    a_{12} = g(\nabla_{e_1} e_2, e_1) = \frac{1}{2}\left[g(e_1, [e_1, e_2]) - g(e_2, [e_1, e_1]) - g(e_1, [e_2, e_1])
+    \right] = g(e_1, [e_1, e_2])
+    \\
+    a_{21} = g(\nabla_{e_2} e_1, e_1) = \frac{1}{2}\left[g(e_1, [e_2, e_1]) - g(e_1, [e_2, e_1]) - g(e_2, [e_1, e_1])
+    \right] = 0
+    \\
+    a_{22} = g(\nabla_{e_2} e_2, e_1) = \frac{1}{2}\left[g(e_1, [e_2, e_2]) - g(e_2, [e_2, e_1]) - g(e_2, [e_2, e_1])
+    \right] = g(e_2, [e_1, e_2])
+\end{gathered}
+\end{equation}
+And similarly:
+\begin{equation}
+    b_{12} = b_{22} = 0
+    \qquad
+    b_{11} = g(e_1, [e_2, e_1])
+    \qquad
+    b_{21} = g(e_2, [e_2, e_1])
+\end{equation}
+So, plugging those into the above formulation:
+\begin{equation}
+\begin{gathered}
+    \nabla_{e_1} e_1 = g(e_1, [e_2, e_1]) e_2
+    \qquad
+    \nabla_{e_1} e_2 = g(e_1, [e_1, e_2]) e_1
+    \qquad
+    \nabla_{e_2} e_1 = g(e_2, [e_2, e_1]) e_2
+    \qquad
+    \nabla_{e_2} e_2 = g(e_2, [e_1, e_2]) e_1
+\end{gathered}
+\end{equation}
+And:
+\begin{equation}
+\begin{gathered}
+    \nabla_X e_1 = x_1 g(e_1, [e_2, e_1]) e_2 + x_2 g(e_2, [e_2, e_1]) e_2
+    \\
+    \nabla_X e_2 = x_1 g(e_1, [e_1, e_2]) e_1 + x_2 g(e_2, [e_1, e_2]) e_1
+\end{gathered}
+\end{equation}
+So, defining the form
+\begin{equation}
+    \omega = g(e_1, [e_2, e_1]) \omega_1 + g(e_2, [e_2, e_1]) \omega_2
+\end{equation}
+where $\omega_1, \omega_2$ be the coframe dual to $e_1, e_2$ gives:
+\begin{equation}
+    \nabla e_1 = \omega \otimes e_2
+    \qquad
+    \nabla e_2 = - \omega \otimes e_1
+\end{equation}
+This is a very similar structure to the cannoical connection $\varphi$. Then there exist a 1-form $\varphi$ such that: 
+\begin{equation}
+    d\omega_1 = \varphi \wedge \omega_2
+    \qquad
+    d\omega_2 = -\varphi \wedge \omega_1
+\end{equation}
+And then
+\begin{equation}
+    d\varphi = K \omega_1 \wedge \omega_2
+\end{equation}
+But we notice that:
+\begin{equation}
+    \omega \wedge \omega_2 = g(e_1, [e_2, e_1]) \omega_1 \wedge \omega_2
+\end{equation}
+But also, since $e_j(\omega_1 e_i) = e_j\delta_{i1} = 0$:
+\begin{equation}
+    d\omega_1(e_i, e_j) = e_i \omega_1 e_j + e_j \omega_1 e_i - \omega_1 ([e_i, e_j]) = \omega_1 ([e_j, e_i])
+\end{equation}
+Which gives $d\omega_1(e_1, e_1) = d\omega_1(e_2, e_2) = 0$ and $d\omega_1(e_1, e_2) = -d\omega_1(e_2, e_1) = \omega_1 ([e_2, e_1]) = g(e_1, [e_2, e_1])$. This gives:
+\begin{equation}
+    d\omega_1 = g(e_1, [e_2, e_1]) \omega_1 \wedge \omega_2 = \omega \wedge \omega_2
+\end{equation}
+A similar calculation for $\omega \wedge \omega_1$ and $d\omega_2$ will give the opposite equation. So, $\omega$ follows the first structure equation, and thus $\omega = \varphi$ and
+\begin{equation}
+    d\omega = K \omega_1 \wedge \omega_2
+\end{equation}
 \end{document}
