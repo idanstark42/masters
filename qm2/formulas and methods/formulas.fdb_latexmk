@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1769953429.20193 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" "formulas.pdf" "formulas" 1769953431.95768 0
+["pdflatex"] 1774879543.60536 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" "formulas.pdf" "formulas" 1774879545.32404 0
   "c:/Users/idans.DESKTOP-7BRHPIT/.texlive2025/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1769872678 6964 5e25b6ea40b51c2417770e5e017f71e5 ""
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" 1769953427 29903 3d483dbf39d6d5cc960efe44b7bd9961 ""
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/homework/qm2/formulas and methods/formulas.tex" 1774879542 29916 d04704fab17fa10621d423413be74935 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/base/8r.enc" 1761858511 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1761859694 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1761867220 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -101,8 +101,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "formulas.aux" 1769953431 3311 3648fb81c5472927cea47ead4fe7ceb2 "pdflatex"
-  "formulas.tex" 1769953427 29903 3d483dbf39d6d5cc960efe44b7bd9961 ""
+  "formulas.aux" 1774879545 3311 3648fb81c5472927cea47ead4fe7ceb2 "pdflatex"
+  "formulas.tex" 1774879542 29916 d04704fab17fa10621d423413be74935 ""
   (generated)
   "formulas.aux"
   "formulas.log"
