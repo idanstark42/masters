@@ -1,0 +1,214 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=13.5pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Complex Systems Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Dimensional analysis - Flow in porous media}
+Soap films are fluid membranes, whose shape in space is dominated by surface tension. As such, an unconstrained soap film (not enclosing any volume) will form a minimal surface.
+\newline
+Let us consider two identical rings of radius $R$ dipped together in soap-water, and then drawn apart from each other. Assuming they make an open surface, and assuming the symmetry of the problem is maintained, let us look for a solution in the form of a surface of revolution:
+\begin{equation}
+    \vec{r}(z, \nu) = \phi(z)\cos(\nu)\hat{x} + \phi(z)\sin(\nu)\hat{y} + z\hat{z}
+\end{equation}
+where $\nu \in [0, 2\pi]$ and $\phi(z)$ is the profile function.
+\subsection{Tangent vectors}
+The tangent vectors of the surface are given by:
+\begin{equation}
+    \boxed{
+\begin{gathered}
+        \vec{r}_z = \partial_z \vec{r} = \phi'(z)\cos(\nu)\hat{x} + \phi'(z)\sin(\nu)\hat{y} + \hat{z}
+        \\
+        \vec{r}_\nu = \partial_\nu \vec{r} = -\phi(z)\sin(\nu)\hat{x} + \phi(z)\cos(\nu)\hat{y}
+\end{gathered}
+    }
+\end{equation}
+\subsection{The metric tensor}
+This gives:
+\begin{equation}
+\begin{gathered}
+    a_{zz} = \vec{r}_z\cdot\vec{r}_z = \phi'^2(z)\cos^2(\nu) + \phi'^2(z)\sin^2(\nu) + 1^2 = 1 + \phi'^2(z)
+    \\
+    a_{\nu z} = a_{z \nu} = \vec{r}_\nu\cdot\vec{r}_z = -\phi(z)\phi'(z)\cos(\nu)\sin(\nu) + \phi(z)\phi'(z)\cos(\nu)\sin(\nu) + 0 = 0
+    \\
+    a_{\nu\nu} = \vec{r}_\nu\cdot\vec{r}_\nu = \phi^2(z)\sin^2(\nu) + \phi^2(z)\cos^2(\nu) = \phi^2(z)
+\end{gathered}
+\end{equation}
+So we get:
+\begin{equation}
+    \boxed{a_{\alpha\beta} = \begin{pmatrix}
+        1 + \phi'^2 & \\ & \phi^2
+    \end{pmatrix}}
+\end{equation}
+\subsection{The bending tensor and shape tensor}
+First, let us find the normal vector:
+\begin{equation}
+    \hat{N} = \frac{\vec{r}_z \times \vec{r}_\nu}{\sqrt{a}} = \frac{-\phi(z)\cos(\nu)\hat{x} - \phi(z)\sin(\nu)\hat{y} + \phi(z)\phi'(z)\hat{z}}{\sqrt{(1 + \phi'^2)\phi^2}}
+\end{equation}
+Also:
+\begin{equation}
+\begin{gathered}
+    \partial_{z}\partial_{z} \vec{r} = \phi''(z)\cos(\nu)\hat{x} + \phi''(z)\sin(\nu)\hat{y}
+    \\
+    \partial_{z}\partial_{\nu} \vec{r} = \partial_{\nu}\partial_{z} \vec{r} = -\phi'(z)\sin(\nu)\hat{x} + \phi'(z)\cos(\nu)\hat{y}
+    \\
+    \partial_{\nu}\partial_{\nu} \vec{r} = -\phi(z)\cos(\nu)\hat{x} - \phi(z)\sin(\nu)\hat{y}
+\end{gathered}
+\end{equation}
+Which gives:
+\begin{equation}
+    \boxed{
+        b_{\alpha\beta} = \partial_\alpha\partial_\beta \vec{r}\cdot\hat{N} =
+        \frac{1}{\sqrt{1 + \phi'^2}}
+        \begin{pmatrix}
+            -\phi'' & \\ & \phi
+        \end{pmatrix}
+    }
+\end{equation}
+And the shape tensor is:
+\begin{equation}
+    s^\alpha_\beta =
+    \frac{1}{\sqrt{1 + \phi'^2}}
+    \begin{pmatrix}
+        \frac{1}{1 + \phi'^2} & \\ & \frac{1}{\phi^2}
+    \end{pmatrix}
+    \begin{pmatrix}
+        -\phi'' & \\ & \phi
+    \end{pmatrix} =
+    \boxed{\frac{1}{\sqrt{1 + \phi'^2}}
+    \begin{pmatrix}
+        -\frac{\phi''}{1 + \phi'^2} & \\ & \frac{1}{\phi}
+    \end{pmatrix}}
+\end{equation}
+\subsection{Minimal surface}
+For a minimal (open) surface, we reqiure
+\begin{equation}
+    H = 0 \rightarrow \Tr{s} = 0
+\end{equation}
+This gives the equation:
+\begin{equation}
+    \boxed{-\frac{\phi''}{1 + \phi'^2} + \frac{1}{\phi} = 0}
+\end{equation}
+\subsection{Solving the ODE}
+Multiplying and organizing gives:
+\begin{equation}
+    \phi\phi'' - \phi'^2 - 1 = 0
+\end{equation}
+Using:
+\begin{equation}
+    \phi'' = \frac{d\phi'}{dx} = \frac{d\phi'}{d\phi}\frac{d\phi}{dx} = \phi'\frac{d\phi'}{d\phi} = \frac{1}{2}\frac{d}{d\phi}\phi'^2
+\end{equation}
+We can define the derivative as a function of $\phi$ to get $\sigma(\phi) = \phi'^2(\phi)$. The ODE the reduces to a linear ODE:
+\begin{equation}
+    \phi\frac{d\sigma}{d\phi} - 2\sigma - 2 = 0
+\end{equation}
+Seperating:
+\begin{equation}
+    \frac{d\sigma}{2\sigma + 2} = \frac{d\phi}{\phi}
+\end{equation}
+Integrating:
+\begin{equation}
+    \frac{1}{2}\ln(\sigma + 1) = \ln\phi + C
+\end{equation}
+And organizing:
+\begin{equation}
+    \sigma = A \phi^2 - 1
+\end{equation}
+Then pluggin back the definition:
+\begin{equation}
+    \phi' = \sqrt{A\phi^2 - 1}
+\end{equation}
+This is simpler equation, but to make it even easier let us find $A$ using the boundary conditions on $z = 0$. This will give $\phi' = 0, \phi = r_{min}$ and thus:
+\begin{equation}
+    Ar_{min}^2 - 1 = 0 \rightarrow A = r_{min}^{-2}
+\end{equation}
+So, we can define $\varphi = \phi/r_min$ to get:
+\begin{equation}
+    r_{min}\varphi' = \sqrt{\varphi^2 - 1}
+\end{equation}
+Using seperation of variables again:
+\begin{equation}
+    r_{min}\frac{d\varphi}{\sqrt{\varphi^2 - 1}} = dz
+\end{equation}
+And integrating
+\begin{equation}
+    r_{min} \cosh^{-1}\varphi = z + B
+\end{equation}
+And finally solving for $\phi$ gives:
+\begin{equation}
+    \phi = r_{min}\cosh(\frac{z + B}{r_{min}})
+\end{equation}
+Pluggin $\phi(0) = r_{min}$ gives $B = 0$, and so we get:
+\begin{equation}
+    \boxed{\phi = r_{min}\cosh(\frac{z}{r_{min}})}
+\end{equation}
+\subsection{Resutling metricand shape tensors}
+We can blue this result into the metric and shape tensors, and use $1 - \sinh^2(x) = \cosh^2(x)$ to get:
+\begin{equation}
+\begin{gathered}
+    a_{\alpha\beta} = 
+    \begin{pmatrix}
+        1 + \sinh^2(z/r_{min}) & \\ & r_{min}^2\cosh^2(z/r_{min})
+    \end{pmatrix} = \\ =
+    \cosh^2(z/r_{min})
+    \begin{pmatrix}
+        1 & \\ & r_{min}^2
+    \end{pmatrix}
+\end{gathered}
+\end{equation}
+\begin{equation}
+\begin{gathered}
+    s^\alpha_\beta =
+    \frac{1}{\sqrt{1 + \sinh^2(z/r_{min})}}
+    \begin{pmatrix}
+        -\frac{\cosh(z/r_{min})}{r_{min}\left(1 + \sinh^2(z/r_{min})\right)} & \\ & \frac{1}{r_{min}\cosh(z/r_{min})}
+    \end{pmatrix} = \\ =
+    \frac{1}{r_{min}\cosh^2(z/r_{min})}
+    \begin{pmatrix}
+        -1 & \\ & 1
+    \end{pmatrix}
+\end{gathered}
+\end{equation}
+To summarize:
+\begin{equation}
+    \boxed{a_{\alpha\beta} = \cosh^2(z/r_{min})
+    \begin{pmatrix}
+        1 & \\ & r_{min}^2
+    \end{pmatrix}
+    \qquad
+    s^\alpha_\beta =
+    \frac{1}{r_{min}\cosh^2(z/r_{min})}
+    \begin{pmatrix}
+        -1 & \\ & 1
+    \end{pmatrix}
+    }
+\end{equation}
+\subsection{Given rings}
+If the two rings have a given radius $R$, and are placed at $z = \pm z_0$, we can plug this into the $\phi(z)$ to get:
+\begin{equation}
+    \boxed{r_{min}\cosh(z_0/r_{min}) = R}
+\end{equation}
+\subsection{Explaining the video}
+In the video we see the shape that we calculated. The rings start with $z_0 \ll R$, and then as they grow appart and $z_0$ grows, to keep $R$ constant, $r_{min}$ must shrink.
+% TODO add something about the pop
+\end{document}

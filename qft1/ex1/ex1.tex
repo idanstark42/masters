@@ -1,0 +1,416 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=13.5pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Field Theory I Excercise 1}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{The wave functional of the vacuum 1 - canonical quantization}
+\subsection{The ground state of the harmonic oscillator}
+The Hamiltonian of the QHO
+\begin{equation}
+    H = \frac{\hat{p}^2}{2M} + \frac{M\omega^2\hat{x}^2}{2}
+\end{equation}
+Can be rewritten using ladder operators
+\begin{equation}
+    \hat{a} = \sqrt{\frac{M\omega}{2}}\left(\hat{x} + \frac{i}{M\omega}\hat{p}\right)
+    \qquad
+    \hat{a}^\dagger = \sqrt{\frac{M\omega}{2}}\left(\hat{x} - \frac{i}{M\omega}\hat{p}\right)
+\end{equation}
+To get the form:
+\begin{equation}
+    H = \omega\left(\hat{a}^\dagger\hat{a} + \frac{1}{2}\right)
+\end{equation}
+This results in the number basis $\ket{n}$ of eigenstates. The lowest eigenstate $\ket{0}$, is the ground state, and is defined by
+\begin{equation}
+    \hat{a}\ket{0} = 0
+\end{equation}
+Writing this with the definition of $\hat{a}$ in position space, we get:
+\begin{equation}
+    \left(x + \frac{1}{M\omega}\partial_x\right)\psi_0(x) = 0
+\end{equation}
+This is a first order ODE. It is easy to see that it can be solved by a Gaussian:
+\begin{equation}
+    \psi_0 = Ae^{-x^2/\sigma^2}
+\end{equation}
+Plugging this into the equation, we get:
+\begin{equation}
+    \left(x - \frac{2x/\sigma^2}{M\omega}\right)\psi_0(x) = 0
+\end{equation}
+\begin{equation}
+    \sigma = \sqrt{\frac{2}{M\omega}}
+\end{equation}
+So the ground state is (up to normalization):
+\begin{equation}
+    \psi_0 = \exp[-\frac{M\omega}{2}x^2]
+\end{equation}
+\subsection{The free scalar field}
+The free scalar field is defined by the action:
+\begin{equation}
+    S = \int d^4x \left(\frac{1}{2}\partial_\mu\phi \partial^\mu\phi - \frac{1}{2}m^2\phi^2\right)
+\end{equation}
+Since $\phi$ includes the "position" of the infinite harmonic oscillators, one for every point in space, it is analogous to $\hat{x}$. Then, we can use the Lagrangian definition for momentum and see that $\pi = \frac{\partial \mathcal{L}}{\partial (\partial_0\phi)} = \dot{\phi}$ is analogous to $\hat{p}$. Using this analogy, they must have the same commutation relations for any specific point:
+\begin{equation}
+    \left[\phi(x), \pi(y)\right] = i\delta(x - y)
+\end{equation}
+Expanding the kinetic term in the Lagrangian density, we can write the Hamiltonian as:
+\begin{equation}
+    H = \int d^3x \left[
+        \frac{1}{2}\pi^2 + \frac{1}{2}\left(\nabla\phi\right)^2 + \frac{1}{2}m^2\phi^2 
+    \right]
+\end{equation}
+\subsection{The Wave functional of the ground state}
+Let us now move to momentum space. The field and the momentum density can be written in term of their Fourier transform $\tilde{\phi}(k)$ and $\tilde{\pi}(k)$:
+\begin{equation}
+    \phi = \int \frac{d^3k}{(2\pi)^3} \tilde{\phi} e^{ikx}
+    \qquad
+    \pi = \int \frac{d^3k}{(2\pi)^3} \tilde{\pi} e^{ikx}
+\end{equation}
+Plugging this into the Hamiltonian gives:
+\begin{equation}
+    H = \int d^3x \int \frac{d^3k}{(2\pi)^3} \int \frac{d^3p}{(2\pi)^3} \left[
+        \frac{1}{2}\tilde{\pi}(k)\tilde{\pi}(p) + \frac{1}{2}(k \cdot p)\tilde{\phi}(k)\tilde{\phi}(p) + \frac{1}{2}m^2\tilde{\phi}(k)\tilde{\phi}(p)
+    \right]e^{ix(k + p)}
+\end{equation}
+The x-integral over the exponent then gives a delta function $(2\pi)^3 \delta(k+p)$. This solves the $p$ integral, giving:
+\begin{equation}
+    H = \int \frac{d^3k}{(2\pi)^3} \left[
+        \frac{1}{2}\tilde{\pi}(k)\tilde{\pi}(-k) + \frac{1}{2}\left(k^2 + m^2\right)\tilde{\phi}(k)\tilde{\phi}(-k)
+    \right]
+\end{equation}
+This is an effective HO in every point in k-space, with effective frequency $\omega_k^2 = k^2 + m^2$. Using this analogy, we can write ladder operators for every $k$ in k-space:
+\begin{equation}
+    a(k) = \sqrt{\frac{\omega_k}{2}}\left(\tilde{\phi}(k) + \frac{i}{\omega_k}\tilde{\pi}(k)\right)
+    \qquad
+    a^\dagger(k) = \sqrt{\frac{\omega_k}{2}}\left(\tilde{\phi}(-k) - \frac{i}{\omega_k}\tilde{\pi}(-k)\right)
+\end{equation}
+And then rewrite the Hamiltonian as:
+\begin{equation}
+    H = \int \frac{d^3k}{(2\pi)^3} \omega_k \left[a^\dagger(k)a(k) + \frac{1}{2}
+    \delta(0)\right]
+\end{equation}
+Where we used the canonical quantization relations
+\begin{equation}
+\begin{gathered}
+    \left[\tilde{\phi}(k), \tilde{\pi}(p)\right] = \\ =
+    \int d^3x e^{-ikx} \int d^3y e^{-iky} \left[\phi(x), \pi(y)\right] = \\ =
+    i\int d^3x e^{-ikx} \int d^3y e^{-ipy} \delta(x - y) = i\int d^3x e^{-i(k + p)} = i\delta(k + p)
+\end{gathered}
+\end{equation}
+And so
+\begin{equation}
+    \left[\tilde{\phi}(k),\tilde{\pi}(-k)\right] = i\delta(0)
+\end{equation}
+Now we can define the ground state functional $\tilde{\Psi}_0[\tilde{\phi}(k)]$ for the k-th mode, using
+\begin{equation}
+    a(k)\tilde{\Psi}_0[\tilde{\phi}(k)] = 0
+\end{equation}
+And writing this using the momentum space definition, using operators $\hat{\phi}(k)$ and $\hat{\pi}(k)$, we get
+\begin{equation}
+    \left(\hat{\phi}(k) + \frac{i}{\omega}\hat{\pi(k)}\right) \Psi_0[\phi] = 0
+\end{equation}
+The field operator in just gives the field value:
+\begin{equation}
+    \hat{\phi}(k) \Psi = \tilde{\phi}(k) \Psi
+\end{equation}
+We can find $\hat{\pi}$ by imposing the commutation relations
+\begin{equation}
+    [\hat{\phi}(k), \hat{\pi}(p)] = i\delta(k + p)
+\end{equation}
+Similar to the HO case, this is solved by
+\begin{equation}
+    \hat{\pi}(k) = -i\frac{\delta}{\delta \tilde{\phi}(-k)}
+\end{equation}
+Checking this:
+\begin{equation}
+\begin{gathered}
+    [\hat{\phi}(k), \hat{\pi}(p)]\Psi =
+    [\hat{\phi}(k)\hat{\pi}(p) - \hat{\pi}(p)\hat{\phi}(k)]\Psi = \\ =
+    -i\tilde{\phi}(k)\frac{\delta \Psi}{\delta \tilde{\phi}(-p)} + i\frac{\delta}{\delta \tilde{\phi}(-p)}(\tilde{\phi}(k)\Psi) = \\ =
+    -i\tilde{\phi}(k)\frac{\delta \Psi}{\delta \tilde{\phi}(-p)} + i\tilde{\phi}(k)\frac{\delta \Psi}{\delta \tilde{\phi}(-p)} + i\frac{\delta \tilde{\phi}(k)}{\delta \tilde{\phi}(-p)}\Psi = \\ =
+    i\delta(k + p)\Psi
+\end{gathered}
+\end{equation}
+As expected. So, plugging these operators into the ODE for $\Psi_0$, we get:
+\begin{equation}
+    \left(\tilde{\phi}(k) + \frac{1}{\omega_k}\frac{\delta}{\delta \tilde{\phi}(-k)}\right) \Psi_0 = 0
+\end{equation}
+We can use $\tilde{\phi}(-k) = \tilde{\phi}^*(k)$ to write
+\begin{equation}
+    \left|\tilde{\phi}(k)\right|^2 = \tilde{\phi}^*(k)\tilde{\phi}(k) = \tilde{\phi}(-k)\tilde{\phi}(k)
+\end{equation}
+and get the solution as gaussian $\Psi_0 = Ae^{-\left|\tilde{\phi}\right|^2/\sigma^2}$, similar to the HO:
+\begin{equation}
+    \tilde{\phi}(k) - \frac{2\tilde{\phi}(k)}{\omega_k\sigma^2} = 0
+\end{equation}
+\begin{equation}
+    \sigma = \sqrt{\frac{2}{\omega_k}}
+\end{equation}
+Giving us the ground state of the k-th mode:
+\begin{equation}
+    \tilde{\Psi}_0[\tilde{\phi}(k)] = \exp[-\frac{1}{2}\omega_k\left|\tilde{\phi}(k)\right|^2]
+\end{equation}
+he total ground state $\Psi_0[\phi(x)]$ is the product of all such modes:
+\begin{equation}
+    \Psi_0[\phi(x)] = \prod_{k} \exp[-\frac{1}{2}\omega_k\left|\tilde{\phi}(k)\right|^2] = \exp[-\frac{1}{2}\int \frac{d^3k}{(2\pi)^3} \omega_k \left|\tilde{\phi}(k)\right|^2]
+\end{equation}
+\subsection{The Length Scale}
+Using the length scale from QM, only with the newly defined $\hbar\omega_k = \sqrt{m^2c^4 + k^2}$ (where we reinstates the constants $\hbar$ and $c$ for dimensional consistency):
+\begin{equation}
+    \lambda_k = \sqrt{\frac{\hbar^2}{m\sqrt{m^2c^4 + k^2}}}
+\end{equation}
+For the $k = 0$ mode, we get the Compton wavelength:
+\begin{equation}
+    \lambda_c = \frac{\hbar}{mc}
+\end{equation}
+\section{The wave functional of the vacuum 2 - path integral derivation}
+Let us look at the path integral wave functional:
+\begin{equation}
+    \Psi_{\phi_1}[\phi_2] = \int \mathcal{D} \phi \Big|_{\phi(-T) = \phi_1}^{\phi(0) = \phi_2}e^{iS[\phi]}
+\end{equation}
+For the free field:
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{1}{2}m^2(1 - i\epsilon)^2\phi^2
+\end{equation}
+Let $\tilde{\phi}$ be the solution to the EOM:
+\begin{equation}
+    \left[\partial_\mu\partial^\mu + m^2(1 - i\epsilon)\right]\tilde{\phi} = 0
+\end{equation}
+Moving to k-space\footnote{Since $\tilde{\phi}$ is taken, the Fourier transform of the field is marked using $\tilde{\varphi}$}:
+\begin{equation}
+    \tilde{\phi}(x) = \int \frac{d^3k}{(2\pi)^3} \tilde{\varphi}(k) e^{ikx}
+\end{equation}
+We can write the equation for each mode as:
+\begin{equation}
+    \left[-\partial_0^2 + k^2 + m^2(1 - i\epsilon)\right]\tilde{\varphi} = 0
+\end{equation}
+This is an ODE solved by the an exponent
+\begin{equation}
+    \tilde{\varphi} \propto e^{i\omega_kt}
+\end{equation}
+With the dispersion relation:
+\begin{equation}
+    \omega_k^2 = k^2 + m^2(1 - i\epsilon)
+\end{equation}
+The final result is a super position of the two solutions, positive energ (particles) and negative energy (antiparticles):
+\begin{equation}
+    \tilde{\phi} = \int \frac{d^3k}{(2\pi)^3} \left(
+        a_k e^{i\omega_k t} + b_k^\dagger e^{-i\omega_k t}
+    \right) e^{ikx}
+\end{equation}
+Where we named the operator valued prefactors using the same aas the well known ladder operators for particles and antiparticles, and remembered that the field creates antiparticles and annihilated particles.
+We can now denote $\phi = \tilde{\phi} + \delta\phi$ and get:
+\begin{equation}
+\begin{gathered}
+    S = \int d^4x \left[
+        \frac{1}{2}\partial_\mu\phi\partial^\mu\phi - \frac{1}{2}m^2(1 - i\epsilon)^2\phi^2
+    \right] = \\ =
+    \frac{1}{2}\int d^4x \left[
+        \partial_\mu(\tilde{\phi} + \delta\phi)\partial^\mu(\tilde{\phi} + \delta\phi) - m^2(1 - i\epsilon)^2(\tilde{\phi} + \delta\phi)^2
+    \right] = \\ =
+    S[\tilde{\phi}] + S[\delta\phi] + \int d^4x \left[
+        \partial_\mu\tilde{\phi}\partial^\mu\delta\phi - m^2(1 - i\epsilon)^2\tilde{\phi}\delta\phi
+    \right]
+\end{gathered}
+\end{equation}
+The last integral becomes (using integration by parts on the first term and neglecting boundary terms):
+\begin{equation}
+    \int d^4x \left[
+        \partial_\mu\tilde{\phi}\partial^\mu\delta\phi - m^2(1 - i\epsilon)^2\tilde{\phi}\delta\phi
+    \right] =
+    \int d^4x \left[
+        \partial_\mu\partial^\mu\tilde{\phi}\delta\phi - m^2(1 - i\epsilon)^2\tilde{\phi}
+    \right]\delta\phi = 0
+\end{equation}
+Since the term in the brackets is just the EOM. Plugging this into the path integral gives:
+\begin{equation}
+    \Psi_{\phi_1}[\phi_2] = \int \mathcal{D} \phi \Big|_{\phi(-T) = \phi_1}^{\phi(0) = \phi_2}e^{iS[\tilde{\phi}]}e^{iS[\delta\phi]} = e^{iS[\tilde{\phi}]} \int \mathcal{D} \delta\phi \Big|_{\delta\phi(-T) = 0}^{\delta\phi(0) = 0}e^{iS[\delta\phi]}
+\end{equation}
+Where we used $\tilde{\phi}(t_1) = \phi_1$ and $\tilde{\phi}(t_2) = \phi_2$. The remaining integral is independent of $\phi_1$ and $\phi_2$ and therefore can be regarded as part of the normalization constant of the probability functional:
+\begin{equation}
+    \Psi_{\phi_1}[\phi_2] \propto e^{iS[\tilde{\phi}]}
+\end{equation}
+Writing the action expicitly gives:
+\begin{equation}
+\begin{gathered}
+    S[\tilde{\phi}] = \frac{1}{2}\int_{-T}^0 dt \int d^3x \left[
+        \partial_\mu\tilde{\phi}\partial^\mu\tilde{\phi} - m^2(1 - i\epsilon)^2\tilde{\phi}^2
+    \right] = \\ =
+    S[\tilde{\phi}] = \frac{1}{2}\int_{-T}^0 dt \int d^3x \int \frac{d^3k}{(2\pi)^3}\frac{d^3p}{(2\pi)^3}
+    \left[
+        k_\mu p^\mu - m^2(1 - i\epsilon)^2
+    \right]\tilde{\varphi}(k)\tilde{\varphi}(p)e^{ix(k + p)} = \\ =
+    \frac{1}{2}\int_{-T}^0 dt \int \frac{d^3k}{(2\pi)^3}
+    \left[
+        \omega_k^2 + k^2 + m^2(1 - i\epsilon)^2
+    \right]\tilde{\varphi}(k)\tilde{\varphi}(-k) = \\ =
+    \int_{-T}^0 dt \int \frac{d^3k}{(2\pi)^3}\omega_k^2
+    \left|\tilde{\varphi}(k)\right|^2 = \\ =
+    -i\int \frac{d^3k}{(2\pi)^3}\omega_k
+    \left(
+        \left|\tilde{\varphi}_2(k)\right|^2
+        -
+        \left|\tilde{\varphi}_1(k)\right|^2
+    \right)
+\end{gathered}
+\end{equation}
+Where in the last transition we used the field we wrote in equation (41) to integrate by $t$. The part related to $\phi_1$ is again a constant. As $T \rightarrow -\infty$ that part goes to the vaccum state. We are left with:
+\begin{equation}
+\begin{gathered}
+    \Psi_0[\phi] = \lim_{\epsilon\rightarrow0}\lim_{T\rightarrow-\infty}\exp[i \left(
+        -i\int \frac{d^3k}{(2\pi)^3}\omega_k
+    \left(
+        \left|\tilde{\varphi}(k)\right|^2
+        -
+        \left|\tilde{\varphi}_1(k)\right|^2
+    \right)
+    \right)] = \\ =
+    \lim_{\epsilon\rightarrow0}\exp[
+        \int \frac{d^3k}{(2\pi)^3}\omega_k
+    \left(
+        \left|\tilde{\varphi}(k)\right|^2
+    \right)] = \\ =
+    \lim_{\epsilon\rightarrow0}\exp[
+        \int \frac{d^3k}{(2\pi)^3}\sqrt{k^2 + m^2(1 + i\epsilon)^2}
+    \left(
+        \left|\tilde{\varphi}(k)\right|^2
+    \right)] = \\ =
+    \exp[\int \frac{d^3k}{(2\pi)^3}\sqrt{k^2 + m^2}
+    \left(
+        \left|\tilde{\varphi}(k)\right|^2
+    \right)]
+\end{gathered}
+\end{equation}
+Which is the exact result from the previous question.
+
+\newpage
+\section{Gaussian integrals and Wick’s theorem}
+\subsection{Basic integral}
+Let us define
+\begin{equation}
+    Z = \int d^nx \exp[-\frac{1}{2}x_iA_{ij}x_j]
+\end{equation}
+with $A$ being a symmetric strictly positive matrix. This means that $A$ is diagonalizable, so defining $A = P^{-1}DP$, we can write in Dirac notation:
+\begin{equation}
+    Z = \int d^nx \exp[-\frac{1}{2}\bra{x}P^{-1}DP\ket{x}] = \int d^nx \exp[-\frac{1}{2}\bra{Px}D\ket{Px}]
+\end{equation}
+So, defining the basis $\ket{y} = \ket{Px}$, and using $\det(P) = 1$ and thus $d^ny = d^nx$, the different degrees of freedom in this basis are seperate, since $D$ is diagonal:
+\begin{equation}
+\begin{gathered}
+    Z = \int d^ny \exp[-\frac{1}{2}\bra{y}D\ket{y}] =
+    \int d^ny \exp[-\frac{1}{2}\sum_i D_{ii}y_i^2] = \\ =
+    \prod_i \int dy_i \exp[-\frac{1}{2}D_{ii}y_i^2] =
+    \prod_i \sqrt{\frac{2\pi}{D_{ii}}} =
+    \sqrt{\frac{(2\pi)^n}{\det(D)}} = (2\pi)^{n/2}\left[\det(A)\right]^{-1/2}
+\end{gathered}
+\end{equation}
+Where we used the Gaussain integral and the fact that $\det(A) = \det(P^{-1})\det(D)\det(P) = \det(D)$.
+
+\subsection{Adding term $b$}
+Now, let us look integral
+\begin{equation}
+    Z(b) = \int d^nx \exp[-\frac{1}{2}x_iA_{ij}x_j + b_ix_i]
+\end{equation}
+for some vector $b$. First let us complete the square:
+\begin{equation}
+\begin{gathered}
+    -\frac{1}{2}x_iA_{ij}x_j + b_ix_i = -\frac{1}{2}\left[x_iA_{ij}x_j - 2 b_ix_i + b_i \Delta_{ij}b_j\right] + \frac{1}{2} b_i \Delta_{ij}b_j = \\ =
+    -\frac{1}{2}\left[x_i A_{ij} (x_j - \Delta_{jk} b_k) - b_i (x_i - \Delta_{ij}b_j)\right] + \frac{1}{2} b_i \Delta_{ij}b_j = \\ =
+    -\frac{1}{2}\left[(x_i - \Delta_{ik}b_k) A_{ij}(x_j - \Delta_{jl}b_l)\right] + \frac{1}{2} b_i \Delta_{ij}b_j
+\end{gathered}
+\end{equation}
+So, we can define $y_i = x_i - \Delta_{ij}b_j$ and get:
+\begin{equation}
+    Z(b) = e^{\frac{1}{2} b_i \Delta_{ij}b_j}\int d^ny \exp[-\frac{1}{2}y_iA_{ij}y_j] = (2\pi)^{n/2}\left[\det(A)\right]^{-1/2}e^{\frac{1}{2} b_i \Delta_{ij}b_j}
+\end{equation}
+\subsection{Correlation functions}
+Using the above definition, we can see that:
+\begin{equation}
+    \langle e^{b_i x_i} \rangle = Z(b)/Z(0) = \exp[\frac{1}{2}b_i\Delta_{ij}b_j]
+\end{equation}
+Therefore
+\begin{equation}
+\begin{gathered}
+    \langle x_{k_1} x_{k_2} x_{k_3} \cdots  x_{k_n} \rangle = \frac{\partial}{\partial b_{k_1}} \frac{\partial}{\partial b_{k_2}} \frac{\partial}{\partial b_{k_2}} \cdots \frac{\partial}{\partial b_{k_n}} \langle e^{b_i x_i} \rangle \Big|_{b=0} = \\ =
+    \frac{\partial}{\partial b_{k_1}} \frac{\partial}{\partial b_{k_2}} \frac{\partial}{\partial b_{k_2}} \cdots \frac{\partial}{\partial b_{k_n}} \exp[\frac{1}{2}b_i\Delta_{ij}b_j] \Big|_{b=0}
+\end{gathered}
+\end{equation}
+Applying the derivatives one by one, we get terms that are the exponent multiplied by some power of $b$. At the ends, all terms where that power is not zero vanish, when setting $b = 0$. This means the only terms that survive are the terms where half the derivatives acted on the exponent, adding the prefactor $\Delta_{ik_n}b_i$ and the other half derived the prefactors, leaving the term with $\Delta_{k_nk_m}$. The assignment $b = 0$ at the end then causes the exponent to be $1$, which means the total result is:
+\begin{equation}
+    \langle x_{k_1} x_{k_2} x_{k_3} \cdots  x_{k_n} \rangle = \sum_{all \ possible \ pairings \ P} \Delta_{k_{P_1}k_{P_2}} \cdots \Delta_{k_{P_{n-1}}k_{P_n}}
+\end{equation}
+
+\section{Gaussian Integration of Grassmann Numbers}
+\subsection{One Complex Grassmann variable}
+Using the Taylor expansion of Grassmann exponent
+\begin{equation}
+    e^{\theta} = 1 + \theta
+\end{equation}
+We can write the Basic Gaussian as
+\begin{equation}
+    \int d\theta^* d\theta \theta \theta^*e^{-\theta^* a \theta} = \int d\theta^* d\theta \theta \theta^*(1 - \theta^* a \theta) = \int d\theta^* d\theta \theta \theta^*(1 + a \theta \theta^*)
+\end{equation}
+Since every Grassmann number squared is zero, we get:
+\begin{equation}
+    \int d\theta^* d\theta \theta \theta^*(1 + a \theta \theta^*) =
+    \int d\theta^* d\theta \theta \theta^* + a \left(\theta \theta^*\right)^2 = 
+    \int d\theta^* d\theta \theta \theta^* 
+\end{equation}
+Finally, using
+\begin{equation}
+    \int d\theta \theta = 1
+\end{equation}
+We can seperate the variables to get:
+\begin{equation}
+    \int d\theta^* d\theta \theta \theta^* =
+    \int d\theta^* \left(\int d\theta \theta\right) \theta^* = \int d\theta^* \theta^* = 1
+\end{equation}
+\subsection{Many Complex Grassmann variables}
+Now, let us look at the integral with $N$ complex Grassmann variables
+\begin{equation}
+    \prod_{i=1}^{N} \left(\int d\theta_i^* d\theta_i\right)\theta_j\theta_k^* \exp[-\sum_{l,m=1}^N \theta_l^*A_{lm}\theta_m]
+\end{equation}
+Using the same logic as in the c-numbers case, we can diagonalize $A_ij$ to get $A = U^{-1}DU$, then define $\eta_i = U_{ij}\theta_j$, seperating the variables:
+\begin{equation}
+\begin{gathered}
+    U^{-1}_{jm}U_{nk}\prod_{i=1}^{N} \left(\int d\eta_i^* d\eta_i\right)\eta_m\eta_n^* 
+    \exp[-\sum_{i=1}^N \eta_l^*D_{ll}\eta_l]
+\end{gathered}
+\end{equation}
+The above integral is seperable, leaving two cases. In the $m = n$ case, for all $i \ne n$, the integral is just a simple Gaussian giving $D_{ii}$, while the $m$ integral gives the integral from the last section, resulting in $1$.
+\newline
+In the $m \ne n$ case, for all $i \ne m,n$, the integral is again just a simple Gaussian, giving $D_{ii}$, while the $n$ and $m$ integrals give:
+\begin{equation}
+    \int d\eta_m^*d\eta_m \eta_m[1 + D_{mm}\eta^*_m\eta_m] = 0
+\end{equation}
+Since int he first term, the integral over $\eta^*_m$ is zero and on the second term there is a $\eta_m^2$ which is also zero. This is of course true for both indices for both $\eta$ and $\eta^*$. And so, the result is that in the sum over $n$ only $n = m$ survives, leaving
+\begin{equation}
+        \sum_m U^{-1}_{jm}U_{mk}\frac{\prod_i D_{ii}}{D_{mm}} = \det A\sum_m\frac{U^{-1}_{jm}U_{mk}}{D_{mm}}
+\end{equation}
+Now, let us notice that:
+\begin{equation}
+    \sum_m\frac{U^{-1}_{jm}U_{mk}}{D_{mm}} = \sum_m U^{-1}_{jm}D_{mm}^{-1}U_{mk} = A^{-1}_{jk}
+\end{equation}
+And so we get:
+\begin{equation}
+    \det(A)A^{-1}_{jk}
+\end{equation}
+\end{document}
