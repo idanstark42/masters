@@ -1,0 +1,153 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=13.5pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Complex Systems Excercise 3}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{First passage time in 1D}
+\subsection{Motivation}
+Many systems can be model using FPT. Here are a few non-physical examples:
+\begin{itemize}
+    \item The time between an even occouring and it being on the news.
+    \newline
+    To formalize this, we can think of society as a lattice, where every person is a site with a different number of neighbors based on different forms of communication. Concepts and pieces of information act as particles moving in this lattice. This way, the knowledge of an event happning will spread through this system according to a diffusion-like equation (not the diffusion equation itself since the total amount of knowledge is not conserved). So, we can use FPT to find the time it will take the knowledge of an event to reach a reporter, and assuming a preknown distribution of the "reporter to article time", we can find the time it will take it to reach the news.
+    \item The time it will take a stock to pass a limit.
+    \newline
+    Stocks are many times bought and sold once they reach a certain price. Since, as we discussed, stocks can be modeled using the diffusion equation, we can find the average time to reach such a limit. This is helpful when choosing the limit int he first place, and when selecting the cycle time for the algorithm.
+    \item The time for the signal to pass in a synapses between neurons.
+    \newline
+    The neural paths are constructed by a linear connection of neurons, each recieving information from the dendrites on one side and passing it on to the axon on the other side. The axon is then connected to other neurons via synapses - small gaps in which neurotransmitters live. When the axon become electrically charged, it releases the neurotransmitters. They then diffuse through the synapse, and reach the dendrites of the next neuron in line. The time it will take from one neuron releasing neurotransmitters until they reach the next neuron can be found using FPT. The passage inside the neuron is a result of a repeating chain of chemical reactions, the time of which can also be calculated. Thus, we can get the total time it would take for a signal to pass along a nerve.
+\end{itemize}
+\subsection{Equation and boundary conditions}
+Since we deal with a diffusion problem in 1D, the appropriate PDE is simply the diffusion equation:
+\begin{equation}
+    \partial_t  P_{x_0} = -D \partial_x^2 P_{x_0}
+\end{equation}
+For the boundary condition, we must require that the particle has probability zero to have reached $x_0$, at any time $t$. This will allow us later to find the time $t$ for any given $x_0$:
+% TODO finish this sentence
+\begin{equation}
+    P_{x_0}(x_0, t) = 0
+\end{equation}
+% Why is probability not conserved in the region? I know mathematically, but why logically?
+\subsection{Solving the equation}
+Starting from a point source
+\begin{equation}
+    P_{x_0}(x, t=0) = \delta(x)
+\end{equation}
+And using the analogy to electrostatics to create an image source at $x = 2x_0$ with negative value:
+\begin{equation}
+    P_{x_0}(x, t=0) = \delta(x) - \delta(x - 2x_0)
+\end{equation}
+Since the Green's function of the diffusion equation is the gaussian with standard diviation $\sqrt{2Dt}$, and since it's a linear equation, we get:
+\begin{equation}
+    P_{x_0}(x, t) = \frac{1}{\sqrt{4\pi Dt}}\left(
+        \exp[-\frac{x^2}{2Dt}] - \exp[-\frac{(x - 2x_0)^2}{2Dt}]
+    \right)
+\end{equation}
+Checking the boundary condition is satisfied:
+\begin{equation}
+\begin{gathered}
+    P_{x_0}(x_0, t) = \frac{1}{\sqrt{4\pi Dt}}\left(
+        \exp[-\frac{x_0^2}{2Dt}] - \exp[-\frac{(x_0 - 2x_0)^2}{2Dt}]
+    \right) = \\ = \frac{1}{\sqrt{4\pi Dt}}\left(
+        \exp[-\frac{x_0^2}{2Dt}] - \exp[-\frac{x_0^2}{2Dt}]
+    \right) = 0
+\end{gathered}
+\end{equation}
+As required.
+\subsection{Survival probability}
+We are looking for the probability for the particle to be in one of the states described by $P_{x_0}$, therefore, we must sum over all $x < x_0$.
+\begin{equation}
+\begin{gathered}
+    S(t) = \int_{-\infty}^{x_0} P_{x_0}(x, t) dx = \\ =
+    \frac{1}{\sqrt{4\pi Dt}}\left(
+        \int_{-\infty}^{x_0} 
+        \exp[-\frac{x^2}{2Dt}] dx - \int_{-\infty}^{x_0}\exp[-\frac{(x - 2x_0)^2}{2Dt}] dx
+    \right)
+\end{gathered}
+\end{equation}
+The first integral gives:
+\begin{equation}
+\begin{gathered}
+    \int_{-\infty}^{x_0} \exp[-\frac{x^2}{2Dt}] dx = \\ =
+    \int_{-\infty}^{0} \exp[-\frac{x^2}{2Dt}] dx +
+    \int_{0}^{x_0} \exp[-\frac{x^2}{2Dt}] dx = \\ =
+    \sqrt{\pi Dt} + \sqrt{\pi Dt}\erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
+\end{gathered}
+\end{equation}
+Where $\erf$ is the error function
+\begin{equation}
+    \erf(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}dt
+\end{equation}
+Similarly, the second integral:
+\begin{equation}
+\begin{gathered}
+    \int_{-\infty}^{x_0}\exp[-\frac{(x - 2x_0)^2}{2Dt}] dx =
+    \int_{-\infty}^{-x_0}\exp[-\frac{x^2}{2Dt}] dx =
+    \int_{x_0}^{\infty}\exp[-\frac{x^2}{2Dt}] dx = \\ = \sqrt{\pi Dt} - \sqrt{\pi Dt}\erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
+\end{gathered}
+\end{equation}
+And in total, we get:
+\begin{equation}
+    S(t) = \frac{1}{\sqrt{4\pi Dt}}\left(
+        \sqrt{\pi Dt} + \sqrt{\pi Dt}\erf\left(\frac{x_0}{\sqrt{4Dt}}\right) - 
+        \sqrt{\pi Dt} + \sqrt{\pi Dt}\erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
+    \right)
+\end{equation}
+\begin{equation}
+    S(t) = \erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
+\end{equation}
+\subsection{The First Passage Time distribution}
+We need to find the probability that time $t$ is the first time where the particle reached $x_0$. Since the surviail probability shows the total probability that the particle didn't get to $x_0$ up until $t$, we just need to look at the derivative of $S(t)$ with respect to $t$:
+\begin{equation}
+\begin{gathered}
+    \tilde{P}(t) = \frac{dS}{dt} = \frac{d}{dt}\int_0^{x_0} \exp[-\frac{x^2}{4Dt}]dx = \int_0^{x_0} \frac{x^2}{4Dt^2} \exp[-\frac{x^2}{4Dt}]dx = \\ =
+    \sqrt{\frac{4D}{t}}\int_0^{x_0/\sqrt{4Dt}} u^2 e^{-u^2} du
+\end{gathered}
+\end{equation}
+The integral is solved using integraion by parts:
+\begin{equation}
+\begin{gathered}
+    \int_0^{x_0} u^2 e^{-u^2}du = \int_0^{x_0} u \cdot u e^{-u^2}du = \\ =
+    -\frac{1}{2} u \cdot e^{-u^2} \Big|_0^{x_0} + \int_0^{x_0} e^{-u^2}du = -\frac{1}{2}x_0 e^{-x_0^2} + \erf(x_0)
+\end{gathered}
+\end{equation}
+So:
+\begin{equation}
+    \tilde{P}(t) = \sqrt{\frac{4D}{t}}\left[\erf\left(\frac{x_0}{\sqrt{4Dt}}\right) - \frac{1}{2}x_0 e^{-x_0^2}\right]
+\end{equation}
+
+Now let us find the average:
+\begin{equation}
+    \langle \tilde{P}(t) \rangle = \int_{0}^{\infty} t \tilde{P}(t) dt = 
+    \int_{0}^{\infty}  dt \frac{x_0^2}{4Dt} \int_0^{x_0} dx \exp[-\frac{x^2}{4Dt}] = 
+\end{equation}
+\newpage
+\section{Markov processes and detailed balance}
+\subsection{Master equation}
+This is a 1D diffusion problem, so the master equation will give:
+\begin{equation}
+    \partial_t p_i = -D \left(p_{i+1} + p_{i-1} - 2p_i\right)
+\end{equation}
+Where we used the discrete version of the second derivative in space.
+\end{document}

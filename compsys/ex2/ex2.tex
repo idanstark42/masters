@@ -210,5 +210,66 @@ If the two rings have a given radius $R$, and are placed at $z = \pm z_0$, we ca
 \end{equation}
 \subsection{Explaining the video}
 In the video we see the shape that we calculated. The rings start with $z_0 \ll R$, and then as they grow appart and $z_0$ grows, to keep $R$ constant, $r_{min}$ must shrink.
-% TODO add something about the pop
+At a certain point, the surface width becomes too small to sustain, then the bubble pops.
+
+\section{Buckling}
+\subsection{Assumption}
+In this section we use the dimensionally reduced description we saw in class. It includes the following assumptions:
+\begin{itemize}
+    \item Plane stress assumption: $W$ is small and as such $\sigma^{i3} = 0$. This is basically "there is no place for stress in the $w$ dimension".
+    \item Thin body assumption: $t$ is small and as such we can ignore deformations in it across the body. This is done through a similar assumption to the first one: $\sigma^{\alpha 2} = 0$, and the assumption that by going along the tangent vector to the midline we can get to any point in the configuration:
+    \begin{equation}
+        \vec{r}(u, v) = \vec{\gamma}(u) + v\hat{n}(u)
+    \end{equation}
+    where $\vec{\gamma}$ is the midline curve and $\hat{n}(u)$ is the normal to the curve.
+\end{itemize}
+\subsection{Pure bending mode}
+In the pure bending mode, there is no stretching, and thus:
+\begin{equation}
+    \epsilon^{11} = 0
+\end{equation}
+\subsubsection{Geometric relation}
+The ruler will bend to create an arc, classified by a certain openning angle $\theta$ and radius $R$. Since there is no stretching, the length of the arc is the same as before:
+\begin{equation}
+    L = R\theta
+\end{equation}
+while the length of the cord is:
+\begin{equation}
+    L - \Delta = 2R \sin(\frac{\theta}{2})
+\end{equation}
+Dividing the two gives:
+\begin{equation}
+    \boxed{1 - \frac{\Delta}{L} = \frac{\sin(\theta/2)}{\theta/2}}
+\end{equation}
+\subsubsection{Small displacement approximation}
+Now, let us take $\Delta \ll L$. This will result in the LHS in the above relation to be close to 1, and thus the right hand side will be close to 1. Since $\frac{\sin x}{x} \approx 1 \rightarrow x \approx 0$, we can expand the angle $\theta/2$ around zero to get:
+\begin{equation}
+    1 - \frac{\Delta}{L} \approx \frac{\theta/2 - \frac{(\theta/2)^3}{3!}}{\theta/2} = 1 - \frac{\theta^2}{24}
+\end{equation}
+\begin{equation}
+    \boxed{\frac{\Delta}{L} = \frac{\theta^2}{24}}
+\end{equation}
+We can thus find the curvature:
+\begin{equation}
+    \kappa = R^{-1} = \frac{\theta}{L} = \sqrt{\frac{24\Delta}{L^3}}
+\end{equation}
+Which is constant. We can then write the bending energy:
+\begin{equation}
+    E_{B} = \frac{YWt^3}{24}\int_0^L \kappa^2 du = \boxed{\frac{YWt^3\Delta}{L^2}}
+\end{equation}
+\subsection{Condition for pure bending deformation}
+we require that the pure bending mode will require less energy then the stress mode, which, given the constant deformation $\Delta$, has energy:
+\begin{equation}
+    E_{S} = \frac{YWt}{2L}\Delta^2
+\end{equation}
+Comparing the two gives:
+\begin{equation}
+    E_{B} < E_{S}
+\end{equation}
+\begin{equation}
+    \frac{YWt^3\Delta}{L^2} < \frac{YWt}{2L}\Delta^2
+\end{equation}
+\begin{equation}
+    \boxed{\Delta > \frac{2t^2}{L}}
+\end{equation}
 \end{document}
