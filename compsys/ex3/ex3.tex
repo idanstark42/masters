@@ -118,36 +118,186 @@ And in total, we get:
     S(t) = \erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
 \end{equation}
 \subsection{The First Passage Time distribution}
-We need to find the probability that time $t$ is the first time where the particle reached $x_0$. Since the surviail probability shows the total probability that the particle didn't get to $x_0$ up until $t$, we just need to look at the derivative of $S(t)$ with respect to $t$:
+We need to find the probability that time $t$ is the first time where the particle reached $x_0$. Since the surviail probability shows the total probability that the particle didn't get to $x_0$ up until $t$, we just need to look at the derivative of $S(t)$ with respect to $t$. Since we are looking for a positive function and the survival probability diminished, we take the minus of the derivative:
+\begin{equation}
+    \tilde{P}(t) = -\frac{dS}{dt} = -\frac{d}{dt} \erf\left(\frac{x_0}{\sqrt{4Dt}}\right) = -\frac{d}{dt}\left(\frac{x_0}{\sqrt{4Dt}}\right) \cdot \frac{d}{d\left(\frac{x_0}{\sqrt{4Dt}}\right)}\erf\left(\frac{x_0}{\sqrt{4Dt}}\right)
+\end{equation}
+\begin{equation}
+    \boxed{\tilde{P}(t) = \frac{x_0}{\sqrt{4\pi Dt^3}} e^{-\frac{x_0^2}{4Dt}}}
+\end{equation}
+Taking the mean:
 \begin{equation}
 \begin{gathered}
-    \tilde{P}(t) = \frac{dS}{dt} = \frac{d}{dt}\int_0^{x_0} \exp[-\frac{x^2}{4Dt}]dx = \int_0^{x_0} \frac{x^2}{4Dt^2} \exp[-\frac{x^2}{4Dt}]dx = \\ =
-    \sqrt{\frac{4D}{t}}\int_0^{x_0/\sqrt{4Dt}} u^2 e^{-u^2} du
+    \langle t \rangle = \int_0^\infty t\tilde{P}(t) dt = 
+    \int_0^\infty \frac{x_0}{\sqrt{4\pi Dt}}e^{-\frac{x_0^2}{4Dt}} dt = \\ = \left\{\begin{matrix}
+        u = \frac{x_0}{\sqrt{4Dt}} \\
+        t = \frac{x_0^2}{4Du^2} \\
+        dt = -\frac{x_0^2}{2Du^3}du
+    \end{matrix}\right\} = \\ =
+    -\int_\infty^0 \frac{u}{\sqrt{\pi}}e^{-u^2} \frac{x_0^2}{2Du^3}du =
+    \frac{x_0^2}{2\sqrt{\pi}D}\int_0^\infty u^{-2} e^{-u^2}du
 \end{gathered}
 \end{equation}
-The integral is solved using integraion by parts:
+Since for $u \sim 0$ this integrand diverges like $u^{-2}$, the integral doesn't converge and the mean first passage time is infinite.
 \begin{equation}
-\begin{gathered}
-    \int_0^{x_0} u^2 e^{-u^2}du = \int_0^{x_0} u \cdot u e^{-u^2}du = \\ =
-    -\frac{1}{2} u \cdot e^{-u^2} \Big|_0^{x_0} + \int_0^{x_0} e^{-u^2}du = -\frac{1}{2}x_0 e^{-x_0^2} + \erf(x_0)
-\end{gathered}
-\end{equation}
-So:
-\begin{equation}
-    \tilde{P}(t) = \sqrt{\frac{4D}{t}}\left[\erf\left(\frac{x_0}{\sqrt{4Dt}}\right) - \frac{1}{2}x_0 e^{-x_0^2}\right]
+    \boxed{\langle t \rangle = \infty}
 \end{equation}
 
-Now let us find the average:
+\subsection{Discussion}
+Is it cheating to write this after we learned about heavytailed distributions? Well, it's too late for that.
+\newline
+Since for large times $\tilde{p}(t) \sim t^{-1.5}$, we can identify this with $\mu = 0.5$, which is indeed the Levy distribution we saw in class. The divergence of all moments is because all moments take the shape
 \begin{equation}
-    \langle \tilde{P}(t) \rangle = \int_{0}^{\infty} t \tilde{P}(t) dt = 
-    \int_{0}^{\infty}  dt \frac{x_0^2}{4Dt} \int_0^{x_0} dx \exp[-\frac{x^2}{4Dt}] = 
+\begin{gathered}
+    M_n = \frac{x_0}{\sqrt{4\pi D}} \int_0^\infty t^{n - 1.5}  e^{-\frac{x_0^2}{4Dt}} dt = \frac{x_0}{\sqrt{4\pi D}} \int_0^\infty \left(\frac{x_0^2}{4Du^2}\right)^{n - 1.5}  e^{-u^2} \frac{x_0^2}{2Du^3}du \propto \\ \propto
+    \int_0^\infty u^{-2n} e^{-u^2} du
+\end{gathered}
 \end{equation}
+Which diverges for any $n \ge \frac{1}{2}$.
+\newline
+As we saw in class, the fact that the mean diverges will result in the cumulative FPT being dominated by a few rare events.
+
 \newpage
 \section{Markov processes and detailed balance}
 \subsection{Master equation}
-This is a 1D diffusion problem, so the master equation will give:
+The probability to be at a site $p_i$ at time $t + 1$ is the sum of the probability to be at every site $j$ that can transfer to site $i$ at time $t$ multiplied by the transition rate:
 \begin{equation}
-    \partial_t p_i = -D \left(p_{i+1} + p_{i-1} - 2p_i\right)
+    p_i(t + 1) = \sum_j p_j(t) k_{j,i}
 \end{equation}
-Where we used the discrete version of the second derivative in space.
+Which, given nearest neighbors transition rates, is reduced to:
+\begin{eqnarray}
+    p_i(t + 1) = p_{i + 1}(t)k_{i + 1,i} + p_{i - 1}(t)k_{i - 1,i} + p_i(t)(1 - k_{i,i + 1} - k_{i,i - 1})
+\end{eqnarray}
+But, this is a continoue Markov process, which means that time is not descrete. To get continous, time, we substract $p_i(t)$ from both sides and take the LHS to be a derivative to get the same time equation:
+\begin{equation}
+    \boxed{\dot{p}_i = p_{i + 1}(t)k_{i + 1,i} + p_{i - 1}(t)k_{i - 1,i} - p_i(t)(k_{i,i + 1} + k_{i,i - 1})}
+\end{equation}
+This means that the change in probability at every point is the difference between the incoming probability from the neighboring sites and the outgoing probability to those sites.
+\subsection{Steady states}
+As seen in the last equation, to get a steady state, where $\dot{p}_i = 0$ for each state, we require that:
+\begin{equation}
+    p_{i + 1}k_{i + 1,i} + p_{i - 1}k_{i - 1,i} - p_i(k_{i,i + 1} + k_{i,i - 1}) = 0
+\end{equation}
+We can write this as:
+\begin{equation}
+    p_{i + 1}k_{i + 1,i} = p_i(k_{i,i + 1} + k_{i,i - 1}) - p_{i - 1}k_{i - 1,i}
+\end{equation}
+Renaing $i+1 \rightarrow i$:
+\begin{equation}
+    \boxed{p_{i} = \frac{k_{i - 1,i} + k_{i - 1,i - 2}}{k_{i,i - 1}}p_{i - 1} - \frac{k_{i - 2,i - 1}}{k_{i,i - 1}}p_{i - 2}}
+\end{equation}
+We also note the periodicity constraints:
+\begin{equation}
+    \boxed{p_i = p_{i + n}}
+\end{equation}
+and the noramlization constraint:
+\begin{equation}
+    \boxed{\sum_{i=1}^n p_i = 1}
+\end{equation}
+We can write the recursion relation by defining a matrix. To do so in a userful manner (to get all positive values), we will shift the index back and move $p_i$ to the other side to get:
+\begin{equation}
+    p_i(k_{i,i + 1} + k_{i,i - 1}) = p_{i + 1}k_{i + 1,i} + p_{i - 1}k_{i - 1,i}
+\end{equation}
+\begin{equation}
+    p_i = \frac{k_{i + 1,i}}{k_{i,i + 1} + k_{i,i - 1}}p_{i + 1} + \frac{k_{i - 1,i}}{k_{i,i + 1} + k_{i,i - 1}}p_{i - 1}
+\end{equation}
+Now it can be written in matrix form
+\begin{equation}
+    M_{ij} = \begin{cases}
+        \frac{k_{j,i}}{k_{i, j} + k_{i,j - 2}} & j = i + 1 \\
+        \frac{k_{j,i}}{k_{i,j + 2} + k_{i,j}} & j = i - 1 \\
+        0 & else
+    \end{cases}
+\end{equation}
+The recursion relation then becomes an eigenvalue problem with eigenvalue $1$:
+\begin{equation}
+    A \vec{p} = \vec{p}
+\end{equation}
+As we saw for the page rank in class, according to the Perron-Frobenius theorem, for a positive valued matrix there a unique solution and therefore a unique steady state.
+\subsection{Total probability current across all edges}
+The flux at each edge $i,i+1$ is:
+\begin{equation}
+    \boxed{\phi_{i, i + 1} = p_i k_{i, i + 1} - p_{i + 1} k_{i + 1, i}}
+\end{equation}
+And for it to vanish at every edge, we require:
+\begin{equation}
+    \boxed{p_{i + 1} = \frac{k_{i, i + 1}}{k_{i + 1, i}} p_i}
+\end{equation}
+\subsection{Detailed balance}
+Let us set $k_{i, i \pm 1} = k_{\pm}$. This gives the matrix:
+\begin{equation}
+    M_{ij} = \begin{pmatrix}
+        0 & \sigma_{+} & 0 & \cdots \\
+        \sigma_{-} & 0 & \sigma_{+} & \cdots \\
+        0 & \sigma_{-} & 0 & \cdots \\
+        \vdots & \vdots & \vdots & \ddots
+    \end{pmatrix}
+    \qquad
+    \sigma_{\pm} = \frac{k_{\pm}}{k_{+} + k_{-}}
+\end{equation}
+It easy to see, from the symmetry of the system, that
+\begin{equation}
+    v = \begin{pmatrix}
+        1 \\ 1 \\ 1 \\ \vdots
+    \end{pmatrix}
+\end{equation}
+is an eigenvector with eigenvalue $\lambda = \sigma_{+} + \sigma_{i} = 1$, which is exactly the one we were looking for. Normalizing it, we get the steady state:
+\begin{equation}
+    \boxed{p_i = \frac{1}{N}}
+\end{equation}
+Since all probabilities are equal, the detailed balance condition becomes:
+\begin{equation}
+    \boxed{k_{+} = k_{-}}
+\end{equation}
+\subsection{Distinguishing steady state and detailed balance using the average occupation}
+From the previous example, it is clear that you cannot distinguish between a simple steady state and a detailed balance based soley on the average occupation. The detailed balance is a condition of transition rates between states, and thus even if the system is in a steady state, and the average occupation are all determined and constant, this doesn't mean the transition along every edge of the system will cancel out.
+\subsection{Kolmogorov Criterion}
+Let us assume steady state and prove Kolmogorov criterion. Let us define a refernnce state $a$ and look at the path from it to site $i$ and back. The path is defined by all the sites in the middle, marked $s_1, \dots, s_n$.
+The product of transition rate from $a$ to $i$ and from $i$ to $a$, along the path $s$, are:
+\begin{equation}
+\begin{gathered}
+    \alpha_{a\rightarrow i, s} = k_{a, s_1} k_{s_1, s_2}\cdots k_{s_{n-1},s_n} k_{s_n, i} \\
+    \alpha_{i\rightarrow a, s} = k_{i, s_n} k_{s_n, s_{n - 1}}\cdots k_{s_2,s_1} k_{s_1, a}
+\end{gathered}
+\end{equation}
+Dividing the two gives
+\begin{equation}
+    \omega_i^{(a)} = \frac{k_{a, s_1} k_{s_1, s_2}\cdots k_{s_{n-1},s_n} k_{s_n, i}}{k_{i, s_n} k_{s_n, s_{n - 1}}\cdots k_{s_2,s_1} k_{s_1, a}}
+\end{equation}
+Now, steady state means that
+\begin{equation}
+    p_i k_{i,j} = p_j k_{j, i} \rightarrow \frac{k_{i,j}}{k_{j,i}} = \frac{p_j}{p_i}
+\end{equation}
+So we can replace every matching pair in the nominator and denominator with the matching pair of probabilities:
+\begin{equation}
+\begin{gathered}
+    \omega_i^{(a)} = \frac{k_{a, s_1} k_{s_1, s_2}\cdots k_{s_{n-1},s_n} k_{s_n, i}}{k_{i, s_n} k_{s_n, s_{n - 1}}\cdots k_{s_2,s_1} k_{s_1, a}} = \\ =
+    \frac{k_{a, s_1}}{k_{s_1, a}}\cdot\frac{k_{s_1, s_2}}{k_{s_2, s_1}}\cdots\frac{k_{s_{n-1}, s_n}}{k_{s_n, s_{n-1}}}\cdot\frac{k_{s_n, i}}{k_{i, s_n}} = \\ =
+    \frac{p_{s_1}}{p_a}\cdot\frac{p_{s_2}}{p_{s_1}}\cdots\frac{p_{s_n}}{p_{s_{n-1}}}\cdot\frac{p_{i}}{p_{s_n}} = \frac{p_i}{p_a}
+\end{gathered}
+\end{equation}
+So, the total ratio is independent of the path taken.
+More then that, selecting a closed loop by setting $i = a$ will result in $\omega_a^{(a)} = 1$, which means Kolmogorov criterion is met.
+\subsection{Steady state and detailed balance equivilance in tree graphs}
+A steady state is defined as:
+\begin{equation}
+    \dot{p}_i = \sum_j \left(p_j k_{j, i} - p_i k_{i, j}\right) = 0 \quad \forall i
+\end{equation}
+While detailed balance is defined as:
+\begin{equation}
+    p_i k_{i, j} = p_j k_{j, i} \quad \forall i, j
+\end{equation}
+It's clear to see, from summing of $j$ in the detailed balance equation, that detailed balance requires a steady state. The other way around, however, is trickier. So, assuming a tree graph means that there are no loops. If there are no loops, the Kolmogorov criterion is met, and as we (didn't prove but we know it's true) saw in the last section, this means that there is detailed balance.
+\subsection{Adding energy}
+Adding energy and forcing the probability to act according to Boltzman distribution, will result in detailed balance:
+\begin{equation}
+    \pi_i k_{i,j} = \pi_j k_{j,i} 
+\end{equation}
+looking like
+\begin{equation}
+    e^{-\beta E_i} k_{i,j} = e^{-\beta E_j} k_{j,i} 
+\end{equation}
+\begin{equation}
+    \boxed{\frac{k_{i,j}}{k_{j,i}} = e^{-\beta (E_j - E_i)} }
+\end{equation}
 \end{document}

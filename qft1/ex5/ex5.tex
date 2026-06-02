@@ -1,0 +1,379 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+\usepackage{slashed}
+\usepackage{pxfonts}
+\usepackage{multicol}
+\usepackage{mathptmx}
+\usepackage{simplewick}
+\usepackage{placeins}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=13.5pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Quantum Field Theory I Excercise 5}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{The LSZ reduction formula}
+\subsection{The third region pole}
+Following the same formulation as for the first integral, we start from
+\begin{equation}
+    III = \int_{-\infty}^{T^{-}}dx^0 \int d^3 xe^{ip^0x^0 - i\boldsymbol{p}\cdot{\boldsymbol{x}}}
+    \bra{\Omega}T\left[\phi(x)\phi(x_2)\cdots\phi(x_{n+m})\right]\ket{\Omega}
+\end{equation}
+The key difference between the $I$ region and the $III$ region is the position of $x^0$ in the time ordering operator. Where in class we used the fact that it comes before all the other fields, this time it will come last.
+Plugging in the identity operator:
+\begin{equation}
+    \boldsymbol{1} = \sum_{\lambda}\int\frac{d^3q}{(2\pi)^3}\frac{1}{2\epsilon_q(\lambda)}\ket{\lambda_q}\bra{\lambda_q}
+\end{equation}
+We get:
+\begin{equation}
+    III = \int_{-\infty}^{T^{-}}dx^0 \int d^3 xe^{ip^0x^0 - i\boldsymbol{p}\cdot\boldsymbol{x}}
+    \sum_{\lambda}\int\frac{d^3q}{(2\pi)^3}\frac{1}{2\epsilon_q(\lambda)}
+    \bra{\Omega}T\left[\phi(x_2)\cdots\phi(x_{n+m})\right]\ket{\lambda_q}\bra{\lambda_q}\phi(x)\ket{\Omega}
+\end{equation}
+Using a boost Lorentz transformation to move to the rest frame:
+\begin{equation}
+\begin{gathered}
+    \bra{\lambda_q}\phi(x)\ket{\Omega} = e^{i\boldsymbol{q}\cdot\boldsymbol{x} + i\epsilon_q(\lambda)x^0}\bra{\lambda_0}\phi(0)\ket{\Omega}
+\end{gathered}
+\end{equation}
+The spatial integral becomes a delta function $\delta^{(3)}(\boldsymbol{p} - \boldsymbol{q})$. We can then integrate over $q$ using the $\delta$ function to get:
+\begin{equation}
+\begin{gathered}
+    III =  \sum_{\lambda}\int_{-\infty}^{T^{-}}dx^0 e^{i\left(p^0 + \epsilon_p(\lambda)\right)x^0}
+    \frac{1}{2\epsilon_p(\lambda)}
+    \bra{\Omega}\phi(0)\ket{\lambda_0}\bra{\lambda_p}T\left[\phi(x_2)\cdots\phi(x_{n+m})\right]\ket{\Omega}
+\end{gathered}
+\end{equation}
+This integral diverges, so let us add $i\epsilon$ to the exponent:
+\begin{equation}
+\begin{gathered}
+    \int_{-\infty}^{T^{-}}dx^0 e^{i\left(p^0 + \epsilon_p(\lambda)\right)x^0} \rightarrow \int_{-\infty}^{T^{-}}dx^0 e^{i\left(p^0 + \epsilon_p(\lambda) + i\epsilon\right)x^0} = \frac{-ie^{i\left(p^0 + \epsilon_p(\lambda) + i\epsilon\right)T^{-}}}{p^0 + \epsilon_p(\lambda) + i\epsilon}
+\end{gathered}
+\end{equation}
+And so the total result is:
+\begin{equation}
+    III = \sum_{\lambda}
+    \frac{1}{2\epsilon_p(\lambda)}
+    \frac{-ie^{i\left(p^0 + \epsilon_p(\lambda) + i\epsilon\right)T^{-}}}{p^0 + \epsilon_p(\lambda) + i\epsilon}
+    \bra{\Omega}\phi(0)\ket{\lambda_0}\bra{\lambda_p}T\left[\phi(x_2)\cdots\phi(x_{n+m})\right]\ket{\Omega}
+\end{equation}
+This has a pole at $p^0 = -\epsilon_p = -\sqrt{p^2 + m^2}$ as expected.
+
+\newpage
+\section{The optical theorem}
+\subsection{$2\rightarrow2$ scatteing in $\phi^4$ theory}
+Let us start by writing the full integral of states on the RHS. For two particles with initial momenta $p_A, p_B$ and final momenta $p_C, p_D$, we must integrate over $p_C$ and $p_D$, using the reccomended normlization:
+\begin{equation}
+    \int \frac{d^3\vec{p}_C}{(2\pi)^3} \frac{d^3\vec{p}_D}{(2\pi)^3} \frac{1}{4E_CE_D} \left|\mathcal{M}(\vec{p}_A, \vec{p}_B \rightarrow \vec{p}_C, \vec{p}_D)\right|^2 (2\pi)^4\delta^{(4)}(p_A + p_B - p_C - p_D)
+\end{equation}
+But, since the particles are identical, This integral actually double-counts each state. To fix that, lets add a factor $\frac{1}{2}$:
+\begin{equation}
+    \frac{1}{2}\int \frac{d^3\vec{p}_C}{(2\pi)^3} \frac{d^3\vec{p}_D}{(2\pi)^3} \frac{1}{4E_CE_D} \left|\mathcal{M}(\vec{p}_A, \vec{p}_B \rightarrow \vec{p}_C, \vec{p}_D)\right|^2 (2\pi)^4\delta^{(4)}(p_A + p_B - p_C - p_D)
+\end{equation}
+Since the LHS is taken to second order, the same must apply here. The only way to achieve that is to take the first order in $\mathcal{M}$, giving:
+\begin{equation}
+    \frac{\lambda_p^2}{2}\int \frac{d^3\vec{p}_C}{(2\pi)^3} \frac{d^3\vec{p}_D}{(2\pi)^3} \frac{1}{4E_CE_D} (2\pi)^4\delta^{(4)}(p_A + p_B - p_C - p_D)
+\end{equation}
+Now, let us use the spatial $\delta$ function to solve one of the integrals, let's say $\vec{p}_D = \vec{p}_A + \vec{p}_B - \vec{p}_C$.
+\begin{equation}
+    \frac{\lambda_p^2}{2}\int \frac{d^3\vec{p}_C}{(2\pi)^3} \frac{2\pi \delta(E_A + E_B - E_C - E_D)}{4E_CE_D}
+\end{equation}
+Now, moving the to center of mass system, each pair of particles, incoming and outgoing, will have opposite momenta and equal energy
+\begin{equation}
+\begin{gathered}
+    \vec{p}_A = -\vec{p}_B \equiv \vec{p}_i
+    \quad
+    E_A = E_B \equiv E_i
+    \\
+    \vec{p}_C = -\vec{p}_D \equiv \vec{p}_f
+    \quad
+    E_C = E_D \equiv E_f
+\end{gathered}
+\end{equation}
+So, the delta function is reduced to $\delta(2E_i - 2E_f)$, which is obviously equivilant to $\delta(p_i - p_f)$ (a 1D $\delta$ over the 3-momentum magnitude) up to a Jacobean $E_f/2p_f$. Since the integral is spherically symmetric:
+\begin{equation}
+\begin{gathered}
+    \frac{\lambda_p^2}{2}\int \frac{d^3p_f}{(2\pi)^3} \frac{2\pi \delta(p_i - p_f)}{8E_fp_f} =
+    \frac{\lambda_p^2}{64\pi^2}\int \frac{\delta(p_i - p_f)}{p_f\sqrt{p_f^2 + m^2}}d^3p_f = 
+    \frac{\lambda_p^2}{16\pi}\int \frac{\delta(p_i - p_f)}{\sqrt{p_f^2 + m^2}}p_f dp_f = \\ =
+    \frac{\lambda_p^2}{16\pi}\sqrt{\frac{p_i^2}{p_i^2 + m^2}}
+\end{gathered}
+\end{equation}
+Now, we can rewrite it based on $s$:
+\begin{equation}
+    s = (p_A + p_B)^2 = 4E_i^2 = 4\left(p_i^2 + m^2\right)
+\end{equation}
+So:
+\begin{equation}
+    p_i^2 = \frac{s}{4} - m^2
+\end{equation}
+This gives:
+\begin{equation}
+\begin{gathered}
+    \frac{\lambda_p^2}{16\pi}\sqrt{\frac{p_i^2}{p_i^2 + m^2}} =
+    \frac{\lambda_p^2}{16\pi}\sqrt{\frac{\frac{s}{4} - m^2}{\frac{s}{4}}} =
+    \frac{\lambda_p^2}{16\pi}\sqrt{1 - \frac{4m^2}{s}}
+\end{gathered}
+\end{equation}
+Whihc is exactly twice what we got for $\Im[\mathcal{M}(\vec{p}_A, \vec{p}_B \rightarrow \vec{p}_A, \vec{p}_B)]$, as expected from the optical theorem.
+\subsection{$2\rightarrow2$ scatteing in $\phi^3$ theory}
+In the case of the $\phi^3$ theory, the RHS will include all transitions from a 2-particle state to some other final state of order $\lambda_p$, which include just the $2 \rightarrow 1$ transition.
+\newline
+The LHS will get contribution from the s, t, and u channels. Each channel will give a Faynman propegator with the matching Mandelstam variable.
+\begin{equation}
+    iM = - \frac{\lambda^2}{2}\left[\frac{i}{s - m^2 + i\epsilon} + \frac{i}{t - m^2 + i\epsilon} + \frac{i}{u - m^2 + i\epsilon}\right]
+\end{equation}
+So, for $\mathcal{M}$ to have an imaginary part, the propegators must have a real part. This will one of the Mandelstam variables equals to the total mass:
+\begin{equation}
+    s = m^2 \quad \text{or} \quad t = m^2 \quad \text{or} \quad u = m^2
+\end{equation}
+Considering only the cases where the momenta are different, this is not the case, and therefore the LHS vanishes.
+\newline
+This mathces the RHS on the case where $m \ne 0$. Then, the $2 \rightarrow 1$ process cannot conserve mass, and therefore is not allowed. This means that for $m \ne 0$, the RHS vanishes.
+\newline
+For $m = 0$, the LHS then contributes if one of the Mandelstam variables vanishes. For instance, taking the $s$ variable gives:
+\begin{equation}
+    s = (p_1 + p_2)^2 = p_1^2 + p_2^2 + 2p_1p_2 = 2m^2 + 2p_1p_2 = 2p_1p_2 = 0
+\end{equation}
+This means the two 4-momenta must be perpendicular in Minkowski space, i.e. that their product is zero. For massless particles, where $E = p$, this happens if they are in the same or opposite directions. In that case, the matching propegator will give $\frac{\lambda^2}{2}$, and the RHS will give the matching $2 \rightarrow 1$ diagram, resulting in $\lambda^2$ as expected.
+
+\newpage
+\section{Two-loop renormalization of the $\phi^4$ theory in four dimensions}
+\subsection{Dimensional analysis}
+The $-i\Sigma(p^2)$ has dimensions $\left[-i\Sigma(p^2)\right] = 2$. If $m_0 = 0$, the only other scale in the propegator of dimension two is $\left[p^2\right] = 2$. This means that up to some dimensionless function $h$ of $p^2\Lambda^2$, where we divide by the regularization scale $\Lambda$ to make $p^2$ unitless, the sum is
+\begin{equation}
+    -i\Sigma\left(p^2\right) = p^2 h\left(\frac{p^2}{\Lambda^2}\right)
+\end{equation}
+\subsection{The sunset diagram contribution to the 1PI propegator $\Sigma$}
+Using our trusted ol' Feynman rules, we can write the contribution of ths sunset diagram to the 1PI propegator. Let us name the three internal momenta $k_1, k_2,$ and $k_3$, and notice there is a symmetry factor $6$:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = -\frac{\lambda^2}{6} \int \frac{d^4k_1}{(2\pi)^4} \frac{d^4k_2}{(2\pi)^4} \frac{d^4k_3}{(2\pi)^4} \frac{i}{k_1^2 + i\epsilon} \frac{i}{k_2^2 + i\epsilon} \frac{i}{k_3^2 + i\epsilon} \times \\ \times
+    (2\pi)^4\delta^{(4)}\left(p - k_1 - k_2 - k_3\right) = \\ =
+     -\frac{\lambda^2}{6} \int \frac{d^4k_1}{(2\pi)^4} \frac{d^4k_2}{(2\pi)^4}\frac{i}{k_1^2 + i\epsilon} \frac{i}{k_2^2 + i\epsilon} \frac{i}{(p - k_1 - k_2)^2 + i\epsilon}
+\end{gathered}
+\end{equation}
+This integral is of order $\left(k^4\right)^2\left(k^{-2}\right)^3 \sim k^2$ and thus diverges quadratically. Moving to a general dimension $d$:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = -\frac{\lambda^2}{6} \int \frac{d^dk_1}{(2\pi)^d} \frac{d^dk_2}{(2\pi)^d}\frac{i}{k_1^2 + i\epsilon} \frac{i}{k_2^2 + i\epsilon} \frac{i}{(p - k_1 - k_2)^2 + i\epsilon}
+\end{gathered}
+\end{equation}
+Now, let us use Feynman's trick with two Feynman variables:
+\begin{equation}
+    \frac{1}{ABC} = 2\int_0^1 dx \int_0^{1-x} dy \frac{1}{\left[Ax + By + C(1 - x - y)\right]^3}
+\end{equation}
+We can write:
+\begin{equation}
+    A = k_1^2 \qquad B = k_2^2 \qquad C = (p - k_1 - k_2)^2
+\end{equation}
+To get:
+\begin{equation}
+\begin{gathered}
+    Ax + By + C(1 - x - y) = \\ =
+    k_1^2x + k_2^2y + (p - k_1 - k_2)^2(1 - x - y) = \\ =
+    k_1^2x + k_2^2y + \left[
+        (p - k_2)^2 + k_1^2 + 2(p - k_2)k_2
+    \right](1 - x - y) = \\ =
+    (1 - y)k_1^2 + 2(1 - x - y)(k_2 - p)k_1 + yk_2^2 + (1 - x - y)(k_2 - p)^2 = \\ =
+    (1 - y)\left[
+        k_1^2 + 2\frac{1 - x - y}{1 - y}(k_2 - p)k_1 + \frac{y}{1 - y}k_2^2 + \frac{1 - x - y}{1 - y}(k_2 - p)^2
+    \right]
+\end{gathered}
+\end{equation}
+So, we can define
+\begin{equation}
+    \alpha = \frac{1 - x - y}{1 - y} = 1-  \frac{x}{1 - y}
+    \qquad
+    \beta = \frac{y}{1 - y}
+\end{equation}
+
+And then the integral becomes:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = i\frac{\lambda^2}{3} \int \frac{d^dk_1}{(2\pi)^d} \frac{d^dk_2}{(2\pi)^d} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3} \times \\ \times \frac{1}{\left[
+        k_1^2 + 2\alpha(k_2 - p)k_1 + \beta k_2^2 + \alpha(k_2 - p)^2
+    \right]^3}
+\end{gathered}
+\end{equation}
+Completing the squre by defining $l_1 = k_1 + \alpha(k_2 - p)$ gives:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = i\frac{\lambda^2}{3} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3} \int \frac{d^dk_2}{(2\pi)^d} \frac{d^dl_1}{(2\pi)^d} \frac{1}{\left[
+        l_1^2 + \beta k_2^2 + (\alpha - \alpha^2)(k_2 - p)^2
+    \right]^3} = \\ =
+    i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - \frac{d}{2}\right)}{\Gamma(3)(4\pi)^{d/2}} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3} \int \frac{d^dk_2}{(2\pi)^d} \left(
+        \frac{1}{\beta k_2^2 + (\alpha - \alpha^2)(k_2 - p)^2}
+    \right)^{3 - \frac{d}{2}}
+\end{gathered}
+\end{equation}
+Again, let us complete the square:
+\begin{equation}
+\begin{gathered}
+    \beta k_2^2 + (\alpha - \alpha^2)(k_2 - p)^2 = (\beta +- \alpha - \alpha^2)k_2^2 - 2(\alpha - \alpha^2)pk_2 + (\alpha - \alpha^2)p^2 = \\ =
+    (\beta + \alpha - \alpha^2)\left[
+        k_2^2 - 2\frac{\alpha - \alpha^2}{\beta + \alpha - \alpha^2}pk_2 + \frac{\alpha - \alpha^2}{\beta + \alpha - \alpha^2}p^2
+    \right]
+\end{gathered}
+\end{equation}
+Defining
+\begin{equation}
+    \gamma = \frac{\alpha - \alpha^2}{\beta + \alpha - \alpha^2}
+\end{equation}
+We can define $l_2 = k_2 - \gamma p$ and write the integral as:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - \frac{d}{2}\right)}{\Gamma(3)(4\pi)^{d/2}} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha + \alpha^2)^{3 - \frac{d}{2}}} \times \\ \times \int \frac{d^dk_2}{(2\pi)^d} \left(
+        \frac{1}{k_2^2 - 2\gamma pk_2 + \gamma p^2}
+    \right)^{3 - \frac{d}{2}} = \\ =
+    i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - \frac{d}{2}\right)}{\Gamma(3)(4\pi)^{d/2}} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha + \alpha^2)^{3 - \frac{d}{2}}} \times \\ \times \int \frac{d^dl_2}{(2\pi)^d} \frac{1}{\left[l_2^2 + (\gamma - \gamma^2) p^2\right]^{3 - \frac{d}{2}}} = \\ =
+    i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - \frac{d}{2}\right)}{\Gamma(3)(4\pi)^{d/2}}  \frac{\Gamma\left(3 - \frac{d}{2} - \frac{d}{2}\right)}{\Gamma\left(3 - \frac{d}{2}\right)(4\pi)^{d/2}} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha + \alpha^2)^{3 - \frac{d}{2}}} \times \\ \times \left(\frac{1}{(\gamma - \gamma^2) p^2}\right)^{3 - \frac{d}{2} - \frac{d}{2}} = \\ =
+    i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - d\right)}{\Gamma(3)(4\pi)^{d}} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha + \alpha^2)^{3 - \frac{d}{2}}} \left((\gamma - \gamma^2) p^2\right)^{d - 3} = \\ =
+    i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - d\right)}{\Gamma(3)(4\pi)^{d}} p^{2(d - 3)} \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha + \alpha^2)^{3 - \frac{d}{2}}} \left(\gamma - \gamma^2\right)^{d - 3}
+\end{gathered}
+\end{equation}
+Noting that the remining $dx dy$ integral is simply a number, we can denoting it for simplicity
+\begin{equation}
+    I_d = \int_0^1 dx \int_0^{1-x} \frac{dy}{(1 - y)^3(\beta + \alpha - \alpha^2)^{3 - \frac{d}{2}}} \left(\gamma - \gamma^2\right)^{d - 3}
+\end{equation}
+And get:
+\begin{equation}
+    \Sigma_\Theta = i\frac{\lambda^2}{3} \frac{\Gamma\left(3 - d\right)}{\Gamma(3)(4\pi)^{d}} p^{2(d - 3)} I_d
+\end{equation}
+Now, taking $d = 4 - \epsilon$:
+\begin{equation}
+    \Sigma_\Theta = i\frac{\lambda^2}{3} \frac{\Gamma\left(-1 + \epsilon\right)}{\Gamma(3)(4\pi)^{4 - \epsilon}} p^{2(1 - \epsilon)} I_{4 - \epsilon} = 
+    i\frac{\lambda^2}{3} \frac{\Gamma(\epsilon)}{2(-1 + \epsilon)(4\pi)^{4 - \epsilon}} p^2 p^{-2\epsilon} I_{4 - \epsilon}
+\end{equation}
+And using
+\begin{equation}
+    p^{-2\epsilon} = e^{-2\epsilon\ln(p)} = 1 - 2\epsilon \ln(p) + \mathcal{O}(\epsilon^2) = 1 - \epsilon \ln(p^2) + \mathcal{O}(\epsilon^2)
+\end{equation}
+and
+\begin{equation}
+    \Gamma(\epsilon) = \frac{1}{\epsilon} - \gamma + \mathcal{O}(\epsilon)
+\end{equation}
+We get:
+\begin{equation}
+\begin{gathered}
+    \Sigma_\Theta = -i\frac{\lambda^2}{3} \frac{I_{4 - \epsilon}}{2(4\pi)^{4 - \epsilon}} p^2 \frac{\frac{1}{\epsilon} - \gamma + \mathcal{O}(\epsilon)}{1 - \epsilon}\left( 1 - \epsilon \ln(p^2) + \mathcal{O}(\epsilon^2)\right) = \\ =
+    -i\lambda^2 \frac{I_{4 - \epsilon}}{6(4\pi)^{4 - \epsilon}} p^2 \left(\frac{1}{\epsilon} - \gamma + \mathcal{O}(\epsilon)\right)\left( 1 - \epsilon \ln(p^2) + \mathcal{O}(\epsilon^2)\right)\left(1 + \epsilon\right) = \\ =
+    -i\lambda^2 \frac{I_{4 - \epsilon}}{6(4\pi)^{4 - \epsilon}} p^2 \left(\frac{1}{\epsilon} + 1 - \ln(p^2) - \gamma + \mathcal{O}(\epsilon)\right) = \\ =
+    -i\lambda^2 \frac{I_4}{6(4\pi)^4} p^2 \left(-\frac{1}{\epsilon} + \ln(\frac{p^2}{M^2}) + \mathcal{O}(\epsilon)\right)
+\end{gathered}
+\end{equation}
+Where in the last step we took $\epsilon \rightarrow 0$ for the prefactor only and took the constants into the regularization constant $M^2$. Last thing left is to evaluate $I_4$.
+\newline
+This next section is a lot of algebra, which might not be very interesting, so if you don't care you can skip to the result which is half, at the end of the page 10.
+\newline
+First, let us write $I_4$:
+\begin{equation}
+    I_4 = \int_0^1 dx \int_0^{1-x} \frac{\left(\gamma - \gamma^2\right)dy}{(1 - y)^3(\beta + \alpha - \alpha^2)}
+\end{equation}
+Next, we simplify $\gamma - \gamma^2$ in terms of $\alpha$ and $\beta$:
+\begin{equation}
+    \gamma - \gamma^2 = \frac{\alpha - \alpha^2}{\beta + \alpha - \alpha^2} - \left(\frac{\alpha - \alpha^2}{\beta + \alpha - \alpha^2}\right)^2 = \frac{\beta\left(\alpha - \alpha^2\right)}{\left(\beta + \alpha - \alpha^2\right)^2}
+\end{equation}
+And plugging this back in, we get:
+\begin{equation}
+    I_4 = \int_0^1 dx \int_0^{1-x} \frac{\beta\left(\alpha - \alpha^2\right)dy}{(1 - y)^3(\beta + \alpha - \alpha^2)^3}
+\end{equation}
+Next, we write the fraction in terms of $x$ and $y$:
+\begin{equation}
+\begin{gathered}
+    \frac{\beta\left(\alpha - \alpha^2\right)}{(1 - y)^3(\beta + \alpha + \alpha^2)^3} = 
+    \frac{\frac{y}{1 - y}\left(\frac{1 - y - x}{1 - y} - \left(\frac{1 - y - x}{1 - y}\right)^2\right)}{(1 - y)^3\left(\frac{y}{1 - y} + \frac{1 - y - x}{1 - y} - \left(\frac{1 - y - x}{1 - y}\right)^2\right)^3} = \\ =
+    \frac{\frac{y}{(1 - y)^3}\left((1 - y - x)(1 - y) - (1 - y - x)^2\right)}{\frac{(1 - y)^3}{(1 - y)^6}\left(y(1 - y) + (1 - y - x)(1 - y) - (1 - y - x)^2\right)^3} = \\ =
+    \frac{xy(1 - y - x)}{\left((1 - x)(1 - y) - (1 - y - x)^2\right)^3}
+\end{gathered}
+\end{equation}
+So, the integral becomes:
+\begin{equation}
+    I_4 = \int_0^1 dx \int_0^{1-x} \frac{xy(1 - y - x)dy}{\left((1 - x)(1 - y) - (1 - y - x)^2\right)^3}
+\end{equation}
+Now, it would be useful to write the $y$ integral from $0$ to $1$ instead of $1 - x$. So, let us define $y = (1 - x)u$ and $dy = (1 - x)du$ to get:
+\begin{equation}
+\begin{gathered}
+    1 - y - x = 1 - x - (1 - x)u = (1 - x)(1 - u)
+    \\
+    (1 - x)(1 - y) = (1 - x)(1 - (1 - x)u)
+\end{gathered}
+\end{equation}
+Thus:
+\begin{equation}
+\begin{gathered}
+    I_4 = \int_0^1 dx \int_0^{1} \frac{x(1 - x)^3u(1 - u)du}{\left((1 - x)(1 - (1 - x)u) - (1 - x)^2(1 - u)^2\right)^3} = \\ =
+    \int_0^1 dx \int_0^{1} \frac{x(1 - x)^3u(1 - u)du}{(1 - x)^3\left(1 - (1 - x)u - (1 - x)(1 - u)^2\right)^3} = \\ =
+    \int_0^1 dx \int_0^{1} \frac{xu(1 - u)du}{\left(1 - (1 - x)u - (1 - x)(1 - u)^2\right)^3} = \\ =
+    \int_0^1 dx \int_0^{1} du \frac{xu(1 - u)}{\left((1 - u + u^2)x + u - u^2\right)^3}
+\end{gathered}
+\end{equation}
+Since the integation limits are no longer dependent on $x$, we can integrate over $x$ first:
+\begin{equation}
+    I_4 = \int_0^{1} \frac{u - u^2}{\left(1 - u + u^2\right)^3} du \int_0^1 \frac{x}{\left(x + \frac{u - u^2}{1 - u + u^2}\right)^3} dx
+\end{equation}
+Using the integral:
+\begin{equation}
+\begin{gathered}
+    \int \frac{x}{(x + a)^3}dx = \{ z \equiv x + a \} = \int \frac{z - a}{z^3}dz = \int \frac{1}{z^2} - \frac{a}{z^3} dz = -\frac{1}{z} + \frac{a}{2z^2} + C = \\ =
+    \frac{a - 2z}{2z^2} + C = -\frac{a + 2x}{2(a + x)^2} + C
+\end{gathered}
+\end{equation}
+We can write:
+\begin{equation}
+\begin{gathered}
+    I_4 = -\int_0^{1} \frac{u - u^2}{\left(1 - u + u^2\right)^3} du 
+    \frac{\frac{u - u^2}{1 - u + u^2} + 2x}{2\left(\frac{u - u^2}{1 - u + u^2} + x\right)^2}\Bigg|_{x=0}^1 = \\ =
+     -\int_0^{1} \frac{u - u^2}{\left(1 - u + u^2\right)^3} du 
+    \left[
+        \frac{\frac{u - u^2}{1 - u + u^2} + 2}{2\left(\frac{u - u^2}{1 - u + u^2} + 1\right)^2} - 
+        \frac{\frac{u - u^2}{1 - u + u^2}}{2\left(\frac{u - u^2}{1 - u + u^2}\right)^2}
+    \right] = \\ =
+     -\frac{1}{2}\int_0^{1} \frac{u - u^2}{\left(1 - u + u^2\right)^3} du 
+    \left[
+        (1 - u + u^2)\frac{(u - u^2) + 2(1 - u + u^2)}{\left((u - u^2) + (1 - u + u^2)\right)^2} - \frac{1 - u + u^2}{u - u^2}
+    \right] = \\ =
+     -\frac{1}{2}\int_0^{1} \frac{u - u^2}{\left(1 - u + u^2\right)^2} du 
+    \left[
+        (2 - u + u^2) - \frac{1}{u - u^2}
+    \right] = \\ =
+    -\frac{1}{2} \int_0^{1} du \left[
+        \frac{u - u^2}{\left(1 - u + u^2\right)^2} +
+        \frac{u - u^2}{1 - u + u^2} -
+        \frac{1}{\left(1 - u + u^2\right)^2}
+    \right] = \\ =
+    -\frac{1}{2} \int_0^{1} du \left[
+        \frac{u - u^2 - 1}{\left(1 - u + u^2\right)^2} +
+        \frac{u - u^2}{1 - u + u^2}
+    \right] = \\ =
+    -\frac{1}{2} \int_0^{1} du \left[
+        \frac{-1}{1 - u + u^2} +
+        \frac{u - u^2}{1 - u + u^2}
+    \right] = \frac{1}{2}\int_0^1 du = \frac{1}{2}
+\end{gathered}
+\end{equation}
+Plugging that into our result we get, as expected:
+\begin{equation}
+    \Sigma_\Theta = -i\lambda^2 \frac{1}{12(4\pi)^4} p^2 \left(-\frac{1}{\epsilon} + \ln(\frac{p^2}{M^2}) + \mathcal{O}(\epsilon)\right)
+\end{equation}
+\subsection{Taking $p^2 \rightarrow 0$}
+Generally, for a particle of mass $m$ there is a pole at $p^2 = m^2$. In this case, for $m^2 = 0$, we expect a pole at $p^2 = 0$. While the zeroth order propegator has a pole at that point, this diagram contributes, not another pole, but a branch cut.
+\end{document}

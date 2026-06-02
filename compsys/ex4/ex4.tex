@@ -1,0 +1,129 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=13.5pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Complex Systems Excercise 4}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Fokker - Planck Equation for an Ornstein - Uhlenbeck Process}
+In this section we start from the Langevin equation for the Ornstein - Uhlenbeck Process:
+\begin{equation}
+    \frac{dv}{dt} = -\frac{v}{\tau} + \xi
+\end{equation}
+With
+\begin{equation}
+    \langle \xi(t) \xi(t') \rangle = A \delta(t - t')
+\end{equation}
+\subsection{The Fokker - Planck}
+Using the general form of a Langevin equation:
+\begin{equation}
+    \frac{dv}{dt} = -\mu F(v) + \xi
+\end{equation}
+We can write:
+\begin{equation}
+    F = v \qquad \mu = \tau^{-1}
+\end{equation}
+And so the Fokker-Planck equation comes from the continuity equation, where the probability density current is a result of the force and of diffusion:
+\begin{equation}
+    \frac{dp}{dt} = \mu \partial_v \left[F(v) p\right] + \partial_v \left[D \partial_v p\right]
+\end{equation}
+We can set the value for $D$ based on the $\mu = 0$ limit. At that limit, for the delta noise:
+\begin{equation}
+    D = A/2
+\end{equation}
+Plugging this, and the values for $\mu$ and $F(v)$:
+\begin{equation}
+    \frac{dp}{dt} = \frac{1}{\tau} \partial_v \left[pv\right] + \partial_v \left[\frac{A}{2} \partial_v p\right]
+\end{equation}
+We get the Fokker - Planck equation
+\begin{equation}
+    \boxed{\frac{dp}{dt} = \frac{p + vp'}{\tau} + \frac{A}{2}p''}
+\end{equation}
+\subsection{The velocity at time $t$}
+the Langevin equation is just a inhomogenous ODE. The homogenouse solution for $\xi = 0$ is:
+\begin{equation}
+    v_h = e^{-t/\tau}
+\end{equation}
+We can find the private solution by variation of parameters. Setting:
+\begin{equation}
+    v_p = C(t)e^{-t/\tau}
+\end{equation}
+And plugging this into the equation, we get:
+\begin{equation}
+    \left(\dot{C} - \frac{1}{\tau}\right) e^{-t/\tau} = -\frac{C e^{-t/\tau}}{\tau} + \xi
+\end{equation}
+\begin{equation}
+    \dot{C} = \xi e^{t/\tau}
+\end{equation}
+\begin{equation}
+    c = \int_0^t \xi(t') e^{t'/\tau}dt'
+\end{equation}
+In total, we get:
+\begin{equation}
+    v(t) = v_0 e^{-t/\tau} + \int_0^t e^{-(t - t')/\tau} \xi(t')dt'
+\end{equation}
+Now, since $\xi$ is a gaussian, and the integral is a linear operator, the final $v(t)$ is also a gaussian. To find it, we need to only find the first and second moments. To do so, we will use the linearity of moments and the known moments of $\xi$:
+\begin{equation}
+    \mu_\xi = \langle \xi \rangle = 0 \qquad
+    \sigma_\xi^2 = \langle \xi^2 \rangle - \langle \xi \rangle^2 = A
+\end{equation}
+\newline
+The first moment:
+\begin{equation}
+\begin{gathered}
+    \mu_v = \langle v_0 e^{-t/\tau} \rangle + \int_0^t e^{-(t - t')/\tau} \langle \xi(t') \rangle dt' = v_0 e^{-t/\tau} \\
+    \sigma_v^2 = \langle v^2 \rangle - \langle v \rangle^2 = \\ =
+    v_0^2 e^{-2t/\tau} + \int_0^t e^{-(t - t')/\tau} \langle v_0 e^{-t/\tau}\xi(t') \rangle dt' + \\ + \int_0^t e^{-2(t - t')/\tau} \langle \xi(t')\xi(t') \rangle dt' - v_0^2 e^{-2t/\tau} = \\ =
+    v_0 e^{-t/\tau} \int_0^t e^{-(t - t')/\tau} \langle \xi(t') \rangle dt' + A \int_0^t e^{-2(t - t')/\tau} dt' =
+    \frac{A \tau}{2} e^{2(t' - t)/\tau}\Big|_{t' = 0}^t  = \\ =
+    \frac{A \tau}{2} \left(1 - e^{-2t/\tau}\right)
+\end{gathered}
+\end{equation}
+So, this gives the velocity:
+\begin{equation}
+    p(v; t) = \frac{1}{\sqrt{2\pi}\frac{A \tau}{2} \left(1 - e^{-2t/\tau}\right)}\exp[-\frac{1}{2}\left(\frac{v - v_0 e^{-t/\tau}}{\frac{A \tau}{2} \left(1 - e^{-2t/\tau}\right)}\right)^2]
+\end{equation}
+\begin{equation}
+    \boxed{p(v; t) = \frac{\sqrt{2}}{\sqrt{\pi}A \tau\left(1 - e^{-2t/\tau}\right)}\exp[-2\left(\frac{v - v_0 e^{-t/\tau}}{A \tau \left(1 - e^{-2t/\tau}\right)}\right)^2]}
+\end{equation}
+It's clear to see that at $t \rightarrow 0$ the distribution is a delta function around $v = v_0$, as expected.
+\subsection{The $t \rightarrow \infty$ limit}
+When taking $t \rightarrow \infty$, we get that all the exponents vanish:
+\begin{equation}
+    p(v; t \rightarrow \infty) = \frac{\sqrt{2}}{\sqrt{\pi}A \tau}\exp[-2\left(\frac{v}{A \tau}\right)^2]
+\end{equation}
+Which can be understood as the system forgetting the starting conditions and evolving to a steady state gaussian aroudnd $v = 0$.
+\subsection{Thermodynamical interpertation}
+Considering the steady state as the equillibrium of the system, we can expect the final distribution to be Boltzman distribution:
+\begin{equation}
+    p \propto e^{-H/kT}
+\end{equation}
+Comparing this to the final state we got and using the classical kinetic energy:
+\begin{equation}
+    2\left(\frac{v}{A \tau}\right)^2 = \frac{mv^2}{2kT}
+\end{equation}
+Which gives:
+\begin{equation}
+    \boxed{A = \sqrt{\frac{4kT}{m\tau^2} }}
+\end{equation}
+This means that the diffusion rate is related linearly to the temperature.
+\end{document}
