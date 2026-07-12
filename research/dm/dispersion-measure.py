@@ -108,6 +108,7 @@ def each_event(dict_reader):
 def stats(dict_reader, args):
   dm_obs = []
   dm_excs = []
+  dm_excs_all = []
 
   if len(args) > 0:
     # split args by =
@@ -125,14 +126,22 @@ def stats(dict_reader, args):
 
   for event in each_event(dict_reader):
     if 'asc' in locals() and 'dec' in locals():
-      if abs(float(event[RIGHT_ASCENSION_FIELD]) - asc) > area or abs(float(event[DECLENATION_FIELD]) - dec) > area:
-        continue
-    dm_obs.append(float(event[DISPERSION_MEASURE_FIELD] or event[DISPERSION_MEASURE_BACKUP_FIELD]))
-    dm_excs.append(float(event["dm_exc"]))
+      if abs(float(event[RIGHT_ASCENSION_FIELD]) - asc) < area and abs(float(event[DECLENATION_FIELD]) - dec) < area:
+        dm_excs.append(float(event["dm_exc"]))
+    dm_excs_all.append(float(event["dm_exc"]))
   
-  print(f"Number of events: {len(dm_obs)}")
+  print("events in area")
+  print(f"Number of events: {len(dm_excs)}")
   print(f"Mean DM excess: {np.mean(dm_excs):.2f}")
+  print(f"Median DM excess: {np.median(dm_excs):.2f}")
   print(f"DM excess std: {np.std(dm_excs):.2f}")
+  
+  print("all events")
+  print(f"Number of events: {len(dm_excs_all)}")
+  print(f"Mean DM excess: {np.mean(dm_excs_all):.2f}")
+  print(f"Median DM excess: {np.median(dm_excs_all):.2f}")
+  print(f"DM excess std: {np.std(dm_excs_all):.2f}")
+  
 
 def heatmap(dict_reader, args):
   right_ascention_res = DEFAULT_RA_RES
@@ -154,13 +163,8 @@ def heatmap(dict_reader, args):
   ra_edges = np.linspace(0, 360, right_ascention_res + 1)
   dec_edges = np.linspace(0, 90, declenation_res + 1)
 
-  if 'smooth' in args:
-    sums, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges], weights=values)
-    counts, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges])
-  else:
-    sums, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges], weights=values)
-    counts, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges])
-
+  sums, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges], weights=values)
+  counts, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges])
   averages = np.divide(sums, counts, out=np.full_like(sums, np.nan), where=counts > min_count)
 
   plt.figure(figsize=(12, 6))
@@ -262,18 +266,14 @@ def dm_exc_comparative_histogram(dict_reader, args):
       dm_axcs_in_area.append(float(event["dm_exc"]))
     dm_excs.append(float(event["dm_exc"]))
 
-  bins = np.logspace(np.log10(np.min(dm_excs)), np.log10(np.max(dm_excs)), 61)
+  # bins = np.logspace(np.log10(np.min(dm_excs)), np.log10(np.max(dm_excs)), 61)
 
   plt.figure(figsize=(12, 6))
   plt.ylabel('Number of Events')
   # dual y axes
-  ax1 = plt.gca()
-  ax2 = ax1.twinx()
-  ax2.set_ylabel('Number of Events in Area')
-  ax1.hist(dm_excs, bins=bins, alpha=0.7, label='All Events')
-  ax2.hist(dm_axcs_in_area, bins=bins, alpha=0.7, color='orange', label=f'Events in Area around RA={asc}, Dec={dec}')
+  plt.hist(dm_excs, bins=60, alpha=0.7, label='All Events', density=True)
+  plt.hist(dm_axcs_in_area, bins=60, alpha=0.7, color='orange', label=f'Events in Area around RA={asc}, Dec={dec}', density=True)
 
-  plt.xscale('log')
   plt.xlabel('Dispersion Measure Excess (pc cm$^{-3}$)')
   plt.title('Comparative Histogram of Dispersion Measure Excess')
   plt.legend()

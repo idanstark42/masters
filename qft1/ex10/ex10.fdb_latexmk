@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1783258762.27033 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/ex10/ex10.tex" "ex10.pdf" "ex10" 1783258764.55243 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/ex10/ex10.tex" 1783258761 1053 d41bb9eb80d74c9bc86d93046a9c1da0 ""
+["pdflatex"] 1783867814.81831 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/ex10/ex10.tex" "ex10.pdf" "ex10" 1783867820.94308 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/ex10/ex10.tex" 1783867812 37238 35925b17150a94490d27b1b26c6bee76 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1761862263 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1761862263 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1761862263 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -13,6 +13,7 @@
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmr10.tfm" 1761862263 12056 7e13df7fe4cbce21b072ba7c4f4deb6e ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm" 1761862263 12092 7b1546e2d096cfd5dcbd4049b0b1ec2e ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm" 1761862263 12156 ca1ae6a3c8564e89597f1f993fba1608 ""
+  "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm" 1761862263 12064 9b9ade9f64cb32ce1d9a88d21fbd5c2d ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/lmex10.tfm" 1761862263 992 ce925c9346c7613270a79afbee98c070 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/lmmi10.tfm" 1761862263 1528 6d36b2385e0ca062a654de6ac59cb34f ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/lm/lmmi12.tfm" 1761862263 1524 753b192b18f2991794f9d41a8228510b ""
@@ -32,9 +33,11 @@
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb" 1761862264 23055 2e5b42921de910eaa97b85df04ca4891 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb" 1761862264 30388 702fae6a5f0e6e9c48a1d872b442ffcf ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb" 1761862264 30696 3da7e46ecf5615eedebd9f27dab4d9d7 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb" 1761862264 30635 833ec815d446ec453a4913fc26d24cbc ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb" 1761862264 119235 05e5c8d6d60439433e50047898c2c0e0 ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb" 1761862264 113634 9384aebdf26f9881e046a4b5574566db ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb" 1761862264 119752 1bd8d06e4079df624bf59ce3ad7c9aa6 ""
+  "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb" 1761862264 122174 a2d5e73f396ddbeb3bdf5c79aea0993d ""
   "c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb" 1761862264 27863 09ce3735688ffde955e72da27c95b61a ""
   "c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1761863489 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "c:/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex.sty" 1761860971 492 1994775aa15b0d1289725a0b1bbc2d4c ""
@@ -187,8 +190,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "ex10.aux" 1783258764 163 602c78567b97c03ecafb4a8212505f32 "pdflatex"
-  "ex10.tex" 1783258761 1053 d41bb9eb80d74c9bc86d93046a9c1da0 ""
+  "ex10.aux" 1783867820 2480 033fa4df7a6801ce7f6adf448981f964 "pdflatex"
+  "ex10.tex" 1783867812 37238 35925b17150a94490d27b1b26c6bee76 ""
   (generated)
   "ex10.aux"
   "ex10.log"
