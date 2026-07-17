@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  17 JUL 2026 01:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  17 JUL 2026 14:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1363,13 +1363,13 @@ L3 programming layer <2025-10-24>
 Here is how much of TeX's memory you used:
  21242 strings out of 467746
  438503 string characters out of 5431099
- 919794 words of memory out of 5000000
+ 919795 words of memory out of 5000000
  49476 multiletter control sequences out of 15000+600000
  734412 words of font info for 169 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,93p,499b,2751s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyc.pfb>
-Output written on formulas.pdf (34 pages, 351893 bytes).
+Output written on formulas.pdf (34 pages, 351902 bytes).
 PDF statistics:
  216 PDF objects out of 1000 (max. 8388607)
  142 compressed objects within 2 object streams
