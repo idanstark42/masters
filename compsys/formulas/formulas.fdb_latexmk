@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1784632718.61118 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/compsys/formulas/formulas.tex" "formulas.pdf" "formulas" 1784632721.02349 0
-  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/compsys/formulas/formulas.tex" 1784632717 30339 bc295570961e32b3c74e728bfa9b3e95 ""
+["pdflatex"] 1784701436.10402 "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/compsys/formulas/formulas.tex" "formulas.pdf" "formulas" 1784701439.41636 0
+  "c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/compsys/formulas/formulas.tex" 1784701428 30690 7325dbc9d4485bf4955223ad49ce36d1 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1761862263 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1761862263 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1761862263 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -115,8 +115,8 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761869766 5574153 af86687748baf417d9e7d549313527be ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1761870062 3629671 c738a05228be9471c7f6cc5a905be02d ""
   "c:/texlive/2025/texmf.cnf" 1761869735 713 e69b156964470283e0530f5060668171 ""
-  "formulas.aux" 1784632720 3408 44791a10c44265cb25f79186c3c3c9c0 "pdflatex"
-  "formulas.tex" 1784632717 30339 bc295570961e32b3c74e728bfa9b3e95 ""
+  "formulas.aux" 1784701439 3520 bae00b5b301edc18c8d3435995c873a5 "pdflatex"
+  "formulas.tex" 1784701428 30690 7325dbc9d4485bf4955223ad49ce36d1 ""
   (generated)
   "formulas.aux"
   "formulas.log"

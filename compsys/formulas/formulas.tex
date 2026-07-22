@@ -701,5 +701,14 @@ Stirling's formula:
 \begin{equation}
     N! = \sqrt{2\pi N}\left(\frac{N}{e}\right)^N
 \end{equation}
+\subsection{Gaussian Integrals}
+Simple Gaussian:
+\begin{equation}
+    \int dx  e^{-ax^2 + bx} = \sqrt{\frac{\pi}{a}}e^{\frac{b^2}{2a}}
+\end{equation}
+$N$-dimensional, with source $J$:
+\begin{equation}
+    \int d^n x  e^{-\frac{1}{2} x^T A x + J^T x} = \sqrt{\frac{(2\pi)^N}{\det A}} \exp\left( \frac{1}{2} J^T A^{-1} J \right)
+\end{equation}
 % TODO add Stokes first and second problem solutions at the end
 \end{document}
