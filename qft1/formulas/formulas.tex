@@ -105,10 +105,11 @@ The transition matrix can be split into unity + a scattering matrix
 \begin{equation}
     S = \boldsymbol{1} + iT
 \end{equation}
-Scattering matrix (with scattering amplitude):
+Scattering matrix:
 \begin{equation}
     \langle f | iT | i \rangle = (2\pi)^4 \delta^{(4)}(p_f - p_i) i\mathcal{M}
 \end{equation}
+Where $\mathcal{M}$ is the scattering amplitude, calcualted using the Feynman rules of amputated diagrams.
 Cross section:
 \begin{equation}
     d\sigma = \frac{1}{2E_A 2E_B |v_A - v_B|} |\mathcal{M}|^2 d\Pi_{\text{LIPS}}
@@ -358,21 +359,27 @@ Diagonalizing to solve the system of PDEs gives another set of couplings $g'^I$:
 \newpage
 \section{Known Theories}
 Theories that we saw in class
-\subsection{Bare propagators by field}
-Scalar:
+\subsection{Bare propegators by field}
+Scalar propegator:
 \begin{equation}
     \Delta_F(p) = \frac{i}{p^2 - m_0^2 + i\epsilon} \\
 \end{equation}
+When amputating leaves factor $1$.
+\newline
 Dirac Fermion:
 \begin{equation}
     S_F(p) = \frac{i(\slashed{p} + m_0)}{p^2 - m_0^2 + i\epsilon} \\
 \end{equation}
+When amputating leaves factor $u_s(p)$ for incoming fermions, $\bar{u}_s(p)$ for outgoing fermions, $\bar{v}_s(p)$ for incoming anti-fermions, $v_s(p)$ for outgoing anti-fermions.
+\newline
 Photon:
 \begin{equation}
     D_F^{\mu\nu}(p) = \frac{-i}{p^2 + i\epsilon}\left(
         \eta^{\mu\nu} - (1 - \xi)\frac{p^\mu p^\nu}{p^2}
     \right)
 \end{equation}
+When amputating leaves factor $\epsilon_\mu(p)$ for incoming photons and $\epsilon_\mu^*(p)$ for outoging photons.
+\newline
 Photon (Feynman gauge, $\xi=1$):
 \begin{equation}
     D_F^{\mu\nu}(p) = \frac{-i\eta^{\mu\nu}}{p^2 + i\epsilon}

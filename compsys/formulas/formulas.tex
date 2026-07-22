@@ -1,0 +1,705 @@
+\documentclass[twocolumn]{article}
+\usepackage[a4paper, margin=1cm]{geometry}
+
+\usepackage[small]{titlesec}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{bbold}
+\usepackage{float}
+\usepackage{array}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[fontsize=11pt]{fontsize}
+
+\DeclareMathOperator{\erfi}{erfi}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\title{Complex Systems Excercise 5}
+\author{Idan Stark}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Dimensional Analysis}
+\subsection{The pi theorem}
+Every physical law that relates $n$ physical quantities containing $k$ independent dimensions
+can be expressed as a relation between $p = n - k$ dimensionless variables, which are
+often noted $\pi$.
+\subsection{What to do?}
+Steps (or comments? Or general things to do?):
+\begin{itemize}
+    \item Write the dimension of each quantity.
+    \item Find the smallest set of independent dimensions (default to SI, but attempt complex dimensions as well).
+    \item Write down the dimensionless variables.
+    \item Write one dimensionless variable as a function of the others. Don't forget to add a function for each dimensionless quantity.
+    \item Get a self similar form: an equation for a dimensionless variable.
+    \item Solve it and go back to initial variables.
+\end{itemize}
+\section{Continuum Mechanics}
+\subsection{Density, Velocity, and Compressability}
+Continuity equation
+\begin{equation}
+    \partial_t\rho + \nabla\cdot(\rho v) = 0
+\end{equation}
+\textbf{Incompressability}
+\newline
+Either $\rho = \rho_0$ is a constant in space and time, or (the more common definition):
+\begin{equation}
+    \nabla\cdot v = 0
+\end{equation}
+For a incompressible fluid (by the second definition), the Continuity equation becomes:
+\begin{equation}
+    \partial_t\rho + v\cdot\nabla\cdot\rho = 0
+\end{equation}
+\textbf{Lagrangian Coordinates (or material coordinates, or convected coordinates)}
+\newline
+These are coordinates that move with the fluid. The material derivative is defined as:
+\begin{equation}
+    D_t = \partial_t + v\cdot\nabla
+\end{equation}
+Given a regular (Eulerian) coordinate $x$, then $X$ is a Lagrangian Coordinate if:
+\begin{equation}
+    D_t f = \frac{\partial f}{\partial t}\Bigg|_X
+\end{equation}
+From the Continuity equation:
+\begin{equation}
+    D_t \rho = -\rho \nabla \cdot v
+\end{equation}
+So for a incompressible fluid the material derivative of $\rho$ is zero.
+\subsection{Conservation of Momentum}
+\begin{equation}
+    D_t \boldsymbol{v} = \boldsymbol{F} + \frac{1}{\rho}\boldsymbol{\nabla}\sigma
+\end{equation}
+Where $\boldsymbol{F}$ is the force per unit mass and $\sigma_{ij}$ is $i$ component the force per unit area with normal in the $j$th direction.
+\newline
+\textbf{Flow by inertia}
+When $F = 0$ and $\sigma = 0$:
+\begin{equation}
+    D_t \boldsymbol{v} = 0
+\end{equation}
+Solved (in 1D) by $v(x, t)$ where:
+\begin{equation}
+    v = f(\xi)
+    \qquad
+    \xi = x - vt
+    \qquad
+    f(x) = v(x, 0)
+\end{equation}
+\begin{equation}
+    \partial_x v = \frac{f'}{1+tf'}
+    \qquad
+    \partial_t v = -\frac{vf'}{1+tf'}
+    \qquad
+    D_t \xi = 0
+\end{equation}
+For $f' < 0$ there exists a time
+\begin{equation}
+    t^* = \frac{1}{f'} = \frac{1}{v^*}
+\end{equation}
+Where the velocity gradient $\partial_x v$ diverges.
+\subsection{Ideal Incompressable Flow}
+For a fluid with isotropic pressure $\sigma_{ij} = -\delta_{ij}p$:
+\begin{equation}
+    D_t \boldsymbol{v} = \boldsymbol{F} - \frac{1}{\rho}\boldsymbol{\nabla}p
+\end{equation}
+Assuming Incompressability $\nabla\cdot v = 0$ and conservative forces $\nabla\cross F = 0$, and taking the curl gives:
+\begin{equation}
+    \partial_t \omega + v\cdot\nabla \omega + \omega\cdot\nabla v = 0
+\end{equation}
+Where $\omega = \nabla \cross v$ is the \textbf{vorticity}. Lagrange's theorem states that if $\omega(t = 0) = 0$ then $\omega = 0$ in all times.
+\newline
+\textbf{Potential flow}
+If $\omega = 0$, then $v = \nabla \phi$ for some potential function $\phi$ and compressability is $\nabla^2 \phi = 0$.
+\subsection{Bernoulli's Principle}
+Assuming Incompressability and that forces are gravitaitonal $\textbf{F} = -g\hat{\textbf{z}}$:
+\begin{equation}
+    \frac{1}{2}\rho v^2 + P + \rho gz = const
+\end{equation}
+ If the $\omega = 0$ (potential flow), this is true everywhere. If $\omega \ne 0$, this is true \textbf{along streamlines} (constant Lagrangian coordinates).
+\subsection{Viscous flow}
+Symmetry of the stress tensor:
+\begin{equation}
+    \sigma_{ij} = \sigma_{ji}
+\end{equation}
+Gives the \textbf{Navier Stokes equations}:
+\begin{equation}
+    \rho D_t v = \rho \partial_t \boldsymbol{v} + \rho(\boldsymbol{v}\cdot\boldsymbol{\nabla})\boldsymbol{v} = \rho \boldsymbol{F} - \boldsymbol{\nabla}p + \eta \nabla^2 \boldsymbol{v} + (\mu + \eta)\boldsymbol{\nabla}(\nabla\cdot v)
+\end{equation}
+Assuming incompressability and naming kinematic viscosity $\nu = \mu/\rho$:
+\begin{equation}
+    \partial_t \boldsymbol{v} + (\boldsymbol{v}\cdot\boldsymbol{\nabla})\boldsymbol{v} = \boldsymbol{F} - \frac{1}{\rho}\boldsymbol{\nabla}p + \nu \nabla^2 \boldsymbol{v}
+\end{equation}
+\textbf{Poiseuille flow}
+\newline
+Steady flow $\partial_t v = 0$, of a viscous incompressible fluid $(\rho, \eta)$, in a round pipe with radius $R$, with no external forces, flowing only along the pipe $\partial_\phi v = \partial_r v = 0$, assuming constant pressure gradient in the flow direction $\partial_x p = -G$:
+\begin{equation}
+    \boldsymbol{\nabla}p = \eta \nabla^2 v_x = \frac{\eta}{r}\partial_r(r\partial_r v_x(r))
+\end{equation}
+Requiring no divergences at $r = 0$ and $v_x(R) = 0$:
+\begin{equation}
+    v_x = -\frac{\Delta p}{4\eta L}\left(R^2 - r^2\right)
+\end{equation}
+And the mass flux:
+\begin{equation}
+    Q = 2\pi \int_0^R v_x rdr = \frac{\pi R^4}{8\eta}\frac{-\Delta p}{L}
+\end{equation}
+\textbf{Reynold number}
+\newline
+Dimensionless number describing the reltions in NS equation.
+\begin{equation}
+    Re = \frac{lv}{\nu} = \frac{lv\rho}{\eta}
+\end{equation}
+Where $l, v$ are the typical length scale and velocity.
+In Navier-Stokes:
+\begin{equation}
+    \partial_t \boldsymbol{v} + (\boldsymbol{v}\cdot\boldsymbol{\nabla})\boldsymbol{v} = \boldsymbol{F} - \frac{1}{\rho}\boldsymbol{\nabla}p + \frac{1}{Re} \nabla^2 \boldsymbol{v}
+\end{equation}
+\begin{itemize}
+    \item $Re \gg 1$ - the system is dominated by inertia
+    \item $Re \ll 1$ - inertia is negligable (Stokes flow)
+\end{itemize}
+\textbf{Stokes flow}
+\newline
+Neglecting the inertia terms:
+\begin{equation}
+    \boldsymbol{F} - \frac{1}{\rho}\boldsymbol{\nabla}p + \nu \nabla^2 \boldsymbol{v} = 0
+\end{equation}
+So, for an object with length scale $r_0$ (like a sphere), using dimensional analysis
+\begin{equation}
+    F = C \eta r_0 v
+\end{equation}
+For sphere, $C = 6\pi$.
+\newline
+\textbf{The Oseen Tensor}
+\newline
+The Green function for Stokes flow equation. For a force distribution $f(r)$:
+\begin{equation}
+    p(r) = \int g(r - r')f(r')d^3r'
+\end{equation}
+\begin{equation}
+    v(r) = \int T(r - r')f(r')d^3r'
+\end{equation}
+We get:
+\begin{equation}
+    g_i = \frac{r_i - r_i'}{4\pi|\boldsymbol{r} - \boldsymbol{r}'|^3}
+\end{equation}
+\begin{equation}
+    T_{ij} = \frac{1}{8\pi|\boldsymbol{r} - \boldsymbol{r}'|}\left(\delta_{ij} + \frac{(r_i - r_i')(r_j - r_j')}{|\boldsymbol{r} - \boldsymbol{r}'|^2}\right)
+\end{equation}
+\subsection{Hydrodynamics Instabilities}
+The instability of two fluid with relative tangential velocity along their surface x-y. Since in Navier Stokes for a compressible fluid, the pressure follows Laplace's equation $\nabla^2p = 0$, and there can be pressure waves:
+\begin{equation}
+    p = p_0 + \delta p \qquad \delta_p = Ae^{i(kx - \omega t) - kz}
+\end{equation}
+Allowing for velocity waves as well ($v$ is the relative velocity of $\rho_1$ with respect to $\rho_2$):
+\begin{equation}
+    v = v_0 + \delta v \qquad \delta_v = Be^{i(kx - \omega t) - kz}
+\end{equation}
+solving Navier-Stokes, and requiring that the fluids interface $z = \zeta(x, t)$ has the same velocity gives:
+\begin{equation}
+    \omega = kv_0\frac{\alpha \pm i\sqrt{\alpha}}{1 + \alpha} \qquad \alpha = \frac{\rho_1}{\rho_2}
+\end{equation}
+Which has an imaginary part, marking instability.
+\newline
+\textbf{Rayleigh Plateau instability}
+\newline
+The instability of a surface given a wave in it. In a cylinder of fluid with radius (with a volume preserving perturbation):
+\begin{equation}
+    r = r_0 + \epsilon \cos(kz) - \frac{\epsilon^2}{4\pi}
+\end{equation}
+Will have an area:
+\begin{equation}
+    A = \frac{4\pi^2}{k}\left(r_0 + \frac{\epsilon^2}{4\pi r_0}\left(r_0^1k^2 - 1\right)\right)
+\end{equation}
+Given the surface tension energy $E = \gamma A$, the energy is negative for $k < 1/r_0$, meaning that the perturbation will grow.
+\subsection{Surfaces}
+\subsection{Surface Tension}
+\begin{equation}
+    E = \gamma A = \int \sqrt{|a|}dx^1dx^2
+\end{equation}
+For an open surface, looking for minimum to the surface:
+\begin{equation}
+    H = 0
+    \qquad
+    -\frac{1}{2\nabla^2}\eta + \eta K > 0 \ \forall \ \eta
+\end{equation}
+For a colsed surface there can be a finite pressure difference $\delta p$, using \textbf{Young-Laplace law}.
+\begin{equation}
+    \Delta p = -2\gamma H
+\end{equation}
+\section{Elasticity}
+The momentum equation (similar to NS):
+\begin{equation}
+    \partial_t v_i + v_j \partial_j v_i = f_i + \frac{1}{\rho}\partial_j \sigma_{ij} 
+\end{equation}
+For a static system $v_i = 0$:
+\begin{equation}
+    \partial_j \sigma_{ij} = 0
+\end{equation}
+The linearized strain tensor for some displacement $\boldsymbol{u} = \boldsymbol{r} - \boldsymbol{x}$, where at $\boldsymbol{x}$ the system is at rest:
+\begin{equation}
+    \epsilon_{ij} = \frac{1}{2}\left(\partial_i u_j + partial_j u_i\right)
+\end{equation}
+Their relation is:
+\begin{equation}
+    \sigma_{ij} = \lambda\delta_{ij}\Tr(\epsilon) + 2\mu \epsilon_{ij}
+\end{equation}
+Where $\lambda, \mu$ are the \textbf{Lame coefficients}.
+\newline
+\textbf{Young's modulus and Poisson ratio}
+\newline
+\begin{equation}
+    \lambda = \frac{Y\nu}{(1 + \nu)(1 - 2\nu)}
+    \qquad
+    \mu = \frac{Y}{2(1 + \nu)}
+\end{equation}
+Young's modulue has units of pressure, and Poisson ratio is unitless, between $-1$ and $\frac{1}{2}$.
+\subsection{Compression waves in solids}
+Length wave $\epsilon_{xx} = \partial_x u_x$, gives
+\begin{equation}
+    \sigma_{ij} = (\lambda\delta_{ij} + 2\mu \delta_{ix}\delta_{jx})\partial_x u_x
+\end{equation}
+\begin{equation}
+    \partial_t^2 u_x = C_p^2\partial^2 u_x
+    \qquad
+    C_p^2 = \frac{Y}{\rho}\frac{(1 - \nu)}{(1 + \nu)(1 - 2\nu)}
+\end{equation}
+Trasverse wave $\epsilon_{xy} = \partial_x u_y$, gives
+\begin{equation}
+    \sigma_{xy} = \sigma_{yx} = \mu \partial_x u_y
+\end{equation}
+\begin{equation}
+    \partial_t^2 u_y = C_s^2\partial^2 u_y
+    \qquad
+    C_s^2 = \frac{Y}{\rho}\frac{1}{2(1 + \nu)}
+\end{equation}
+\subsection{Large displacements}
+Strain to second order:
+\begin{equation}
+    \epsilon_{ij} = \frac{1}{2}\left(\partial_i u_j + \partial_j u_i + \partial_i u_j \partial_j u_i\right)
+\end{equation}
+Cauchy-Green strain:
+\begin{equation}
+    \epsilon = \frac{1}{2}\left(g - \bar{g}\right)
+\end{equation}
+Where $g$ is the metric and $\bar{g}$ is the original metric.
+\subsection{This structure elasticity}
+The 3D elastic energy functional:
+\begin{equation}
+    E = \int \frac{1}{2}\sigma^{ij}\epsilon_{ij}d^3x
+\end{equation}
+For thin structure $t, W \ll L$:
+\begin{equation}
+    E = YW\int \frac{1}{2}(\epsilon^1_1)^2 d^2x
+\end{equation}
+Thin configuration along a curve:
+\begin{equation}
+    \boldsymbol{r}(u, v) = \boldsymbol{\gamma}(u) + v\hat{\boldsymbol{n}}(u)
+    \qquad
+    \partial_u \boldsymbol{\gamma} = \frac{\partial s}{\partial u}\hat{\boldsymbol{t}}
+\end{equation}
+Where $\hat{\boldsymbol{t}}$ is the tangent and $\hat{\boldsymbol{n}}$ is the normal:
+\begin{equation}
+    \partial_u \hat{\boldsymbol{t}} = \frac{\partial s}{\partial u} \kappa \hat{\boldsymbol{n}}
+    \qquad
+    \partial_u \hat{\boldsymbol{n}} = -\frac{\partial s}{\partial u} \kappa \hat{\boldsymbol{t}}
+\end{equation}
+Assuming a small displacement $\frac{\partial s}{\partial u} = 1 + \Delta$, the metric is:
+\begin{equation}
+    a = \begin{pmatrix}
+        (1 - \nu k)^2(1 + \Delta)^2 & \\ & 1
+    \end{pmatrix}
+\end{equation}
+\textbf{The Kirchoff-Love assumptions}:
+\newline
+From the metric we get $\epsilon_{22} = 0$, and before we assumes $\sigma_{22} = 0$. These contradict. This finally gives:
+\begin{equation}
+    E = \frac{YWt}{2}\int_0^L \Delta^2 du + \frac{YWt^3}{24}\int_0^L \kappa^2 du \equiv E_{strech} + E_{bending}
+\end{equation}
+\section{Random Walks}
+\textbf{In 1D}
+\begin{equation}
+    x_{n+1} = x_n \pm 1
+\end{equation}
+After $N$ steps, $R$ steps to the right and $N_R$ steps to the left:
+\begin{equation}
+    x_N = 2R - N
+\end{equation}
+\begin{equation}
+    \langle x_N \rangle = 0 \qquad
+    \langle x_N^2 \rangle = N
+\end{equation}
+\begin{equation}
+    p(x) = \begin{cases}
+        0 & x \ \text{odd} \\
+        \frac{1}{2^N}\binom{N}{R} & x \ \text{even}
+    \end{cases}
+\end{equation}
+Using Stirling's formula:
+\begin{equation}
+    p_{even}(x) = \frac{2}{\sqrt{2\pi N}}e^{-\frac{x^2}{2N}}
+\end{equation}
+\textbf{In higher dimensions}
+\newline
+Given $p(\vec{r}, t)$, we can write (time is still discrete, just with time steps $\tau$):
+\begin{equation}
+    p(\vec{r}, t + \tau) = \int p(\vec{r} - \vec{Delta}, t) g(\vec{Delta}) d^3\vec{Delta}
+\end{equation}
+Assuming isotropic distirbution and definint $\partial_t p = \frac{1}{\tau}(p(t + \tau) - p(t))$:
+\begin{equation}
+    \partial_t p = D \nabla^2 p
+    \qquad
+    D = \frac{1}{6d\tau}\langle \Delta^2 \rangle
+\end{equation}
+This is the diffusion equation, with Gaussian Solutions:
+\begin{equation}
+    p(\vec{r}, t) = \frac{1}{\left(4\pi D t\right)^{3/2}} e^{-\frac{r^2}{4Dt}}
+\end{equation}
+\begin{equation}
+    \langle r^2 \rangle = 6Dt    
+\end{equation}
+\section{Markov Chains}
+Given the probability matrix $P_{ij}$: the probability to go from state $i$ to state $j$, then the probability to be in state $i$ at $n+1$ is:
+\begin{equation}
+    p_i^{n+1} = \sum_j P_{ji}p_j
+\end{equation}
+So:
+\begin{equation}
+    \vec{p}_n = P^n \vec{p}_0
+\end{equation}
+\section{Langevin and Fokker-Planck Equations}
+\textbf{Langevin equations} are the equations of motion with noise, and \textbf{Fokker-Planck equations} are the equations for the probability distribution.
+\newline
+For the simple equation
+\begin{equation}
+    \dot{x} = \xi(t)
+\end{equation}
+With $\langle \xi(t)\xi(t') \rangle = \frac{D}{2}\delta(t - t')$, then:
+\begin{equation}
+    \langle x^2 \rangle = 2Dt
+\end{equation}
+For the general Langevin equation:
+\begin{equation}
+    m\frac{dv}{dt} = -\gamma v + \xi(t) - V'(x)
+\end{equation}
+In the overdamped limit (removing the LHS and dividing by $\gamma$):
+\begin{equation}
+    \frac{dx}{dt} = \mu f(t) + \xi(t)
+\end{equation}
+We get two currents - force current and diffusion current:
+\begin{equation}
+    \vec{j}_f = -\mu p \vec{\nabla}V(\vec{r})
+    \qquad
+    \vec{j}_d = -D \vec{\nabla}p
+\end{equation}
+So from the Continuity equation:
+\begin{equation}
+    \partial_t p = -\vec{\nabla}\cdot\left[\vec{j}_f + \vec{j}_d\right]
+\end{equation}
+\section{Generalized CLT}
+Characteristic function:
+\begin{equation}
+    \varphi(\omega) = \int_{-\infty}^\infty f(t)e^{i\omega t}dt
+\end{equation}
+For sum of variables $X = \sum_i x_i$:
+\begin{equation}
+    \varphi_X(\omega) = \prod_i \varphi_i(\omega)
+\end{equation}
+So:
+\begin{equation}
+    p_n = \mathcal{F}^{-1}\left[\phi_n\right] = \mathcal{F}^{-1}\left[\left(\mathcal{F}\left[p\right]\right)^n\right]
+\end{equation}
+For a distribution whose tail goes as $p(x > x^*) \propto x^{-(1 + \mu)}$:
+\begin{itemize}
+    \item $1 < \mu < 2$: the mean is defined but the variance isn't.
+    \item $0 < \mu < 1$: the mean is not defined.
+\end{itemize}
+\textbf{Levi stable distribution} is a distribution $f(x)$ such that the sum of two random variables from the distribution has the same distribution. The most general such distribution has the characteristic function:
+\begin{equation}
+    \varphi(\omega) = \exp[A\left|\omega\right|^\mu]
+\end{equation}
+\section{Extreme Value Theorem}
+The Cumulative Probability Function (CPF) of a maximum value scales multiplicativly:
+\begin{equation}
+    G(x) = p(X_n < x) = \prod_i p(x_i < x)
+\end{equation}
+For a distribution normalized using
+\begin{equation}
+    \xi_n = \frac{x_n - b_n}{a_n}
+\end{equation}
+Where
+\begin{equation}
+    \alpha = \lim_{n\rightarrow\infty} \frac{n}{a_n}\frac{\partial a_n}{\partial n}
+    \qquad
+    \beta = \lim_{n\rightarrow\infty} \frac{n}{a_n}\frac{\partial b_n}{\partial n}
+\end{equation}
+Then:
+\begin{itemize}
+    \item $\alpha > 0$ \textbf{Fréchet Distribution} has $G(x) = e^{-ax^{-1/\alpha}}$
+    \item $\alpha = 0$ \textbf{Gumbel Distribution} has $G(x) = e^{-e^{-ax + b}}$
+    \item $\alpha < 0$ \textbf{Weibull Distribution} has $G(x) = e^{\alpha(\beta/|\alpha| - x)^{1/|\alpha|}}$
+\end{itemize}
+\section{Random Matrix Theory}
+There are three meaningful ensembles:
+\begin{itemize}
+    \item \textbf{Gaussian Orthogonal Ensemble}: matrices are real and symmetric, with probability $p(A) \propto e^{-\frac{N}{4}\tr A^2}$.
+    \item \textbf{Gaussian Unitary Ensemble}: matrices are complex and hermitian, with probability $p(A) \propto e^{-\frac{N}{2}\tr A^2}$.
+    \item \textbf{Gaussian Symplectic Ensemble}: matrices are complex and harmitian, with probability $p(a) \propto e^{-n\tr A^2}$
+\end{itemize}
+\textbf{Wigner's Surmise} says that the result of $N=2$ matrix are a good approximation to the $n \gg 1$ case.
+\section{Dynamical Systems}
+\subsection{Discrete maps}
+\begin{equation}
+    \vec{x}_{n+1} = f\left(\vec{x}_n\right)
+\end{equation}
+Fixed point:
+\begin{equation}
+    \vec{x}^* = f\left(\vec{x}^*\right)
+\end{equation}
+GRaphically these are the intersection of the map and the $y = x$ line.
+\newline
+Periodic orbits:
+\begin{equation}
+    \vec{x}^* = f^n\left(\vec{x}^*\right)
+\end{equation}
+Stability of a p-orbit is determined by its \textbf{Stability coefficient}:
+\begin{equation}
+    \lambda_p = \prod_i^p f'(x_i)
+    \qquad
+    \begin{matrix}
+        \left|\lambda_p\right| > 1 & \text{unstable} \\
+        \left|\lambda_p\right| < 1 & \text{stable} \\
+        \left|\lambda_p\right| = 1 & \text{superstable}
+    \end{matrix}
+\end{equation}
+Bifurcations:
+\begin{itemize}
+    \item Tanget bifurcation: two points, stable and unstable, appear/annahilate when the map $f(x_n)$ becomes tangent to $y = x$. Inlucdes a slowing of the dynamical system before the the creation (Intermittency).
+    \item Period Doubling bifurcation: a stable fixed point becomes unstable and creates two stable 2-orbits.
+    \newline
+    This happens when the position of the fixed point is not changing, but $f'(x^*)$ crosses $1$ or $-1$. When crossing $1$, this is very similar to 1D continuous system Pitchfork bifurcation. When crossing $-1$, then $f^{2}{'}(x^*)$ crosses $1$, and gets two stable fixed point of $f^2$ are created. this essentially doubles the orbit of the 1-orbit to 2-orbit, and if $f$ is actually $f^p$, then it doubles the p-orbit to 2p-orbit.
+    \item Inverse Period Doubling bifurcation: the same as period doubling, but a single unstable fixed-point (p-orbit) becomes two unstable 2-orbits (2p-orbits) and a stable fixed point.
+\end{itemize}
+\textbf{Sarkovskii's theorem}
+\newline
+Given Sarkovskii's order:
+\begin{equation}
+    3,5,7,\dots,2\cdot3,2\cdot5,\dots,2^2\cdot3,2^2\cdot5,\dots,2^3,2^2,2,1
+\end{equation}
+Then if a map has p-periodic orbit, it has periodic orbits of all order above it.
+\subsection{Continuous time}
+\begin{equation}
+    \dot{\vec{x}} = f(t, \vec{x})
+\end{equation}
+Fixed point:
+\begin{equation}
+    f(\vec{x}) = 0
+\end{equation}
+\subsubsection{1D systems}
+Categorization of fixed points:
+\begin{itemize}
+    \item $f'(x^*) < 0 \rightarrow$ stable
+    \item $f'(x^*) > 0 \rightarrow$ unstable
+    \item $f'(x^*) = 0 \rightarrow$ look at higher derivatives. if all derivatives are zero, the point is half-stable.
+\end{itemize}
+The characteristic time scale:
+\begin{equation}
+    \tau = \left|f'(x^*)\right|^{-1}
+\end{equation}
+\textbf{Bifurcations}
+\begin{itemize}
+    \item Saddle-Node bifurcation ($r + x^2$): when two fixed points join to become a half stable fixed point, then vanish.
+    \item Transcritical bifurcation ($rx + x^2$): when a node changes its stability.
+    \item Pitchfork bifurcation - in a symmetric system, a fixed point is split into three - one unstable and two stable fixed points.
+    \newline
+    These can be \textbf{supercritical} ($rx - x^3$), where the $x^3$ term causes the decay to be algebric with time (critical slowdown) or \textbf{subcritical} ($rx + x^3 - x^5$), where there are additional two stable fixed points, created by two simultanious saddle-point bifurcations, and $x = 0$ is only locally stable.
+\end{itemize}
+\subsubsection{2D systems}
+\textbf{Stability}
+\begin{itemize}
+    \item Attracting fixed point: points in the neighborhood go to the fixed point at $t\rightarrow\infty$.
+    \item Lyapunov stablity - If a point in the neighborhood remains in the neighborhood for all times $t$.
+    \item A point that has stability in one direction and instability in the other is called a saddlepoint. It has a stable manifold (all points that flow to the fixed point at $t\rightarrow\infty$) and unstable manifold (the same at $t\rightarrow-\infty$). 
+\end{itemize}
+\textbf{Linear system}
+\begin{equation}
+    \dot{\vec{x}} = A\vec{x}
+\end{equation}
+So $\vec{x} = (0,0)$ is always a fixed point.
+Given that $\lambda_{1,2}$ are the eigenvalues of $A$ and $\vec{v}_{1,2}$ are the eigenvectors, then:
+\begin{equation}
+    \lambda_{1,2} = \frac{\tau \pm \sqrt{\tau^2 -4\Delta}}{2}
+\end{equation}
+Where $\tau$ is the trace and $\Delta$ is the determinant, and the general solution starting from $\vec{x}(0) = c_1\vec{v}_1 + c_2\vec{v}_2$ is:
+\begin{equation}
+    \vec{x}(t) = c_1 \vec{v}_1 e^{\lambda_1 t} + c_2 \vec{v}_2 e^{\lambda_2 t}
+\end{equation}
+Then the point can be written as:
+\begin{itemize}
+    \item $\Delta < 0$ - saddlepoint: one eigenvalue is negative and one is positive.
+    \item $\Delta > 0$ and $\tau^2 > 4\Delta$ - node: then the eigenvalues have the same sign. If $\tau > 0$ then they are both positive, and the node is unstable. If $\tau < 0$ then the point is stable.
+    \item $\Delta > 0$ and $\tau^2 < 4\Delta$ - spirals: the eigenvalues are complex, and based on the sign of $\tau$ can have either stability.
+    \item $\Delta > 0$ and $\tau = 0$: centers - the eigenvalues are purely imaginary.
+    \item $\tau^2 = 4\Delta$: the eigenvalues are the same, and we get a star (with stability based on $\tau$) if the multiplicity is algebric and a degnerate node, with a single direction, if the multiplicity is geometric.
+\end{itemize}
+\textbf{Nonlinear system}
+Given:
+\begin{equation}
+    \dot{x} = f(x, y) \qquad
+    \dot{y} = g(x, y)
+\end{equation}
+We linearize around a fixed point:
+\begin{equation}
+    \dot{x} = Jx
+    \qquad
+    J = \begin{pmatrix}
+        \partial_x f & \partial_y f \\ \partial_x g & \partial_y g
+    \end{pmatrix}
+\end{equation}
+If we get a marginal case - any line in the $\tau, \Delta$ graph, be cautious!
+\newline
+A \textbf{hyperbolic} point is a point where $\Re(\lambda) \ne 0$ for all eigenvalues. \textbf{The Hartman-Grobman theorem} states that locally, the phase near hyperbolic points are “topologically equivalent” to the linearized version.
+\newline
+Centers are nevertheless stable in \textbf{conservative systems} (systems with a conserved quantity, i.e. energy), and systems with \textbf{time reversal symmetry}.
+\newline
+\textbf{Index Theory}
+\newline
+For a system $\dot{\vec{x}} = \vec{f}(\vec{x})$ we define:
+\begin{equation}
+    \phi(x) = \atan(\frac{\dot{y}}{\dot{x}})
+\end{equation}
+Going along a closed loop $C$ in $\R^2$, the loop index is defined as the number of cycles $\phi$ does:
+\begin{equation}
+    I_C = \frac{1}{2\pi} \oint \dot{\phi}(x(\lambda))d\lambda = 
+    \frac{1}{2\pi} \oint \left(\frac{\ddot{x}}{\dot{x}} - \frac{\ddot{y}}{\dot{y}}\right)d\lambda
+\end{equation}
+\begin{itemize}
+    \item The loop always goes counterclockwise. The index doesn't depend on the direction of time.
+    \item The contour can be smoothly deformed, without going through any fixed points, and not change its index.
+    \item If $C$ is a trajectory, then $I_C = 1$.
+    \item The index is $0$ if there are no fixed points inside the loop.
+    \item This means that index of an isolated fixed point is the index of any loop that contains only itself.
+    \item The index of a fixed point is independent of its stability.
+    \item The index of nodes, degenerate nodes, spirals and centers is 1, and of saddles is $-1$.
+    \item If a closed curve $C$ encloses multiple fixed points, its index the is the sum of their indices:
+    \item Any closed orbit in state-space has an index IC = +1, and therefore it must enclose fixed points whose indices sum up to +1.
+\end{itemize}
+\textbf{Limit Cycles}
+\newline
+An isolated closed trajectory.
+\newline
+There are no limit cycles:
+\begin{itemize}
+    \item In potential systems $\dot{\vec{x}} = -\vec{\nabla}V$.
+    \item If there is a Liapunov Function: a function $V(x)$ such that at the fixed point $V(x^*) = 0$ and everywhere else $V(x) > 0$ and $\dot{V}(x) < 0$.
+    \item Dulac's Criterion: In an area where $\nabla \cdot (g\vec{f})$ doesn't change sign, for every $g(x)$.
+\end{itemize}
+\textbf{Poincare-Bendixson Theorem}
+Consider a close bounded subset of the plane $R$, and that the vector field $\vec{f}(\vec{x})$ is smooth enough in some open subset of $R$. If $R$ does not have a fixed point, and if at least one trajectory never leaves $R$,
+then $R$ contains a closed orbit.
+\newline
+To use this, we find a \textbf{attracting zone}: we plot the nullcline and find an area where the normal derivative to the boundary is always inward.
+\newline
+\textbf{Bifurcations}
+Has all the 1D bifurcations, and also \textbf{Hopf bifurcations}.
+\begin{itemize}
+    \item When the eigenvalues don't have an imaginary part, it's the same as in 1D.
+    \item If they have an imaginary part, and they change sign of the real value, it's a \textbf{supercritical Hopf bifurcation} - moving from stable spiral to an unstable spiral, creating a limit cycle.
+    \item The \textbf{subcritical Hopf bifurcation} similar to 1D subcritical pitchfork, with term $x^3$ unstabalizes and an additional $x^5$ stablizing.
+    \item It is impossible to tell the type of Hopf bifurcation from linearization.
+\end{itemize}
+% quazi
+\section{Math}
+\subsection{Tensors}
+Symmetric rank rwo tensors in 3D, linear to a generic tensor $A_{ij}$:
+\begin{equation}
+    \sigma_{ij} = \alpha \delta_{ij} + \beta Tr(A)\delta_{ij} + \gamma (A_{ij} + A_{ji})
+\end{equation}
+Symmetric, uniform, isotropic, rank four tensor:
+\begin{equation}
+    A^{ijkl} = \lambda\delta^{ij}\delta^{kl} + \mu\left(\delta^{ik}\delta^{jl} + \delta^{il}\delta^{jk}\right)
+\end{equation} 
+\newline
+\textbf{Isotropy}
+When requiring isotropy in a vector relation:
+\begin{itemize}
+    \item Wite the relation in tensor form $C^{i} = T^{ijk}A_jB_k$
+    \item Move to another system $\Lambda^i_j$:
+    \begin{equation}
+        C'^{i} = T^{jkl}\Lambda^i_j \Lambda^n_k \Lambda^m_l A_nB_m
+    \end{equation}
+    \item Reuiqre $T$ to be invariant
+    \begin{equation}
+        T^{inm} = T^{jkl}\Lambda^i_j \Lambda^n_k \Lambda^m_l
+    \end{equation}
+    \item Rotate by different tegrees to see relations between the components of $T$
+\end{itemize}
+In the case of the bilinear tensor relation $C^{i} = T^{ijk}A_jB_k$:
+\begin{equation}
+    T^{ijk} \propto \epsilon^{ijk}
+\end{equation}
+\subsection{Surfaces}
+Given a 2D manifold in 3D space:
+\begin{equation}
+    \boldsymbol{r}(x^1, x^2): \mathcal{D}\rightarrow\mathcal{S}
+\end{equation}
+Where $\mathcal{D} \in \R^2$ and $\mathcal{S} \in \R^3$.
+\newline
+Tanget vectors:
+\begin{equation}
+    \partial_1 r, \partial_2 r
+\end{equation}
+Distances are measured using the metric (first fundamental form):
+\begin{equation}
+    ds^2 = g_{\alpha\beta}dx^\alpha dx^\beta
+    \qquad
+    g_{\alpha\beta} = \partial_\alpha r \partial_\beta r
+\end{equation}
+The normal vector:
+\begin{equation}
+    \hat{\boldsymbol{N}} = \frac{\partial r \cross \partial_2 r}{\sqrt{a}}
+\end{equation}
+The second fundamental form (the curvature form):
+\begin{equation}
+    b_{\alpha\beta} = \partial_\alpha \partial_\beta r \cdot \hat{\boldsymbol{N}}
+\end{equation}
+The shape tensor:
+\begin{equation}
+    s^\alpha_\beta = a^{\alpha\gamma}b_{\gamma\beta}
+\end{equation}
+The physical normal curvature of curve $(dx^1, dx^2)$
+\begin{equation}
+    k_n(dx^1, dx^2) = \frac{dx^\alpha b_{\alpha\beta}dx^\beta}{dx^\alpha a_{\alpha\beta}dx^\beta}
+\end{equation}
+For every given point, changing coordintes such that $a$ is the identity, then rotating such that $b$ is diagonal, gives:
+\begin{equation}
+    b = \begin{pmatrix}
+        \kappa_1 & \\ & \kappa_2
+    \end{pmatrix}
+\end{equation}
+Where $\kappa_1, \kappa_2$ are the \textbf{principal cuvatures}. They give the mean curvature and Gaussian curvature:
+\begin{equation}
+    H = \frac{\kappa_1 + \kappa_2}{2} = \frac{1}{2}Tr(s)
+    \qquad
+    K = \kappa_1\kappa_2 = |s| = \frac{|b|}{|a|}
+\end{equation}
+To get a minimal sruface:
+\begin{equation}
+    H = 0
+    \qquad
+    -\frac{1}{2\nabla^2}\eta + \eta K > 0 \ \forall \ \eta
+\end{equation}
+\subsection{Probabilities}
+Stirling's formula:
+\begin{equation}
+    N! = \sqrt{2\pi N}\left(\frac{N}{e}\right)^N
+\end{equation}
+% TODO add Stokes first and second problem solutions at the end
+\end{document}

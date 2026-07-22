@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  19 JUL 2026 11:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.10.31)  19 JUL 2026 18:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/formulas/formulas.tex
-(c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/formulas/formulas.tex
+**c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/exam-2026/exam.tex
+(c:/Users/idans.DESKTOP-7BRHPIT/Documents/code/masters/qft1/exam-2026/exam.tex
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
 (c:/texlive/2025/texmf-dist/tex/latex/base/article.cls
@@ -663,39 +663,39 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 )
 \XKV@depth=\count339
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))) (./formulas.aux)
-\openout1 = `formulas.aux'.
+))) (./exam.aux)
+\openout1 = `exam.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 45.
-LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 45.
+LaTeX Font Info:    Checking defaults for OML/pxmi/m/it on input line 46.
+LaTeX Font Info:    Trying to load font information for OML+pxmi on input line 46.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/omlpxmi.fd
 File: omlpxmi.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/pxsy/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for OMS+pxsy on input line 46.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/omspxsy.fd
 File: omspxsy.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/pxex/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for OMX+pxex on input line 46.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/omxpxex.fd
 File: omxpxex.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for U+pxexa on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/pxexa/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for U+pxexa on input line 46.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/upxexa.fd
 File: upxexa.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
  (c:/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count340
@@ -736,64 +736,73 @@ Package grfext Info: Graphics extension search list:
  (c:/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Encoding Info:    Redeclaring text command \k (encoding T1) on input line 45.
+LaTeX Encoding Info:    Redeclaring text command \k (encoding T1) on input line 46.
 
 
-Package tikz-feynman Warning: LuaTeX is required if you wish to have vertices automatically placed. You can disable this warning by setting /tikzfeynman/warn luatex=false on input line 45.
+Package tikz-feynman Warning: LuaTeX is required if you wish to have vertices automatically placed. You can disable this warning by setting /tikzfeynman/warn luatex=false on input line 46.
 
-LaTeX Font Info:    Calculating math sizes for size <16.2> on input line 46.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 46.
+LaTeX Font Info:    Calculating math sizes for size <16.2> on input line 47.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 47.
 (c:/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 46.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 46.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 46.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <16.2> on input line 46.
+(Font)              <16.2> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <11.98808> on input line 46.
+(Font)              <11.98808> on input line 47.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9.7201> on input line 46.
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 46.
+(Font)              <9.7201> on input line 47.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Trying to load font information for U+pxmia on input line 46.
+LaTeX Font Info:    Trying to load font information for U+pxmia on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/upxmia.fd
 File: upxmia.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsya on input line 46.
+LaTeX Font Info:    Trying to load font information for U+pxsya on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/upxsya.fd
 File: upxsya.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 46.
+LaTeX Font Info:    Trying to load font information for U+pxsyb on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/upxsyb.fd
 File: utxsyb.fd 2000/12/14 v1.0
 )
-LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 46.
+LaTeX Font Info:    Trying to load font information for U+pxsyc on input line 47.
  (c:/texlive/2025/texmf-dist/tex/latex/pxfonts/upxsyc.fd
 File: upxsyc.fd 2000/12/14 v1.0
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16.2> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11.98808> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9.7201> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
-
-
-LaTeX Warning: No \author given.
-
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+LaTeX Font Info:    Calculating math sizes for size <19.44> on input line 49.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <19.44> on input line 49.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.3857> on input line 49.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <11.66411> on input line 49.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <19.44> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.3857> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11.66411> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Calculating math sizes for size <13.5> on input line 51.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <13.5> on input line 51.
@@ -807,572 +816,108 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9.99007> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 51.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.10008> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 51.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 60.
-(c:/texlive/2025/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+
 
 [1
 
-{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+{c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 91.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 91.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 91.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 108.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 108.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 108.
+
+
 
 [2]
-Overfull \hbox (37.11415pt too wide) in paragraph at lines 142--143
-[]\T1/lmr/m/n/13.5 This im-plies the func-tional in-te-gral of a to-tal deriva-tive is zero: $[] \OMS/lmsy/m/n/13.5 D\OML/lmm/m/it/13.5 ^^^[] [] \OT1/lmr/m/n/13.5 =
+
+[3]
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 182.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 182.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 182.
+
+
+Overfull \hbox (4.0572pt too wide) detected at line 214
+[][][]
  []
 
 
-
-[3]
 
 [4]
 
 [5]
 
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 243.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 243.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 243.
+
+
+
 [6]
-Overfull \hbox (5.62457pt too wide) in paragraph at lines 237--238
-\T1/lmr/m/n/13.5 cally (e.g., the $\OMS/lmsy/m/n/13.5 O\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 ^^U\OT1/lmr/m/n/13.5 )$ \T1/lmr/m/n/13.5 2-point func-tion in $\OML/lmm/m/it/13.5 ^^^[]$ \T1/lmr/m/n/13.5 which di-verges lin-early/quadratically
- []
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 274.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 274.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 274.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 290.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 290.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 290.
 
 
 
 [7]
-Overfull \hbox (9.65808pt too wide) in paragraph at lines 252--253
-[]$\OML/lmm/m/it/13.5 D < \OT1/lmr/m/n/13.5 0$\T1/lmr/m/n/13.5 : Su-per-fi-cially con-ver-gent (though it may con-tain di-ver-gent sub-diagrams). 
- []
-
-
 
 [8]
 
-[9]
-
-[10]
-
-[11]
-
-[12]
-
-[13]
-
-[14]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 479.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 479.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 479.
-
-
-
-[15]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 495.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 495.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 495.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 512.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 512.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 512.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 529.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 529.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 529.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 551.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 551.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 551.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 554.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 554.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 554.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 563.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 563.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 563.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 568.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 568.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 568.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 580.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 580.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 580.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 590.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 590.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 590.
-
-
-
-[16]
-
-[17]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 666.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 666.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 666.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 683.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 683.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 683.
-
-
-
-[18]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 705.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 705.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 705.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 722.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 722.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 722.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 741.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 741.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 741.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 752.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 752.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 752.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 771.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 771.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 771.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 781.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 781.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 781.
-
-
-
-[19]
-
-[20]
-Overfull \hbox (66.18182pt too wide) in paragraph at lines 849--850
-[]\T1/lmr/bx/n/13.5 3-point: \T1/lmr/m/n/13.5 The fun-da-men-tal 3-point func-tion is the $\OML/lmm/m/it/13.5  []^^^$ \T1/lmr/m/n/13.5 in-ter-ac-tion, $\OMS/lmsy/m/n/13.5 h\OT1/lmr/m/n/13.5 
-\OMS/lmsy/m/n/13.5 j\OML/lmm/m/it/13.5 T \OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 x\OT1/lmr/m/n/13.5 )[](\OML/lmm/m/it/13.5 y\OT1/lmr/m/n/13.5 )\OML/lmm/m/it/13.5 ^^^\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 z\OT1/lmr/m/n/13.5 )\OMS/lmsy/m/n/13.5 j\OT1/lmr/m/n/13.5 
-\OMS/lmsy/m/n/13.5 i$\T1/lmr/m/n/13.5 ,
- []
-
-
-Overfull \hbox (26.91815pt too wide) in paragraph at lines 851--852
-[]\T1/lmr/bx/n/13.5 Effective Po-ten-tial: \T1/lmr/m/n/13.5 Gen-er-ates an at-trac-tive Yukawa po-ten-tial $\OML/lmm/m/it/13.5 V\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 r\OT1/lmr/m/n/13.5 ) = \OMS/lmsy/m/n/13.5 ^^@[]\OML/lmm/m/it/13.5 e[]$
- []
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 858.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 858.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 858.
-
-
-
-[21]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 872.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 872.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 872.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 888.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 888.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 888.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 909.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 909.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 909.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 922.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 922.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 922.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 936.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 936.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 936.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 953.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 953.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 953.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 974.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 974.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 974.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 997.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 997.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 997.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1007.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1007.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1007.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1017.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1017.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1017.
-
-
-
-[22]
-Overfull \hbox (8.09227pt too wide) in paragraph at lines 1049--1050
-\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 q[]^^Q[] \OMS/lmsy/m/n/13.5 ^^@ \OML/lmm/m/it/13.5 q[]q[]\OT1/lmr/m/n/13.5 )$ \T1/lmr/m/n/13.5 has a zero eigen-value re-flect-ing gauge re-dun-dancy. Us-ing the Faddeev-
- []
-
-
-
-[23]
-
-[24]
-Overfull \hbox (14.89949pt too wide) in paragraph at lines 1094--1095
-[]\T1/lmr/bx/n/13.5 3-point (Furry's The-o-rem): \T1/lmr/m/n/13.5 The 3-photon ver-tex $\OMS/lmsy/m/n/13.5 h\OT1/lmr/m/n/13.5 
-\OMS/lmsy/m/n/13.5 j\OML/lmm/m/it/13.5 TA[]\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 x\OT1/lmr/m/n/13.5 )\OML/lmm/m/it/13.5 A[]\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 y\OT1/lmr/m/n/13.5 )\OML/lmm/m/it/13.5 A[]\OT1/lmr/m/n/13.5 (\OML/lmm/m/it/13.5 z\OT1/lmr/m/n/13.5 )\OMS/lmsy/m/n/13.5 j\OT1/lmr/m/n/13.5 
-\OMS/lmsy/m/n/13.5 i \OT1/lmr/m/n/13.5 =
- []
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1106.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1106.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1106.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1122.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1122.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1122.
-
-
-
-[25]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1143.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1143.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1143.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1159.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1159.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1159.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1177.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1177.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1177.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1193.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1193.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1193.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1211.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1211.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1211.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1224.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1224.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1224.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1237.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1237.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1237.
-
-
-
-[26]
-
-[27]
-
-[28]
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1324.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1324.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1324.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1336.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1336.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1336.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1352.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1352.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1352.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1368.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1368.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1368.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1384.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1384.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1384.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1400.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1400.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1400.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1413.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1413.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1413.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1426.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1426.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1426.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 1438.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 1438.
-
-
-Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 1438.
-
-
-
-[29]
-Overfull \hbox (3.8787pt too wide) in paragraph at lines 1456--1458
-\T1/lmr/m/n/13.5 (The scalar loop con-tri-bu-tion to vac-uum po-lar-iza-tion is 1/4 that of a Dirac fermion). 
- []
-
-
-
-[30]
-
-[31]
-
-[32]
-
-[33]
-
-[34] (./formulas.aux)
+[9] (./exam.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-10-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 21242 strings out of 467746
- 438503 string characters out of 5431099
- 919795 words of memory out of 5000000
- 49476 multiletter control sequences out of 15000+600000
- 734412 words of font info for 169 fonts, out of 8000000 for 9000
+ 19724 strings out of 467746
+ 407829 string characters out of 5431099
+ 827593 words of memory out of 5000000
+ 47985 multiletter control sequences out of 15000+600000
+ 709710 words of font info for 141 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,93p,499b,2751s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsya.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyc.pfb>
-Output written on formulas.pdf (34 pages, 351183 bytes).
+ 84i,10n,93p,493b,1077s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/pxfonts/pxsyb.pfb>
+Output written on exam.pdf (9 pages, 205405 bytes).
 PDF statistics:
- 216 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
+ 103 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
