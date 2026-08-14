@@ -157,12 +157,16 @@ Example - the $\phi^4$ equations:
 Steps:
 \begin{itemize}
     \item Assume a continuous symmetry in the Lagrangian (e.g., local gauge invariance).
-    \item Perform a local change of variables in the path integral corresponding to the symmetry transformation.
+    \item Perform a local change of variables in the path integral corresponding to the symmetry transformation, characterized by a variation $\delta\phi(x) = \alpha(x)\Delta\phi(x)$.
     \item Demand that the path integral remains invariant, extracting the quantum analogue of Noether's current conservation.
 \end{itemize}
+The general form for a set of fields is given by inserting the symmetry variation $\Delta \phi$:
+\begin{equation}
+    \partial_\mu \langle T\{j^\mu(x) \phi(y_1) \dots \phi(y_n)\} \rangle = -\sum_k \delta^{(4)}(x - y_k) \langle T\{\phi(y_1) \dots \Delta \phi(y_k) \dots \phi(y_n)\} \rangle
+\end{equation}
 Example - Complex $\phi^4$ / QED (Global $U(1)$):
 \begin{itemize}
-    \item Perform a local transformation $\phi(x) \to e^{i\alpha(x)}\phi(x) \approx \phi(x) + i\alpha(x)\phi(x)$.
+    \item Perform a local transformation $\phi(x) \to e^{i\alpha(x)}\phi(x) \approx \phi(x) + i\alpha(x)\phi(x)$. Here, the variations are $\Delta \phi(x) = i\phi(x)$ and $\Delta \phi^*(x) = -i\phi^*(x)$.
     \item The variation of the action is $\delta S = -\int d^4x \, j^\mu(x) \partial_\mu \alpha(x)$.
     \item The path integral measure is invariant, so $\delta Z = 0$.
     \item Differentiate the invariant path integral $\int \mathcal{D}\phi \mathcal{D}\phi^* e^{iS} \phi(y_1)\dots\phi^*(z_1)$ with respect to $\alpha(x)$.
@@ -201,7 +205,7 @@ Steps:
     \item Linearly change variables to complete the square in the denominator $l = p + \cdots$
     \item Name the remaining part of the denominator $\Delta$
     \item Remove odd powers of $l$
-    \item Perform Wick's rotation $l^0 \rightarrow il_E^0$
+    \item Perform Wick's rotation $l^0 \rightarrow il_E^0$ and $l^2 \rightarrow -l_E^2$
     \item Split by powers of $l$ and use the known integrals:
     \begin{equation}
         \frac{d^dl_E}{(2\pi)^d} \frac{1}{(l_E^2 + \Delta)^n} = \frac{1}{(4\pi)^\frac{d}{2}}\frac{\Gamma\left(n - \frac{d}{2}\right)}{\Gamma(n)}\Delta^{\frac{d}{2} - n}
@@ -355,6 +359,20 @@ Diagonalizing to solve the system of PDEs gives another set of couplings $g'^I$:
     \item $\gamma^I > 0 \rightarrow$ Irrelevant
     \item $\gamma^I < 0 \rightarrow$ Relevant
 \end{itemize}
+\subsubsection*{Composite operators under Wilsonian RG}
+When a composite operator $\mathcal{O}_i(x)$ is inserted into the theory, its coefficient $c_i(\Lambda)$ acts as an additional coupling in the Wilsonian effective action. Under a change of the cutoff $\Lambda$, the operator and its coefficient transform such that physical observables remain invariant.
+
+The flow equation for the dimensionless coefficient $c_i$ with respect to the cutoff $\Lambda$ is given by:
+\begin{equation}
+    \Lambda \frac{\partial c_i}{\partial \Lambda} = (d - \Delta_i)c_i + \gamma_{ji} c_j
+\end{equation}
+Where $d$ is the spacetime dimension, $\Delta_i$ is the naive mass dimension of the operator, and $\gamma_{ij}$ is the anomalous dimension matrix that accounts for quantum corrections and mixing between operators with the same quantum numbers.
+
+To compensate for the flow of the coefficients, the composite operators themselves scale with the cutoff as:
+\begin{equation}
+    \Lambda \frac{\partial}{\partial \Lambda} [\mathcal{O}_i] = - \gamma_{ij} [\mathcal{O}_j]
+\end{equation}
+This guarantees that the insertion in the effective action $\int d^d x \, c_i(\Lambda) [\mathcal{O}_i]_\Lambda$ remains independent of the Wilsonian cutoff $\Lambda$.
 
 \newpage
 \section{Known Theories}
@@ -633,7 +651,7 @@ Vertex (2 in, 2 out) & $-i\lambda \int d^4x$ & $-i\lambda (2\pi)^4\delta^{(4)}(\
     \mathcal{L}_{CT} = \delta_Z (\partial_\mu \phi^\dagger)(\partial^\mu \phi) - \delta_m \phi^\dagger \phi - \frac{\delta_\lambda}{4}(\phi^\dagger \phi)^2
 \end{equation}
 Self-energy counterterm: $i(p^2\delta_Z - \delta_m)$ \\
-4-point counterterm: $-i\delta_\lambda$
+4-point counterterm: $-i\delta_\lambda
 \subsubsection*{On-Shell Renormalization}
 Similar to real $\phi^4$, we demand the pole resides at the physical mass $m^2$ with residue $1$:
 \begin{equation}
@@ -1285,7 +1303,7 @@ Poincar\'{e} invariance, Local $U(1)$ Gauge ($\phi \to e^{ie\alpha(x)}\phi$, $A_
 \subsubsection*{Feynman rules}
 \begin{itemize}
     \item Cubic Vertex ($A_\mu \phi^\dagger \phi$): $-ie(p + p')^\mu$ (where $p, p'$ are incoming/outgoing scalar momenta)
-    \item Quartic (Seagull) Vertex ($A_\mu A_\nu \phi^\dagger \phi$): $2ie^2\eta^{\mu\nu}$
+    \item Quartic (Seagull Vertex ($A_\mu A_\nu \phi^\dagger \phi$): $2ie^2\eta^{\mu\nu}$
 \end{itemize}
 \subsubsection*{Counter terms and Renormalized Lagrangian}
 \begin{equation}

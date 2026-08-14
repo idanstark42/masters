@@ -1,18 +1,22 @@
 import sys
 import csv
 import numpy as np
+import requests
+import io
+import tqdm
+import pickle
+import pyvo as vo
+import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.ndimage import gaussian_filter
 from astropy.coordinates import SkyCoord
 import astropy.units as u
-
+from astropy.io.votable import parse_single_table
 from astropy_healpix import HEALPix
-import tqdm
-import pickle
-
 
 CSV_FILE = './canfar.net_storage_vault_file_AstroDataCitationDOI_CISTI.CANFAR_25.0066_data_table_chimefrbcat2.csv'
-GALACTIC_DM_MAP_FILE = './dm_mw_healpix.pkl'
+GALACTIC_DM_MAP_FILE = './dm_mw_healpix_per_event.pkl'
+NED_TAP_URL = "https://ned.ipac.caltech.edu/tap"
 
 EXCLUDE_FIELD = 'excluded_flag'
 REPEATER_NAME_FIELD = 'repeater_name'
@@ -34,6 +38,55 @@ MIN_COUNT = 5
 
 hp = HEALPix(nside=NSIDE, order='ring', frame='galactic')
 
+def find_ned_objects_in_area(ra, dec, radius):
+  tap_service = vo.dal.TAPService(NED_TAP_URL)
+  query = f"""
+    SELECT TOP 1000
+      ra, dec, prefphytype, z
+    FROM 
+      NEDTAP.objdir
+    WHERE 
+      CONTAINS(POINT('J2000', ra, dec), CIRCLE('J2000', {ra}, {dec}, {radius})) = 1
+      AND prefphytype = 'G'
+    """
+  # print all columns
+  # query = f"SELECT * FROM TAP_SCHEMA.columns WHERE table_name = 'NEDTAP.objdir'"
+  try:
+    job = tap_service.search(query)
+    df = job.to_table().to_pandas()
+    print(f"Found {len(df)} NED objects in the area around RA={ra}, Dec={dec} within {radius} degrees.")
+    for col in df.select_dtypes([object]).columns:
+      df[col] = df[col].apply(lambda x: x.decode('utf-8') if isinstance(x, bytes) else x)
+    return df.to_dict(orient='records')
+  except Exception as e:
+    print("Error occurred: {}".format(e))
+    return []
+
+  # 4. Convert to an array of dictionaries
+  array_of_dicts = []
+  
+  for row in table:
+    row_dict = {}
+    for col_name in table.colnames:
+      val = row[col_name]
+          
+      # Handle numpy masked values (missing data in VOTables)
+      if np.ma.is_masked(val):
+        val = None
+      else:
+        # Decode byte strings to standard Python strings
+        if isinstance(val, bytes):
+          val = val.decode('utf-8')
+        # Convert numpy scalars (like np.float64) to native Python types
+        elif hasattr(val, 'item'):
+          val = val.item()
+            
+      row_dict[col_name] = val
+      
+  array_of_dicts.append(row_dict)
+      
+  return array_of_dicts
+
 def keys(dict_reader, args):
   print(dict_reader.fieldnames)
 
@@ -44,18 +97,7 @@ def event(dict_reader, args):
 
 def add_dm_exc(row, galactic_dm_map):
   dm_obs = float(row[DISPERSION_MEASURE_FIELD] or row[DISPERSION_MEASURE_BACKUP_FIELD])
-  galactic_latitude = float(row[GALACTIC_LATITUDE_FIELD])
-  galactic_longitude = float(row[GALACTIC_LONGITUDE_FIELD])
-  coord_gal = SkyCoord(
-    l=galactic_longitude*u.degree,
-    b=galactic_latitude*u.degree,
-    frame='galactic'
-  )
-
-  # interpolate MW DM from HEALPix map
-  pix = hp.skycoord_to_healpix(coord_gal)
-  dm_mw = galactic_dm_map[pix]
-
+  dm_mw = galactic_dm_map[f"{row[RIGHT_ASCENSION_FIELD]}_{row[DECLENATION_FIELD]}"]
   row["dm_exc"] = dm_obs - dm_mw
   return row
 
@@ -305,8 +347,16 @@ def area_map(dict_reader, args):
       decs.append(float(event[DECLENATION_FIELD]))
       dm_excs.append(float(event["dm_exc"]))
 
+  # also plot other objects in the area from NED
+  ned_objects = find_ned_objects_in_area(asc, dec, area * np.sqrt(2))  # use sqrt(2) to cover the diagonal of the square area
+  print(f"Found {len(ned_objects)} NED objects in the area around RA={asc}, Dec={dec} within {area * np.sqrt(2)} degrees.")
+  ned_ras = [float(obj['ra']) for obj in ned_objects]
+  ned_decs = [float(obj['dec']) for obj in ned_objects]
+
   plt.figure(figsize=(12, 6))
   plt.scatter(ras, decs, s=dm_excs / np.max(dm_excs) * 100, alpha=0.5)
+  plt.scatter(ned_ras, ned_decs, s=20, alpha=0.5, color='red', label='NED Objects')
+  plt.legend()
   plt.xlim(asc - area, asc + area)
   plt.ylim(dec - area, dec + area)
   plt.xlabel('Right Ascension (deg)')
