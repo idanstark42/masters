@@ -18,5 +18,5 @@ class EventsMapCommand(Command):
         plt.xlabel('Right Ascension (deg)')
         plt.ylabel('Declination (deg)')
         plt.title('Event Locations')
-        plt.savefig('events_map.png', dpi=300)
+        plt.savefig('figures/events_map.png', dpi=300)
         plt.show()

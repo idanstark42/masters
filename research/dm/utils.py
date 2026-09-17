@@ -30,7 +30,7 @@ glade_columns = [
 
 def parse_area_args(args):
     """Helper function to extract RA, Dec, Area, and Radius from command args."""
-    asc, dec, area, radius = None, None, 5.0, 0.5  # Default radius of 0.5 degrees
+    asc, dec, area, radius = 180, 0, 180.0, 0.5  # Default radius of 0.5 degrees
     if len(args) > 0:
         pairs = [arg.split('=') for arg in args]
         

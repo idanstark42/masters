@@ -26,5 +26,5 @@ class GalaxiesMapCommand(Command):
         plt.xlabel('Luminosity Distance (Mpc')
         plt.ylabel('Number of Galaxies')
         plt.title(f'Galaxies Luminosity Distance Histogram')
-        plt.savefig('dl_histogram.png', dpi=300)
+        plt.savefig('figures/dl_histogram.png', dpi=300)
         plt.show()

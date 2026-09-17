@@ -17,7 +17,7 @@ class DmVsDensityCommand(Command):
             print("No position specified. Use 'pos=RA,Dec'.")
             return
 
-        data_filename = f'data/dm_vs_density_data_RA{asc}_Dec{dec}_Area{area}_Rad{radius}.csv'
+        data_filename = f'data/dm_vs_density_data_RA{asc}_Dec{dec}_Area{area}_Rad{radius}_Range{distance_range[0]}_{distance_range[1]}.csv'
 
         if os.path.exists(data_filename):
             print(f"Found cached data! Loading directly from {data_filename}...")

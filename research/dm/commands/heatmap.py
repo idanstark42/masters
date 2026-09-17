@@ -32,5 +32,5 @@ class HeatmapCommand(Command):
         plt.xlabel('Right Ascension (deg)')
         plt.ylabel('Declination (deg)')
         plt.title('Average Dispersion Measure Heatmap')
-        plt.savefig(f'heatmap_RAres{ra_res}_Decres{dec_res}_Mincount{min_cnt}.png', dpi=300)
+        plt.savefig(f'figures/heatmap_RAres{ra_res}_Decres{dec_res}_Mincount{min_cnt}.png', dpi=300)
         plt.show()

@@ -22,5 +22,5 @@ class DmExcHistogramCommand(Command):
         plt.xlabel('Dispersion Measure Excess (pc cm$^{-3}$)')
         plt.ylabel('Number of Events')
         plt.title('Histogram of Dispersion Measure Excess')
-        plt.savefig('dm_exc_histogram.png', dpi=300)
+        plt.savefig('figures/dm_exc_histogram.png', dpi=300)
         plt.show()

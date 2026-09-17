@@ -28,7 +28,7 @@ class GalaxiesMapCommand(Command):
         plt.ylim(-90, 90)
         plt.grid(True, alpha=0.3)
         
-        filename = f'all_galaxies_map_dist_{distance_range[0]}_{distance_range[1]}.png'
+        filename = f'figures/all_galaxies_map_dist_{distance_range[0]}_{distance_range[1]}.png'
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         print(f"Saved plot to {filename}")
         plt.show()

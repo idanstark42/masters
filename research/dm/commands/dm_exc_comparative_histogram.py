@@ -23,5 +23,5 @@ class DmExcComparativeHistogramCommand(Command):
         plt.xlabel('Dispersion Measure Excess (pc cm$^{-3}$)')
         plt.title('Comparative Histogram of Dispersion Measure Excess')
         plt.legend()
-        plt.savefig(f'dm_exc_comparative_histogram_RA{asc}_Dec{dec}_Area{area}.png', dpi=300)
+        plt.savefig(f'figures/dm_exc_comparative_histogram_RA{asc}_Dec{dec}_Area{area}.png', dpi=300)
         plt.show()
