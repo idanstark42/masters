@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from commands.command import Command
-from utils import parse_area_args, parse_range
 from variables import VARIABLE_TYPES
 
 class CorrelateCommand(Command):
