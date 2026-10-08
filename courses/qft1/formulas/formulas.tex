@@ -1188,6 +1188,22 @@ Tree $2 \to 2$ scattering (Bhabha $e^- e^+ \to e^- e^+$), S and T channels:
   \end{feynman}
 \end{tikzpicture}
 \end{center}
+\begin{center}
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+  \begin{feynman}
+    \vertex[dot] (v1) at (0,1) {};
+    \vertex[dot] (v2) at (0,-1) {};
+    \vertex (i1) at (-1.5, 1.5) {$e^-$};
+    \vertex (f1) at (1, 0) {$e^-$};
+    \vertex (i2) at (-1.5, -1.5) {$e^-$};
+    \draw[fermion] (i1) -- (v1);
+    \draw[fermion] (v1) -- (f1);
+    \draw[fermion] (f2) -- (v2);
+    \draw[fermion] (v2) -- (i2);
+    \draw[photon] (v1) -- (v2);
+  \end{feynman}
+\end{tikzpicture}
+\end{center}
 Tree $2 \to 2$ scattering (Compton $e^- \gamma \to e^- \gamma$), S and U channels:
 \begin{center}
 \begin{tikzpicture}[baseline=(current bounding box.center)]

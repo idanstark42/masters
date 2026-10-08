@@ -5,7 +5,7 @@ import tqdm
 import matplotlib.pyplot as plt
 from commands.command import Command
 from utils import parse_area_args, parse_range, RIGHT_ASCENSION_FIELD, DECLENATION_FIELD
-from galaxies_decorator import GalaxiesProvider
+from galaxies_decorator import RegladeGalaxyProvider
 from astropy.coordinates import SkyCoord
 import astropy.units as u
 
@@ -43,7 +43,7 @@ class DmVsDensityCommand(Command):
 
             print(f"Found {len(event_ras)} events. Fetching GLADE galaxies...")
 
-            galaxies_provider = GalaxiesProvider()
+            galaxies_provider = RegladeGalaxyProvider()
             galaxies_df = galaxies_provider.get_galaxies_in_area(asc, dec, area + radius, distance_range)
 
             if galaxies_df.empty:

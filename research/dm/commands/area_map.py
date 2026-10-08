@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from commands.command import Command
 from utils import parse_area_args, parse_range, RIGHT_ASCENSION_FIELD, DECLENATION_FIELD
-from galaxies_decorator import GalaxiesProvider
+from galaxies_decorator import RegladeGalaxyProvider
 from baryonic_matter_decorator import BaryonicMatterProvider
 
 BACKGROUND_DOT_SIZE = 20  # Default size for background points (galaxies and baryons)
@@ -23,7 +23,7 @@ class AreaMapCommand(Command):
                 dm_excs.append(float(ev["dm_exc"]))
         print(f"Found {len(ras)} events in the specified area.")
 
-        galaxies_provider = GalaxiesProvider()
+        galaxies_provider = RegladeGalaxyProvider()
         galaxies_df = galaxies_provider.get_galaxies_in_area(asc, dec, area, distance_range)
         galaxies_sample = galaxies_df.sample(frac=10000/len(galaxies_df)) if len(galaxies_df) > 10000 else galaxies_df
         galaxies_sizes = galaxies_sample['M'] / np.max(galaxies_sample['M']) * BACKGROUND_DOT_SIZE if 'M' in galaxies_sample.columns else 20

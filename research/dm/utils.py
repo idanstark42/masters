@@ -3,6 +3,7 @@ import numpy as np
 CSV_FILE = './data/canfar.net_storage_vault_file_AstroDataCitationDOI_CISTI.CANFAR_25.0066_data_table_chimefrbcat2.csv'
 GALACTIC_DM_MAP_FILE = './data/dm_mw_healpix_per_event.pkl'
 GLADE_FILE = './data/glade.txt'
+REGLADE_FILE = './data/regalade_v2.fits'
 
 EXCLUDE_FIELD = 'excluded_flag'
 REPEATER_NAME_FIELD = 'repeater_name'

@@ -1,36 +1,54 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from commands.command import Command
-from utils import DEFAULT_RA_RES, DEFAULT_DEC_RES, MIN_COUNT, RIGHT_ASCENSION_FIELD, DECLENATION_FIELD, DISPERSION_MEASURE_FIELD, DISPERSION_MEASURE_BACKUP_FIELD
+from utils import RIGHT_ASCENSION_FIELD, DECLENATION_FIELD
+
+SIGMA = 3.0  
 
 class HeatmapCommand(Command):
     def run(self, args):
-        ra_res = DEFAULT_RA_RES
-        dec_res = DEFAULT_DEC_RES
-        min_cnt = MIN_COUNT
-
-        if len(args) > 0:
-            ra_res, dec_res, min_cnt = map(int, args[0].split(':'))
-
-        values, ras, decs = [], [], []
-
+        ras, decs, dm_excs = [], [], []
         for ev in self.iterate_events():
             ras.append(float(ev[RIGHT_ASCENSION_FIELD]))
             decs.append(float(ev[DECLENATION_FIELD]))
-            values.append(float(ev[DISPERSION_MEASURE_FIELD] or ev[DISPERSION_MEASURE_BACKUP_FIELD]))
+            dm_excs.append(float(ev["dm_exc"]))
 
-        ra_edges = np.linspace(0, 360, ra_res + 1)
-        dec_edges = np.linspace(0, 90, dec_res + 1)
+        grid_resolution = 1.0  
+        x = np.arange(0, 360, grid_resolution)
+        y = np.arange(0, 90, grid_resolution)
+        X, Y = np.meshgrid(x, y)
+        
+        heatmap = np.zeros_like(X, dtype=np.float64)
 
-        sums, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges], weights=values)
-        counts, _, _ = np.histogram2d(decs, ras, bins=[dec_edges, ra_edges])
-        averages = np.divide(sums, counts, out=np.full_like(sums, np.nan), where=counts > min_cnt)
+        for ra, dec, dm in zip(ras, decs, dm_excs):
+            # Shortest distance in RA (handles the 0/360 wrap-around)
+            dx = (X - ra)
+            dx = (dx + 180) % 360 - 180
+            
+            # Apply polar convergence: RA lines squeeze together at higher declinations
+            # We scale the RA distance by cos(Dec) of the grid points
+            dx = dx * np.cos(np.radians(Y))
+            
+            # Declination distance (linear)
+            dy = Y - dec
+            
+            # Add the Gaussian
+            heatmap += dm * np.exp(-(dx**2 + dy**2) / (2 * SIGMA**2))
 
-        plt.figure(figsize=(12, 6))
-        plt.imshow(averages, origin='lower', aspect='auto', extent=[0, 360, 0, 90])
-        plt.colorbar(label='Dispersion Measure')
+        # 4. Plot the resulting sum
+        plt.figure(figsize=(18, 6))
+        
+        # Standard astronomical plot: RA usually increases right-to-left
+        plt.imshow(heatmap, origin='lower', extent=[360, 0, 0, 90], 
+                   cmap='magma', aspect='auto')
+        
+        plt.colorbar(label='Summed Excess DM')
+        
+        # Invert x-axis to follow standard astronomical convention (RA increases to the East/Left)
+        # plt.gca().invert_xaxis()  # Alternative to reversing 'extent' above
+        
         plt.xlabel('Right Ascension (deg)')
         plt.ylabel('Declination (deg)')
-        plt.title('Average Dispersion Measure Heatmap')
-        plt.savefig(f'figures/heatmap_RAres{ra_res}_Decres{dec_res}_Mincount{min_cnt}.png', dpi=300)
+        plt.title('FRB Excess DM Heatmap')
+        plt.savefig('figures/events_heatmap.png', dpi=300)
         plt.show()

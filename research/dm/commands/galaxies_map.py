@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 from commands.command import Command
 from utils import parse_range
-from galaxies_decorator import GalaxiesProvider
+from galaxies_decorator import RegladeGalaxyProvider
 
 class GalaxiesMapCommand(Command):
     def run(self, args):
         distance_range = parse_range(args)
         print(f"Scanning the GLADE+ catalog to map galaxies within distance {distance_range} Mpc...")
         
-        galaxies_provider = GalaxiesProvider()
+        galaxies_provider = RegladeGalaxyProvider()
         galaxies_df = galaxies_provider.get_galaxies_in_area(asc=180.0, dec=0.0, area=180.0, distance_range=distance_range)
         
         if galaxies_df.empty:
